@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overgit — many repos, one workspace</title>
+  <meta name="description" content="Overgit is a workspace-overlay git client. Coordinate many repos at once without owning their state. Branch across services, stage with bulk actions, and pipe diffs to claude / codex / gemini for review." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="primary">
+    <a href="#top" class="brand">
+      <img class="brand-mark" src="assets/icon.png" alt="" />
+      <span class="brand-name">overgit</span>
+      <span class="brand-ver">v0.1 · beta</span>
+    </a>
+    <ul class="nav-links">
+      <li><a class="nav-back" href="../">← codelions</a></li>
+      <li><a href="#features">features</a></li>
+      <li><a href="#workspace">workspaces</a></li>
+      <li><a href="#story">story</a></li>
+      <li><a href="#download">download</a></li>
+      <li><a class="nav-repo" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github&nbsp;↗</a></li>
+    </ul>
+  </nav>
+
+  <main id="top">
+
+    <!-- ─────────── HERO ─────────── -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <p class="kicker">&#9484;&#9472; [&nbsp;01&nbsp;] &nbsp;·&nbsp; a desktop git client for people who live in many repos</p>
+          <h1 class="headline">
+            <span class="headline-line" data-delay="0">Many repos.</span>
+            <span class="headline-line em" data-delay="220">One workspace.</span>
+          </h1>
+          <p class="lede">
+            Overgit is a desktop git client built around <em>workspaces</em> — named groups of repos you act on together. Branch across <code>api-gateway</code>, <code>billing-svc</code>, and <code>ledger-core</code> in one move. Stage with checkboxes. Pipe diffs to <code>claude</code>, <code>codex</code>, or <code>gemini</code> for review. Every action runs as a plain <code>git</code> command in the repo you already have.
+          </p>
+          <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">git</span> &nbsp;— a client that sits <em>over</em> your <em>git</em> repos, never inside <code>.git</code>. Stop using it anytime; your repos behave the same in any other tool.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#download">
+              <span class="btn-bracket">[</span>
+              <span class="btn-label">Download · macOS</span>
+              <span class="btn-bracket">]</span>
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">
+              view source →
+            </a>
+            <a class="btn-chip" href="../overcli/" aria-label="See the sibling project, overcli">
+              <kbd>sibling</kbd>&nbsp;&nbsp;meet overcli
+            </a>
+          </div>
+          <ul class="hero-meta">
+            <li><span class="dot dot-ready"></span> macOS</li>
+            <li><span class="dot dot-ready"></span> windows</li>
+            <li><span class="dot dot-ready"></span> linux</li>
+            <li class="meta-sep">│</li>
+            <li>Electron · React · TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="hero-right">
+          <figure class="app-window" aria-label="Overgit application preview">
+            <header class="app-chrome">
+              <span class="chrome-dot red"></span>
+              <span class="chrome-dot yellow"></span>
+              <span class="chrome-dot green"></span>
+              <nav class="app-tabs">
+                <button class="app-tab is-active">Changes</button>
+                <button class="app-tab">History</button>
+                <button class="app-tab">Files</button>
+                <button class="app-tab">Graph</button>
+              </nav>
+            </header>
+
+            <div class="app-body">
+              <aside class="app-sidebar">
+                <div class="sidebar-search">
+                  <span class="search-glyph">⌕</span>
+                  <span class="search-placeholder">⌘K palette</span>
+                </div>
+
+                <p class="sidebar-section">workspaces</p>
+                <ul class="ws-list">
+                  <li class="ws-item is-open">
+                    <span class="ws-glyph">▾</span> payments-platform
+                    <span class="ws-tools"><span>✎</span><span>+</span></span>
+                  </li>
+                  <li class="ws-child is-active">– api-gateway <span class="conv-dot on"></span></li>
+                  <li class="ws-child">– billing-svc <span class="conv-dot on"></span></li>
+                  <li class="ws-child">– ledger-core</li>
+                  <li class="ws-item">
+                    <span class="ws-glyph">▸</span> design-system
+                    <span class="ws-tools"><span>✎</span><span>+</span></span>
+                  </li>
+                  <li class="ws-item">
+                    <span class="ws-glyph">▸</span> infra
+                    <span class="ws-tools"><span>✎</span><span>+</span></span>
+                  </li>
+                </ul>
+
+                <p class="sidebar-section">branch · all repos</p>
+                <ul class="agent-list">
+                  <li><span class="agent-dot running"></span>feat/rate-limit<span class="agent-note">3/3 ✓</span></li>
+                  <li><span class="agent-dot idle"></span>main<span class="agent-note">clean</span></li>
+                </ul>
+
+                <p class="sidebar-section">PRs <span class="agent-count">7</span></p>
+                <ul class="agent-list">
+                  <li><span class="agent-dot running"></span>#412 rate-limit<span class="agent-note">api-gw</span></li>
+                  <li><span class="agent-dot running"></span>#88 token bucket<span class="agent-note">billing</span></li>
+                  <li><span class="agent-dot idle"></span>#39 pg14 mig<span class="agent-note">ledger</span></li>
+                </ul>
+
+                <div class="sidebar-footer">+ Add repo &nbsp;&nbsp; + New workspace</div>
+              </aside>
+
+              <section class="app-main">
+                <header class="chat-header">
+                  <h4 class="chat-title">api-gateway · changes</h4>
+                  <span class="cli-pill">feat/rate-limit</span>
+                  <span class="chat-model-tag">⎇ 3 repos · 11 files</span>
+                  <div class="chat-actions">
+                    <span class="act-pill">⎇ branch ▾</span>
+                    <span class="act-pill">⤓ pull</span>
+                    <span class="act-pill">⤒ push</span>
+                    <span class="act-pill">✦ AI review</span>
+                    <span class="act-icons">
+                      <span class="act-icon" title="fetch">⟳</span>
+                      <span class="act-icon" title="more">⋯</span>
+                    </span>
+                  </div>
+                </header>
+
+                <div class="chat-scroll">
+                  <div class="chat-cards">
+                    <article class="card">
+                      <header class="card-head"><span class="card-tag">staged</span> <span class="card-target">src/middleware/rateLimit.ts</span> <span class="card-stats"><span class="add">+22</span> <span class="rem">−0</span></span></header>
+                      <pre class="card-body"><span class="diff-meta">@@ new file @@</span><span class="diff-add">+ import { bucket } from "./bucket";</span><span class="diff-add">+ export const loginLimiter = bucket({</span><span class="diff-add">+   cap: 10,</span><span class="diff-add">+   per: "60s",</span><span class="diff-add">+   key: (req) => `${req.ip}:${req.body.username}`,</span><span class="diff-add">+ });</span></pre>
+                    </article>
+
+                    <article class="card">
+                      <header class="card-head"><span class="card-tag">staged</span> <span class="card-target">src/routes/login.ts</span> <span class="card-stats"><span class="add">+2</span> <span class="rem">−1</span></span></header>
+                      <pre class="card-body"><span class="diff-add">+ import { loginLimiter } from "../middleware/rateLimit";</span><span class="diff-rem">- router.post("/api/login", login);</span><span class="diff-add">+ router.post("/api/login", loginLimiter, login);</span></pre>
+                    </article>
+
+                    <article class="card">
+                      <header class="card-head"><span class="card-tag">ai · claude</span> <span class="card-target">review · staged diff</span></header>
+                      <pre class="card-body">Looks good. Two notes:
+  · <span class="k">cap: 10/60s</span> is aggressive for /login on first sign-in storms — consider 20/60s.
+  · Add a unit test for the <span class="k">ip + username</span> key collision (two users on the same NAT).</pre>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="composer">
+                  <button class="composer-plus">✦</button>
+                  <span class="composer-placeholder">feat: add rate limiter to /api/login &nbsp;·&nbsp; ↵ commit · ⇧↵ commit &amp; push</span>
+                  <button class="composer-stop">Suggest</button>
+                </div>
+
+                <footer class="chat-statusbar">
+                  3 repos staged · 11 files · ⎇ feat/rate-limit · clean working tree on ledger-core
+                </footer>
+              </section>
+            </div>
+          </figure>
+          <p class="hero-caption">A workspace, not a single repo. The whole point.</p>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>n repos</span><span>·</span>
+          <span>01 workspace</span><span>·</span>
+          <span>00 metadata</span><span>·</span>
+          <span>∞ branches</span><span>·</span>
+          <span>plain git underneath</span><span>·</span>
+          <span>Apache 2.0</span><span>·</span>
+          <span>open source</span><span>·</span>
+          <span>n repos</span><span>·</span>
+          <span>01 workspace</span><span>·</span>
+          <span>00 metadata</span><span>·</span>
+          <span>∞ branches</span><span>·</span>
+          <span>plain git underneath</span><span>·</span>
+          <span>Apache 2.0</span><span>·</span>
+          <span>open source</span><span>·</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ─────────── FEATURES ─────────── -->
+    <section class="features" id="features">
+      <div class="section-head">
+        <p class="kicker">[&nbsp;02&nbsp;] &nbsp;·&nbsp; inside the window</p>
+        <h2 class="section-title">Built for the day your work spans four repos.</h2>
+        <p class="section-lede">GitHub Desktop, Tower, and Fork are all one-repo-at-a-time. If your work spans services + shared libs + infra, you end up scripting your own "checkout <code>feature/x</code> everywhere" flow. Overgit fills that gap — without ever writing inside <code>.git</code>.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">01</span>
+          <h3>Workspaces, not repos</h3>
+          <p>Group related repos into a named <em>workspace</em>. See status, branches, dirty state, and open PRs across every member at once. The polyrepo problem, finally a UI.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">02</span>
+          <h3>Workspace-wide branching</h3>
+          <p>Sync each repo to its default branch → pull → branch — all in one workflow. Per-repo outcomes if any of them fail. Stop scripting <code>for d in */; do git checkout …</code>.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">03</span>
+          <h3>Overlay, not metadata</h3>
+          <p>Overgit never writes inside <code>.git</code>. No hidden state, no <code>.overgit</code> folder, no special config. Stop using it any time and your repos behave the same in any other tool.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">04</span>
+          <h3>Branch picker, with brains</h3>
+          <p><kbd>⌘B</kbd> opens a searchable popover. Local + remote branches grouped, ↑↓/Enter, inline create-branch with optional sync-and-pull, per-branch cherry-pick with commit-list multi-select.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">05</span>
+          <h3>Command palette</h3>
+          <p><kbd>⌘K</kbd> opens a context-aware palette: switch / create branches, jump to repos and workspaces, search files, run repo actions (stage all, fetch, pull, push, AI review).</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">06</span>
+          <h3>AI review &amp; suggest</h3>
+          <p>Detects <code>claude</code>, <code>codex</code>, and <code>gemini</code>. Pipes diffs into the chosen CLI in non-interactive mode. <em>Suggest</em> drafts a conventional-commit message from the staged diff and drops it into the commit input.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">07</span>
+          <h3>Per-repo tabs</h3>
+          <p>Changes / History / Files / Graph / Stash. Multi-select with checkboxes, bulk action bar (Stage / Stash / Discard). File editor sandboxed to registered repos with <code>hljs</code> syntax highlighting.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">08</span>
+          <h3>gh PR aggregation</h3>
+          <p>Workspace-wide PR list via <code>gh pr list --json</code> per member, merged into one view. See what's open across the whole workspace, not one repo at a time.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">09</span>
+          <h3>Branch graph</h3>
+          <p>Per-lane colored visualization with ref labels. Resizable, readable, no Gitk vibes.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">10</span>
+          <h3>Your CLI auth, your machine</h3>
+          <p>Whatever auth your <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>gh</code> already have is the auth Overgit uses. Nothing leaves your machine via Overgit.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">11</span>
+          <h3>Keyboard first</h3>
+          <p><kbd>⌘K</kbd> palette. <kbd>⌘B</kbd> branches. <kbd>⌘N</kbd> new branch. <kbd>⌘1–4</kbd> tab switch. <kbd>⌘R</kbd> refresh. <kbd>⌘\</kbd> sidebar. <kbd>⌘,</kbd> settings. It is not a website; it is a tool.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">12</span>
+          <h3>Light, dark, system</h3>
+          <p>Theme follows the OS by default, override per app. Resizable sidebar, sensible defaults, no surprise modals.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ─────────── WORKSPACE EXPLAINER ─────────── -->
+    <section class="colosseum" id="workspace">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; the workspace move</p>
+        <h2 class="display-title">
+          <span>One branch.</span>
+          <span class="em">Many repos.</span>
+          <span>One commit&nbsp;flow.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          A workspace branch is just a name overgit applies across every member repo. Each repo gets the same <code>feature/x</code> via a plain <code>git checkout -b</code>. When you push, you push them all. When you open PRs, <code>gh</code> opens them all. The repos never know they're related — overgit knows.
+        </p>
+      </div>
+
+      <div class="col-grid">
+        <div class="col col-claude">
+          <header class="col-head">
+            <span class="col-rank">I</span>
+            <div>
+              <p class="col-name">api-gateway</p>
+              <p class="col-model">feat/rate-limit</p>
+            </div>
+            <span class="col-timer">+22 −1</span>
+          </header>
+          <pre class="col-out">middleware/rateLimit.ts (new)
+routes/login.ts (edit)
+tests/rateLimit.spec.ts (new)</pre>
+          <footer class="col-foot">
+            <span>staged <strong>3</strong> files</span>
+            <span class="add">+22</span>
+            <span class="rem">−1</span>
+          </footer>
+        </div>
+
+        <div class="col col-codex">
+          <header class="col-head">
+            <span class="col-rank">II</span>
+            <div>
+              <p class="col-name">billing-svc</p>
+              <p class="col-model">feat/rate-limit</p>
+            </div>
+            <span class="col-timer">+8 −2</span>
+          </header>
+          <pre class="col-out">src/clients/gateway.ts (edit)
+src/types/limits.ts (new)</pre>
+          <footer class="col-foot">
+            <span>staged <strong>2</strong> files</span>
+            <span class="add">+8</span>
+            <span class="rem">−2</span>
+          </footer>
+        </div>
+
+        <div class="col col-gemini">
+          <header class="col-head">
+            <span class="col-rank">III</span>
+            <div>
+              <p class="col-name">ledger-core</p>
+              <p class="col-model">feat/rate-limit</p>
+            </div>
+            <span class="col-timer">clean</span>
+          </header>
+          <pre class="col-out">no changes
+branch ready
+ahead 0 · behind 0</pre>
+          <footer class="col-foot">
+            <span>nothing to stage</span>
+            <span class="add">+0</span>
+            <span class="rem">−0</span>
+          </footer>
+        </div>
+
+        <div class="col col-ollama">
+          <header class="col-head">
+            <span class="col-rank">IV</span>
+            <div>
+              <p class="col-name">infra <span class="col-tag">terraform</span></p>
+              <p class="col-model">feat/rate-limit</p>
+            </div>
+            <span class="col-timer">+14 −0</span>
+          </header>
+          <pre class="col-out">limits.tf (new)
+api-gateway.tf (edit)</pre>
+          <footer class="col-foot">
+            <span>staged <strong>2</strong> files</span>
+            <span class="add">+14</span>
+            <span class="rem">−0</span>
+          </footer>
+        </div>
+      </div>
+
+      <p class="colosseum-ribbon"><span>one branch name</span> · <span>four repos</span> · <span>one PR set</span></p>
+    </section>
+
+
+    <!-- ─────────── PHILOSOPHY ─────────── -->
+    <section class="story" id="story">
+      <div class="story-body">
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; why overgit exists</p>
+        <h2 class="display-title story-title">
+          <span>Coordinate the repos.</span>
+          <span><em>Own</em> none of them.</span>
+        </h2>
+        <p>
+          Most multi-repo tooling solves the problem by inventing a meta-format: a manifest, a sub-tree, a worktree-of-worktrees. Then you can't open one of the repos in another tool without something breaking. Overgit refuses that bargain. Workspaces are a UI grouping, not a file on disk. Every action is a plain <code>git</code> command run in the repo's own directory. If you uninstall overgit tomorrow, your repos forget it ever existed.
+        </p>
+        <p>
+          The result is a client built for the realistic case — your work spans services and shared libs and infra, your teammates use whatever client they like, and the only thing the repos agree on is <code>git</code>. Overgit sits over the top, coordinates, and stays out of the way.
+        </p>
+        <p class="story-sig">
+          Sibling project of <a href="../overcli/">overcli</a>. Written &amp; maintained by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a>. Open-source — <a href="https://github.com/overcodelions/overgit/graphs/contributors" target="_blank" rel="noopener">contributors</a>, issues, and PRs welcome.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ─────────── DOWNLOAD ─────────── -->
+    <section class="download" id="download">
+      <div class="section-head">
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <h2 class="section-title">Unsigned, honest, and real.</h2>
+        <p class="section-lede">Overgit is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
+      </div>
+
+      <div class="dl-wrap">
+        <table class="dl-table">
+          <tbody>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">⌘</span>
+                <span>
+                  <strong>macOS</strong>
+                  <em>arm64 + x64</em>
+                </span>
+              </td>
+              <td class="dl-format">.dmg &nbsp;· &nbsp;.zip</td>
+              <td class="dl-size">~ 120 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overgit/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">⊞</span>
+                <span>
+                  <strong>Windows</strong>
+                  <em>x64 + arm64</em>
+                </span>
+              </td>
+              <td class="dl-format">NSIS installer</td>
+              <td class="dl-size">~ 110 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overgit/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">🐧</span>
+                <span>
+                  <strong>Linux</strong>
+                  <em>x64 + arm64</em>
+                </span>
+              </td>
+              <td class="dl-format">.AppImage &nbsp;· &nbsp;.deb</td>
+              <td class="dl-size">~ 130 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overgit/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <aside class="dl-note">
+          <p class="note-tag">&#9888; heads up</p>
+          <p>
+            macOS will show <em>"unidentified developer"</em> on first open.
+            Right-click the app → <strong>Open</strong>. Do it once; it sticks.
+          </p>
+          <p class="note-snippet">
+            <span class="snippet-prompt">$</span>
+            <span>git clone https://github.com/overcodelions/overgit &amp;&amp; cd overgit &amp;&amp; npm install &amp;&amp; npm run dist:mac</span>
+          </p>
+          <p class="note-foot">— if you'd rather build it yourself.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ─────────── FOOTER / TMUX STATUS LINE ─────────── -->
+  <footer class="site-footer" aria-label="footer">
+    <div class="status-line">
+      <span class="sl-cell sl-brand">
+        <img src="assets/icon.png" alt="" class="sl-mark" />
+        overgit
+      </span>
+      <span class="sl-cell">v0.1 · beta</span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github</a></span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions/overgit/issues" target="_blank" rel="noopener">issues</a></span>
+      <span class="sl-cell sl-spacer"></span>
+      <span class="sl-cell">sibling of</span>
+      <span class="sl-cell"><a href="../overcli/">overcli</a></span>
+      <span class="sl-cell">·</span>
+      <span class="sl-cell"><a href="../">codelions</a></span>
+      <span class="sl-cell sl-clock" id="sl-clock">00:00</span>
+    </div>
+    <p class="footer-fine">
+      Overgit is a fan-built client. Not affiliated with GitHub. The <code>git</code>, <code>gh</code>, <code>claude</code>, <code>codex</code>, and <code>gemini</code> binaries are their respective projects.
+    </p>
+  </footer>
+
+  <script>
+    // tmux-style clock
+    (function () {
+      const el = document.getElementById('sl-clock');
+      if (!el) return;
+      const tick = () => {
+        const d = new Date();
+        el.textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+      };
+      tick();
+      setInterval(tick, 30000);
+    })();
+  </script>
+</body>
+</html>

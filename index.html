@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codelions — desktop tools for people who live in their terminals</title>
+  <meta name="description" content="Codelions builds desktop tools for developers who live in terminals. Overcli wraps coding-agent CLIs in one window. Overgit coordinates many git repos as one workspace. Both open source, both honest." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="primary">
+    <a href="#top" class="brand">
+      <img class="brand-mark" src="assets/icon.png" alt="" />
+      <span class="brand-name">codelions</span>
+      <span class="brand-ver">open · honest · two tools</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">products</a></li>
+      <li><a href="#philosophy">philosophy</a></li>
+      <li><a class="nav-repo" href="https://github.com/overcodelions" target="_blank" rel="noopener">github&nbsp;↗</a></li>
+    </ul>
+  </nav>
+
+  <main id="top">
+    <header class="lp-hero">
+      <p class="kicker">&#9484;&#9472; [&nbsp;codelions&nbsp;] &nbsp;·&nbsp; desktop tools for people who live in their terminals</p>
+      <h1 class="lp-headline">
+        <span>Two tools.</span>
+        <span class="em">One philosophy.</span>
+      </h1>
+      <p class="lp-lede">
+        Codelions builds small, honest desktop apps for developers who already live in CLIs.
+        Apps you can read, audit, and uninstall without leaving a trace.
+        <br />
+        Right now there are two of them — and they're sibling projects on purpose.
+      </p>
+      <ul class="lp-meta">
+        <li><span class="dot dot-ready"></span> macOS</li>
+        <li><span class="dot dot-ready"></span> windows</li>
+        <li><span class="dot dot-ready"></span> linux</li>
+        <li class="meta-sep">│</li>
+        <li>Apache 2.0</li>
+        <li class="meta-sep">│</li>
+        <li>Electron · React · TypeScript</li>
+      </ul>
+    </header>
+
+    <section class="lp-products" id="products">
+      <a class="lp-card" href="overcli/">
+        <header class="lp-card-head">
+          <span class="lp-card-num">01</span>
+          <div>
+            <h2 class="lp-card-name">overcli</h2>
+            <p class="lp-card-tag">four coding agents, one honest window</p>
+          </div>
+          <span class="lp-card-arrow">↗</span>
+        </header>
+        <p class="lp-card-body">
+          A desktop GUI over <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>ollama</code>. Conversations, diffs, agent worktrees, permission flows, colosseum mode, usage stats — every coding-CLI surface in one window. Uses your existing CLI auth. No API keys, no new bills, no telemetry.
+        </p>
+        <ul class="lp-card-features">
+          <li>multi-backend chat with streaming diffs</li>
+          <li>workspaces — projects of projects</li>
+          <li>colosseum — fire one prompt at every backend</li>
+          <li>silent background agents</li>
+        </ul>
+        <footer class="lp-card-foot">
+          <span class="lp-pill">v0.1 · beta</span>
+          <span class="lp-pill">macOS · win · linux</span>
+          <span class="lp-pill">Apache 2.0</span>
+          <span class="lp-cta">open overcli →</span>
+        </footer>
+      </a>
+
+      <a class="lp-card" href="overgit/">
+        <header class="lp-card-head">
+          <span class="lp-card-num">02</span>
+          <div>
+            <h2 class="lp-card-name">overgit</h2>
+            <p class="lp-card-tag">many repos, one workspace</p>
+          </div>
+          <span class="lp-card-arrow">↗</span>
+        </header>
+        <p class="lp-card-body">
+          A desktop git client built around <em>workspaces</em> — named groups of repos you act on together. Branch across services in one move. Stage with checkboxes. Pipe diffs to <code>claude</code>, <code>codex</code>, or <code>gemini</code> for review. Never writes inside <code>.git</code>; uninstall any time and your repos forget overgit ever existed.
+        </p>
+        <ul class="lp-card-features">
+          <li>workspace-wide branch / pull / push</li>
+          <li>command palette · branch picker · graph</li>
+          <li>AI review &amp; commit-message suggest</li>
+          <li>gh PR aggregation across repos</li>
+        </ul>
+        <footer class="lp-card-foot">
+          <span class="lp-pill">v0.1 · beta</span>
+          <span class="lp-pill">macOS · win · linux</span>
+          <span class="lp-pill">Apache 2.0</span>
+          <span class="lp-cta">open overgit →</span>
+        </footer>
+      </a>
+    </section>
+
+    <section class="lp-philosophy" id="philosophy">
+      <div class="lp-philo-body">
+        <p class="kicker">[&nbsp;why&nbsp;] &nbsp;·&nbsp; the bar we hold ourselves to</p>
+        <h2 class="display-title">
+          <span>Built to be <em>explainable</em>,</span>
+          <span>not clever.</span>
+        </h2>
+        <p>
+          Most developer tooling optimizes for the demo. Codelions tools optimize for the fourth afternoon — when you've shipped three things with one, hit a weird edge, and need to understand what happened. Every surface in our apps exists to make that moment easier: diffs you can read, tool cards you can audit, permission flows you can follow, history that came from a file on disk.
+        </p>
+        <p>
+          The result is software that trades a bit of polish for a lot of legibility. No invented abstractions. No hidden state. No telemetry. If something is on screen, there's a line of code you can find that put it there. That's the bar.
+        </p>
+        <p class="lp-philo-sig">
+          Built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a> at <a href="https://github.com/overcodelions" target="_blank" rel="noopener">Codelions</a>. Open-source — issues and PRs welcome on both repos.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="footer">
+    <div class="status-line">
+      <span class="sl-cell sl-brand">
+        <img src="assets/icon.png" alt="" class="sl-mark" />
+        codelions
+      </span>
+      <span class="sl-cell"><a href="overcli/">overcli</a></span>
+      <span class="sl-cell"><a href="overgit/">overgit</a></span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions" target="_blank" rel="noopener">github</a></span>
+      <span class="sl-cell sl-spacer"></span>
+      <span class="sl-cell">built by</span>
+      <span class="sl-cell"><a href="https://github.com/lionelfarr" target="_blank" rel="noopener">lionel</a></span>
+      <span class="sl-cell">&amp;</span>
+      <span class="sl-cell"><a href="https://github.com/owenlfarr" target="_blank" rel="noopener">owen</a></span>
+      <span class="sl-cell sl-clock" id="sl-clock">00:00</span>
+    </div>
+    <p class="footer-fine">
+      Codelions is the umbrella under which we ship small, open-source desktop tools. Not affiliated with Anthropic, OpenAI, Google, or GitHub.
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      const el = document.getElementById('sl-clock');
+      if (!el) return;
+      const tick = () => {
+        const d = new Date();
+        el.textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+      };
+      tick();
+      setInterval(tick, 30000);
+    })();
+  </script>
+</body>
+</html>

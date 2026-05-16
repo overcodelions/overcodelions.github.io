@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overcli — four coding agents, one honest window</title>
+  <meta name="description" content="Overcli is a cross-platform desktop app that puts a real GUI in front of claude, codex, gemini, and ollama command-line agents. Conversations, diffs, worktrees, and usage stats in one window." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="primary">
+    <a href="#top" class="brand">
+      <img class="brand-mark" src="assets/icon.png" alt="" />
+      <span class="brand-name">overcli</span>
+      <span class="brand-ver">v0.1 · beta</span>
+    </a>
+    <ul class="nav-links">
+      <li><a class="nav-back" href="../">← codelions</a></li>
+      <li><a href="#features">features</a></li>
+      <li><a href="#colosseum">colosseum</a></li>
+      <li><a href="#story">story</a></li>
+      <li><a href="#download">download</a></li>
+      <li><a class="nav-repo" href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github&nbsp;↗</a></li>
+    </ul>
+  </nav>
+
+  <main id="top">
+
+    <!-- ─────────── HERO ─────────── -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <p class="kicker">&#9484;&#9472; [&nbsp;01&nbsp;] &nbsp;·&nbsp; a desktop app for people who live in coding CLIs</p>
+          <h1 class="headline">
+            <span class="headline-line" data-delay="0">Four coding agents.</span>
+            <span class="headline-line em" data-delay="220">One honest window.</span>
+          </h1>
+          <p class="lede">
+            Overcli wraps <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>ollama</code> in a single desktop app — conversations, diffs, git worktrees, and usage stats in the same place. Stop juggling terminals. Start reading the work.
+          </p>
+          <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">CLI</span> &nbsp;— a GUI that sits <em>over</em> your <em>CLIs</em>. Yes, that's the name.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#download">
+              <span class="btn-bracket">[</span>
+              <span class="btn-label">Download · macOS</span>
+              <span class="btn-bracket">]</span>
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">
+              view source →
+            </a>
+            <button class="btn-chip" id="try-palette" type="button" aria-label="Try the Cmd+P palette">
+              <kbd>⌘</kbd><kbd>P</kbd>&nbsp;&nbsp;try the palette
+            </button>
+          </div>
+          <ul class="hero-meta">
+            <li><span class="dot dot-ready"></span> macOS</li>
+            <li><span class="dot dot-ready"></span> windows</li>
+            <li><span class="dot dot-ready"></span> linux</li>
+            <li class="meta-sep">│</li>
+            <li>Electron · React · TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="hero-right">
+          <figure class="app-window" aria-label="Overcli application preview" data-chat-pane>
+            <header class="app-chrome">
+              <span class="chrome-dot red"></span>
+              <span class="chrome-dot yellow"></span>
+              <span class="chrome-dot green"></span>
+              <nav class="app-tabs">
+                <button class="app-tab is-active">Chat</button>
+                <button class="app-tab">Local</button>
+                <button class="app-tab">Usage</button>
+              </nav>
+            </header>
+
+            <div class="app-body">
+              <aside class="app-sidebar">
+                <div class="sidebar-search">
+                  <span class="search-glyph">⌕</span>
+                  <span class="search-placeholder">search</span>
+                </div>
+
+                <div class="proj">
+                  <p class="proj-name">▾ api-gateway</p>
+                  <ul class="conv-list">
+                    <li class="is-active"><span class="conv-dot on"></span>add rate limiter to /login</li>
+                    <li><span class="conv-dot"></span>fix flaky signup test</li>
+                    <li><span class="conv-dot on"></span>migrate to pg14</li>
+                  </ul>
+                  <div class="proj-actions">
+                    <span class="proj-action">+ agent</span>
+                    <span class="proj-action">+ colosseum</span>
+                    <span class="proj-action muted">archive all</span>
+                  </div>
+                </div>
+
+                <div class="proj collapsed">
+                  <p class="proj-name">▸ billing-svc</p>
+                </div>
+                <div class="proj collapsed">
+                  <p class="proj-name">▸ design-tokens</p>
+                </div>
+
+                <p class="sidebar-section">workspaces</p>
+                <ul class="ws-list">
+                  <li class="ws-item is-open">
+                    <span class="ws-glyph">▾</span> payments-platform
+                    <span class="ws-tools"><span>✎</span><span>+</span></span>
+                  </li>
+                  <li class="ws-child">– api-gateway</li>
+                  <li class="ws-child">– billing-svc</li>
+                  <li class="ws-child">– ledger-core</li>
+                  <li class="ws-item">
+                    <span class="ws-glyph">▸</span> design-system
+                    <span class="ws-tools"><span>✎</span><span>+</span></span>
+                  </li>
+                </ul>
+
+                <p class="sidebar-section">agents <span class="agent-count">3</span></p>
+                <ul class="agent-list">
+                  <li><span class="agent-dot running"></span>doc-writer<span class="agent-note">/docs</span></li>
+                  <li><span class="agent-dot running"></span>pr-reviewer<span class="agent-note">7 open</span></li>
+                  <li><span class="agent-dot idle"></span>changelog-bot<span class="agent-note">idle</span></li>
+                </ul>
+
+                <p class="sidebar-section muted">archived &nbsp;<span class="sidebar-count">110</span></p>
+
+                <div class="sidebar-footer">+ Add project &nbsp;&nbsp; + New workspace</div>
+              </aside>
+
+              <section class="app-main">
+                <header class="chat-header">
+                  <h4 class="chat-title">add a rate limiter to /api/login</h4>
+                  <span class="cli-pill" data-cli-pill>Claude CLI</span>
+                  <span class="chat-model-tag" data-chat-model>opus 4 7 <em>[1m]</em></span>
+                  <div class="chat-actions">
+                    <span class="act-pill">⑂ fork ▾</span>
+                    <span class="act-pill act-danger">⊘ Bypass <em>(dangerous)</em></span>
+                    <span class="act-pill">⚡ Effort ▾</span>
+                    <span class="act-pill">↥ rebound</span>
+                    <span class="act-icons">
+                      <span class="act-icon" title="worktree">❒</span>
+                      <span class="act-icon" title="branch">⎇</span>
+                      <span class="act-icon" title="more">⋯</span>
+                      <span class="act-icon" title="close">✕</span>
+                    </span>
+                  </div>
+                </header>
+
+                <div class="chat-scroll" data-chat-scroll>
+                  <div class="chat-cards" data-chat-cards></div>
+                  <div class="writing-row" data-chat-writing>
+                    <span class="writing-dots"><i></i><i></i><i></i></span>
+                    <span>Writing…</span>
+                  </div>
+                </div>
+
+                <div class="composer">
+                  <button class="composer-plus">+</button>
+                  <span class="composer-placeholder">Message… (type / for commands)</span>
+                  <button class="composer-stop">Stop</button>
+                </div>
+
+                <footer class="chat-statusbar" data-chat-status>
+                  9 turns · <span data-chat-model-full>claude-opus-4-7[1m]</span> · 63329119
+                </footer>
+              </section>
+            </div>
+          </figure>
+          <p class="hero-caption">A live peek. The three lanes are actually streaming.</p>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>04 backends</span><span>·</span>
+          <span>01 window</span><span>·</span>
+          <span>00 trackers</span><span>·</span>
+          <span>∞ diffs</span><span>·</span>
+          <span>cloud &amp; local</span><span>·</span>
+          <span>Apache 2.0</span><span>·</span>
+          <span>open source</span><span>·</span>
+          <span>04 backends</span><span>·</span>
+          <span>01 window</span><span>·</span>
+          <span>00 trackers</span><span>·</span>
+          <span>∞ diffs</span><span>·</span>
+          <span>cloud &amp; local</span><span>·</span>
+          <span>Apache 2.0</span><span>·</span>
+          <span>open source</span><span>·</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ─────────── FEATURES ─────────── -->
+    <section class="features" id="features">
+      <div class="section-head">
+        <p class="kicker">[&nbsp;02&nbsp;] &nbsp;·&nbsp; inside the window</p>
+        <h2 class="section-title">Built by people who actually use these CLIs.</h2>
+        <p class="section-lede">Every surface below exists because somebody got annoyed that it didn't. No feature-ballast, no PM checkboxes — just the pieces you miss the moment you pop back into a raw terminal.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">01</span>
+          <h3>Multi-backend chat</h3>
+          <p>Claude, Codex, Gemini, and <em>Ollama</em> — four stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">02</span>
+          <h3>No API keys required</h3>
+          <p>Overcli sits on top of the CLIs you already use. Whatever auth <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>ollama</code> have is the auth you get — your Claude Pro, your ChatGPT plan, your <code>gcloud</code> creds. No new billing. No new secrets on disk.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">03</span>
+          <h3>Workspaces — projects of projects</h3>
+          <p>Group related repos into a single <em>workspace</em> and talk to them as one. Ask for a change that spans <code>api-gateway</code> and <code>billing-svc</code> and the agent edits both, runs both test suites, and shows one review. The feature that makes polyrepo feel like monorepo.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">04</span>
+          <h3>Silent agents</h3>
+          <p>Long-running background agents that live next to your work. A <em>doc-writer</em> that keeps <code>/docs</code> in sync as the code changes. A <em>PR-reviewer</em> that quietly comments on every pull request the moment it opens. No Slack pings. No dashboards. Just work getting done.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">05</span>
+          <h3>Rebound reviews</h3>
+          <p>After every turn, fire a second agent — on a <em>different</em> backend if you like — to review what just landed. Thinking blocks visible, round counter included. Collaboration mode loops rounds until the reviewer stops finding things to fix.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">06</span>
+          <h3>Tool cards, not wall-of-text</h3>
+          <p>File edits render as diffs. Bash lives in a terminal block. Reads, writes, todos each get their own card — so you can actually see what the agent did.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">07</span>
+          <h3>Permission &amp; approval, first-class</h3>
+          <p>Claude permission prompts and Codex approval cards (exec + apply_patch) are proper UI elements — not modals interrupting the flow.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">08</span>
+          <h3>History from disk</h3>
+          <p>Loads prior transcripts straight out of <code>~/.claude/projects</code>, <code>~/.codex/sessions</code>, and <code>~/.gemini/tmp</code>. Nothing gets re-invented; we just read the files you already have.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">09</span>
+          <h3>File editor, right there</h3>
+          <p>Syntax highlighting, line-range highlighting, HTML &amp; Markdown preview tabs for previewable files. No context-switch to VS Code to check the agent's work.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">10</span>
+          <h3>Extensions browser</h3>
+          <p>One searchable pane for everything the CLIs can do — slash commands, sub-agents, skills, plugins, MCP servers — unified across Claude, Codex, Gemini, and Ollama. Rescan on demand; no YAML to edit.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">11</span>
+          <h3>Keyboard first</h3>
+          <p><kbd>⌘P</kbd> file finder. <kbd>⌘\</kbd> toggles the sidebar. <kbd>⌘,</kbd> opens settings. <kbd>⌘K</kbd> jumps conversations. It is not a website; it is a tool.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">12</span>
+          <h3>Agent worktrees</h3>
+          <p>Create, update, rebase, merge, push, or remove a git worktree from inside the conversation. Agents work in isolation; you merge when you like what you read.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">13</span>
+          <h3>Changes bar</h3>
+          <p>A live <code>+/−</code> rollup sits above the composer, counting everything the agent has touched this turn. Click to expand the diff, click a file to jump to it. The commit badge is one click away.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">14</span>
+          <h3>Local model dashboard</h3>
+          <p>A proper UI for your Ollama install: browse the catalog, filter by maker or country, pull and delete with one click, watch server logs live, and see a readout of the GPU you're actually running on.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">15</span>
+          <h3>Usage dashboard</h3>
+          <p>Rolling 5h / 24h / 7d stats, broken down by backend, model, and project. Know what you're burning before the invoice tells you.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">16</span>
+          <h3>Smart downgrades</h3>
+          <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">17</span>
+          <h3>Health badges</h3>
+          <p>Per-backend status pills: <em>ready</em>, <em>unauthenticated</em>, <em>missing</em>, <em>error</em>. The app tells you which CLI is broken before you try to use it.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">18</span>
+          <h3>Colosseum</h3>
+          <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ─────────── COLOSSEUM ─────────── -->
+    <section class="colosseum" id="colosseum">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
+        <h2 class="display-title">
+          <span>One prompt.</span>
+          <span class="em">Four agents.</span>
+          <span>One diff&nbsp;to&nbsp;rule&nbsp;them.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Fire the same task at every backend in parallel — cloud or local. Watch the answers land at their own pace. Compare the diffs side by side. Pick the best. Keep it. Discard the rest.
+        </p>
+      </div>
+
+      <div class="col-grid">
+        <div class="col col-claude">
+          <header class="col-head">
+            <span class="col-rank">I</span>
+            <div>
+              <p class="col-name">claude</p>
+              <p class="col-model">opus 4.7</p>
+            </div>
+            <span class="col-timer" data-timer="claude">0.0s</span>
+          </header>
+          <pre class="col-out" data-col="claude"></pre>
+          <footer class="col-foot">
+            <span>touched <strong>3</strong> files</span>
+            <span class="add">+18</span>
+            <span class="rem">−4</span>
+          </footer>
+        </div>
+
+        <div class="col col-codex">
+          <header class="col-head">
+            <span class="col-rank">II</span>
+            <div>
+              <p class="col-name">codex</p>
+              <p class="col-model">gpt-5</p>
+            </div>
+            <span class="col-timer" data-timer="codex">0.0s</span>
+          </header>
+          <pre class="col-out" data-col="codex"></pre>
+          <footer class="col-foot">
+            <span>touched <strong>2</strong> files</span>
+            <span class="add">+22</span>
+            <span class="rem">−3</span>
+          </footer>
+        </div>
+
+        <div class="col col-gemini">
+          <header class="col-head">
+            <span class="col-rank">III</span>
+            <div>
+              <p class="col-name">gemini</p>
+              <p class="col-model">2.5-pro</p>
+            </div>
+            <span class="col-timer" data-timer="gemini">0.0s</span>
+          </header>
+          <pre class="col-out" data-col="gemini"></pre>
+          <footer class="col-foot">
+            <span>touched <strong>2</strong> files</span>
+            <span class="add">+14</span>
+            <span class="rem">−1</span>
+          </footer>
+        </div>
+
+        <div class="col col-ollama">
+          <header class="col-head">
+            <span class="col-rank">IV</span>
+            <div>
+              <p class="col-name">ollama <span class="col-tag">local</span></p>
+              <p class="col-model">llama3-8b</p>
+            </div>
+            <span class="col-timer" data-timer="ollama">0.0s</span>
+          </header>
+          <pre class="col-out" data-col="ollama"></pre>
+          <footer class="col-foot">
+            <span>touched <strong>1</strong> file</span>
+            <span class="add">+11</span>
+            <span class="rem">−2</span>
+          </footer>
+        </div>
+      </div>
+
+      <p class="colosseum-ribbon"><span>same prompt</span> · <span>four answers</span> · <span>one diff</span></p>
+    </section>
+
+
+    <!-- ─────────── PHILOSOPHY ─────────── -->
+    <section class="story" id="story">
+      <div class="story-body">
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <h2 class="display-title story-title">
+          <span>Built to be <em>explainable</em>,</span>
+          <span>not clever.</span>
+        </h2>
+        <p>
+          Most coding-agent tooling optimizes for the demo. Overcli optimizes for the afternoon of the fourth day — when you've shipped three features with it, hit a weird edge, and need to understand what happened. Every surface in the app is there to make that moment easier: diffs you can read, tool cards you can audit, permission flows you can follow, history that came from a file on disk.
+        </p>
+        <p>
+          The result is an app that trades a bit of polish for a lot of legibility. No invented abstractions. No hidden state. If something is on screen, there's a line of code you can find that put it there. That's the bar.
+        </p>
+        <p class="story-sig">
+          Written &amp; maintained by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a>. Open-source — <a href="https://github.com/overcodelions/overcli/graphs/contributors" target="_blank" rel="noopener">contributors</a>, issues, and PRs welcome.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ─────────── DOWNLOAD ─────────── -->
+    <section class="download" id="download">
+      <div class="section-head">
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <h2 class="section-title">Unsigned, honest, and real.</h2>
+        <p class="section-lede">Overcli is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
+      </div>
+
+      <div class="dl-wrap">
+        <table class="dl-table">
+          <tbody>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">⌘</span>
+                <span>
+                  <strong>macOS</strong>
+                  <em>arm64 + x64</em>
+                </span>
+              </td>
+              <td class="dl-format">.dmg &nbsp;· &nbsp;.zip</td>
+              <td class="dl-size">~ 120 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overcli/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">⊞</span>
+                <span>
+                  <strong>Windows</strong>
+                  <em>x64 + arm64</em>
+                </span>
+              </td>
+              <td class="dl-format">NSIS installer</td>
+              <td class="dl-size">~ 110 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overcli/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">🐧</span>
+                <span>
+                  <strong>Linux</strong>
+                  <em>x64 + arm64</em>
+                </span>
+              </td>
+              <td class="dl-format">.AppImage &nbsp;· &nbsp;.deb</td>
+              <td class="dl-size">~ 130 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overcli/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <aside class="dl-note">
+          <p class="note-tag">&#9888; heads up</p>
+          <p>
+            macOS will show <em>"unidentified developer"</em> on first open.
+            Right-click the app → <strong>Open</strong>. Do it once; it sticks.
+          </p>
+          <p class="note-snippet">
+            <span class="snippet-prompt">$</span>
+            <span>git clone https://github.com/overcodelions/overcli &amp;&amp; cd overcli &amp;&amp; npm install &amp;&amp; npm run dist:mac</span>
+          </p>
+          <p class="note-foot">— if you'd rather build it yourself.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ─────────── FOOTER / TMUX STATUS LINE ─────────── -->
+  <footer class="site-footer" aria-label="footer">
+    <div class="status-line">
+      <span class="sl-cell sl-brand">
+        <img src="assets/icon.png" alt="" class="sl-mark" />
+        overcli
+      </span>
+      <span class="sl-cell">v0.1 · beta</span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
+      <span class="sl-cell sl-spacer"></span>
+      <span class="sl-cell">built by</span>
+      <span class="sl-cell"><a href="https://github.com/lionelfarr" target="_blank" rel="noopener">lionel</a></span>
+      <span class="sl-cell">&amp;</span>
+      <span class="sl-cell"><a href="https://github.com/owenlfarr" target="_blank" rel="noopener">owen</a></span>
+      <span class="sl-cell sl-clock" id="sl-clock">00:00</span>
+    </div>
+    <p class="footer-fine">
+      Overcli is a fan-built client. Not affiliated with Anthropic, OpenAI, or Google. The <code>claude</code>, <code>codex</code>, and <code>gemini</code> binaries are their respective projects.
+    </p>
+  </footer>
+
+
+  <!-- ─────────── ⌘P PALETTE MODAL ─────────── -->
+  <div class="palette-overlay" id="palette" aria-hidden="true" role="dialog" aria-label="file finder">
+    <div class="palette">
+      <div class="palette-head">
+        <span class="palette-caret">⌘P</span>
+        <input type="text" id="palette-input" placeholder="fuzzy-find a file…" autocomplete="off" spellcheck="false" />
+        <button class="palette-close" id="palette-close" aria-label="close">esc</button>
+      </div>
+      <ul class="palette-results" id="palette-results"></ul>
+      <p class="palette-foot">↑↓ navigate · ⏎ preview · esc close &nbsp;·&nbsp; this is a demo</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
