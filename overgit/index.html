@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overgit — many repos, one workspace</title>
-  <meta name="description" content="Overgit is a workspace-overlay git client. Coordinate many repos at once without owning their state. Branch across services, stage with bulk actions, and pipe diffs to claude / codex / gemini for review." />
+  <title>Overgit — workspaces for repos, worksets for tickets</title>
+  <meta name="description" content="Overgit is a multi-repo git client built around two ideas. Workspaces — durable groupings of repos you act on as one (fetch all, reset all, status all). Worksets — tickets you can resume across repos, with one-click branch, ship, and reset. Never writes inside .git." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +23,7 @@
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
       <li><a href="#features">features</a></li>
-      <li><a href="#workspace">workspaces</a></li>
+      <li><a href="#workset">lifecycle</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#download">download</a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github&nbsp;↗</a></li>
@@ -38,11 +38,11 @@
         <div class="hero-left">
           <p class="kicker">&#9484;&#9472; [&nbsp;01&nbsp;] &nbsp;·&nbsp; a desktop git client for people who live in many repos</p>
           <h1 class="headline">
-            <span class="headline-line" data-delay="0">Many repos.</span>
-            <span class="headline-line em" data-delay="220">One workspace.</span>
+            <span class="headline-line" data-delay="0">Workspaces of repos.</span>
+            <span class="headline-line em" data-delay="220">Worksets of work.</span>
           </h1>
           <p class="lede">
-            Overgit is a desktop git client built around <em>workspaces</em> — named groups of repos you act on together. Branch across <code>api-gateway</code>, <code>billing-svc</code>, and <code>ledger-core</code> in one move. Stage with checkboxes. Pipe diffs to <code>claude</code>, <code>codex</code>, or <code>gemini</code> for review. Every action runs as a plain <code>git</code> command in the repo you already have.
+            Two orthogonal ideas. <strong>Workspaces</strong> are durable groupings of repos — "these are Platform," "these are Payments" — the lens you use to fetch, status, and reset across a whole bucket at once. <strong>Worksets</strong> are tickets you can resume across repos, pinned to a feature branch — start, ship, archive, reset. Both run as plain <code>git</code> commands in the repos you already have, never inside <code>.git</code>.
           </p>
           <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">git</span> &nbsp;— a client that sits <em>over</em> your <em>git</em> repos, never inside <code>.git</code>. Stop using it anytime; your repos behave the same in any other tool.</p>
           <div class="cta-row">
@@ -88,7 +88,7 @@
                   <span class="search-placeholder">⌘K palette</span>
                 </div>
 
-                <p class="sidebar-section">workspaces</p>
+                <p class="sidebar-section">workspaces · <span class="agent-count">3</span></p>
                 <ul class="ws-list">
                   <li class="ws-item is-open">
                     <span class="ws-glyph">▾</span> payments-platform
@@ -107,27 +107,28 @@
                   </li>
                 </ul>
 
-                <p class="sidebar-section">branch · all repos</p>
+                <p class="sidebar-section">worksets · <span class="agent-count">2 active</span></p>
                 <ul class="agent-list">
-                  <li><span class="agent-dot running"></span>feat/rate-limit<span class="agent-note">3/3 ✓</span></li>
-                  <li><span class="agent-dot idle"></span>main<span class="agent-note">clean</span></li>
+                  <li><span class="agent-dot running"></span>rate-limit rollout<span class="agent-note">⎇ feat/rate-limit · 3 repos</span></li>
+                  <li><span class="agent-dot running"></span>pg14 migration<span class="agent-note">⎇ chore/pg14 · 2 repos</span></li>
+                  <li><span class="agent-dot idle"></span>auth-refresh<span class="agent-note muted">archived</span></li>
                 </ul>
 
-                <p class="sidebar-section">PRs <span class="agent-count">7</span></p>
+                <p class="sidebar-section">PRs · current workset <span class="agent-count">3</span></p>
                 <ul class="agent-list">
                   <li><span class="agent-dot running"></span>#412 rate-limit<span class="agent-note">api-gw</span></li>
                   <li><span class="agent-dot running"></span>#88 token bucket<span class="agent-note">billing</span></li>
                   <li><span class="agent-dot idle"></span>#39 pg14 mig<span class="agent-note">ledger</span></li>
                 </ul>
 
-                <div class="sidebar-footer">+ Add repo &nbsp;&nbsp; + New workspace</div>
+                <div class="sidebar-footer">+ New workspace &nbsp;&nbsp; + New workset</div>
               </aside>
 
               <section class="app-main">
                 <header class="chat-header">
                   <h4 class="chat-title">api-gateway · changes</h4>
-                  <span class="cli-pill">feat/rate-limit</span>
-                  <span class="chat-model-tag">⎇ 3 repos · 11 files</span>
+                  <span class="cli-pill">workset: rate-limit rollout</span>
+                  <span class="chat-model-tag">⎇ feat/rate-limit · 3 / 3 repos</span>
                   <div class="chat-actions">
                     <span class="act-pill">⎇ branch ▾</span>
                     <span class="act-pill">⤓ pull</span>
@@ -173,7 +174,7 @@
               </section>
             </div>
           </figure>
-          <p class="hero-caption">A workspace, not a single repo. The whole point.</p>
+          <p class="hero-caption">Two stacks of grouping. Workspaces above, worksets below.</p>
         </div>
       </div>
 
@@ -181,15 +182,15 @@
         <div class="marquee-track">
           <span>n repos</span><span>·</span>
           <span>01 workspace</span><span>·</span>
+          <span>02 worksets</span><span>·</span>
           <span>00 metadata</span><span>·</span>
-          <span>∞ branches</span><span>·</span>
           <span>plain git underneath</span><span>·</span>
           <span>Apache 2.0</span><span>·</span>
           <span>open source</span><span>·</span>
           <span>n repos</span><span>·</span>
           <span>01 workspace</span><span>·</span>
+          <span>02 worksets</span><span>·</span>
           <span>00 metadata</span><span>·</span>
-          <span>∞ branches</span><span>·</span>
           <span>plain git underneath</span><span>·</span>
           <span>Apache 2.0</span><span>·</span>
           <span>open source</span><span>·</span>
@@ -203,96 +204,108 @@
       <div class="section-head">
         <p class="kicker">[&nbsp;02&nbsp;] &nbsp;·&nbsp; inside the window</p>
         <h2 class="section-title">Built for the day your work spans four repos.</h2>
-        <p class="section-lede">GitHub Desktop, Tower, and Fork are all one-repo-at-a-time. If your work spans services + shared libs + infra, you end up scripting your own "checkout <code>feature/x</code> everywhere" flow. Overgit fills that gap — without ever writing inside <code>.git</code>.</p>
+        <p class="section-lede">GitHub Desktop, Tower, and Fork are all one-repo-at-a-time. If your work spans services + shared libs + infra, you end up scripting your own "checkout <code>feature/x</code> everywhere" flow. Overgit fills that gap with two orthogonal ideas — <strong>workspaces</strong> for durable groupings, <strong>worksets</strong> for tickets — without ever writing inside <code>.git</code>.</p>
       </div>
 
       <div class="feature-grid">
         <article class="feature">
           <span class="feature-num">01</span>
-          <h3>Workspaces, not repos</h3>
-          <p>Group related repos into a named <em>workspace</em>. See status, branches, dirty state, and open PRs across every member at once. The polyrepo problem, finally a UI.</p>
+          <h3>Workspaces — durable groupings of repos</h3>
+          <p>A <em>workspace</em> is an identity-bearing bucket: "these repos are Platform," "these are Payments." It's the sidebar's collapsible section and the target for bulk actions across the whole group. Permanent. A repo can live in many workspaces — small shared libs are the common case.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">02</span>
-          <h3>Workspace-wide branching</h3>
-          <p>Sync each repo to its default branch → pull → branch — all in one workflow. Per-repo outcomes if any of them fail. Stop scripting <code>for d in */; do git checkout …</code>.</p>
+          <h3>Worksets — tickets you can resume across repos</h3>
+          <p>A <em>workset</em> is a transient unit of in-flight work: "ship the auth migration across <code>api-gateway</code>, <code>billing-svc</code>, and <code>ledger-core</code> this week." Bound to a feature branch. Sits above the workspace list in the sidebar, waiting for you to pick up where you left off. Archive when shipped. Reset when done.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">03</span>
           <h3>Overlay, not metadata</h3>
-          <p>Overgit never writes inside <code>.git</code>. No hidden state, no <code>.overgit</code> folder, no special config. Stop using it any time and your repos behave the same in any other tool.</p>
+          <p>Overgit never writes inside <code>.git</code>. No manifest, no <code>.overgit</code> folder, no synthetic root, no special config. Workspaces and worksets live in overgit's settings file, not in your repos. Stop using overgit any time and your repos behave the same in any other tool.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">04</span>
+          <h3>Workspace-wide actions</h3>
+          <p>Fetch every repo in a workspace. Status every repo. <em>Reset every repo to its default branch</em> — fan-out fetch → switch → hard-reset to <code>origin/&lt;default&gt;</code> across the whole group. Workspace-wide PR list via <code>gh pr list --json</code> merged into one view.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">05</span>
+          <h3>Workset spin-up</h3>
+          <p>Pick the repos the ticket touches. Sync each to its default → pull → create the feature branch — all in one workflow. Per-repo outcomes if any of them fail. Stop scripting <code>for d in */; do git checkout …</code>.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">06</span>
+          <h3>Workset archive — done means done, not gone</h3>
+          <p>Shipped the ticket? <em>Archive</em> the workset. It vanishes from the active sidebar into a collapsed "Archived" section. The repos on disk are unchanged — overgit just stops surfacing the grouping. Reactivate any time. Three weeks later, when oncall asks "how did we ship that?", it's right there.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">07</span>
+          <h3>Workset reset — clean teardown</h3>
+          <p>One action fans out <em>fetch → switch back to <code>origin/&lt;default&gt;</code> → hard-reset → delete the workset's bound branch</em> across every member. Cleans up the whole feature in one shot. Same surface as workspace reset, scoped to just the repos the workset touched.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">08</span>
+          <h3>Smart reset safety</h3>
+          <p>Both reset flows detect repos with commits not on <code>origin/&lt;default&gt;</code> and <em>stop</em> before the hard-reset would erase them. You get a <code>[force reset (lose N)]</code> / <code>[skip]</code> choice per repo, with the commit count visible. Never a silent disaster.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">09</span>
+          <h3>Workset-wide commit &amp; push</h3>
+          <p>Type a message once, commit every dirty member, push every branch — per-repo outcomes if any of them fail. Same surface for fetch-all and "open PRs everywhere" via <code>gh</code>, scoped to the workset.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">10</span>
           <h3>Branch picker, with brains</h3>
           <p><kbd>⌘B</kbd> opens a searchable popover. Local + remote branches grouped, ↑↓/Enter, inline create-branch with optional sync-and-pull, per-branch cherry-pick with commit-list multi-select.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">05</span>
+          <span class="feature-num">11</span>
           <h3>Command palette</h3>
-          <p><kbd>⌘K</kbd> opens a context-aware palette: switch / create branches, jump to repos and workspaces, search files, run repo actions (stage all, fetch, pull, push, AI review).</p>
+          <p><kbd>⌘K</kbd> opens a context-aware palette: switch / create branches, jump to repos, workspaces, and worksets, search files, run repo actions (stage all, fetch, pull, push, AI review).</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">06</span>
+          <span class="feature-num">12</span>
           <h3>AI review &amp; suggest</h3>
           <p>Detects <code>claude</code>, <code>codex</code>, and <code>gemini</code>. Pipes diffs into the chosen CLI in non-interactive mode. <em>Suggest</em> drafts a conventional-commit message from the staged diff and drops it into the commit input.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">07</span>
-          <h3>Per-repo tabs</h3>
-          <p>Changes / History / Files / Graph / Stash. Multi-select with checkboxes, bulk action bar (Stage / Stash / Discard). File editor sandboxed to registered repos with <code>hljs</code> syntax highlighting.</p>
+          <span class="feature-num">13</span>
+          <h3>Per-repo tabs &amp; branch graph</h3>
+          <p>Changes / History / Files / Graph / Stash. Multi-select with checkboxes, bulk action bar (Stage / Stash / Discard). File editor sandboxed to registered repos with <code>hljs</code> syntax highlighting. Per-lane colored branch graph with ref labels.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">08</span>
-          <h3>gh PR aggregation</h3>
-          <p>Workspace-wide PR list via <code>gh pr list --json</code> per member, merged into one view. See what's open across the whole workspace, not one repo at a time.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">09</span>
-          <h3>Branch graph</h3>
-          <p>Per-lane colored visualization with ref labels. Resizable, readable, no Gitk vibes.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">10</span>
-          <h3>Your CLI auth, your machine</h3>
-          <p>Whatever auth your <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>gh</code> already have is the auth Overgit uses. Nothing leaves your machine via Overgit.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">11</span>
-          <h3>Keyboard first</h3>
-          <p><kbd>⌘K</kbd> palette. <kbd>⌘B</kbd> branches. <kbd>⌘N</kbd> new branch. <kbd>⌘1–4</kbd> tab switch. <kbd>⌘R</kbd> refresh. <kbd>⌘\</kbd> sidebar. <kbd>⌘,</kbd> settings. It is not a website; it is a tool.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">12</span>
-          <h3>Light, dark, system</h3>
-          <p>Theme follows the OS by default, override per app. Resizable sidebar, sensible defaults, no surprise modals.</p>
+          <span class="feature-num">14</span>
+          <h3>Keyboard first · your CLI auth</h3>
+          <p><kbd>⌘K</kbd> palette · <kbd>⌘B</kbd> branches · <kbd>⌘N</kbd> new branch · <kbd>⌘1–4</kbd> tabs · <kbd>⌘R</kbd> refresh · <kbd>⌘\</kbd> sidebar · <kbd>⌘,</kbd> settings. Whatever auth your <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>gh</code> already have is the auth Overgit uses. Nothing leaves your machine via Overgit.</p>
         </article>
       </div>
     </section>
 
 
-    <!-- ─────────── WORKSPACE EXPLAINER ─────────── -->
-    <section class="colosseum" id="workspace">
+    <!-- ─────────── WORKSET LIFECYCLE EXPLAINER ─────────── -->
+    <section class="colosseum" id="workset">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; the workspace move</p>
+        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; the workset lifecycle</p>
         <h2 class="display-title">
-          <span>One branch.</span>
-          <span class="em">Many repos.</span>
-          <span>One commit&nbsp;flow.</span>
+          <span>Spin up.</span>
+          <span class="em">Ship.</span>
+          <span>Reset&nbsp;everything.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          A workspace branch is just a name overgit applies across every member repo. Each repo gets the same <code>feature/x</code> via a plain <code>git checkout -b</code>. When you push, you push them all. When you open PRs, <code>gh</code> opens them all. The repos never know they're related — overgit knows.
+          A <strong>workset</strong> is a ticket pinned to a feature branch and the repos that branch touches. Create it once — overgit branches across every member in one move. Commit and push together. Open every PR with <code>gh</code>. When the work ships, one action <strong>fetches, switches back to <code>origin/&lt;default&gt;</code>, hard-resets every member, and deletes the bound branch</strong> — with per-repo safety checks for unmerged commits. The repos never know they're related. Overgit knows.
         </p>
       </div>
 
@@ -373,6 +386,40 @@ api-gateway.tf (edit)</pre>
       </div>
 
       <p class="colosseum-ribbon"><span>one branch name</span> · <span>four repos</span> · <span>one PR set</span></p>
+
+      <div class="reset-panel">
+        <header class="reset-head">
+          <span class="reset-kicker">↺&nbsp; one click later · &nbsp;<strong>Reset workset to default</strong></span>
+          <span class="reset-meta">payments-platform · feat/rate-limit · 4 repos</span>
+        </header>
+        <ul class="reset-rows">
+          <li class="reset-row">
+            <span class="reset-repo">api-gateway</span>
+            <span class="reset-arrow">→</span>
+            <span class="reset-state ok">on main · clean</span>
+            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feat/rate-limit</code></span>
+          </li>
+          <li class="reset-row">
+            <span class="reset-repo">billing-svc</span>
+            <span class="reset-arrow">→</span>
+            <span class="reset-state ok">on main · clean</span>
+            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feat/rate-limit</code></span>
+          </li>
+          <li class="reset-row">
+            <span class="reset-repo">ledger-core</span>
+            <span class="reset-arrow">→</span>
+            <span class="reset-state ok">already on main</span>
+            <span class="reset-detail">nothing to reset · deleted <code>feat/rate-limit</code></span>
+          </li>
+          <li class="reset-row warn">
+            <span class="reset-repo">infra</span>
+            <span class="reset-arrow">⚠</span>
+            <span class="reset-state warn">2 unmerged commits</span>
+            <span class="reset-detail">hard-reset would erase 2 local commits not on <code>origin/main</code> · <em>[force reset (lose 2)]</em> · <em>[skip]</em></span>
+          </li>
+        </ul>
+        <p class="reset-foot">Smart safety: any repo with commits not on <code>origin/&lt;default&gt;</code> stops and asks. The other repos still complete. You get per-repo outcomes, never a silent disaster.</p>
+      </div>
     </section>
 
 
@@ -385,7 +432,7 @@ api-gateway.tf (edit)</pre>
           <span><em>Own</em> none of them.</span>
         </h2>
         <p>
-          Most multi-repo tooling solves the problem by inventing a meta-format: a manifest, a sub-tree, a worktree-of-worktrees. Then you can't open one of the repos in another tool without something breaking. Overgit refuses that bargain. Workspaces are a UI grouping, not a file on disk. Every action is a plain <code>git</code> command run in the repo's own directory. If you uninstall overgit tomorrow, your repos forget it ever existed.
+          Most multi-repo tooling solves the problem by inventing a meta-format: a manifest, a sub-tree, a worktree-of-worktrees. Then you can't open one of the repos in another tool without something breaking. Overgit refuses that bargain. Workspaces and worksets are UI groupings, not files on disk. Every action is a plain <code>git</code> command run in the repo's own directory. If you uninstall overgit tomorrow, your repos forget it ever existed.
         </p>
         <p>
           The result is a client built for the realistic case — your work spans services and shared libs and infra, your teammates use whatever client they like, and the only thing the repos agree on is <code>git</code>. Overgit sits over the top, coordinates, and stays out of the way.
