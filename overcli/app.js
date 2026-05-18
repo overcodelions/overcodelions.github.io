@@ -74,6 +74,24 @@
         { wait: 700,  type: 'response', body: 'Added a 60s cleanup interval so the map does not leak.' }
       ]
     },
+    copilot: {
+      pill: 'Copilot CLI',
+      label: 'copilot · gpt-5',
+      modelTag: 'copilot <em>gpt-5</em>',
+      modelFull: 'copilot-gpt-5',
+      script: [
+        { wait: 300,  type: 'tool', kind: 'glob', target: '**/routes/login*' },
+        { wait: 500,  type: 'tool', kind: 'view', target: 'src/routes/login.ts' },
+        { wait: 600,  type: 'response', body: 'Adding a token-bucket middleware in front of the login handler.' },
+        { wait: 800,  type: 'tool', kind: 'create', target: 'src/middleware/loginLimiter.ts',
+          stats: { add: 8, rem: 0 },
+          diff: '<span class="diff-meta">@@ new file @@</span><span class="diff-add">+ import { tokenBucket } from "./bucket";</span><span class="diff-add">+ export const loginLimiter = tokenBucket({</span><span class="diff-add">+   cap: 10,</span><span class="diff-add">+   per: "1m",</span><span class="diff-add">+ });</span>' },
+        { wait: 700,  type: 'tool', kind: 'edit', target: 'src/routes/login.ts',
+          stats: { add: 1, rem: 1 },
+          diff: '<span class="diff-rem">- router.post("/api/login", login);</span><span class="diff-add">+ router.post("/api/login", loginLimiter, login);</span>' },
+        { wait: 700,  type: 'response', body: 'Ready for PR review.' }
+      ]
+    },
     ollama: {
       pill: 'Ollama CLI',
       label: 'llama3 · local',
@@ -89,7 +107,7 @@
     }
   };
 
-  const rotation = ['claude', 'codex', 'gemini', 'ollama'];
+  const rotation = ['claude', 'codex', 'gemini', 'copilot', 'ollama'];
 
   const pane        = document.querySelector('[data-chat-pane]');
   const cardsEl     = document.querySelector('[data-chat-cards]');
@@ -245,6 +263,20 @@
       { t: 360, s: 'adding a cleanup interval every 60s\n' },
       { t: 200, s: '<span class="caret">▍</span>' }
     ],
+    copilot: [
+      { t: 320, s: '<span class="c">glob</span>  "**/routes/login*"\n' },
+      { t: 240, s: '<span class="k">→ src/routes/login.ts</span>\n\n' },
+      { t: 360, s: '<span class="c">view</span>  src/routes/login.ts\n' },
+      { t: 280, s: '<span class="c">// middleware + token bucket</span>\n\n' },
+      { t: 320, s: '<span class="c">create</span>  src/middleware/loginLimiter.ts\n' },
+      { t: 220, s: '<span class="diff-add">+ export const loginLimiter =</span>\n' },
+      { t: 220, s: '<span class="diff-add">+   tokenBucket({ cap: 10, per: "1m" });</span>\n\n' },
+      { t: 320, s: '<span class="c">edit</span>  src/routes/login.ts\n' },
+      { t: 220, s: '<span class="diff-rem">- router.post("/api/login", login);</span>\n' },
+      { t: 220, s: '<span class="diff-add">+ router.post("/api/login", loginLimiter, login);</span>\n' },
+      { t: 280, s: '<span class="c">// ready for PR review</span>\n' },
+      { t: 200, s: '<span class="caret">▍</span>' }
+    ],
     ollama: [
       { t: 120, s: '<span class="c">[local · llama3-8b]</span>\n' },
       { t: 140, s: 'inspecting <span class="k">login.ts</span>\n' },
@@ -259,7 +291,7 @@
     ]
   };
 
-  const coloTotals = { claude: 8.2, codex: 5.6, gemini: 11.4, ollama: 2.1 };
+  const coloTotals = { claude: 8.2, codex: 5.6, gemini: 11.4, copilot: 4.6, ollama: 2.1 };
 
   function playColumn(key) {
     const el    = document.querySelector(`[data-col="${key}"]`);
@@ -303,6 +335,7 @@
           playColumn('claude');
           playColumn('codex');
           playColumn('gemini');
+          playColumn('copilot');
           playColumn('ollama');
           io.disconnect();
         }
