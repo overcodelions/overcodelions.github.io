@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overcli — four coding agents, one honest window</title>
-  <meta name="description" content="Overcli is a cross-platform desktop app that puts a real GUI in front of claude, codex, gemini, and ollama command-line agents. Conversations, diffs, worktrees, and usage stats in one window." />
+  <title>Overcli — five coding agents, one honest window</title>
+  <meta name="description" content="Overcli is a cross-platform desktop app that puts a real GUI in front of claude, codex, gemini, copilot, and ollama command-line agents. Conversations, diffs, worktrees, and usage stats in one window." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,11 +38,11 @@
         <div class="hero-left">
           <p class="kicker">&#9484;&#9472; [&nbsp;01&nbsp;] &nbsp;·&nbsp; a desktop app for people who live in coding CLIs</p>
           <h1 class="headline">
-            <span class="headline-line" data-delay="0">Four coding agents.</span>
+            <span class="headline-line" data-delay="0">Five coding agents.</span>
             <span class="headline-line em" data-delay="220">One honest window.</span>
           </h1>
           <p class="lede">
-            Overcli wraps <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>ollama</code> in a single desktop app — conversations, diffs, git worktrees, and usage stats in the same place. Stop juggling terminals. Start reading the work.
+            Overcli wraps <code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code> in a single desktop app — conversations, diffs, git worktrees, and usage stats in the same place. Stop juggling terminals. Start reading the work.
           </p>
           <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">CLI</span> &nbsp;— a GUI that sits <em>over</em> your <em>CLIs</em>. Yes, that's the name.</p>
           <div class="cta-row">
@@ -180,14 +180,14 @@
 
       <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
-          <span>04 backends</span><span>·</span>
+          <span>05 backends</span><span>·</span>
           <span>01 window</span><span>·</span>
           <span>00 trackers</span><span>·</span>
           <span>∞ diffs</span><span>·</span>
           <span>cloud &amp; local</span><span>·</span>
           <span>Apache 2.0</span><span>·</span>
           <span>open source</span><span>·</span>
-          <span>04 backends</span><span>·</span>
+          <span>05 backends</span><span>·</span>
           <span>01 window</span><span>·</span>
           <span>00 trackers</span><span>·</span>
           <span>∞ diffs</span><span>·</span>
@@ -211,13 +211,13 @@
         <article class="feature">
           <span class="feature-num">01</span>
           <h3>Multi-backend chat</h3>
-          <p>Claude, Codex, Gemini, and <em>Ollama</em> — four stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
+          <p>Claude, Codex, Gemini, <em>Copilot</em>, and <em>Ollama</em> — five stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">02</span>
-          <h3>No API keys required</h3>
-          <p>Overcli sits on top of the CLIs you already use. Whatever auth <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>ollama</code> have is the auth you get — your Claude Pro, your ChatGPT plan, your <code>gcloud</code> creds. No new billing. No new secrets on disk.</p>
+          <h3>No new subscriptions</h3>
+          <p>Overcli sits on top of the CLIs you already use, with the auth they already have. Your <em>Claude Pro</em>, your <em>ChatGPT</em> plan, your <code>gcloud</code> creds, your <em>GitHub Copilot</em> seat — whatever <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>copilot</code> are signed into is what overcli runs through. Local <code>ollama</code> for the rest. No API keys to manage. No new bills.</p>
         </article>
 
         <article class="feature">
@@ -236,6 +236,7 @@
           <span class="feature-num">05</span>
           <h3>Rebound reviews</h3>
           <p>After every turn, fire a second agent — on a <em>different</em> backend if you like — to review what just landed. Thinking blocks visible, round counter included. Collaboration mode loops rounds until the reviewer stops finding things to fix.</p>
+          <p class="feature-note">Note: Copilot can't be a reviewer yet — its CLI doesn't read prompts from stdin. When it's your primary, overcli routes the review to claude/codex/gemini and shows a <em>"Routed via X"</em> chip so it's not surprising.</p>
         </article>
 
         <article class="feature">
@@ -325,7 +326,7 @@
         <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
         <h2 class="display-title">
           <span>One prompt.</span>
-          <span class="em">Four agents.</span>
+          <span class="em">Five agents.</span>
           <span>One diff&nbsp;to&nbsp;rule&nbsp;them.</span>
         </h2>
         <p class="section-lede colosseum-lede">
@@ -385,9 +386,26 @@
           </footer>
         </div>
 
-        <div class="col col-ollama">
+        <div class="col col-copilot">
           <header class="col-head">
             <span class="col-rank">IV</span>
+            <div>
+              <p class="col-name">copilot <span class="col-tag">github</span></p>
+              <p class="col-model">gpt-5</p>
+            </div>
+            <span class="col-timer" data-timer="copilot">0.0s</span>
+          </header>
+          <pre class="col-out" data-col="copilot"></pre>
+          <footer class="col-foot">
+            <span>touched <strong>2</strong> files</span>
+            <span class="add">+17</span>
+            <span class="rem">−2</span>
+          </footer>
+        </div>
+
+        <div class="col col-ollama">
+          <header class="col-head">
+            <span class="col-rank">V</span>
             <div>
               <p class="col-name">ollama <span class="col-tag">local</span></p>
               <p class="col-model">llama3-8b</p>
@@ -403,7 +421,7 @@
         </div>
       </div>
 
-      <p class="colosseum-ribbon"><span>same prompt</span> · <span>four answers</span> · <span>one diff</span></p>
+      <p class="colosseum-ribbon"><span>same prompt</span> · <span>five answers</span> · <span>one diff</span></p>
     </section>
 
 
