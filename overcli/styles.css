@@ -26,6 +26,7 @@
   --claude:       #b587ff;
   --codex:        #5b9cff;
   --gemini:       #3dced7;
+  --copilot:      #f471b5;
   --ollama:       #f29e4c;
   --add:          #4ade80;
   --rem:          #f87171;
@@ -1192,10 +1193,11 @@ kbd {
   left: 0; right: 0; top: 0;
   height: 2px;
 }
-.col-claude::before { background: var(--claude); }
-.col-codex::before  { background: var(--codex);  }
-.col-gemini::before { background: var(--gemini); }
-.col-ollama::before { background: var(--ollama); }
+.col-claude::before  { background: var(--claude); }
+.col-codex::before   { background: var(--codex);  }
+.col-gemini::before  { background: var(--gemini); }
+.col-copilot::before { background: var(--copilot); }
+.col-ollama::before  { background: var(--ollama); }
 
 .col-head {
   display: flex;
@@ -1214,10 +1216,11 @@ kbd {
   font-variation-settings: "opsz" 144;
   width: 32px;
 }
-.col-claude .col-rank { color: var(--claude); }
-.col-codex  .col-rank { color: var(--codex); }
-.col-gemini .col-rank { color: var(--gemini); }
-.col-ollama .col-rank { color: var(--ollama); }
+.col-claude  .col-rank { color: var(--claude); }
+.col-codex   .col-rank { color: var(--codex); }
+.col-gemini  .col-rank { color: var(--gemini); }
+.col-copilot .col-rank { color: var(--copilot); }
+.col-ollama  .col-rank { color: var(--ollama); }
 .col-tag {
   display: inline-block;
   margin-left: 6px;
@@ -1706,4 +1709,20 @@ kbd {
   color: var(--ink);
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+
+/* Inline caveat inside a feature card. Quieter than the main body
+ * paragraph, so it reads as an honest footnote, not a second pitch. */
+.feature p.feature-note {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  font-style: normal;
+}
+.feature p.feature-note em {
+  color: var(--ink-dim);
+  font-style: italic;
 }
