@@ -1718,6 +1718,10 @@ kbd {
   padding: clamp(56px, 10vw, 128px) var(--pad) clamp(40px, 6vw, 80px);
   text-align: left;
 }
+.lp-hero .kicker {
+  color: color-mix(in srgb, var(--ink) 74%, var(--accent) 26%);
+  letter-spacing: 0.1em;
+}
 .lp-headline {
   font-family: var(--f-display);
   font-weight: 380;
