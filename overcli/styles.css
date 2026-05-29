@@ -1245,18 +1245,25 @@ kbd {
   text-transform: uppercase;
   color: var(--ink-muted);
 }
-.flow-step-1 {
-  border-color: color-mix(in srgb, var(--claude) 50%, var(--line));
-  background: color-mix(in srgb, var(--claude) 16%, var(--bg));
-}
-.flow-step-2 {
-  border-color: color-mix(in srgb, var(--gemini) 50%, var(--line));
-  background: color-mix(in srgb, var(--gemini) 16%, var(--bg));
-}
-.flow-step-3 {
-  border-color: color-mix(in srgb, var(--codex) 50%, var(--line));
-  background: color-mix(in srgb, var(--codex) 16%, var(--bg));
-}
+.flow-step { transition: border-color 240ms ease, background 240ms ease; }
+.flow-step em { transition: opacity 220ms ease; }
+.flow-step.is-swap em { opacity: 0; }
+
+.flow-step[data-cli="claude"]  { border-color: color-mix(in srgb, var(--claude)  50%, var(--line)); background: color-mix(in srgb, var(--claude)  16%, var(--bg)); }
+.flow-step[data-cli="codex"]   { border-color: color-mix(in srgb, var(--codex)   50%, var(--line)); background: color-mix(in srgb, var(--codex)   16%, var(--bg)); }
+.flow-step[data-cli="gemini"]  { border-color: color-mix(in srgb, var(--gemini)  50%, var(--line)); background: color-mix(in srgb, var(--gemini)  16%, var(--bg)); }
+.flow-step[data-cli="copilot"] { border-color: color-mix(in srgb, var(--copilot) 50%, var(--line)); background: color-mix(in srgb, var(--copilot) 16%, var(--bg)); }
+.flow-step[data-cli="ollama"]  { border-color: color-mix(in srgb, var(--ollama)  50%, var(--line)); background: color-mix(in srgb, var(--ollama)  16%, var(--bg)); }
+
+.flow-participant { transition: border-color 240ms ease; }
+.flow-participant[data-cli="claude"]  { border-left: 3px solid var(--claude); padding-left: 9px; }
+.flow-participant[data-cli="ollama"]  { border-left: 3px solid var(--ollama); padding-left: 9px; }
+.flow-participant[data-cli="codex"]   { border-left: 3px solid var(--codex);  padding-left: 9px; }
+.flow-participant[data-cli="gemini"]  { border-left: 3px solid var(--gemini); padding-left: 9px; }
+.flow-participant[data-cli="copilot"] { border-left: 3px solid var(--copilot); padding-left: 9px; }
+
+[data-flow-yaml] { transition: opacity 220ms ease; }
+[data-flow-yaml].is-swap { opacity: 0.35; }
 
 .flow-subhead {
   margin: 0 0 8px;
