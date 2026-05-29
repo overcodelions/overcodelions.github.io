@@ -24,6 +24,7 @@
       <li><a class="nav-back" href="../">← codelions</a></li>
       <li><a href="#features">features</a></li>
       <li><a href="#colosseum">colosseum</a></li>
+      <li><a href="#flows-model">flows</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#download">download</a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github&nbsp;↗</a></li>
@@ -74,9 +75,9 @@
               <span class="chrome-dot yellow"></span>
               <span class="chrome-dot green"></span>
               <nav class="app-tabs">
-                <button class="app-tab is-active">Chat</button>
-                <button class="app-tab">Local</button>
-                <button class="app-tab">Usage</button>
+                <button class="app-tab is-active" type="button">Chat</button>
+                <button class="app-tab" type="button">Local</button>
+                <button class="app-tab" type="button">Usage</button>
               </nav>
             </header>
 
@@ -320,10 +321,83 @@
     </section>
 
 
+    <!-- ─────────── FLOWS MODEL ─────────── -->
+    <section class="colosseum" id="flows-model">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; flows model</p>
+        <h2 class="display-title">
+          <span>Define.</span>
+          <span class="em">Verify.</span>
+          <span>Approve.&nbsp;Ship.&nbsp;Learn.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Flows are reusable, open-source workflow templates built into Overcli. Available to everyone through the same public repo and desktop app: define a pipeline once, run it consistently across projects, and keep the full audit trail.
+        </p>
+      </div>
+
+      <div class="flow-builder" aria-label="workflow builder" data-flow-builder>
+        <div class="flow-builder-main">
+          <div class="flow-builder-rail">
+            <span class="flow-start">your request</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 4.7</em></span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 4.7</em></span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step" data-flow-step="build" data-cli="ollama"><strong>build</strong><em>ollama · qwen2.5-coder</em></span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-end">diff</span>
+          </div>
+
+          <div class="flow-participants" data-flow-participants>
+            <p class="flow-subhead">Participants</p>
+            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 4.7</span><span>2 steps</span></div>
+            <div class="flow-participant" data-cli="ollama"><span>Local</span><span>Ollama · qwen2.5-coder</span><span>1 step</span></div>
+          </div>
+
+          <div class="flow-steps">
+            <p class="flow-subhead">Steps</p>
+            <article class="flow-step-card">
+              <header><strong>1. research</strong><span>reads: your request</span></header>
+              <p>Role: research / gather context</p>
+              <p>Produces: <code>research.md</code></p>
+            </article>
+            <article class="flow-step-card">
+              <header><strong>2. design</strong><span>reads: research.md</span></header>
+              <p>Role: design / implementation plan</p>
+              <p>Produces: <code>plan.md</code></p>
+            </article>
+            <article class="flow-step-card">
+              <header><strong>3. build</strong><span>reads: plan.md</span></header>
+              <p>Role: implement / run checks / emit diff</p>
+              <p>Produces: <code>final.diff</code></p>
+            </article>
+          </div>
+        </div>
+
+        <aside class="flow-yaml">
+          <p class="flow-subhead">YAML</p>
+          <pre data-flow-yaml>name: Research + design + build
+open_source: true
+available_to: everyone
+steps:
+  - id: research
+    use: claude/opus-4-7
+  - id: design
+    use: claude/opus-4-7
+  - id: build
+    use: ollama/qwen2.5-coder</pre>
+        </aside>
+      </div>
+
+      <p class="colosseum-ribbon"><span>mix providers</span> · <span>mix models</span> · <span>cloud thinking, local speed</span></p>
+    </section>
+
+
     <!-- ─────────── COLOSSEUM ─────────── -->
     <section class="colosseum" id="colosseum">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
         <h2 class="display-title">
           <span>One prompt.</span>
           <span class="em">Five agents.</span>
@@ -428,7 +502,7 @@
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Built to be <em>explainable</em>,</span>
           <span>not clever.</span>
@@ -449,7 +523,7 @@
     <!-- ─────────── DOWNLOAD ─────────── -->
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Unsigned, honest, and real.</h2>
         <p class="section-lede">Overcli is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
       </div>
