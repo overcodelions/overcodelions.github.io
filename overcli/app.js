@@ -513,4 +513,126 @@
 
   revealTargets.forEach(el => revealIO.observe(el));
 
+
+  // ═══════════════════════════════════════════════════════════════════
+  // FLOWS MODEL — rotate provider/model assignments to illustrate
+  // that flows can mix providers (Claude + Ollama) and models freely.
+  // ═══════════════════════════════════════════════════════════════════
+
+  const flowBuilder = document.querySelector('[data-flow-builder]');
+  if (flowBuilder) {
+    const flowPresets = [
+      {
+        label: 'cloud thinking, local speed',
+        research: { cli: 'claude', model: 'claude · opus 4.7',     yaml: 'claude/opus-4-7' },
+        design:   { cli: 'claude', model: 'claude · opus 4.7',     yaml: 'claude/opus-4-7' },
+        build:    { cli: 'ollama', model: 'ollama · qwen2.5-coder', yaml: 'ollama/qwen2.5-coder' }
+      },
+      {
+        label: 'opus thinks, gpt-5.4-mini ships',
+        research: { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        design:   { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        build:    { cli: 'codex',  model: 'codex · gpt-5.4-mini',   yaml: 'codex/gpt-5.4-mini' }
+      },
+      {
+        label: 'opus researches, sonnet designs, local builds',
+        research: { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        design:   { cli: 'claude', model: 'claude · sonnet 4.6',    yaml: 'claude/sonnet-4-6' },
+        build:    { cli: 'ollama', model: 'ollama · llama3.2',      yaml: 'ollama/llama3.2' }
+      },
+      {
+        label: 'local thinking + claude review',
+        research: { cli: 'ollama', model: 'ollama · deepseek-r1',   yaml: 'ollama/deepseek-r1' },
+        design:   { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        build:    { cli: 'ollama', model: 'ollama · qwen2.5-coder', yaml: 'ollama/qwen2.5-coder' }
+      },
+      {
+        label: 'all-claude, haiku for the diff',
+        research: { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        design:   { cli: 'claude', model: 'claude · sonnet 4.6',    yaml: 'claude/sonnet-4-6' },
+        build:    { cli: 'claude', model: 'claude · haiku 4.5',     yaml: 'claude/haiku-4-5' }
+      }
+    ];
+
+    const stepEls = ['research', 'design', 'build'].map(id =>
+      flowBuilder.querySelector(`[data-flow-step="${id}"]`)
+    );
+    const participantsEl = flowBuilder.querySelector('[data-flow-participants]');
+    const yamlEl         = flowBuilder.querySelector('[data-flow-yaml]');
+    const stepLabels     = { research: 'research', design: 'design', build: 'build' };
+    const cliDisplay     = { claude: 'Claude', codex: 'Codex', gemini: 'Gemini', copilot: 'Copilot', ollama: 'Ollama' };
+
+    function renderParticipants(preset) {
+      if (!participantsEl) return;
+      // group by model — count how many steps each unique model handles
+      const order = ['research', 'design', 'build'];
+      const groups = [];
+      order.forEach(id => {
+        const s = preset[id];
+        const found = groups.find(g => g.model === s.model);
+        if (found) found.count += 1;
+        else groups.push({ cli: s.cli, model: s.model, count: 1 });
+      });
+      const head = '<p class="flow-subhead">Participants</p>';
+      const rows = groups.map(g => {
+        const display = g.model.split(' · ').slice(1).join(' · ') || g.model;
+        const role = g.cli === 'ollama' ? 'Local' : 'Cloud';
+        const provider = cliDisplay[g.cli] || g.cli;
+        const stepWord = g.count === 1 ? '1 step' : `${g.count} steps`;
+        return `<div class="flow-participant" data-cli="${g.cli}"><span>${role}</span><span>${provider} · ${display}</span><span>${stepWord}</span></div>`;
+      }).join('');
+      participantsEl.innerHTML = head + rows;
+    }
+
+    function renderYaml(preset) {
+      if (!yamlEl) return;
+      yamlEl.textContent =
+        'name: Research + design + build\n' +
+        'open_source: true\n' +
+        'available_to: everyone\n' +
+        'steps:\n' +
+        `  - id: research\n    use: ${preset.research.yaml}\n` +
+        `  - id: design\n    use: ${preset.design.yaml}\n` +
+        `  - id: build\n    use: ${preset.build.yaml}`;
+    }
+
+    function applyPreset(preset) {
+      // fade the model labels and yaml out briefly, swap, fade back in
+      stepEls.forEach(el => el && el.classList.add('is-swap'));
+      if (yamlEl) yamlEl.classList.add('is-swap');
+      setTimeout(() => {
+        ['research', 'design', 'build'].forEach((id, i) => {
+          const el = stepEls[i];
+          if (!el) return;
+          el.dataset.cli = preset[id].cli;
+          const em = el.querySelector('em');
+          if (em) em.textContent = preset[id].model;
+        });
+        renderParticipants(preset);
+        renderYaml(preset);
+        stepEls.forEach(el => el && el.classList.remove('is-swap'));
+        if (yamlEl) yamlEl.classList.remove('is-swap');
+      }, 220);
+    }
+
+    // start the rotation when the builder scrolls into view; pause when out
+    let flowIdx = 0;
+    let flowTimer = null;
+    function advance() {
+      flowIdx = (flowIdx + 1) % flowPresets.length;
+      applyPreset(flowPresets[flowIdx]);
+    }
+    const flowIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !flowTimer) {
+          flowTimer = setInterval(advance, 4200);
+        } else if (!entry.isIntersecting && flowTimer) {
+          clearInterval(flowTimer);
+          flowTimer = null;
+        }
+      });
+    }, { threshold: 0.25 });
+    flowIO.observe(flowBuilder);
+  }
+
 })();
