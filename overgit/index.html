@@ -23,7 +23,8 @@
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
       <li><a href="#features">features</a></li>
-      <li><a href="#workset">lifecycle</a></li>
+      <li><a href="#workspace">workspaces</a></li>
+      <li><a href="#workset">worksets</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#download">download</a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github&nbsp;↗</a></li>
@@ -73,12 +74,7 @@
               <span class="chrome-dot red"></span>
               <span class="chrome-dot yellow"></span>
               <span class="chrome-dot green"></span>
-              <nav class="app-tabs">
-                <button class="app-tab is-active">Changes</button>
-                <button class="app-tab">History</button>
-                <button class="app-tab">Files</button>
-                <button class="app-tab">Graph</button>
-              </nav>
+              <span class="app-winlabel">overgit</span>
             </header>
 
             <div class="app-body">
@@ -109,7 +105,7 @@
 
                 <p class="sidebar-section">worksets · <span class="agent-count">2 active</span></p>
                 <ul class="agent-list">
-                  <li><span class="agent-dot running"></span>rate-limit rollout<span class="agent-note">⎇ feat/rate-limit · 3 repos</span></li>
+                  <li><span class="agent-dot running"></span>rate-limit rollout<span class="agent-note">⎇ feature/rate-limit · 3 repos</span></li>
                   <li><span class="agent-dot running"></span>pg14 migration<span class="agent-note">⎇ chore/pg14 · 2 repos</span></li>
                   <li><span class="agent-dot idle"></span>auth-refresh<span class="agent-note muted">archived</span></li>
                 </ul>
@@ -125,52 +121,53 @@
               </aside>
 
               <section class="app-main">
-                <header class="chat-header">
-                  <h4 class="chat-title">api-gateway · changes</h4>
-                  <span class="cli-pill">workset: rate-limit rollout</span>
-                  <span class="chat-model-tag">⎇ feat/rate-limit · 3 / 3 repos</span>
-                  <div class="chat-actions">
-                    <span class="act-pill">⎇ branch ▾</span>
-                    <span class="act-pill">⤓ pull</span>
-                    <span class="act-pill">⤒ push</span>
-                    <span class="act-pill">✦ AI review</span>
-                    <span class="act-icons">
-                      <span class="act-icon" title="fetch">⟳</span>
-                      <span class="act-icon" title="more">⋯</span>
-                    </span>
+                <header class="rv-header">
+                  <div class="rv-repo">
+                    <p class="rv-repo-name">api-gateway</p>
+                    <p class="rv-repo-path">~/payments/api-gateway</p>
+                  </div>
+                  <div class="rv-controls">
+                    <span class="rv-branch">⎇ feature/rate-limit ▾</span>
+                    <span class="rv-diffstat"><span class="add">+34</span> <span class="rem">−5</span> <span class="rv-files">3 files</span></span>
+                    <span class="rv-btn">Fetch</span>
+                    <span class="rv-btn">Pull</span>
+                    <span class="rv-btn rv-btn-accent">Push ⌘P</span>
+                    <span class="rv-btn rv-btn-danger">Abandon…</span>
                   </div>
                 </header>
 
-                <div class="chat-scroll">
-                  <div class="chat-cards">
-                    <article class="card">
-                      <header class="card-head"><span class="card-tag">staged</span> <span class="card-target">src/middleware/rateLimit.ts</span> <span class="card-stats"><span class="add">+22</span> <span class="rem">−0</span></span></header>
-                      <pre class="card-body"><span class="diff-meta">@@ new file @@</span><span class="diff-add">+ import { bucket } from "./bucket";</span><span class="diff-add">+ export const loginLimiter = bucket({</span><span class="diff-add">+   cap: 10,</span><span class="diff-add">+   per: "60s",</span><span class="diff-add">+   key: (req) => `${req.ip}:${req.body.username}`,</span><span class="diff-add">+ });</span></pre>
-                    </article>
+                <nav class="rv-tabs">
+                  <span class="rv-tab is-active">Changes</span>
+                  <span class="rv-tab">History</span>
+                  <span class="rv-tab">Files</span>
+                  <span class="rv-tab">Stash</span>
+                  <span class="rv-tab">Branches</span>
+                </nav>
 
-                    <article class="card">
-                      <header class="card-head"><span class="card-tag">staged</span> <span class="card-target">src/routes/login.ts</span> <span class="card-stats"><span class="add">+2</span> <span class="rem">−1</span></span></header>
-                      <pre class="card-body"><span class="diff-add">+ import { loginLimiter } from "../middleware/rateLimit";</span><span class="diff-rem">- router.post("/api/login", login);</span><span class="diff-add">+ router.post("/api/login", loginLimiter, login);</span></pre>
-                    </article>
+                <div class="rv-body">
+                  <div class="rv-left">
+                    <div class="rv-aireview">✦ Review with AI</div>
+                    <p class="rv-changes-head">changes <span>3</span></p>
+                    <ul class="rv-files-list">
+                      <li class="rv-file is-active"><span class="rv-check">☑</span><span class="rv-file-glyph add">A</span><span class="rv-file-name">middleware/rateLimit.ts</span></li>
+                      <li class="rv-file"><span class="rv-check">☑</span><span class="rv-file-glyph mod">M</span><span class="rv-file-name">routes/login.ts</span></li>
+                      <li class="rv-file"><span class="rv-check">☑</span><span class="rv-file-glyph add">A</span><span class="rv-file-name">__tests__/rateLimit.spec.ts</span></li>
+                    </ul>
+                    <div class="rv-commit">
+                      <p class="rv-committing">committing as <strong>you</strong> &lt;you@example.com&gt; <span>· system git config</span></p>
+                      <div class="rv-msg">feat: add rate limiter to /api/login</div>
+                      <div class="rv-commit-row">
+                        <span class="rv-suggest">✦ Suggest with claude</span>
+                        <span class="rv-commit-btn">Commit 3 ⌘↵</span>
+                      </div>
+                    </div>
+                  </div>
 
-                    <article class="card">
-                      <header class="card-head"><span class="card-tag">ai · claude</span> <span class="card-target">review · staged diff</span></header>
-                      <pre class="card-body">Looks good. Two notes:
-  · <span class="k">cap: 10/60s</span> is aggressive for /login on first sign-in storms — consider 20/60s.
-  · Add a unit test for the <span class="k">ip + username</span> key collision (two users on the same NAT).</pre>
-                    </article>
+                  <div class="rv-diff">
+                    <div class="rv-diff-head"><span class="rv-file-glyph add">A</span> middleware/rateLimit.ts <span class="rv-diff-stat"><span class="add">+22</span> <span class="rem">−0</span></span></div>
+                    <pre class="rv-diff-body"><span class="rv-hunk">@@ new file @@</span><span class="add">+ import { bucket } from "./bucket";</span><span class="add">+</span><span class="add">+ export const loginLimiter = bucket({</span><span class="add">+   cap: 10,</span><span class="add">+   per: "60s",</span><span class="add">+   key: (req) =&gt; req.ip + ":" + req.body.username,</span><span class="add">+ });</span><span class="rv-ctx"> </span><span class="rv-hunk">@@ routes/login.ts @@</span><span class="add">+ import { loginLimiter } from "../middleware/rateLimit";</span><span class="rem">- router.post("/api/login", login);</span><span class="add">+ router.post("/api/login", loginLimiter, login);</span></pre>
                   </div>
                 </div>
-
-                <div class="composer">
-                  <button class="composer-plus">✦</button>
-                  <span class="composer-placeholder">feat: add rate limiter to /api/login &nbsp;·&nbsp; ↵ commit · ⇧↵ commit &amp; push</span>
-                  <button class="composer-stop">Suggest</button>
-                </div>
-
-                <footer class="chat-statusbar">
-                  3 repos staged · 11 files · ⎇ feat/rate-limit · clean working tree on ledger-core
-                </footer>
               </section>
             </div>
           </figure>
@@ -295,10 +292,86 @@
     </section>
 
 
+    <!-- ─────────── WORKSPACE EXPLAINER ─────────── -->
+    <section class="colosseum" id="workspace">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; what a workspace looks like</p>
+        <h2 class="display-title">
+          <span>Group the repos once.</span>
+          <span class="em">Act on all of them.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          A <strong>workspace</strong> is a durable bucket of repos you treat as one. Aggregate health at a glance — who's dirty, who's ahead, who's behind — then <strong>fetch all</strong>, <strong>status all</strong>, or <strong>reset all</strong> in a single action. Click any row to drop straight into that repo.
+        </p>
+      </div>
+
+      <div class="wsp-board" aria-label="a workspace detail view — aggregate health across repos">
+        <header class="wsp-board-head">
+          <div class="wsp-board-title">
+            <h3>payments-platform <span class="wsp-tag">workspace</span></h3>
+            <p>4 repos in this workspace. Aggregate health below; click any row to open the repo.</p>
+          </div>
+          <div class="wsp-toolbar">
+            <span class="wsp-btn wsp-btn-primary">Reset all</span>
+            <span class="wsp-btn">Fetch all</span>
+            <span class="wsp-btn">Edit</span>
+            <span class="wsp-btn">Remove</span>
+          </div>
+        </header>
+
+        <p class="wsp-summary"><span class="warn">1 dirty</span> &nbsp;·&nbsp; <span>0 ahead</span> &nbsp;·&nbsp; <span>0 behind</span></p>
+
+        <table class="wsp-table">
+          <thead>
+            <tr>
+              <th>repo</th>
+              <th>branch</th>
+              <th class="num">dirty</th>
+              <th class="num">ahead</th>
+              <th class="num">behind</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="wsp-repo"><strong>api-gateway</strong><em>~/payments/api-gateway</em></td>
+              <td class="wsp-branch">main</td>
+              <td class="num warn">2</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+            </tr>
+            <tr>
+              <td class="wsp-repo"><strong>billing-svc</strong><em>~/payments/billing-svc</em></td>
+              <td class="wsp-branch">main</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+            </tr>
+            <tr>
+              <td class="wsp-repo"><strong>ledger-core</strong><em>~/payments/ledger-core</em></td>
+              <td class="wsp-branch">main</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+            </tr>
+            <tr>
+              <td class="wsp-repo"><strong>infra</strong><em>~/payments/infra</em></td>
+              <td class="wsp-branch">main</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+              <td class="num zero">·</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="colosseum-ribbon"><span>one bucket</span> · <span>every repo</span> · <span>one action</span></p>
+    </section>
+
+
     <!-- ─────────── WORKSET LIFECYCLE EXPLAINER ─────────── -->
     <section class="colosseum" id="workset">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; the workset lifecycle</p>
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; the workset lifecycle</p>
         <h2 class="display-title">
           <span>Spin up.</span>
           <span class="em">Ship.</span>
@@ -309,107 +382,116 @@
         </p>
       </div>
 
-      <div class="col-grid">
-        <div class="col col-claude">
-          <header class="col-head">
-            <span class="col-rank">I</span>
-            <div>
-              <p class="col-name">api-gateway</p>
-              <p class="col-model">feat/rate-limit</p>
-            </div>
-            <span class="col-timer">+22 −1</span>
-          </header>
-          <pre class="col-out">middleware/rateLimit.ts (new)
-routes/login.ts (edit)
-tests/rateLimit.spec.ts (new)</pre>
-          <footer class="col-foot">
-            <span>staged <strong>3</strong> files</span>
-            <span class="add">+22</span>
-            <span class="rem">−1</span>
-          </footer>
+      <div class="ws-board" aria-label="a workset detail view — repos pinned to one branch, mid-flight">
+        <header class="ws-board-head">
+          <span class="ws-branch">⎇ feature/rate-limit</span>
+          <span class="ws-board-meta">4 repos · CLIs: gh</span>
+        </header>
+
+        <div class="ws-resume">
+          <div class="ws-resume-text">
+            <strong>⚠ Pick up where you left off</strong>
+            <span>2 of 4 repos drifted off this branch. Resume to checkout <code>feature/rate-limit</code> across them.</span>
+          </div>
+          <span class="ws-resume-btn">Resume</span>
         </div>
 
-        <div class="col col-codex">
-          <header class="col-head">
-            <span class="col-rank">II</span>
-            <div>
-              <p class="col-name">billing-svc</p>
-              <p class="col-model">feat/rate-limit</p>
-            </div>
-            <span class="col-timer">+8 −2</span>
-          </header>
-          <pre class="col-out">src/clients/gateway.ts (edit)
-src/types/limits.ts (new)</pre>
-          <footer class="col-foot">
-            <span>staged <strong>2</strong> files</span>
-            <span class="add">+8</span>
-            <span class="rem">−2</span>
-          </footer>
+        <div class="ws-flow" aria-label="workset lifecycle">
+          <div class="ws-stage partial">
+            <span class="ws-stage-dot">◑</span>
+            <span class="ws-stage-text"><strong>Branch</strong><em>2 / 4 on feature/rate-limit</em></span>
+          </div>
+          <span class="ws-flow-bar"></span>
+          <div class="ws-stage pending">
+            <span class="ws-stage-dot"></span>
+            <span class="ws-stage-text"><strong>Commit</strong><em>branch first</em></span>
+          </div>
+          <span class="ws-flow-bar"></span>
+          <div class="ws-stage pending">
+            <span class="ws-stage-dot"></span>
+            <span class="ws-stage-text"><strong>Push</strong><em>commit first</em></span>
+          </div>
+          <span class="ws-flow-bar"></span>
+          <span class="ws-archive is-disabled">Archive</span>
         </div>
 
-        <div class="col col-gemini">
-          <header class="col-head">
-            <span class="col-rank">III</span>
-            <div>
-              <p class="col-name">ledger-core</p>
-              <p class="col-model">feat/rate-limit</p>
-            </div>
-            <span class="col-timer">clean</span>
-          </header>
-          <pre class="col-out">no changes
-branch ready
-ahead 0 · behind 0</pre>
-          <footer class="col-foot">
-            <span>nothing to stage</span>
-            <span class="add">+0</span>
-            <span class="rem">−0</span>
-          </footer>
+        <div class="ws-stats">
+          <div class="ws-stat">
+            <span class="ws-stat-label">repos</span>
+            <span class="ws-stat-num">4</span>
+            <span class="ws-stat-sub">all loaded</span>
+          </div>
+          <div class="ws-stat">
+            <span class="ws-stat-label">dirty</span>
+            <span class="ws-stat-num">0</span>
+            <span class="ws-stat-sub">all clean</span>
+          </div>
+          <div class="ws-stat">
+            <span class="ws-stat-label">ahead / behind</span>
+            <span class="ws-stat-num">0 / 0</span>
+            <span class="ws-stat-sub">vs upstream</span>
+          </div>
+          <div class="ws-stat ws-stat-wide">
+            <span class="ws-stat-label">branch spread</span>
+            <span class="ws-stat-num ws-stat-warn">2 branches</span>
+            <span class="ws-stat-sub">2 of 4 off feature/rate-limit</span>
+          </div>
         </div>
 
-        <div class="col col-ollama">
-          <header class="col-head">
-            <span class="col-rank">IV</span>
-            <div>
-              <p class="col-name">infra <span class="col-tag">terraform</span></p>
-              <p class="col-model">feat/rate-limit</p>
-            </div>
-            <span class="col-timer">+14 −0</span>
-          </header>
-          <pre class="col-out">limits.tf (new)
-api-gateway.tf (edit)</pre>
-          <footer class="col-foot">
-            <span>staged <strong>2</strong> files</span>
-            <span class="add">+14</span>
-            <span class="rem">−0</span>
-          </footer>
+        <div class="ws-status">
+          <p class="ws-status-head">status &nbsp;·&nbsp; one branch is the goal — sync the stragglers</p>
+          <ul class="ws-status-list">
+            <li class="ws-status-row">
+              <span class="ws-status-repo">api-gateway</span>
+              <span class="ws-status-path">~/payments/api-gateway</span>
+              <span class="ws-status-branch on">feature/rate-limit</span>
+            </li>
+            <li class="ws-status-row">
+              <span class="ws-status-repo">billing-svc</span>
+              <span class="ws-status-path">~/payments/billing-svc</span>
+              <span class="ws-status-branch on">feature/rate-limit</span>
+            </li>
+            <li class="ws-status-row drifted">
+              <span class="ws-status-repo">ledger-core</span>
+              <span class="ws-status-path">~/payments/ledger-core</span>
+              <span class="ws-status-branch off">main</span>
+              <span class="ws-status-sync">Sync to feature/rate-limit</span>
+            </li>
+            <li class="ws-status-row drifted">
+              <span class="ws-status-repo">infra</span>
+              <span class="ws-status-path">~/payments/infra</span>
+              <span class="ws-status-branch off">main</span>
+              <span class="ws-status-sync">Sync to feature/rate-limit</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <p class="colosseum-ribbon"><span>one branch name</span> · <span>four repos</span> · <span>one PR set</span></p>
+      <p class="colosseum-ribbon"><span>one branch is the goal</span> · <span>resume the stragglers</span> · <span>then ship together</span></p>
 
       <div class="reset-panel">
         <header class="reset-head">
           <span class="reset-kicker">↺&nbsp; one click later · &nbsp;<strong>Reset workset to default</strong></span>
-          <span class="reset-meta">payments-platform · feat/rate-limit · 4 repos</span>
+          <span class="reset-meta">payments-platform · feature/rate-limit · 4 repos</span>
         </header>
         <ul class="reset-rows">
           <li class="reset-row">
             <span class="reset-repo">api-gateway</span>
             <span class="reset-arrow">→</span>
             <span class="reset-state ok">on main · clean</span>
-            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feat/rate-limit</code></span>
+            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feature/rate-limit</code></span>
           </li>
           <li class="reset-row">
             <span class="reset-repo">billing-svc</span>
             <span class="reset-arrow">→</span>
             <span class="reset-state ok">on main · clean</span>
-            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feat/rate-limit</code></span>
+            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feature/rate-limit</code></span>
           </li>
           <li class="reset-row">
             <span class="reset-repo">ledger-core</span>
             <span class="reset-arrow">→</span>
             <span class="reset-state ok">already on main</span>
-            <span class="reset-detail">nothing to reset · deleted <code>feat/rate-limit</code></span>
+            <span class="reset-detail">nothing to reset · deleted <code>feature/rate-limit</code></span>
           </li>
           <li class="reset-row warn">
             <span class="reset-repo">infra</span>
@@ -426,7 +508,7 @@ api-gateway.tf (edit)</pre>
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; why overgit exists</p>
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; why overgit exists</p>
         <h2 class="display-title story-title">
           <span>Move across repos,</span>
           <span><em>own</em> none of them.</span>
@@ -447,7 +529,7 @@ api-gateway.tf (edit)</pre>
     <!-- ─────────── DOWNLOAD ─────────── -->
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Unsigned, honest, and real.</h2>
         <p class="section-lede">Overgit is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
       </div>
