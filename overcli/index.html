@@ -24,8 +24,8 @@
       <li><a class="nav-back" href="../">← codelions</a></li>
       <li><a href="#features">features</a></li>
       <li><a href="#flows-model">flows</a></li>
+      <li><a href="#rebound">rebound</a></li>
       <li><a href="#colosseum">colosseum</a></li>
-      <li><a href="#flows-model">flows</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#download">download</a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github&nbsp;↗</a></li>
@@ -395,10 +395,86 @@ steps:
     </section>
 
 
+    <!-- ─────────── REBOUND ─────────── -->
+    <section class="colosseum" id="rebound">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; rebound reviews</p>
+        <h2 class="display-title">
+          <span>Ship a turn.</span>
+          <span class="em">Bounce it back.</span>
+          <span>Let a second agent tear&nbsp;it&nbsp;apart.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          A rebound isn't a pipeline — it happens <em>in the conversation</em>. After a turn lands, a reviewer agent reads the actual diff and writes back, round after round. You watch it concede, push back, and re-check in collaboration mode until it stops finding things. The reviewer can stay <em>in the same family</em> — a heavier thinker checking a faster model's work — or be <em>completely independent</em>, like Claude reviewing what Codex just shipped. A second pair of eyes that doesn't share the first one's blind spots.
+        </p>
+      </div>
+
+      <div class="rebound-thread" aria-label="a rebound review loop, captured from a real session">
+        <article class="rb-card rb-build">
+          <header class="rb-head">
+            <span class="rb-model">opus 4·7</span>
+            <span class="rb-actions">copy · copy raw</span>
+          </header>
+          <p class="rb-body">Added the rate limiter and a test. <code>stop()</code> now kills the collab client instead of a best-effort <code>interrupt()</code>, and the notification / request / close handlers check <code>codexCollab.get(id) === session</code> before acting. Type-check clean, all 332 tests pass.</p>
+          <footer class="rb-foot">✓ 257.2s · in 62 · out 45,680 · cache 6,012,782</footer>
+        </article>
+
+        <p class="rb-round">codex · collab · round 4</p>
+        <article class="rb-card rb-review">
+          <header class="rb-head">
+            <span class="rb-model rb-reviewer">codex · gpt-5</span>
+          </header>
+          <p class="rb-body">Looks fine overall. Killing and removing the persistent collab session on <code>stop()</code> closes the cross-round race I flagged last time.</p>
+          <p class="rb-body rb-nit"><strong>Only nit:</strong> the comment slightly overstates the <code>close</code> change — it guards map eviction, then still inspects <code>session.active</code>. Fine in practice, but the wording is loose.</p>
+        </article>
+
+        <article class="rb-card rb-build">
+          <header class="rb-head">
+            <span class="rb-model">opus 4·7</span>
+            <span class="rb-actions">copy · copy raw</span>
+          </header>
+          <p class="rb-body">Conceded — the wording was loose. No code change needed; just a more accurate restatement of what the <code>close</code> handler actually guards.</p>
+          <footer class="rb-foot">✓ 5.8s · in 68 · out 45,877 · cache 6,194,396</footer>
+        </article>
+
+        <p class="rb-round">codex · collab · round 5</p>
+        <article class="rb-card rb-review rb-clean">
+          <header class="rb-head">
+            <span class="rb-model rb-reviewer">codex · gpt-5</span>
+            <span class="rb-verdict">✓ clean</span>
+          </header>
+          <p class="rb-body">Looks fine. The clarification matches the code — no issue, just tighter wording. Nothing left to flag.</p>
+        </article>
+      </div>
+
+      <div class="rb-presets" aria-label="rebound presets and custom dials">
+        <p class="rb-presets-head">One rebound, many shapes — pick a preset, or open <span class="rb-custom-pill">Custom…</span> for the dials.</p>
+        <ul class="rb-preset-list">
+          <li class="rb-preset"><strong>Off</strong><span>No secondary review.</span></li>
+          <li class="rb-preset"><strong>Half-finished work check</strong><span>Same model hunts stubs, TODOs, and missed branches. Cheap. Code-change turns only.</span></li>
+          <li class="rb-preset"><strong>Security review</strong><span>A smarter model reads the diff for vulnerabilities. Code-change turns only.</span></li>
+          <li class="rb-preset"><strong>Cheap-and-paranoid</strong><span>A cheap primary writes; a smart reviewer checks every turn.</span></li>
+          <li class="rb-preset"><strong>Skeptical user</strong><span>"Did it actually do what I asked?" Catches scope creep, every turn.</span></li>
+          <li class="rb-preset"><strong>Design review</strong><span>A smart model weighs architecture, abstractions, and approach.</span></li>
+          <li class="rb-preset is-active"><strong>Independent second opinion</strong><span>A different CLI entirely, for fully independent reasoning.</span></li>
+          <li class="rb-preset rb-preset-custom"><strong>Custom…</strong><span>Set reviewer CLI, model, persona, and mode by hand.</span></li>
+        </ul>
+        <dl class="rb-axes">
+          <div><dt>reviewer cli</dt><dd>claude (same as primary) · codex · gemini · ollama</dd></div>
+          <div><dt>mode</dt><dd><strong>review</strong> — flag → fix → verify, no loops &nbsp;·&nbsp; <strong>collab</strong> — ping-pong until the budget's spent</dd></div>
+          <div><dt>reviewer model</dt><dd>cli default · cheap <em>(sonnet)</em> · smart <em>(opus)</em></dd></div>
+          <div><dt>persona</dt><dd>none · half-finished · security · critic · skeptical user · design</dd></div>
+        </dl>
+      </div>
+
+      <p class="colosseum-ribbon"><span>same conversation</span> · <span>round after round</span> · <span>until it's clean</span></p>
+    </section>
+
+
     <!-- ─────────── COLOSSEUM ─────────── -->
     <section class="colosseum" id="colosseum">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
         <h2 class="display-title">
           <span>One prompt.</span>
           <span class="em">Five agents.</span>
@@ -503,7 +579,7 @@ steps:
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Move fast without</span>
           <span>losing <em>the thread</em>.</span>
@@ -524,7 +600,7 @@ steps:
     <!-- ─────────── DOWNLOAD ─────────── -->
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Unsigned, honest, and real.</h2>
         <p class="section-lede">Overcli is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
       </div>
