@@ -428,14 +428,14 @@ api-gateway.tf (edit)</pre>
       <div class="story-body">
         <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; why overgit exists</p>
         <h2 class="display-title story-title">
-          <span>Coordinate the repos.</span>
-          <span><em>Own</em> none of them.</span>
+          <span>Move across repos,</span>
+          <span><em>own</em> none of them.</span>
         </h2>
         <p>
-          Most multi-repo tooling solves the problem by inventing a meta-format: a manifest, a sub-tree, a worktree-of-worktrees. Then you can't open one of the repos in another tool without something breaking. Overgit refuses that bargain. Workspaces and worksets are UI groupings, not files on disk. Every action is a plain <code>git</code> command run in the repo's own directory. If you uninstall overgit tomorrow, your repos forget it ever existed.
+          Overgit optimizes for the day your work spans four repos at once — when juggling them by hand is the thing slowing you down. Workspaces and worksets are UI groupings, not files on disk: every action is a plain <code>git</code> command run in the repo's own directory, so you keep moving without inventing a meta-format that something else has to understand. If you uninstall overgit tomorrow, your repos forget it ever existed.
         </p>
         <p>
-          The result is a client built for the realistic case — your work spans services and shared libs and infra, your teammates use whatever client they like, and the only thing the repos agree on is <code>git</code>. Overgit sits over the top, coordinates, and stays out of the way.
+          It's built for the realistic case — your work spans services and shared libs and infra, your teammates use whatever client they like, and the only thing the repos agree on is <code>git</code>. Overgit sits over the top, coordinates, and stays out of the way.
         </p>
         <p class="story-sig">
           Sibling project of <a href="../overcli/">overcli</a>. Written &amp; maintained by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a>. Open-source — <a href="https://github.com/overcodelions/overgit/graphs/contributors" target="_blank" rel="noopener">contributors</a>, issues, and PRs welcome.
