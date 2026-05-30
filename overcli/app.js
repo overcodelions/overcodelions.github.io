@@ -21,9 +21,9 @@
   const backends = {
     claude: {
       pill: 'Claude CLI',
-      label: 'opus 4 7',
-      modelTag: 'opus 4 7 <em>[1m]</em>',
-      modelFull: 'claude-opus-4-7[1m]',
+      label: 'opus 4 8',
+      modelTag: 'opus 4 8 <em>[1m]</em>',
+      modelFull: 'claude-opus-4-8[1m]',
       script: [
         { wait: 300,  type: 'response', body: 'Planning the change:\n  1 · add a token-bucket middleware\n  2 · key by <span class="k">ip + username</span>\n  3 · wire into <span class="k">/api/login</span>\n  4 · add unit tests' },
         { wait: 900,  type: 'tool', kind: 'read', target: 'src/routes/login.ts' },
@@ -524,31 +524,31 @@
     const flowPresets = [
       {
         label: 'cloud thinking, local speed',
-        research: { cli: 'claude', model: 'claude · opus 4.7',     yaml: 'claude/opus-4-7' },
-        design:   { cli: 'claude', model: 'claude · opus 4.7',     yaml: 'claude/opus-4-7' },
+        research: { cli: 'claude', model: 'claude · opus 4.8',     yaml: 'claude/opus-4-8' },
+        design:   { cli: 'claude', model: 'claude · opus 4.8',     yaml: 'claude/opus-4-8' },
         build:    { cli: 'ollama', model: 'ollama · qwen2.5-coder', yaml: 'ollama/qwen2.5-coder' }
       },
       {
         label: 'opus thinks, gpt-5.4-mini ships',
-        research: { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
-        design:   { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        research: { cli: 'claude', model: 'claude · opus 4.8',      yaml: 'claude/opus-4-8' },
+        design:   { cli: 'claude', model: 'claude · opus 4.8',      yaml: 'claude/opus-4-8' },
         build:    { cli: 'codex',  model: 'codex · gpt-5.4-mini',   yaml: 'codex/gpt-5.4-mini' }
       },
       {
         label: 'opus researches, sonnet designs, local builds',
-        research: { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        research: { cli: 'claude', model: 'claude · opus 4.8',      yaml: 'claude/opus-4-8' },
         design:   { cli: 'claude', model: 'claude · sonnet 4.6',    yaml: 'claude/sonnet-4-6' },
         build:    { cli: 'ollama', model: 'ollama · llama3.2',      yaml: 'ollama/llama3.2' }
       },
       {
         label: 'local thinking + claude review',
         research: { cli: 'ollama', model: 'ollama · deepseek-r1',   yaml: 'ollama/deepseek-r1' },
-        design:   { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        design:   { cli: 'claude', model: 'claude · opus 4.8',      yaml: 'claude/opus-4-8' },
         build:    { cli: 'ollama', model: 'ollama · qwen2.5-coder', yaml: 'ollama/qwen2.5-coder' }
       },
       {
         label: 'all-claude, haiku for the diff',
-        research: { cli: 'claude', model: 'claude · opus 4.7',      yaml: 'claude/opus-4-7' },
+        research: { cli: 'claude', model: 'claude · opus 4.8',      yaml: 'claude/opus-4-8' },
         design:   { cli: 'claude', model: 'claude · sonnet 4.6',    yaml: 'claude/sonnet-4-6' },
         build:    { cli: 'claude', model: 'claude · haiku 4.5',     yaml: 'claude/haiku-4-5' }
       }

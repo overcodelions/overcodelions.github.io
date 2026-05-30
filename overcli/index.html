@@ -77,6 +77,7 @@
               <span class="chrome-dot green"></span>
               <nav class="app-tabs">
                 <button class="app-tab is-active" type="button">Chat</button>
+                <button class="app-tab" type="button">Flows</button>
                 <button class="app-tab" type="button">Local</button>
                 <button class="app-tab" type="button">Usage</button>
               </nav>
@@ -89,12 +90,38 @@
                   <span class="search-placeholder">search</span>
                 </div>
 
+                <p class="sidebar-section sidebar-section--first">active</p>
+                <ul class="active-list">
+                  <li class="is-active"><span class="conv-dot on"></span>add rate limiter to /login<span class="active-sub">api-gateway</span></li>
+                  <li><span class="conv-dot on"></span>fix flaky signup test<span class="active-sub">web-app</span></li>
+                </ul>
+
+                <p class="sidebar-section">workspaces</p>
+                <ul class="ws-list">
+                  <li class="ws-item is-open">
+                    <span class="ws-glyph">▾</span> payments-platform
+                    <span class="ws-tools"><span>+</span><span>⌕</span><span>✎</span></span>
+                  </li>
+                  <li class="ws-child">api-gateway</li>
+                  <li class="ws-child">billing-svc</li>
+                  <li class="ws-child">ledger-core</li>
+                  <li class="ws-item">
+                    <span class="ws-glyph">▸</span> design-system
+                    <span class="ws-tools"><span>+</span><span>⌕</span><span>✎</span></span>
+                  </li>
+                </ul>
+
+                <p class="sidebar-section">projects</p>
                 <div class="proj">
                   <p class="proj-name">▾ api-gateway</p>
                   <ul class="conv-list">
                     <li class="is-active"><span class="conv-dot on"></span>add rate limiter to /login</li>
                     <li><span class="conv-dot"></span>fix flaky signup test</li>
                     <li><span class="conv-dot on"></span>migrate to pg14</li>
+                  </ul>
+                  <p class="proj-sub">agents</p>
+                  <ul class="agent-list">
+                    <li><span class="agent-dot running"></span>review<span class="agent-note">feature/rate-limit</span></li>
                   </ul>
                   <div class="proj-actions">
                     <span class="proj-action">+ agent</span>
@@ -104,35 +131,14 @@
                 </div>
 
                 <div class="proj collapsed">
-                  <p class="proj-name">▸ billing-svc</p>
+                  <p class="proj-name">▸ web-app</p>
                 </div>
                 <div class="proj collapsed">
                   <p class="proj-name">▸ design-tokens</p>
                 </div>
 
-                <p class="sidebar-section">workspaces</p>
-                <ul class="ws-list">
-                  <li class="ws-item is-open">
-                    <span class="ws-glyph">▾</span> payments-platform
-                    <span class="ws-tools"><span>✎</span><span>+</span></span>
-                  </li>
-                  <li class="ws-child">– api-gateway</li>
-                  <li class="ws-child">– billing-svc</li>
-                  <li class="ws-child">– ledger-core</li>
-                  <li class="ws-item">
-                    <span class="ws-glyph">▸</span> design-system
-                    <span class="ws-tools"><span>✎</span><span>+</span></span>
-                  </li>
-                </ul>
-
-                <p class="sidebar-section">agents <span class="agent-count">3</span></p>
-                <ul class="agent-list">
-                  <li><span class="agent-dot running"></span>doc-writer<span class="agent-note">/docs</span></li>
-                  <li><span class="agent-dot running"></span>pr-reviewer<span class="agent-note">7 open</span></li>
-                  <li><span class="agent-dot idle"></span>changelog-bot<span class="agent-note">idle</span></li>
-                </ul>
-
-                <p class="sidebar-section muted">archived &nbsp;<span class="sidebar-count">110</span></p>
+                <p class="sidebar-section muted">more projects <span class="sidebar-count">25</span></p>
+                <p class="sidebar-section muted">archived <span class="sidebar-count">300</span></p>
 
                 <div class="sidebar-footer">+ Add project &nbsp;&nbsp; + New workspace</div>
               </aside>
@@ -141,7 +147,7 @@
                 <header class="chat-header">
                   <h4 class="chat-title">add a rate limiter to /api/login</h4>
                   <span class="cli-pill" data-cli-pill>Claude CLI</span>
-                  <span class="chat-model-tag" data-chat-model>opus 4 7 <em>[1m]</em></span>
+                  <span class="chat-model-tag" data-chat-model>opus 4 8 <em>[1m]</em></span>
                   <div class="chat-actions">
                     <span class="act-pill">⑂ fork ▾</span>
                     <span class="act-pill act-danger">⊘ Bypass <em>(dangerous)</em></span>
@@ -171,7 +177,7 @@
                 </div>
 
                 <footer class="chat-statusbar" data-chat-status>
-                  9 turns · <span data-chat-model-full>claude-opus-4-7[1m]</span> · 63329119
+                  9 turns · <span data-chat-model-full>claude-opus-4-8[1m]</span> · 63329119
                 </footer>
               </section>
             </div>
@@ -225,7 +231,7 @@
         <article class="feature">
           <span class="feature-num">03</span>
           <h3>Workspaces — projects of projects</h3>
-          <p>Group related repos into a single <em>workspace</em> and talk to them as one. Ask for a change that spans <code>api-gateway</code> and <code>billing-svc</code> and the agent edits both, runs both test suites, and shows one review. The feature that makes polyrepo feel like monorepo.</p>
+          <p>Group related repos into a single <em>workspace</em> and every agent inherits the map: it knows the projects belong together and navigates between them naturally. Ask for a change that spans <code>api-gateway</code> and <code>billing-svc</code> and the agent edits both, runs both test suites, and shows one review. The feature that makes polyrepo feel like monorepo.</p>
         </article>
 
         <article class="feature">
@@ -341,9 +347,9 @@
           <div class="flow-builder-rail">
             <span class="flow-start">your request</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 4.7</em></span>
+            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 4.8</em></span>
             <span class="flow-arrow">→</span>
-            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 4.7</em></span>
+            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 4.8</em></span>
             <span class="flow-arrow">→</span>
             <span class="flow-step" data-flow-step="build" data-cli="ollama"><strong>build</strong><em>ollama · qwen2.5-coder</em></span>
             <span class="flow-arrow">→</span>
@@ -352,7 +358,7 @@
 
           <div class="flow-participants" data-flow-participants>
             <p class="flow-subhead">Participants</p>
-            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 4.7</span><span>2 steps</span></div>
+            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 4.8</span><span>2 steps</span></div>
             <div class="flow-participant" data-cli="ollama"><span>Local</span><span>Ollama · qwen2.5-coder</span><span>1 step</span></div>
           </div>
 
@@ -383,9 +389,9 @@ open_source: true
 available_to: everyone
 steps:
   - id: research
-    use: claude/opus-4-7
+    use: claude/opus-4-8
   - id: design
-    use: claude/opus-4-7
+    use: claude/opus-4-8
   - id: build
     use: ollama/qwen2.5-coder</pre>
         </aside>
@@ -491,7 +497,7 @@ steps:
             <span class="col-rank">I</span>
             <div>
               <p class="col-name">claude</p>
-              <p class="col-model">opus 4.7</p>
+              <p class="col-model">opus 4.8</p>
             </div>
             <span class="col-timer" data-timer="claude">0.0s</span>
           </header>
