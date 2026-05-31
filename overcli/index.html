@@ -397,6 +397,63 @@ steps:
         </aside>
       </div>
 
+      <p class="flow-run-label">↓ &nbsp;the same flow, running</p>
+
+      <div class="flow-run" aria-label="the defined flow, captured mid-run">
+        <header class="flow-run-head">
+          <div class="flow-run-id">
+            <span class="flow-run-title">Research + design + build</span>
+            <span class="flow-run-status">DONE</span>
+          </div>
+          <div class="flow-run-stats">
+            <span>1.2k thinking</span>
+            <span class="frun-fast">842k fast</span>
+            <span class="frun-add">+96</span><span class="frun-rem">−12</span>
+            <span>5 files</span>
+          </div>
+          <div class="flow-run-pills">
+            <span class="frun-pill done" data-cli="claude">1 <strong>research</strong> ✓</span>
+            <span class="frun-pill-arrow">→</span>
+            <span class="frun-pill done" data-cli="claude">2 <strong>design</strong> ✓</span>
+            <span class="frun-pill-arrow">→</span>
+            <span class="frun-pill done" data-cli="ollama">3 <strong>build</strong> ✓</span>
+          </div>
+        </header>
+
+        <p class="flow-run-req">Add a token-bucket rate limiter to <code>/api/login</code> — 100 req/min per IP, return <code>429</code> with <code>Retry-After</code>.</p>
+
+        <div class="flow-run-thread">
+          <span class="frun-thread-label">steps in this thread</span>
+          <span class="frun-thread-step">✓ research</span>
+          <span class="frun-thread-step">✓ design</span>
+          <span class="frun-thread-step">✓ build</span>
+        </div>
+
+        <p class="flow-run-subhead">what each participant produced</p>
+        <ul class="flow-run-artifacts">
+          <li><span class="frun-art-name">research.md</span><span class="frun-art-from">from research</span><span class="frun-art-meta">6,204 chars</span><span class="frun-art-note">“Where /login is handled + the existing middleware chain”</span></li>
+          <li><span class="frun-art-name">plan.md</span><span class="frun-art-from">from design</span><span class="frun-art-meta">8,710 chars</span><span class="frun-art-note">“Plan: token-bucket limiter in the auth middleware”</span></li>
+          <li class="is-active"><span class="frun-art-name">final.diff</span><span class="frun-art-from">from build</span><span class="frun-art-meta">+96 / −12 · 5 files</span><span class="frun-art-note">“Limiter, config, and tests”</span></li>
+        </ul>
+
+        <article class="flow-run-step">
+          <header class="frun-step-head">
+            <span class="frun-step-tag">▸ flow step</span>
+            <span class="frun-step-id">Step: <strong>build</strong> · implementer</span>
+          </header>
+          <p class="frun-step-note">↪ Picking up this thread — switched to <code>ollama/qwen2.5-coder</code> for the build step. Reads <code>plan.md</code>, emits <code>final.diff</code>.</p>
+          <p class="frun-step-inputs"><span>inputs</span> plan.md</p>
+          <pre class="frun-step-diff"><span class="frun-diff-path">+ src/auth/rateLimiter.ts</span>
+<span class="frun-d-add">+ const bucket = buckets.get(ip) ?? refill(ip);</span>
+<span class="frun-d-add">+ if (bucket.tokens &lt; 1) {</span>
+<span class="frun-d-add">+   res.setHeader('Retry-After', bucket.resetIn);</span>
+<span class="frun-d-add">+   return res.status(429).end();</span>
+<span class="frun-d-add">+ }</span>
+<span class="frun-d-rem">- // TODO: throttle /login</span>
+<span class="frun-diff-foot">✓ type-check clean · 18 tests pass</span></pre>
+        </article>
+      </div>
+
       <p class="colosseum-ribbon"><span>mix providers</span> · <span>mix models</span> · <span>cloud thinking, local speed</span></p>
     </section>
 
@@ -455,21 +512,21 @@ steps:
 
       <div class="rb-presets" aria-label="rebound presets and custom dials">
         <p class="rb-presets-head">One rebound, many shapes — pick a preset, or open <span class="rb-custom-pill">Custom…</span> for the dials.</p>
-        <ul class="rb-preset-list">
-          <li class="rb-preset"><strong>Off</strong><span>No secondary review.</span></li>
-          <li class="rb-preset"><strong>Half-finished work check</strong><span>Same model hunts stubs, TODOs, and missed branches. Cheap. Code-change turns only.</span></li>
-          <li class="rb-preset"><strong>Security review</strong><span>A smarter model reads the diff for vulnerabilities. Code-change turns only.</span></li>
-          <li class="rb-preset"><strong>Cheap-and-paranoid</strong><span>A cheap primary writes; a smart reviewer checks every turn.</span></li>
-          <li class="rb-preset"><strong>Skeptical user</strong><span>"Did it actually do what I asked?" Catches scope creep, every turn.</span></li>
-          <li class="rb-preset"><strong>Design review</strong><span>A smart model weighs architecture, abstractions, and approach.</span></li>
-          <li class="rb-preset is-active"><strong>Independent second opinion</strong><span>A different CLI entirely, for fully independent reasoning.</span></li>
-          <li class="rb-preset rb-preset-custom"><strong>Custom…</strong><span>Set reviewer CLI, model, persona, and mode by hand.</span></li>
+        <ul class="rb-preset-list" data-rb-presets>
+          <li class="rb-preset" tabindex="0" data-cli="none" data-mode="none" data-model="none" data-persona="none"><strong>Off</strong><span>No secondary review.</span></li>
+          <li class="rb-preset" tabindex="0" data-cli="claude" data-mode="review" data-model="default" data-persona="half-finished"><strong>Half-finished work check</strong><span>Same model hunts stubs, TODOs, and missed branches. Cheap. Code-change turns only.</span></li>
+          <li class="rb-preset" tabindex="0" data-cli="claude" data-mode="review" data-model="smart" data-persona="security"><strong>Security review</strong><span>A smarter model reads the diff for vulnerabilities. Code-change turns only.</span></li>
+          <li class="rb-preset" tabindex="0" data-cli="claude" data-mode="collab" data-model="smart" data-persona="critic"><strong>Cheap-and-paranoid</strong><span>A cheap primary writes; a smart reviewer checks every turn.</span></li>
+          <li class="rb-preset" tabindex="0" data-cli="claude" data-mode="collab" data-model="default" data-persona="skeptical"><strong>Skeptical user</strong><span>"Did it actually do what I asked?" Catches scope creep, every turn.</span></li>
+          <li class="rb-preset" tabindex="0" data-cli="claude" data-mode="review" data-model="smart" data-persona="design"><strong>Design review</strong><span>A smart model weighs architecture, abstractions, and approach.</span></li>
+          <li class="rb-preset is-active" tabindex="0" data-cli="codex" data-mode="review" data-model="default" data-persona="none"><strong>Independent second opinion</strong><span>A different CLI entirely, for fully independent reasoning.</span></li>
+          <li class="rb-preset rb-preset-custom" tabindex="0" data-custom="true"><strong>Custom…</strong><span>Set reviewer CLI, model, persona, and mode by hand.</span></li>
         </ul>
-        <dl class="rb-axes">
-          <div><dt>reviewer cli</dt><dd>claude (same as primary) · codex · gemini · ollama</dd></div>
-          <div><dt>mode</dt><dd><strong>review</strong> — flag → fix → verify, no loops &nbsp;·&nbsp; <strong>collab</strong> — ping-pong until the budget's spent</dd></div>
-          <div><dt>reviewer model</dt><dd>cli default · cheap <em>(sonnet)</em> · smart <em>(opus)</em></dd></div>
-          <div><dt>persona</dt><dd>none · half-finished · security · critic · skeptical user · design</dd></div>
+        <dl class="rb-axes" data-rb-axes>
+          <div><dt>reviewer cli</dt><dd data-axis="cli"><span class="rb-opt" data-val="claude">claude <em>(same as primary)</em></span> · <span class="rb-opt" data-val="codex">codex</span> · <span class="rb-opt" data-val="gemini">gemini</span> · <span class="rb-opt" data-val="ollama">ollama</span></dd></div>
+          <div><dt>mode</dt><dd data-axis="mode"><span class="rb-opt" data-val="review">review</span> — flag → fix → verify, no loops &nbsp;·&nbsp; <span class="rb-opt" data-val="collab">collab</span> — ping-pong until the budget's spent</dd></div>
+          <div><dt>reviewer model</dt><dd data-axis="model"><span class="rb-opt" data-val="default">cli default</span> · <span class="rb-opt" data-val="cheap">cheap <em>(sonnet)</em></span> · <span class="rb-opt" data-val="smart">smart <em>(opus)</em></span></dd></div>
+          <div><dt>persona</dt><dd data-axis="persona"><span class="rb-opt" data-val="none">none</span> · <span class="rb-opt" data-val="half-finished">half-finished</span> · <span class="rb-opt" data-val="security">security</span> · <span class="rb-opt" data-val="critic">critic</span> · <span class="rb-opt" data-val="skeptical">skeptical user</span> · <span class="rb-opt" data-val="design">design</span></dd></div>
         </dl>
       </div>
 
@@ -701,6 +758,7 @@ steps:
     </div>
     <p class="footer-fine">
       Overcli is a fan-built client. Not affiliated with Anthropic, OpenAI, or Google. The <code>claude</code>, <code>codex</code>, and <code>gemini</code> binaries are their respective projects.
+      &nbsp;·&nbsp; <span class="footer-dogfood">This very site was built in overcli, with <code>claude</code>, <code>codex</code>, and <code>ollama</code>.</span>
     </p>
   </footer>
 
