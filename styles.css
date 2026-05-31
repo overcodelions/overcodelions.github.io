@@ -1547,6 +1547,8 @@ kbd {
   padding: 0 4px;
   border-radius: 3px;
 }
+.footer-dogfood { font-style: italic; color: var(--ink-dim); }
+.footer-dogfood a { color: var(--accent); font-style: normal; }
 
 
 /* ═════════════════════════════════════════════════════════════════════
