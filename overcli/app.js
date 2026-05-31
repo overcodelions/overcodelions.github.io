@@ -635,4 +635,40 @@
     flowIO.observe(flowBuilder);
   }
 
+
+  // ═══════════════════════════════════════════════════════════════════
+  // REBOUND PRESETS
+  // Hovering or focusing a preset resolves the axes below to its dials:
+  // the matching reviewer CLI / mode / model / persona light up.
+  // ═══════════════════════════════════════════════════════════════════
+  const rbPresets = document.querySelector('[data-rb-presets]');
+  const rbAxes    = document.querySelector('[data-rb-axes]');
+  if (rbPresets && rbAxes) {
+    const opts = rbAxes.querySelectorAll('.rb-opt');
+    const axes = ['cli', 'mode', 'model', 'persona'];
+
+    function applyRb(preset) {
+      opts.forEach(o => o.classList.remove('is-on'));
+      if (!preset || preset.dataset.custom) return;   // Custom — set by hand, nothing resolved
+      axes.forEach(axis => {
+        const val = preset.dataset[axis];
+        // 'none' clears cli/mode/model (rebound off); persona has a real 'none' token
+        if (!val || (val === 'none' && axis !== 'persona')) return;
+        const opt = rbAxes.querySelector(`[data-axis="${axis}"] .rb-opt[data-val="${val}"]`);
+        if (opt) opt.classList.add('is-on');
+      });
+    }
+
+    const active = rbPresets.querySelector('.rb-preset.is-active') || rbPresets.querySelector('.rb-preset');
+    rbPresets.querySelectorAll('.rb-preset').forEach(el => {
+      el.addEventListener('mouseenter', () => applyRb(el));
+      el.addEventListener('focus', () => applyRb(el));
+    });
+    rbPresets.addEventListener('mouseleave', () => applyRb(active));
+    rbPresets.addEventListener('focusout', (e) => {
+      if (!rbPresets.contains(e.relatedTarget)) applyRb(active);
+    });
+    applyRb(active);   // initial state reflects the highlighted preset
+  }
+
 })();
