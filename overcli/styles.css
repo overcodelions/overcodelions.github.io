@@ -1424,6 +1424,29 @@ kbd {
   border: 1px solid color-mix(in srgb, var(--add) 40%, var(--line));
   background: color-mix(in srgb, var(--add) 12%, transparent);
 }
+.flow-run-status.watching {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.flow-run-status.watching::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: watch-pulse 1.8s ease-in-out infinite;
+}
+@keyframes watch-pulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  50%      { opacity: 0.5; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-run-status.watching::before { animation: none; }
+}
 .flow-run-stats {
   display: flex;
   align-items: center;
@@ -1453,6 +1476,22 @@ kbd {
 }
 .frun-pill strong { color: var(--ink); font-weight: 600; }
 .frun-pill.done { color: var(--add); }
+.frun-pill.watching {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.frun-pill.watching::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: watch-pulse 1.8s ease-in-out infinite;
+}
 .frun-pill[data-cli="claude"] { border-color: color-mix(in srgb, var(--claude) 45%, var(--line)); }
 .frun-pill[data-cli="ollama"] { border-color: color-mix(in srgb, var(--ollama) 45%, var(--line)); }
 .frun-pill-arrow { color: var(--ink-muted); font-size: 12px; }
