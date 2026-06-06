@@ -18,7 +18,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.1 · beta</span>
+      <span class="brand-ver">v0.2.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -324,6 +324,19 @@
           <h3>Colosseum</h3>
           <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
         </article>
+
+        <article class="feature">
+          <span class="feature-num">19</span>
+          <h3>Flow watch</h3>
+          <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
+          <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">20</span>
+          <h3>Install MCP once, everywhere</h3>
+          <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
+        </article>
       </div>
     </section>
 
@@ -338,7 +351,7 @@
           <span>Approve.&nbsp;Ship.&nbsp;Learn.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          Flows are reusable, open-source workflow templates built into Overcli. Available to everyone through the same public repo and desktop app: define a pipeline once, run it consistently across projects, and keep the full audit trail.
+          Flows are reusable, open-source workflow templates built into Overcli. Available to everyone through the same public repo and desktop app: define a pipeline once, run it consistently across projects, and keep the full audit trail. And the work doesn't end at the diff — a finished run can stay on <em>watch</em>, fielding follow-up questions on the PR or ticket with the context it built and flagging you the moment something needs real work.
         </p>
       </div>
 
@@ -454,7 +467,51 @@ steps:
         </article>
       </div>
 
-      <p class="colosseum-ribbon"><span>mix providers</span> · <span>mix models</span> · <span>cloud thinking, local speed</span></p>
+      <p class="flow-run-label">↓ &nbsp;same run, still open — steps shipped, now watching for follow-up</p>
+
+      <div class="flow-run" aria-label="the same flow run, steps complete, now in a watch phase">
+        <header class="flow-run-head">
+          <div class="flow-run-id">
+            <span class="flow-run-title">Research + design + build</span>
+            <span class="flow-run-status watching">WATCHING</span>
+          </div>
+          <div class="flow-run-stats">
+            <span>detect every 5m</span>
+            <span class="frun-fast">1 answered</span>
+            <span>0 escalations</span>
+          </div>
+          <div class="flow-run-pills">
+            <span class="frun-pill done" data-cli="claude">1 <strong>research</strong> ✓</span>
+            <span class="frun-pill-arrow">→</span>
+            <span class="frun-pill done" data-cli="claude">2 <strong>design</strong> ✓</span>
+            <span class="frun-pill-arrow">→</span>
+            <span class="frun-pill done" data-cli="ollama">3 <strong>build</strong> ✓</span>
+            <span class="frun-pill-arrow">→</span>
+            <span class="frun-pill watching">watching</span>
+          </div>
+        </header>
+
+        <p class="flow-run-req">The flow doesn't close when the diff lands. The <em>same run</em> stays open in a watch phase — every step above already complete, every artifact still in context — now fielding follow-up on the work it just shipped. A cheap detect pass polls; the full model only wakes when someone actually asks something. It never touches the repo.</p>
+
+        <article class="flow-run-step">
+          <header class="frun-step-head">
+            <span class="frun-step-tag">▸ watch tick</span>
+            <span class="frun-step-id">detect → answer · <strong>claude · haiku</strong></span>
+          </header>
+          <p class="frun-step-note">↪ New comment from <strong>@dana</strong> on the PR: <em>“does the limiter count failed logins too?”</em> — answered inline, grounded in <code>plan.md</code>: yes, every request to <code>/login</code> draws a token before auth runs, so failures count.</p>
+          <p class="frun-step-inputs"><span>reads</span> PR thread · plan.md · final.diff</p>
+        </article>
+
+        <article class="flow-run-step">
+          <header class="frun-step-head">
+            <span class="frun-step-tag">▸ watch tick</span>
+            <span class="frun-step-id">escalate · <strong>flagged for you</strong></span>
+          </header>
+          <p class="frun-step-note">↪ <strong>@sam</strong> asked to bump the limit to 200/min. That's <em>real work</em>, not a question — so the watcher left it alone and pinged you on the desktop instead of editing the code.</p>
+        </article>
+      </div>
+
+      <p class="colosseum-ribbon"><span>mix providers</span> · <span>mix models</span> · <span>cloud thinking, local speed</span> · <span>tends the work after the diff</span></p>
     </section>
 
 
@@ -664,8 +721,8 @@ steps:
     <section class="download" id="download">
       <div class="section-head">
         <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; grab a build</p>
-        <h2 class="section-title">Unsigned, honest, and real.</h2>
-        <p class="section-lede">Overcli is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
+        <h2 class="section-title">Signed, notarized, and real.</h2>
+        <p class="section-lede">Overcli is in beta, but the macOS builds are now <em>Developer-ID signed and notarized by Apple</em> — they open on a double-click, no right-click ceremony. Windows isn't code-signed yet, so SmartScreen may still flag it. Either way the source is right there; build it yourself.</p>
       </div>
 
       <div class="dl-wrap">
@@ -725,8 +782,8 @@ steps:
         <aside class="dl-note">
           <p class="note-tag">&#9888; heads up</p>
           <p>
-            macOS will show <em>"unidentified developer"</em> on first open.
-            Right-click the app → <strong>Open</strong>. Do it once; it sticks.
+            macOS opens clean now — signed with a Developer ID and <em>notarized by Apple</em>, so no Gatekeeper prompt.
+            Windows isn't code-signed yet: SmartScreen may say <em>"unrecognized app"</em> → <strong>More info</strong> → <strong>Run anyway</strong>.
           </p>
           <p class="note-snippet">
             <span class="snippet-prompt">$</span>
@@ -746,7 +803,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.1 · beta</span>
+      <span class="sl-cell">v0.2.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
