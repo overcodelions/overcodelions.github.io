@@ -518,6 +518,166 @@ steps:
       </div>
 
       <p class="colosseum-ribbon"><span>mix providers</span> · <span>mix models</span> · <span>cloud thinking, local speed</span> · <span>tends the work after the diff</span></p>
+
+      <!-- featured flows from the registry -->
+      <div class="flows-featured" id="flows-featured">
+        <div class="flows-featured-head">
+          <p class="kicker">[&nbsp;03b&nbsp;] &nbsp;·&nbsp; ready to run</p>
+          <h3 class="flows-featured-title">35 open-source flows ship with Overcli.</h3>
+        </div>
+
+        <!-- spotlight: one flow, many backends -->
+        <article class="flow-spotlight" data-lead="codex">
+          <header class="flow-spotlight-head">
+            <div class="flow-spotlight-id">
+              <p class="kicker">spotlight</p>
+              <h4>Solve a ticket end-to-end</h4>
+              <p class="flow-spotlight-desc">One flow, six steps, three backends — each step runs on the model that fits it. Jira ticket in, reviewed PR out. The review step auto-bounces back to build on failure.</p>
+            </div>
+            <div class="flow-card-clis">
+              <span data-cli="claude">claude</span>
+              <span data-cli="codex">codex</span>
+              <span data-cli="ollama">ollama</span>
+              <span class="fc-mcp">jira</span>
+            </div>
+          </header>
+
+          <ol class="flow-spotlight-steps">
+            <li class="fsp-step" data-cli="claude">
+              <span class="fsp-n">1</span>
+              <div class="fsp-body"><strong>fetch</strong><span class="fsp-role">researcher · pulls the ticket over MCP</span></div>
+              <span class="fsp-model" data-cli="claude">claude · haiku 4.5</span>
+              <span class="fsp-out">ticket.md</span>
+            </li>
+            <li class="fsp-step" data-cli="claude">
+              <span class="fsp-n">2</span>
+              <div class="fsp-body"><strong>plan</strong><span class="fsp-role">planner · scopes it against the repo</span></div>
+              <span class="fsp-model" data-cli="claude">claude · opus 4.7</span>
+              <span class="fsp-out">plan.md</span>
+            </li>
+            <li class="fsp-step" data-cli="codex">
+              <span class="fsp-n">3</span>
+              <div class="fsp-body"><strong>build</strong><span class="fsp-role">implementer · writes the code</span></div>
+              <span class="fsp-model" data-cli="codex">codex · gpt-5.4-mini</span>
+              <span class="fsp-out">diff</span>
+            </li>
+            <li class="fsp-step fsp-loop" data-cli="claude">
+              <span class="fsp-n">4</span>
+              <div class="fsp-body"><strong>review</strong><span class="fsp-role">reviewer · auto-bounces to build on fail ↺</span></div>
+              <span class="fsp-model" data-cli="claude">claude · opus 4.7</span>
+              <span class="fsp-out">review.md</span>
+            </li>
+            <li class="fsp-step" data-cli="codex">
+              <span class="fsp-n">5</span>
+              <div class="fsp-body"><strong>tests</strong><span class="fsp-role">test-writer · covers the change</span></div>
+              <span class="fsp-model" data-cli="codex">codex · gpt-5.4-mini</span>
+              <span class="fsp-out">diff</span>
+            </li>
+            <li class="fsp-step" data-cli="ollama">
+              <span class="fsp-n">6</span>
+              <div class="fsp-body"><strong>ship</strong><span class="fsp-role">shipper · opens the PR (pauses for you first)</span></div>
+              <span class="fsp-model" data-cli="ollama">ollama · qwen2.5-coder</span>
+              <span class="fsp-out">pr_url</span>
+            </li>
+          </ol>
+          <p class="flow-spotlight-foot">Every step targets any backend — keep the heavy reasoning on cloud models, push mechanical work to a local one. Swap models per step without touching the pipeline.</p>
+        </article>
+
+        <p class="flows-subhead">A few more of the good ones:</p>
+
+        <div class="flows-gallery" aria-label="featured flows">
+          <article class="flow-card" data-lead="claude">
+            <header class="flow-card-head">
+              <h4>Code Review</h4>
+              <div class="flow-card-clis"><span data-cli="claude">claude</span></div>
+            </header>
+            <p class="flow-card-desc">Survey the diff, review for bugs and security issues in parallel, adversarially verify every finding, then format a clean report.</p>
+            <div class="flow-card-rail">
+              <span class="fc-step">survey</span><span class="fc-arrow">→</span>
+              <span class="fc-step">review ×2</span><span class="fc-arrow">→</span>
+              <span class="fc-step">verify</span><span class="fc-arrow">→</span>
+              <span class="fc-step">report</span>
+            </div>
+            <ul class="flow-card-tags"><li>review</li><li>quality</li></ul>
+          </article>
+
+          <article class="flow-card" data-lead="codex">
+            <header class="flow-card-head">
+              <h4>Flaky test hunter</h4>
+              <div class="flow-card-clis"><span data-cli="claude">claude</span><span data-cli="codex">codex</span></div>
+            </header>
+            <p class="flow-card-desc">Gather CI logs, identify the flaky tests, diagnose what's making each one nondeterministic, then draft fixes.</p>
+            <div class="flow-card-rail">
+              <span class="fc-step">gather</span><span class="fc-arrow">→</span>
+              <span class="fc-step">identify</span><span class="fc-arrow">→</span>
+              <span class="fc-step">diagnose</span><span class="fc-arrow">→</span>
+              <span class="fc-step">fix</span>
+            </div>
+            <ul class="flow-card-tags"><li>testing</li><li>ci</li></ul>
+          </article>
+
+          <article class="flow-card" data-lead="claude">
+            <header class="flow-card-head">
+              <h4>Security review</h4>
+              <div class="flow-card-clis"><span data-cli="claude">claude</span></div>
+            </header>
+            <p class="flow-card-desc">Map the diff, scan for OWASP-style issues, adversarially verify each finding to kill false positives, then format a report.</p>
+            <div class="flow-card-rail">
+              <span class="fc-step">map</span><span class="fc-arrow">→</span>
+              <span class="fc-step">scan</span><span class="fc-arrow">→</span>
+              <span class="fc-step">verify</span><span class="fc-arrow">→</span>
+              <span class="fc-step">report</span>
+            </div>
+            <ul class="flow-card-tags"><li>security</li><li>review</li></ul>
+          </article>
+
+          <article class="flow-card" data-lead="claude">
+            <header class="flow-card-head">
+              <h4>Debug error logs</h4>
+              <div class="flow-card-clis"><span data-cli="claude">claude</span><span data-cli="codex">codex</span></div>
+            </header>
+            <p class="flow-card-desc">Diagnose error logs, locate the failing code, draft a fix, then verify the fix preserves behavior before you ship it.</p>
+            <div class="flow-card-rail">
+              <span class="fc-step">diagnose</span><span class="fc-arrow">→</span>
+              <span class="fc-step">locate</span><span class="fc-arrow">→</span>
+              <span class="fc-step">fix</span><span class="fc-arrow">→</span>
+              <span class="fc-step">verify</span>
+            </div>
+            <ul class="flow-card-tags"><li>debugging</li><li>logs</li></ul>
+          </article>
+
+          <article class="flow-card" data-lead="claude">
+            <header class="flow-card-head">
+              <h4>System design doc</h4>
+              <div class="flow-card-clis"><span data-cli="claude">claude</span><span data-cli="codex">codex</span></div>
+            </header>
+            <p class="flow-card-desc">Research the area, design alternatives, draft a full design doc, then adversarially review it for gaps before circulation.</p>
+            <div class="flow-card-rail">
+              <span class="fc-step">research</span><span class="fc-arrow">→</span>
+              <span class="fc-step">design</span><span class="fc-arrow">→</span>
+              <span class="fc-step">draft</span><span class="fc-arrow">→</span>
+              <span class="fc-step">review</span>
+            </div>
+            <ul class="flow-card-tags"><li>design</li><li>docs</li></ul>
+          </article>
+
+          <article class="flow-card" data-lead="claude">
+            <header class="flow-card-head">
+              <h4>Search company knowledge</h4>
+              <div class="flow-card-clis"><span data-cli="claude">claude</span><span class="fc-mcp">confluence</span></div>
+            </header>
+            <p class="flow-card-desc">Fan out searches across Confluence + Jira, deep-read the top hits, then synthesize a single answer with citations.</p>
+            <div class="flow-card-rail">
+              <span class="fc-step">search</span><span class="fc-arrow">→</span>
+              <span class="fc-step">deep-read</span><span class="fc-arrow">→</span>
+              <span class="fc-step">synthesize</span>
+            </div>
+            <ul class="flow-card-tags"><li>research</li><li>confluence</li></ul>
+          </article>
+        </div>
+
+        <p class="flows-featured-foot">Browse the full set in the desktop app, or in the open <a href="https://github.com/overcodelions/overcli-flow-registry" target="_blank" rel="noopener">flow registry ↗</a>.</p>
+      </div>
     </section>
 
 
