@@ -30,6 +30,7 @@
       <li><a class="nav-back" href="../">← codelions</a></li>
       <li><a href="#features">features</a></li>
       <li><a href="#flows-model">flows</a></li>
+      <li><a href="#orchestrator">orchestrator</a></li>
       <li><a href="#rebound">rebound</a></li>
       <li><a href="#colosseum">colosseum</a></li>
       <li><a href="#story">story</a></li>
@@ -333,13 +334,25 @@
 
         <article class="feature">
           <span class="feature-num">19</span>
+          <h3>Flows</h3>
+          <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">20</span>
+          <h3>Orchestrator</h3>
+          <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it below ↓</a></p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">21</span>
           <h3>Flow watch</h3>
           <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
           <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">20</span>
+          <span class="feature-num">22</span>
           <h3>Install MCP once, everywhere</h3>
           <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
         </article>
@@ -681,10 +694,127 @@ steps:
     </section>
 
 
+    <!-- ─────────── ORCHESTRATOR ─────────── -->
+    <section class="colosseum" id="orchestrator">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; orchestrator</p>
+        <h2 class="display-title">
+          <span>Point it at a backlog.</span>
+          <span class="em">It carves out the work.</span>
+          <span>Flows&nbsp;run&nbsp;in&nbsp;parallel.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          The <em>Orchestrator</em> turns a pile of tickets into a batch of running flows. A <em>producer</em> turn investigates your MCP sources — Jira, GitHub, Linear, Zendesk, Sentry, ProductBoard — and pulls out small, self-contained asks. Map each one to a flow, hit launch, and Overcli runs them side by side, each in its own git worktree, opening a PR as it finishes. When a flow pauses for a human checkpoint it frees its slot, so the rest of the batch keeps moving.
+        </p>
+      </div>
+
+      <!-- three stages: ask → map → run -->
+      <div class="orch-stages" aria-label="orchestrator pipeline">
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Ask</h3></header>
+          <p class="orch-stage-lede">A producer turn investigates with your MCP tools — read-only, never editing — and proposes candidates.</p>
+          <div class="orch-producer">
+            <p class="orch-prompt">“Find small, safe bugs in my open issues.”</p>
+            <div class="orch-tools">
+              <span>github·search</span><span>jira·list</span><span>sentry·issues</span>
+            </div>
+            <p class="orch-found">→ 6 candidates</p>
+          </div>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Map</h3></header>
+          <p class="orch-stage-lede">Each ask maps to one flow + a base branch. Take the producer's suggestion or override per row.</p>
+          <ul class="orch-map">
+            <li><span class="orch-cand">Null deref in /login</span><span class="orch-flow" data-cli="codex">debug-logs</span></li>
+            <li><span class="orch-cand">Stale Retry-After header</span><span class="orch-flow" data-cli="codex">debug-logs</span></li>
+            <li><span class="orch-cand">Typo in onboarding doc</span><span class="orch-flow" data-cli="claude">docs-from-code</span></li>
+            <li><span class="orch-cand">Flaky checkout test</span><span class="orch-flow" data-cli="claude">flaky-test-hunter</span></li>
+            <li><span class="orch-cand">+ 2 more</span><span class="orch-flow orch-flow-muted">mapped</span></li>
+          </ul>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Run</h3></header>
+          <p class="orch-stage-lede">Launch. Flows run in parallel, each in an isolated worktree — up to N at a time, your call (1–8).</p>
+          <div class="orch-cap">
+            <span class="orch-cap-label">run at most</span>
+            <span class="orch-cap-val">2</span>
+            <span class="orch-cap-label">at a time</span>
+          </div>
+          <p class="orch-pr">☑ open a PR when each finishes</p>
+        </article>
+      </div>
+
+      <p class="flow-run-label">↓ &nbsp;one batch, mid-run</p>
+
+      <!-- live batch ledger -->
+      <div class="orch-batch" aria-label="an orchestration batch running">
+        <header class="orch-batch-head">
+          <span class="orch-batch-title">Batch · 6 asks</span>
+          <div class="orch-batch-stats">
+            <span class="ob-done">1 done</span>
+            <span class="ob-run">2 running</span>
+            <span class="ob-pause">1 paused</span>
+            <span class="ob-queue">2 queued</span>
+            <span class="ob-cap">max 2</span>
+          </div>
+        </header>
+
+        <ul class="orch-lanes">
+          <li class="orch-lane" data-state="done">
+            <span class="ol-status">done</span>
+            <span class="ol-title">Typo in onboarding doc</span>
+            <span class="ol-flow" data-cli="claude">docs-from-code</span>
+            <span class="ol-meta">PR #418 · +4 −1</span>
+          </li>
+          <li class="orch-lane" data-state="running">
+            <span class="ol-status">running…</span>
+            <span class="ol-title">Null deref in /login</span>
+            <span class="ol-flow" data-cli="codex">debug-logs</span>
+            <span class="ol-meta">step 3/4 · build</span>
+          </li>
+          <li class="orch-lane" data-state="running">
+            <span class="ol-status">running…</span>
+            <span class="ol-title">Stale Retry-After header</span>
+            <span class="ol-flow" data-cli="codex">debug-logs</span>
+            <span class="ol-meta">step 2/4 · diagnose</span>
+          </li>
+          <li class="orch-lane" data-state="paused">
+            <span class="ol-status">paused</span>
+            <span class="ol-title">Flaky checkout test</span>
+            <span class="ol-flow" data-cli="claude">flaky-test-hunter</span>
+            <span class="ol-meta">checkpoint — freed its slot · <strong>continue →</strong></span>
+          </li>
+          <li class="orch-lane" data-state="queued">
+            <span class="ol-status">queued</span>
+            <span class="ol-title">Deprecated API in billing</span>
+            <span class="ol-flow" data-cli="codex">analyze-stack-trace</span>
+            <span class="ol-meta">waiting for a slot</span>
+          </li>
+          <li class="orch-lane" data-state="queued">
+            <span class="ol-status">queued</span>
+            <span class="ol-title">Missing index on orders</span>
+            <span class="ol-flow" data-cli="claude">migration-plan</span>
+            <span class="ol-meta">waiting for a slot</span>
+          </li>
+        </ul>
+
+        <p class="orch-batch-note">↪ The paused checkpoint doesn't stall the batch — it <strong>freed its slot</strong>, so the next queued ask pumps in behind it. Continue it from the Flows tab whenever you're ready.</p>
+      </div>
+
+      <p class="colosseum-ribbon"><span>backlog in</span> · <span>self-contained asks out</span> · <span>parallel, isolated worktrees</span> · <span>a PR per finish</span></p>
+    </section>
+
+
     <!-- ─────────── REBOUND ─────────── -->
     <section class="colosseum" id="rebound">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; rebound reviews</p>
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; rebound reviews</p>
         <h2 class="display-title">
           <span>Ship a turn.</span>
           <span class="em">Bounce it back.</span>
@@ -760,7 +890,7 @@ steps:
     <!-- ─────────── COLOSSEUM ─────────── -->
     <section class="colosseum" id="colosseum">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
+        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
         <h2 class="display-title">
           <span>One prompt.</span>
           <span class="em">Five agents.</span>
@@ -865,7 +995,7 @@ steps:
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Move fast without</span>
           <span>losing <em>the thread</em>.</span>
@@ -886,7 +1016,7 @@ steps:
     <!-- ─────────── DOWNLOAD ─────────── -->
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;08&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Signed, notarized, and real.</h2>
         <p class="section-lede">Overcli is in beta, but the macOS builds are now <em>Developer-ID signed and notarized by Apple</em> — they open on a double-click, no right-click ceremony. Windows isn't code-signed yet, so SmartScreen may still flag it. Either way the source is right there; build it yourself.</p>
       </div>
