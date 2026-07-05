@@ -99,6 +99,48 @@ kbd {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
+   RELEASE RIBBON
+   ═════════════════════════════════════════════════════════════════════ */
+
+.release-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 9px var(--pad);
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  text-decoration: none;
+  color: var(--ink-dim);
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg));
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+  transition: background 0.18s ease;
+}
+.release-ribbon:hover {
+  background: color-mix(in srgb, var(--accent) 18%, var(--bg));
+}
+.rr-badge {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.rr-text strong { color: var(--ink); font-weight: 600; }
+.rr-cta {
+  color: var(--accent);
+  white-space: nowrap;
+}
+.release-ribbon:hover .rr-cta { text-decoration: underline; }
+@media (max-width: 560px) {
+  .rr-text { flex-basis: 100%; text-align: center; order: 3; }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
    NAV
    ═════════════════════════════════════════════════════════════════════ */
 
