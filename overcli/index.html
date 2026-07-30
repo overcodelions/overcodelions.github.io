@@ -82,12 +82,41 @@
               <span class="chrome-dot red"></span>
               <span class="chrome-dot yellow"></span>
               <span class="chrome-dot green"></span>
+              <!-- Chrome mirrors the real title bar: sidebar toggle, then the
+                   action tabs; Local/Usage are passive dashboards so they sit
+                   right, before the about/settings icons. -->
+              <span class="chrome-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" />
+                  <line x1="6" y1="3" x2="6" y2="13" stroke="currentColor" />
+                </svg>
+              </span>
               <nav class="app-tabs">
                 <button class="app-tab is-active" type="button">Chat</button>
                 <button class="app-tab" type="button">Flows</button>
-                <button class="app-tab" type="button">Local</button>
-                <button class="app-tab" type="button">Usage</button>
+                <button class="app-tab" type="button">Orchestrator</button>
               </nav>
+              <span class="chrome-spacer"></span>
+              <div class="chrome-right">
+                <nav class="app-tabs app-tabs-right">
+                  <button class="app-tab" type="button">Local</button>
+                  <button class="app-tab" type="button">Usage</button>
+                </nav>
+                <span class="chrome-divider" aria-hidden="true"></span>
+                <span class="chrome-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.4" />
+                    <path d="M10 8v5" stroke="currentColor" stroke-width="1.4" />
+                    <circle cx="10" cy="5.5" r="0.9" fill="currentColor" />
+                  </svg>
+                </span>
+                <span class="chrome-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke-linejoin="round" stroke-linecap="round">
+                    <path d="M10 2.5 11 4.3a6 6 0 0 1 1.4.6L14.3 4l1.7 1.7-.9 1.9a6 6 0 0 1 .6 1.4L17.5 10l-1.8 1a6 6 0 0 1-.6 1.4l.9 1.9L14.3 16l-1.9-.9a6 6 0 0 1-1.4.6L10 17.5l-1-1.8a6 6 0 0 1-1.4-.6L5.7 16 4 14.3l.9-1.9a6 6 0 0 1-.6-1.4L2.5 10l1.8-1a6 6 0 0 1 .6-1.4L4 5.7 5.7 4l1.9.9A6 6 0 0 1 9 4.3L10 2.5Z" stroke="currentColor" stroke-width="1.3" />
+                    <circle cx="10" cy="10" r="2.2" stroke="currentColor" stroke-width="1.3" />
+                  </svg>
+                </span>
+              </div>
             </header>
 
             <div class="app-body">
@@ -184,7 +213,7 @@
                 </div>
 
                 <footer class="chat-statusbar" data-chat-status>
-                  9 turns · <span data-chat-model-full>claude-opus-5[1m]</span> · 63329119
+                  9 turns · <span class="chat-ctx" data-chat-ctx data-tone="calm" title="341,204 of 1,000,000 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.">ctx 34% · 341k/1.0M</span> · <span data-chat-model-full>claude-opus-5[1m]</span> · 63329119
                 </footer>
               </section>
             </div>

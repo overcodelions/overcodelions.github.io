@@ -24,6 +24,8 @@
       label: 'opus 5',
       modelTag: 'opus 5 <em>[1m]</em>',
       modelFull: 'claude-opus-5[1m]',
+      ctx: 'ctx 34% · 341k/1.0M',
+      ctxTitle: '341,204 of 1,000,000 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.',
       script: [
         { wait: 300,  type: 'response', body: 'Planning the change:\n  1 · add a token-bucket middleware\n  2 · key by <span class="k">ip + username</span>\n  3 · wire into <span class="k">/api/login</span>\n  4 · add unit tests' },
         { wait: 900,  type: 'tool', kind: 'read', target: 'src/routes/login.ts' },
@@ -41,6 +43,8 @@
       label: 'gpt-5',
       modelTag: 'gpt-5 <em>high</em>',
       modelFull: 'codex-gpt-5-high',
+      ctx: 'ctx 41% · 164k/400k',
+      ctxTitle: '164,320 of 400,000 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.',
       script: [
         { wait: 260,  type: 'tool', kind: 'exec',
           cmd: 'rg "/api/login" -l src/',
@@ -66,6 +70,8 @@
       label: 'gemini 2.5',
       modelTag: '2.5-pro <em>thinking</em>',
       modelFull: 'gemini-2.5-pro',
+      ctx: 'ctx 22% · 220k/1.0M',
+      ctxTitle: '219,880 of 1,000,000 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.',
       script: [
         { wait: 300,  type: 'response', body: '<span class="c">thinking through options…</span>\n  <strong>A</strong> · <span class="k">express-rate-limit</span> — adds a dep\n  <strong>B</strong> · token bucket in-house — zero deps\n  <strong>C</strong> · redis sliding window — needs redis\n\nGoing with <strong>B</strong>.' },
         { wait: 900,  type: 'tool', kind: 'edit', target: 'src/middleware/rateLimit.ts',
@@ -79,6 +85,8 @@
       label: 'copilot · gpt-5',
       modelTag: 'copilot <em>gpt-5</em>',
       modelFull: 'copilot-gpt-5',
+      ctx: 'ctx 58% · 74k/128k',
+      ctxTitle: '74,010 of 128,000 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.',
       script: [
         { wait: 300,  type: 'tool', kind: 'glob', target: '**/routes/login*' },
         { wait: 500,  type: 'tool', kind: 'view', target: 'src/routes/login.ts' },
@@ -97,6 +105,10 @@
       label: 'llama3 · local',
       modelTag: 'llama3-8b <em>local</em>',
       modelFull: 'ollama-llama3-8b',
+      // A local 8k window fills fast — the one backend in the rotation that
+      // trips the app's 60% amber threshold.
+      ctx: 'ctx 71% · 5.8k/8.2k',
+      ctxTitle: '5,800 of 8,192 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.',
       script: [
         { wait: 260,  type: 'response', body: '<span class="c">running locally · 0 API calls</span>\n\nSimplest viable approach: a redis counter keyed by IP with a 60 s TTL.' },
         { wait: 900,  type: 'tool', kind: 'edit', target: 'src/middleware/rateLimit.ts',
@@ -114,6 +126,7 @@
   const pillEl      = document.querySelector('[data-cli-pill]');
   const modelEl     = document.querySelector('[data-chat-model]');
   const modelFullEl = document.querySelector('[data-chat-model-full]');
+  const ctxEl       = document.querySelector('[data-chat-ctx]');
   const writingEl   = document.querySelector('[data-chat-writing]');
 
   function setActive(key) {
@@ -123,6 +136,15 @@
     if (pillEl)  pillEl.textContent = b.pill;
     if (modelEl) modelEl.innerHTML = b.modelTag;
     if (modelFullEl) modelFullEl.textContent = b.modelFull;
+    // Context occupancy is per-backend: each window is a different size, so
+    // a fixed figure would misreport a local 8k model. Tone thresholds mirror
+    // the app's own — amber past 60%, red past 85%.
+    if (ctxEl) {
+      ctxEl.textContent = b.ctx;
+      ctxEl.title = b.ctxTitle;
+      const pct = Number((b.ctx.match(/(\d+)%/) || [])[1]);
+      ctxEl.dataset.tone = pct >= 85 ? 'danger' : pct >= 60 ? 'warn' : 'calm';
+    }
   }
 
   function renderCard(card, backendLabel) {

@@ -456,6 +456,39 @@ kbd {
   gap: 4px;
   margin-left: 22px;
 }
+/* Local/Usage sit right, mirroring the app: passive dashboards, not
+   action surfaces. */
+.app-tabs-right { margin-left: 0; }
+.chrome-spacer { flex: 1; }
+.chrome-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.chrome-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink-muted);
+}
+/* Adjacency, not :first-of-type — the first span in the bar is a traffic
+   light, so a type-based selector never reaches this icon. */
+.chrome-dot + .chrome-icon { margin-left: 14px; }
+.chrome-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+  margin: 0 4px;
+}
+/* Five tabs and three icons need ~580px; a phone-width window gives ~350.
+   Drop the passive dashboards and the about/settings icons first — the
+   three action tabs are the part that tells the product's story. */
+@media (max-width: 680px) {
+  .chrome-right { display: none; }
+}
+@media (max-width: 480px) {
+  .app-tabs { margin-left: 10px; }
+  .app-tab { padding: 4px 8px; font-size: 11px; }
+}
 .app-tab {
   appearance: none;
   background: transparent;
@@ -1035,6 +1068,11 @@ kbd {
   color: var(--chat-accent);
   transition: color 420ms;
 }
+/* Context occupancy. Stays quiet below 60% — the app only tints it amber
+   past 60% and red past 85%, so the calm state is the honest default. */
+.chat-ctx { cursor: help; transition: color 420ms; }
+.chat-ctx[data-tone="warn"]   { color: #d9a03a; }
+.chat-ctx[data-tone="danger"] { color: #e06a5c; }
 
 @keyframes blink { 50% { opacity: 0; } }
 
