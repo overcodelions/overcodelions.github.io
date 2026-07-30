@@ -154,7 +154,7 @@
                 <header class="chat-header">
                   <h4 class="chat-title">add a rate limiter to /api/login</h4>
                   <span class="cli-pill" data-cli-pill>Claude CLI</span>
-                  <span class="chat-model-tag" data-chat-model>opus 4 8 <em>[1m]</em></span>
+                  <span class="chat-model-tag" data-chat-model>opus 5 <em>[1m]</em></span>
                   <div class="chat-actions">
                     <span class="act-pill">⑂ fork ▾</span>
                     <span class="act-pill act-danger">⊘ Bypass <em>(dangerous)</em></span>
@@ -184,7 +184,7 @@
                 </div>
 
                 <footer class="chat-statusbar" data-chat-status>
-                  9 turns · <span data-chat-model-full>claude-opus-4-8[1m]</span> · 63329119
+                  9 turns · <span data-chat-model-full>claude-opus-5[1m]</span> · 63329119
                 </footer>
               </section>
             </div>
@@ -379,9 +379,9 @@
           <div class="flow-builder-rail">
             <span class="flow-start">your request</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 4.8</em></span>
+            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 5</em></span>
             <span class="flow-arrow">→</span>
-            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 4.8</em></span>
+            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 5</em></span>
             <span class="flow-arrow">→</span>
             <span class="flow-step" data-flow-step="build" data-cli="ollama"><strong>build</strong><em>ollama · qwen2.5-coder</em></span>
             <span class="flow-arrow">→</span>
@@ -390,7 +390,7 @@
 
           <div class="flow-participants" data-flow-participants>
             <p class="flow-subhead">Participants</p>
-            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 4.8</span><span>2 steps</span></div>
+            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 5</span><span>2 steps</span></div>
             <div class="flow-participant" data-cli="ollama"><span>Local</span><span>Ollama · qwen2.5-coder</span><span>1 step</span></div>
           </div>
 
@@ -421,9 +421,9 @@ open_source: true
 available_to: everyone
 steps:
   - id: research
-    use: claude/opus-4-8
+    use: claude/opus-5
   - id: design
-    use: claude/opus-4-8
+    use: claude/opus-5
   - id: build
     use: ollama/qwen2.5-coder</pre>
         </aside>
@@ -565,7 +565,7 @@ steps:
             <li class="fsp-step" data-cli="claude">
               <span class="fsp-n">2</span>
               <div class="fsp-body"><strong>plan</strong><span class="fsp-role">planner · scopes it against the repo</span></div>
-              <span class="fsp-model" data-cli="claude">claude · opus 4.7</span>
+              <span class="fsp-model" data-cli="claude">claude · opus 5</span>
               <span class="fsp-out">plan.md</span>
             </li>
             <li class="fsp-step" data-cli="codex">
@@ -577,7 +577,7 @@ steps:
             <li class="fsp-step fsp-loop" data-cli="claude">
               <span class="fsp-n">4</span>
               <div class="fsp-body"><strong>review</strong><span class="fsp-role">reviewer · auto-bounces to build on fail ↺</span></div>
-              <span class="fsp-model" data-cli="claude">claude · opus 4.7</span>
+              <span class="fsp-model" data-cli="claude">claude · opus 5</span>
               <span class="fsp-out">review.md</span>
             </li>
             <li class="fsp-step" data-cli="codex">
@@ -828,7 +828,7 @@ steps:
       <div class="rebound-thread" aria-label="a rebound review loop, captured from a real session">
         <article class="rb-card rb-build">
           <header class="rb-head">
-            <span class="rb-model">opus 4·7</span>
+            <span class="rb-model">opus 5</span>
             <span class="rb-actions">copy · copy raw</span>
           </header>
           <p class="rb-body">Added the rate limiter and a test. <code>stop()</code> now kills the collab client instead of a best-effort <code>interrupt()</code>, and the notification / request / close handlers check <code>codexCollab.get(id) === session</code> before acting. Type-check clean, all 332 tests pass.</p>
@@ -846,7 +846,7 @@ steps:
 
         <article class="rb-card rb-build">
           <header class="rb-head">
-            <span class="rb-model">opus 4·7</span>
+            <span class="rb-model">opus 5</span>
             <span class="rb-actions">copy · copy raw</span>
           </header>
           <p class="rb-body">Conceded — the wording was loose. No code change needed; just a more accurate restatement of what the <code>close</code> handler actually guards.</p>
@@ -907,7 +907,7 @@ steps:
             <span class="col-rank">I</span>
             <div>
               <p class="col-name">claude</p>
-              <p class="col-model">opus 4.8</p>
+              <p class="col-model">opus 5</p>
             </div>
             <span class="col-timer" data-timer="claude">0.0s</span>
           </header>
