@@ -8,119 +8,350 @@
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
 
   <nav class="site-nav" aria-label="primary">
     <a href="#top" class="brand">
       <span class="brand-bracket">[</span>
       <span class="brand-name">codelions</span>
       <span class="brand-bracket">]</span>
-      <span class="brand-ver">open · honest · two tools</span>
+      <span class="brand-ver">two tools · one philosophy</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#products">products</a></li>
+      <li><a href="#overcli">overcli</a></li>
+      <li><a href="#overgit">overgit</a></li>
       <li><a href="#philosophy">philosophy</a></li>
+      <li><a href="#faq">faq</a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions" target="_blank" rel="noopener">github&nbsp;↗</a></li>
+      <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#tools"><span class="bk">[</span>&nbsp;get the tools&nbsp;<span class="bk">]</span></a></li>
     </ul>
   </nav>
 
   <main id="top">
-    <header class="lp-hero">
-      <p class="kicker">&#9484;&#9472; [&nbsp;codelions&nbsp;] &nbsp;·&nbsp; desktop tools for people who live in their terminals</p>
-      <h1 class="lp-headline">
-        <span>Two tools.</span>
-        <span class="em">One philosophy.</span>
-      </h1>
-      <p class="lp-lede">
-        Codelions builds honest desktop apps for developers who already live in CLIs. Read the source. Read the diffs. Uninstall without leaving a trace.
-        <br />
-        Two of them so far. Designed as siblings on purpose.
-      </p>
-      <ul class="lp-meta">
-        <li><span class="dot dot-ready"></span> macOS</li>
-        <li><span class="dot dot-ready"></span> windows</li>
-        <li><span class="dot dot-ready"></span> linux</li>
-        <li class="meta-sep">│</li>
-        <li>Apache 2.0</li>
-        <li class="meta-sep">│</li>
-        <li>Electron · React · TypeScript</li>
-      </ul>
+
+    <!-- ─────────────────────────── HERO ─────────────────────────── -->
+    <header class="lp-hero shell">
+      <div class="lp-hero-copy">
+        <p class="eyebrow">Codelions <span class="sep">·</span> desktop tools for people who live in terminals</p>
+        <h1 class="display lp-headline">
+          Two tools.<br />
+          <span class="em">One philosophy.</span>
+        </h1>
+        <p class="lede">
+          We build honest desktop apps for engineers who already live in CLIs. Read the source. Read the diffs.
+          Uninstall without leaving a trace. <strong>No telemetry, no hidden state, no invented abstractions.</strong>
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="overcli/"><span class="bk">[</span>&nbsp;explore overcli&nbsp;<span class="bk">]</span></a>
+          <a class="btn btn-ghost" href="overgit/">explore overgit</a>
+          <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">view source ↗</a>
+        </div>
+      </div>
+
+      <aside class="lp-plate plate" aria-label="At a glance">
+        <div class="plate-head">
+          <span class="dot dot-ready"></span> specimen · codelions
+        </div>
+        <dl class="lp-specs">
+          <div class="spec"><dt>tools</dt><dd class="v">overcli <em>·</em> overgit</dd></div>
+          <div class="spec"><dt>license</dt><dd class="v">Apache 2.0</dd></div>
+          <div class="spec"><dt>platform</dt><dd class="v">macOS · Windows · Linux</dd></div>
+          <div class="spec"><dt>stack</dt><dd class="v">Electron · React · TypeScript</dd></div>
+          <div class="spec"><dt>telemetry</dt><dd class="v"><em>none</em></dd></div>
+          <div class="spec"><dt>built by</dt><dd class="v">a father &amp; son</dd></div>
+        </dl>
+      </aside>
     </header>
 
-    <section class="lp-products" id="products">
-      <a class="lp-card" href="overcli/">
-        <header class="lp-card-head">
-          <span class="lp-card-num">01</span>
-          <div>
-            <h2 class="lp-card-name">overcli</h2>
-            <p class="lp-card-tag">five coding agents, one honest window</p>
-          </div>
-          <span class="lp-card-arrow">↗</span>
-        </header>
-        <p class="lp-card-body">
-          A desktop GUI over <code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code>. Agents work in isolated git worktrees you can rebase, merge, or throw away from inside the conversation — no terminal context-switch. Conversations, diffs, permission flows, and usage stats in one window. Uses the auth you already have — your Claude Pro, ChatGPT plan, gcloud creds, or GitHub Copilot seat. No API keys, no new bills, no telemetry.
-        </p>
-        <ul class="lp-card-features">
-          <li>multi-backend chat with streaming diffs</li>
-          <li>workspaces — projects of projects</li>
-          <li>agent worktrees — create, rebase, merge from the chat</li>
-          <li>silent background agents</li>
-        </ul>
-        <footer class="lp-card-foot">
-          <span class="lp-pill">v0.12.0 · beta</span>
-          <span class="lp-pill">macOS · win · linux</span>
-          <span class="lp-pill">Apache 2.0</span>
-          <span class="lp-cta">open overcli →</span>
-        </footer>
-      </a>
+    <!-- ────────────────── DARK SLAB — THE PRODUCTS ────────────────── -->
+    <section class="slab terminal" id="tools" aria-label="The tools">
+      <div class="shell">
+        <div class="lp-slab-head">
+          <p class="rule-head"><span class="n">00</span> &nbsp;the shape of the work</p>
+          <h2 class="display display-sm">Agents on the left. Repos on the right.<br /><span class="em">Both of them legible.</span></h2>
+        </div>
 
-      <a class="lp-card" href="overgit/">
-        <header class="lp-card-head">
-          <span class="lp-card-num">02</span>
-          <div>
-            <h2 class="lp-card-name">overgit</h2>
-            <p class="lp-card-tag">workspaces for repos, worksets for tickets</p>
-          </div>
-          <span class="lp-card-arrow">↗</span>
-        </header>
-        <p class="lp-card-body">
-          A desktop git client built on two orthogonal ideas. <strong>Workspaces</strong> are durable groupings of repos — fetch all, reset all, status all. <strong>Worksets</strong> are tickets you can resume across repos, pinned to a feature branch — spin up, ship, archive, reset. Smart safety on every destructive flow. Never writes inside <code>.git</code>; uninstall any time and your repos forget overgit ever existed.
+        <div class="lp-windows">
+          <!-- overcli mock -->
+          <figure class="lp-win">
+            <figcaption class="lp-win-bar">
+              <span class="lp-tl"></span><span class="lp-tl"></span><span class="lp-tl"></span>
+              <span class="lp-win-name">overcli</span>
+              <span class="lp-win-tag">claude · opus 5</span>
+            </figcaption>
+            <div class="lp-win-body">
+              <p class="lp-prompt"><span class="lp-caret">›</span> add a rate limiter to /api/login</p>
+              <div class="lp-msg">
+                <span class="lp-msg-label">opus 5</span>
+                <span>Planning the change — a token bucket keyed by ip + username, wired into <code>/api/login</code>, with unit tests.</span>
+              </div>
+              <div class="lp-tool">
+                <span class="lp-tool-tag">edit</span>
+                <span class="lp-tool-path">src/middleware/rateLimit.ts</span>
+                <span class="lp-tool-stat"><span class="a">+22</span> <span class="r">−0</span></span>
+              </div>
+              <pre class="lp-diff"><span class="d-meta">@@ new file @@</span><span class="d-add">+ import { bucket } from "./bucket";</span><span class="d-add">+ export const loginLimiter = bucket({</span><span class="d-add">+   cap: 10, per: "60s",</span><span class="d-add">+   key: (req) =&gt; `${req.ip}:${req.body.username}`,</span><span class="d-add">+ });</span></pre>
+              <p class="lp-status"><span class="dot dot-ready"></span> worktree <em>feature/rate-limit</em> · 3 files · ready to merge</p>
+            </div>
+          </figure>
+
+          <!-- overgit mock -->
+          <figure class="lp-win">
+            <figcaption class="lp-win-bar">
+              <span class="lp-tl"></span><span class="lp-tl"></span><span class="lp-tl"></span>
+              <span class="lp-win-name">overgit</span>
+              <span class="lp-win-tag">payments-platform</span>
+            </figcaption>
+            <div class="lp-win-body">
+              <p class="lp-group">workspace <span class="lp-count">3 repos</span></p>
+              <ul class="lp-repos">
+                <li><span class="lp-repo">api-gateway</span><span class="lp-branch">feature/rate-limit</span><span class="lp-delta"><span class="a">+34</span> <span class="r">−5</span></span></li>
+                <li><span class="lp-repo">billing-svc</span><span class="lp-branch">feature/rate-limit</span><span class="lp-delta"><span class="a">+8</span> <span class="r">−2</span></span></li>
+                <li><span class="lp-repo">ledger-core</span><span class="lp-branch">main</span><span class="lp-delta lp-clean">clean</span></li>
+              </ul>
+              <p class="lp-group">worksets <span class="lp-count lp-active">2 active</span></p>
+              <ul class="lp-repos">
+                <li><span class="lp-repo">rate-limit rollout</span><span class="lp-branch">3 repos</span><span class="lp-delta"><span class="dot dot-ready"></span></span></li>
+                <li><span class="lp-repo">pg14 migration</span><span class="lp-branch">2 repos</span><span class="lp-delta"><span class="dot dot-ready"></span></span></li>
+              </ul>
+              <p class="lp-group">pull requests <span class="lp-count">3 open</span></p>
+              <ul class="lp-repos">
+                <li><span class="lp-repo">#412</span><span class="lp-branch">rate limiter · api-gateway</span><span class="lp-delta lp-ok">approved</span></li>
+                <li><span class="lp-repo">#88</span><span class="lp-branch">token bucket · billing-svc</span><span class="lp-delta lp-clean">review</span></li>
+              </ul>
+              <p class="lp-status">commit · push · archive — across all three, in one action</p>
+            </div>
+          </figure>
+        </div>
+
+        <p class="lp-slab-foot">
+          The dark panels are the products. Everything else on this page is paper — because a tool should look like a tool.
         </p>
-        <ul class="lp-card-features">
-          <li>workspaces — fetch all · reset all · status all</li>
-          <li>worksets — branch · commit · push · archive · reset</li>
-          <li>smart safety on every destructive flow</li>
-          <li>AI review &amp; commit-message suggest · gh PRs aggregated</li>
-        </ul>
-        <footer class="lp-card-foot">
-          <span class="lp-pill">v0.1 · beta</span>
-          <span class="lp-pill">macOS · win · linux</span>
-          <span class="lp-pill">Apache 2.0</span>
-          <span class="lp-cta">open overgit →</span>
-        </footer>
-      </a>
+      </div>
     </section>
 
+    <!-- ─────────────────────────── OVERCLI ─────────────────────────── -->
+    <section class="lp-product shell" id="overcli">
+      <p class="rule-head"><span class="n">01</span> &nbsp;overcli</p>
+      <div class="lp-product-head">
+        <h2 class="section-title">Five coding agents.<br /><span class="lp-italic">One honest window.</span></h2>
+        <div class="lp-product-aside">
+          <p class="section-lede">
+            A desktop GUI over <code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code>.
+            Conversations, diffs, permission flows, git worktrees, and usage stats in one place — running on the
+            subscriptions you already pay for.
+          </p>
+          <div class="btn-row lp-tight">
+            <a class="btn btn-primary" href="overcli/"><span class="bk">[</span>&nbsp;open overcli&nbsp;<span class="bk">]</span></a>
+            <a class="link-arrow" href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">source ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-cards">
+        <article class="cell">
+          <span class="cell-n">01</span>
+          <h3 class="cell-title">Multi-backend chat</h3>
+          <p class="cell-body">Five agent CLIs behind one conversation surface. Streaming diffs, tool cards you can re-read, permission prompts that are buttons.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">02</span>
+          <h3 class="cell-title">Agent worktrees</h3>
+          <p class="cell-body">Agents work in isolated git worktrees you can rebase, merge, or throw away from inside the conversation. No terminal context-switch.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">03</span>
+          <h3 class="cell-title">Your auth, no new bills</h3>
+          <p class="cell-body">Uses the credentials you already have — Claude Pro, a ChatGPT plan, gcloud creds, a Copilot seat. No API keys to provision.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">04</span>
+          <h3 class="cell-title">Workspaces</h3>
+          <p class="cell-body">Projects of projects. Group the repos a piece of work actually spans and drive them together instead of one at a time.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">05</span>
+          <h3 class="cell-title">Background agents</h3>
+          <p class="cell-body">Silent agents keep working while you read, review, and roam. Come back to finished diffs, not a scrolled-away log.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">06</span>
+          <h3 class="cell-title">Flows &amp; orchestrator</h3>
+          <p class="cell-body">35 open-source flows ship in the box — research → plan → build → review — with an orchestrator that fans work across repos.</p>
+        </article>
+      </div>
+
+      <div class="lp-product-foot">
+        <div class="chip-row">
+          <span class="chip"><span class="dot dot-ready"></span> v0.12.0 · beta</span>
+          <span class="chip">macOS · Windows · Linux</span>
+          <span class="chip">Apache 2.0</span>
+          <span class="chip">signed &amp; notarized</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── OVERGIT ─────────────────────────── -->
+    <section class="lp-product shell" id="overgit">
+      <p class="rule-head"><span class="n">02</span> &nbsp;overgit</p>
+      <div class="lp-product-head">
+        <h2 class="section-title">Workspaces of repos.<br /><span class="lp-italic">Worksets of work.</span></h2>
+        <div class="lp-product-aside">
+          <p class="section-lede">
+            A desktop git client built on two orthogonal ideas — a durable lens over the repos you own, and a resumable
+            ticket that spans them. It never writes inside <code>.git</code>, so your repos behave the same in any other tool.
+          </p>
+          <div class="btn-row lp-tight">
+            <a class="btn btn-primary" href="overgit/"><span class="bk">[</span>&nbsp;open overgit&nbsp;<span class="bk">]</span></a>
+            <a class="link-arrow" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">source ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-cards">
+        <article class="cell">
+          <span class="cell-n">01</span>
+          <h3 class="cell-title">Workspaces</h3>
+          <p class="cell-body">Durable groupings of repos — "these are Platform," "these are Payments." Fetch all, status all, reset all, as one action.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">02</span>
+          <h3 class="cell-title">Worksets</h3>
+          <p class="cell-body">A ticket you can resume across repos, pinned to a feature branch. Spin up, ship, archive, reset — without re-deriving where you were.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">03</span>
+          <h3 class="cell-title">Smart safety</h3>
+          <p class="cell-body">Every destructive flow tells you exactly what it is about to throw away, per repo, before it does it. A reset never eats work.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">04</span>
+          <h3 class="cell-title">Never touches .git</h3>
+          <p class="cell-body">Overgit is an overlay, not metadata. Uninstall any time and your repos forget it ever existed — no migration, no lock-in.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">05</span>
+          <h3 class="cell-title">Review &amp; suggest</h3>
+          <p class="cell-body">AI review and commit-message suggestions on the diff in front of you, plus <code>gh</code> pull requests aggregated across the workspace.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">06</span>
+          <h3 class="cell-title">Keyboard first</h3>
+          <p class="cell-body">A command palette over every repo, branch, and workset. Your CLI auth, your git config, your remotes — nothing re-invented.</p>
+        </article>
+      </div>
+
+      <div class="lp-product-foot">
+        <div class="chip-row">
+          <span class="chip"><span class="dot dot-ready"></span> v0.1 · beta</span>
+          <span class="chip">macOS · Windows · Linux</span>
+          <span class="chip">Apache 2.0</span>
+          <span class="chip">plain git underneath</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── PHILOSOPHY ─────────────────────────── -->
     <section class="lp-philosophy" id="philosophy">
-      <div class="lp-philo-body">
-        <p class="kicker">[&nbsp;why&nbsp;] &nbsp;·&nbsp; the bar we hold ourselves to</p>
-        <h2 class="display-title">
-          <span>Move fast without</span>
-          <span>losing <em>the thread</em>.</span>
-        </h2>
-        <p>
-          Codelions tools optimize for the fourth afternoon — when you've shipped three things with one, hit a weird edge, and need to understand what happened without breaking stride. The whole point is to keep you moving: a clean local setup where nothing is hidden, so you never stop to untangle what a tool did.
-        </p>
-        <p>
-          Diffs you can read, tool cards you can read again, permission flows you can follow, history that came from a file on disk. No telemetry. No hidden state. No invented abstractions. If something is on screen, there's a line of code you can find that put it there. That's the bar.
-        </p>
+      <div class="shell">
+        <p class="rule-head"><span class="n">03</span> &nbsp;the bar we hold ourselves to</p>
+        <div class="lp-philo-grid">
+          <div class="lp-philo-lead">
+            <h2 class="display display-sm">Move fast without<br /><span class="em">losing the thread.</span></h2>
+          </div>
+          <div class="lp-philo-body">
+            <p>
+              Codelions tools optimize for the fourth afternoon — when you've shipped three things with one, hit a weird
+              edge, and need to understand what happened without breaking stride. The whole point is to keep you moving:
+              a clean local setup where nothing is hidden, so you never stop to untangle what a tool did.
+            </p>
+            <p>
+              Diffs you can read, tool cards you can read again, permission flows you can follow, history that came from a
+              file on disk. No telemetry. No hidden state. No invented abstractions. If something is on screen, there's a
+              line of code you can find that put it there. That's the bar.
+            </p>
+          </div>
+        </div>
+
+        <div class="lp-tenets">
+          <div class="lp-tenet">
+            <span class="lp-tenet-n">01</span>
+            <h3>Explainable, not clever</h3>
+            <p>Every abstraction is one you'd have to justify out loud. The ones that don't survive that conversation don't ship.</p>
+          </div>
+          <div class="lp-tenet">
+            <span class="lp-tenet-n">02</span>
+            <h3>Local by default</h3>
+            <p>Your code, your credentials, your machine. Nothing phones home, because there is nothing to phone home with.</p>
+          </div>
+          <div class="lp-tenet">
+            <span class="lp-tenet-n">03</span>
+            <h3>Reversible</h3>
+            <p>Both tools are overlays. Uninstall and the repos, the auth, and the history are exactly as you left them.</p>
+          </div>
+        </div>
+
         <p class="lp-philo-sig">
-          Built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and his son <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a> under <a href="https://github.com/overcodelions" target="_blank" rel="noopener">Codelions</a>. Open-source — issues and PRs welcome on both repos.
+          Built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and his son
+          <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a> under
+          <a href="https://github.com/overcodelions" target="_blank" rel="noopener">Codelions</a>.
+          Open-source — issues and PRs welcome on both repos.
         </p>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── FAQ ─────────────────────────── -->
+    <section class="lp-faq shell" id="faq">
+      <p class="rule-head"><span class="n">04</span> &nbsp;questions we actually get</p>
+      <div class="lp-faq-grid">
+        <h2 class="section-title lp-faq-title">Frequently<br />asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Why does Codelions exist?</summary>
+            <p>Because the terminal is a great place to run things and a bad place to explore them. Output scrolls away, diffs flash past, and there's nowhere to follow a thread sideways. Both tools give that work a surface you can read, re-read, and reason about — without giving up the CLI underneath.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who are these tools for?</summary>
+            <p>Engineers who already live in CLIs and want to read the source, read the diffs, and uninstall without leaving a trace. If you'd rather have a hosted black box, these aren't for you — and that's fine.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does it cost?</summary>
+            <p>Nothing. Both are free and open source under Apache 2.0. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is there any telemetry?</summary>
+            <p>None. No analytics, no crash reporting, no phone-home on launch. Conversation history is files on disk you can open in any editor. You can verify all of that in the source — that's rather the point.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we use this at a company?</summary>
+            <p>Yes. Apache 2.0 covers commercial use, and because everything runs locally against your own credentials there's no vendor in the path of your source code. Both apps build from the repo if your security team would rather compile them itself.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What platforms are supported?</summary>
+            <p>macOS, Windows, and Linux. macOS builds are Developer-ID signed and notarized, so they open on a double-click. Windows isn't code-signed yet, so SmartScreen may still warn. Building from source is one <code>npm run dist</code> away.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who builds Codelions?</summary>
+            <p>Lionel Farr and his son Owen Farr. Press <kbd>?</kbd> anywhere on this page for the longer story — it explains more about why the tools look the way they do than any feature list would.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── CLOSING CTA ─────────────────────────── -->
+    <section class="lp-cta">
+      <div class="shell lp-cta-inner">
+        <p class="eyebrow">Read the source <span class="sep">·</span> read the diffs</p>
+        <h2 class="display">Two open-source tools,<br /><span class="em">designed as siblings.</span></h2>
+        <div class="btn-row lp-cta-buttons">
+          <a class="btn btn-accent" href="overcli/"><span class="bk">[</span>&nbsp;get overcli&nbsp;<span class="bk">]</span></a>
+          <a class="btn btn-ghost" href="overgit/">get overgit</a>
+          <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">github.com/overcodelions ↗</a>
+        </div>
       </div>
     </section>
   </main>
@@ -156,7 +387,7 @@
       </header>
 
       <div class="story-modal-body">
-        <h2 class="display-title story-modal-title" id="story-title">
+        <h2 class="story-modal-title" id="story-title">
           <span>Owen wanted to explore.</span>
           <span>The terminal just streamed past.</span>
           <span class="em">So we built around it &mdash; for both of us.</span>
@@ -241,6 +472,24 @@
         }
       });
     })();
+
+    // Scroll reveal — cards and mock windows fade up as they arrive.
+    (function () {
+      const items = document.querySelectorAll('.cell, .lp-tenet, .lp-win');
+      if (!items.length || !('IntersectionObserver' in window)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      items.forEach((el) => el.classList.add('reveal'));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (!entry.isIntersecting) return;
+          entry.target.style.transitionDelay = (i * 45) + 'ms';
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      items.forEach((el) => io.observe(el));
+    })();
   </script>
+  <script src="palettes.js" defer></script>
 </body>
 </html>

@@ -8,12 +8,11 @@
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-
   <a class="release-ribbon" href="https://github.com/overcodelions/overgit/releases/tag/v0.1.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
     <span class="rr-text"><strong>v0.1 is out</strong> — the first public beta. Workspaces and worksets across every repo, a streaming clone flow, and smart safety on every destructive git action.</span>
@@ -32,7 +31,8 @@
       <li><a href="#workspace">workspaces</a></li>
       <li><a href="#workset">worksets</a></li>
       <li><a href="#story">story</a></li>
-      <li><a href="#download">download</a></li>
+      <li><a href="#faq">faq</a></li>
+      <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#download"><span class="bk">[</span>&nbsp;download&nbsp;<span class="bk">]</span></a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github&nbsp;↗</a></li>
     </ul>
   </nav>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="hero-right">
-          <figure class="app-window" aria-label="Overgit application preview">
+          <figure class="app-window terminal" aria-label="Overgit application preview">
             <header class="app-chrome">
               <span class="chrome-dot red"></span>
               <span class="chrome-dot yellow"></span>
@@ -299,7 +299,7 @@
 
 
     <!-- ─────────── WORKSPACE EXPLAINER ─────────── -->
-    <section class="colosseum" id="workspace">
+    <section class="colosseum terminal" id="workspace">
       <div class="colosseum-head">
         <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; what a workspace looks like</p>
         <h2 class="display-title">
@@ -375,7 +375,7 @@
 
 
     <!-- ─────────── WORKSET LIFECYCLE EXPLAINER ─────────── -->
-    <section class="colosseum" id="workset">
+    <section class="colosseum terminal" id="workset">
       <div class="colosseum-head">
         <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; the workset lifecycle</p>
         <h2 class="display-title">
@@ -533,9 +533,46 @@
 
 
     <!-- ─────────── DOWNLOAD ─────────── -->
+    <!-- ─────────── FAQ ─────────── -->
+    <section class="faq-section" id="faq">
+      <div class="faq-grid">
+        <div class="section-head">
+          <p class="kicker">&#9484;&#9472; [&nbsp;06&nbsp;] &nbsp;·&nbsp; before you point it at real repos</p>
+          <h2 class="section-title">Questions your team will ask.</h2>
+          <p class="section-lede">Overgit is an overlay on git, not a replacement for it. Most of these answers follow from that one fact.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Does it change anything inside our repos?</summary>
+            <p>It never writes inside <code>.git</code>. Workspaces and worksets live in overgit's own state; everything it does to a repo runs as the plain <code>git</code> commands you'd have typed yourself.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens if we stop using it?</summary>
+            <p>Uninstall it and your repos forget it ever existed — same branches, same remotes, same config. There is no migration to undo and nothing to export, because nothing was ever stored in the repo.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What's the difference between a workspace and a workset?</summary>
+            <p>A workspace is a durable grouping of repos — "these are Platform," "these are Payments" — the lens you fetch, status, and reset across. A workset is a ticket you can resume across those repos, pinned to a feature branch: spin up, ship, archive, reset.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is a reset going to eat someone's work?</summary>
+            <p>Every destructive flow shows you exactly what it is about to discard, per repo, before it runs. That check is the reason the feature exists.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does it work with our git host?</summary>
+            <p>If it speaks git, yes — overgit doesn't care who hosts it. Pull request aggregation goes through the <code>gh</code> CLI, so that part follows whatever <code>gh</code> is already authenticated against.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we audit or build it ourselves?</summary>
+            <p>Yes — Apache 2.0, and the repo builds from source. There is no server component to review: it is a desktop app driving local git.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Unsigned, honest, and real.</h2>
         <p class="section-lede">Overgit is in beta. Builds are unsigned — no Apple Developer ID, no SmartScreen badge. Right-click is the trust ceremony. If that bothers you, the source is right there; build it yourself.</p>
       </div>
@@ -647,5 +684,6 @@
       setInterval(tick, 30000);
     })();
   </script>
+  <script src="../palettes.js" defer></script>
 </body>
 </html>
