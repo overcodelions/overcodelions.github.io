@@ -843,7 +843,84 @@ steps:
         <p class="orch-batch-note">↪ The paused checkpoint doesn't stall the batch — it <strong>freed its slot</strong>, so the next queued ask pumps in behind it. Continue it from the Flows tab whenever you're ready.</p>
       </div>
 
-      <p class="colosseum-ribbon"><span>backlog in</span> · <span>self-contained asks out</span> · <span>parallel, isolated worktrees</span> · <span>a PR per finish</span></p>
+
+      <!-- ── 04b · schedules — the third beat of the orchestrator story ── -->
+      <div class="sched" id="schedules">
+        <div class="sched-head">
+          <p class="kicker">[&nbsp;04b&nbsp;] &nbsp;·&nbsp; on a cadence</p>
+          <h3 class="sched-title">Run it every morning. <em>Park what needs a human.</em></h3>
+          <p class="sched-lede">
+            A schedule is a trigger on work you already defined, so it lives inside <strong>Flows</strong> rather than
+            becoming a fourth place to launch from. Point one at a flow and it runs. Point one at the orchestrator and it
+            investigates your sources — then <strong>parks</strong> what it found. The producer decides how many items
+            exist, so dispatching that unattended is the one thing a schedule must not do.
+          </p>
+        </div>
+
+        <div class="sched-grid">
+          <ul class="sched-list">
+            <li class="sched-row" data-state="parked">
+              <header class="sched-row-head">
+                <span class="sched-dot"></span>
+                <span class="sched-name">Morning triage</span>
+                <span class="sched-target">propose a batch</span>
+                <span class="sched-cad">weekdays · 08:00</span>
+                <span class="sched-state">5 proposed</span>
+              </header>
+              <ul class="sched-proposals">
+                <li><span class="sp-n">SR-12</span> Null deref in <code>/login</code> <em>analyze-stack-trace</em></li>
+                <li><span class="sp-n">SR-12</span> Flaky checkout test <em>flaky-test-hunter</em></li>
+                <li><span class="sp-n">SR-12</span> Deprecated API in billing <em>migration-plan</em></li>
+                <li class="sp-more">+ 2 more</li>
+              </ul>
+              <footer class="sched-actions">
+                <span class="sched-btn sched-btn-go">Review &amp; pick</span>
+                <span class="sched-btn">Launch all</span>
+                <span class="sched-btn sched-btn-off">Discard</span>
+              </footer>
+            </li>
+
+            <li class="sched-row" data-state="running">
+              <header class="sched-row-head">
+                <span class="sched-dot"></span>
+                <span class="sched-name">Nightly dep audit</span>
+                <span class="sched-target">run a flow</span>
+                <span class="sched-cad">every day · 02:00</span>
+                <span class="sched-state">running · SR-31</span>
+              </header>
+            </li>
+
+            <li class="sched-row" data-state="armed">
+              <header class="sched-row-head">
+                <span class="sched-dot"></span>
+                <span class="sched-name">Docs drift check</span>
+                <span class="sched-target">run a flow</span>
+                <span class="sched-cad">every 1h · weekdays 08–17</span>
+                <span class="sched-state">in 41m</span>
+              </header>
+            </li>
+          </ul>
+
+          <aside class="sched-side">
+            <p class="sched-side-title">in the title bar</p>
+            <ul class="sched-states">
+              <li data-state="parked"><span class="sched-dot"></span><strong>Waiting</strong><span>a batch is parked on your approval</span></li>
+              <li data-state="running"><span class="sched-dot"></span><strong>Running</strong><span>a scheduled run is going right now</span></li>
+              <li data-state="armed"><span class="sched-dot"></span><strong>Scheduled · in 3h</strong><span>armed and idle — the countdown is what proves it isn't forgotten</span></li>
+            </ul>
+            <p class="sched-side-note">Waiting outranks running: one needs a human, the other just needs time. Nothing renders at all when no schedule is enabled.</p>
+          </aside>
+        </div>
+
+        <p class="sched-note">
+          Every occurrence is numbered <code>[SR-n]</code> — a scheduled prompt is fixed by definition, so the twelfth
+          morning run would otherwise be titled exactly like the first. A schedule missed while the app was closed
+          coalesces into one catch-up run or skips; it never stampedes on wake. <strong>Run now</strong> is a test drive:
+          it produces a real run but leaves the cadence exactly where it found it.
+        </p>
+      </div>
+
+      <p class="colosseum-ribbon"><span>backlog in</span> · <span>self-contained asks out</span> · <span>parallel, isolated worktrees</span> · <span>a PR per finish</span> · <span>on your cadence, parked for approval</span></p>
     </section>
 
 
