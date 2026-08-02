@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.12.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.13.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.12.0 is out</strong> — files open as <strong>tabs that come back when you return</strong>, compact a conversation right from the context meter, a colour-coded file tree, and ⌘-hover now shows you what go-to-definition would jump to.</span>
+    <span class="rr-text"><strong>v0.13.0 is out</strong> — <strong>scheduled runs</strong> live inside Flows, the orchestrator parks proposed batches for your approval, interval triggers take days and an active window, and release notes open once after an update.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -23,7 +23,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.12.0 · beta</span>
+      <span class="brand-ver">v0.13.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -375,13 +375,20 @@
 
         <article class="feature">
           <span class="feature-num">21</span>
+          <h3>Scheduled runs</h3>
+          <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
+          <p class="feature-note">A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">22</span>
           <h3>Flow watch</h3>
           <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
           <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">22</span>
+          <span class="feature-num">23</span>
           <h3>Install MCP once, everywhere</h3>
           <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
         </article>
@@ -1165,7 +1172,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.12.0 · beta</span>
+      <span class="sl-cell">v0.13.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
