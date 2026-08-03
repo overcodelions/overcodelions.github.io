@@ -3289,3 +3289,12 @@ kbd {
   .sched-row-head { gap: 8px; }
   .sched-state { margin-left: 0; }
 }
+
+/* Lanes change state while you watch (see the scheduler in app.js), so the
+   transition carries the change and a brief flash marks the moment. */
+.orch-lane {
+  transition: border-left-color 320ms ease, opacity 320ms ease, background 320ms ease;
+}
+.orch-lane .ol-status,
+.orch-lane .ol-meta { transition: color 320ms ease; }
+.orch-lane.is-shift { background: color-mix(in srgb, var(--accent) 9%, var(--bg)); }
