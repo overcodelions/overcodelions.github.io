@@ -988,6 +988,19 @@ kbd {
 .feature code { color: var(--ink); background: var(--paper-3); padding: 1px 5px; border-radius: 3px; font-size: 0.88em; }
 .feature em { color: var(--ink); font-style: italic; font-family: var(--f-sans); }
 .feature kbd { font-size: 10.5px; }
+/* Secondary note under a feature, split off by a dashed rule. Lives here
+ * with the rest of .feature — it was previously only in overcli's sheet,
+ * so the same markup rendered unstyled on the overgit page. */
+.feature p.feature-note {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  font-style: normal;
+}
+.feature p.feature-note em { color: var(--ink-dim); font-style: italic; }
+
 .feat-link { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
 .feat-link:hover { border-color: var(--accent); }
 
