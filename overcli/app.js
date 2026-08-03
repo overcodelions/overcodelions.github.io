@@ -693,4 +693,108 @@
     applyRb(active);   // initial state reflects the highlighted preset
   }
 
+
+  // ═══════════════════════════════════════════════════════════════════
+  // ORCHESTRATOR BATCH — a real little scheduler, not a canned loop
+  // The section's claim is "max 2 at a time, and a paused checkpoint
+  // frees its slot so the rest keep moving". A still frame can't show
+  // that, so the lanes actually run: work advances a step per tick,
+  // finishing frees a slot, and the queue promotes into it. The paused
+  // ask never resumes — it is waiting on a human, which is the point.
+  // ═══════════════════════════════════════════════════════════════════
+  (function () {
+    const batch = document.querySelector('.orch-batch');
+    if (!batch) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const laneEls = [...batch.querySelectorAll('.orch-lane')];
+    if (laneEls.length < 6) return;               // markup changed — leave it static
+
+    const CAP  = 2;
+    const TICK = 1600;
+    const HOLD = 4200;                            // pause on the finished batch before rewinding
+
+    // step labels are what the meta column counts through
+    const ASKS = [
+      { steps: ['research', 'build'],                        done: 'PR #418 · +4 −1',    start: 'done'   },
+      { steps: ['triage', 'plan', 'build', 'review'],         done: 'PR #421 · +37 −12',  start: 'running', at: 3 },
+      { steps: ['triage', 'diagnose', 'build', 'review'],     done: 'PR #422 · +9 −3',    start: 'running', at: 2 },
+      { steps: [],                                            done: '',                   start: 'paused' },
+      { steps: ['triage', 'plan', 'build', 'review'],         done: 'PR #423 · +51 −18',  start: 'queued' },
+      { steps: ['plan', 'build', 'review'],                   done: 'PR #424 · +12 −0',   start: 'queued' },
+    ];
+
+    let asks = [];
+    const reset = () => {
+      asks = ASKS.map(a => ({ ...a, state: a.start, step: a.at || 0 }));
+    };
+
+    const render = () => {
+      asks.forEach((a, i) => {
+        const el = laneEls[i];
+        if (el.dataset.state !== a.state) {
+          el.dataset.state = a.state;
+          el.classList.add('is-shift');
+          setTimeout(() => el.classList.remove('is-shift'), 600);
+        }
+        const status = el.querySelector('.ol-status');
+        const meta   = el.querySelector('.ol-meta');
+        if (a.state === 'paused') return;         // its markup already says the right thing
+        if (status) {
+          status.textContent =
+            a.state === 'running' ? 'running…' : a.state === 'done' ? 'done' : 'queued';
+        }
+        if (meta) {
+          meta.textContent =
+            a.state === 'done'    ? a.done
+          : a.state === 'running' ? `step ${a.step}/${a.steps.length} · ${a.steps[a.step - 1]}`
+          :                         'waiting for a slot';
+        }
+      });
+
+      const n = (st) => asks.filter(a => a.state === st).length;
+      const set = (sel, txt) => { const e = batch.querySelector(sel); if (e) e.textContent = txt; };
+      set('.ob-done',  `${n('done')} done`);
+      set('.ob-run',   `${n('running')} running`);
+      set('.ob-pause', `${n('paused')} paused`);
+      set('.ob-queue', `${n('queued')} queued`);
+    };
+
+    const step = () => {
+      // advance anything running; finishing frees the slot it held
+      asks.forEach(a => {
+        if (a.state !== 'running') return;
+        a.step += 1;
+        if (a.step > a.steps.length) { a.state = 'done'; a.step = a.steps.length; }
+      });
+      // promote from the queue into whatever slots are now free
+      let free = CAP - asks.filter(a => a.state === 'running').length;
+      for (const a of asks) {
+        if (free <= 0) break;
+        if (a.state === 'queued') { a.state = 'running'; a.step = 1; free -= 1; }
+      }
+      render();
+      return asks.some(a => a.state === 'running' || a.state === 'queued');
+    };
+
+    let timer = null;
+    const run = () => {
+      timer = setTimeout(function loop() {
+        if (step()) { timer = setTimeout(loop, TICK); }
+        else { timer = setTimeout(() => { reset(); render(); run(); }, HOLD); }
+      }, TICK);
+    };
+
+    // Only while on screen — this sits well below the fold on a long page.
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !started) { started = true; reset(); render(); run(); }
+        else if (!entry.isIntersecting && started) { started = false; clearTimeout(timer); }
+      });
+    }, { threshold: 0.2 });
+    io.observe(batch);
+  })();
+
+
 })();
