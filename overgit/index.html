@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overgit/releases/tag/v0.1.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overgit/releases/tag/v0.2.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.1 is out</strong> — the first public beta. Workspaces and worksets across every repo, a streaming clone flow, and smart safety on every destructive git action.</span>
+    <span class="rr-text"><strong>v0.2.0 is out</strong> — clone straight from <strong>GitHub, GitLab, or Bitbucket</strong> using the credentials already on your machine, plus a commit-identity fix and a security hardening pass.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -23,7 +23,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overgit</span>
-      <span class="brand-ver">v0.1 · beta</span>
+      <span class="brand-ver">v0.2.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -293,6 +293,12 @@
           <span class="feature-num">14</span>
           <h3>Keyboard first · your CLI auth</h3>
           <p><kbd>⌘K</kbd> palette · <kbd>⌘B</kbd> branches · <kbd>⌘N</kbd> new branch · <kbd>⌘1–4</kbd> tabs · <kbd>⌘R</kbd> refresh · <kbd>⌘\</kbd> sidebar · <kbd>⌘,</kbd> settings. Whatever auth your <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>gh</code> already have is the auth Overgit uses. Nothing leaves your machine via Overgit.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-num">15</span>
+          <h3>Clone from your forge</h3>
+          <p>The clone sheet has source tabs: paste a URL as before, or browse the repos your existing credentials can already reach — <em>GitHub</em> via your <code>gh</code> login (orgs and collaborator repos included), <em>GitLab</em> via <code>glab</code> or your credential helper, <em>Bitbucket</em> via your credential helper. Filter, hit enter, and the URL and folder name fill themselves in. An https/ssh toggle that remembers.</p>
+          <p class="feature-note">Overgit never asks for, stores, or transmits a token of its own — it reuses what is already on the machine, and no credential is exposed to the renderer. A forge with no usable credential tells you the exact command that fixes it.</p>
         </article>
       </div>
     </section>
@@ -564,7 +570,7 @@
           </details>
           <details class="faq-item">
             <summary>Does it work with our git host?</summary>
-            <p>If it speaks git, yes — overgit doesn't care who hosts it. Pull request aggregation goes through the <code>gh</code> CLI, so that part follows whatever <code>gh</code> is already authenticated against.</p>
+            <p>If it speaks git, yes — overgit doesn't care who hosts it. On top of that, cloning can browse <strong>GitHub, GitLab and Bitbucket</strong> directly, and pull request aggregation goes through the <code>gh</code> CLI. All of it rides on credentials already on the machine — your <code>gh</code> or <code>glab</code> login, or your git credential helper. Overgit never asks for, stores, or transmits a token of its own.</p>
           </details>
           <details class="faq-item">
             <summary>Can we audit or build it ourselves?</summary>
@@ -659,7 +665,7 @@
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overgit
       </span>
-      <span class="sl-cell">v0.1 · beta</span>
+      <span class="sl-cell">v0.2.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overgit/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
