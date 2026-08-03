@@ -789,59 +789,86 @@ steps:
       <p class="flow-run-label">↓ &nbsp;one batch, mid-run</p>
 
       <!-- live batch ledger -->
-      <div class="orch-batch" aria-label="an orchestration batch running">
-        <header class="orch-batch-head">
-          <span class="orch-batch-title">Batch · 6 asks</span>
-          <div class="orch-batch-stats">
-            <span class="ob-done">1 done</span>
-            <span class="ob-run">2 running</span>
-            <span class="ob-pause">1 paused</span>
-            <span class="ob-queue">2 queued</span>
-            <span class="ob-cap">max 2</span>
+      <!-- The batch runs live (see app.js), so frame it as the app rather
+           than as a list — same window chrome as the hero, Orchestrator tab
+           active instead of Chat. -->
+      <figure class="app-window orch-window" aria-label="the Orchestrator tab, mid-batch">
+        <header class="app-chrome">
+          <span class="chrome-dot red"></span>
+          <span class="chrome-dot yellow"></span>
+          <span class="chrome-dot green"></span>
+          <span class="chrome-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" />
+              <line x1="6" y1="3" x2="6" y2="13" stroke="currentColor" />
+            </svg>
+          </span>
+          <nav class="app-tabs">
+            <button class="app-tab" type="button" tabindex="-1">Chat</button>
+            <button class="app-tab" type="button" tabindex="-1">Flows</button>
+            <button class="app-tab is-active" type="button" tabindex="-1">Orchestrator</button>
+          </nav>
+          <span class="chrome-spacer"></span>
+          <div class="chrome-right">
+            <span class="orch-window-run">payments-platform</span>
           </div>
         </header>
 
-        <ul class="orch-lanes">
-          <li class="orch-lane" data-state="done">
-            <span class="ol-status">done</span>
-            <span class="ol-title">Typo in onboarding doc</span>
-            <span class="ol-flow" data-cli="claude">docs-from-code</span>
-            <span class="ol-meta">PR #418 · +4 −1</span>
-          </li>
-          <li class="orch-lane" data-state="running">
-            <span class="ol-status">running…</span>
-            <span class="ol-title">Null deref in /login</span>
-            <span class="ol-flow" data-cli="codex">debug-logs</span>
-            <span class="ol-meta">step 3/4 · build</span>
-          </li>
-          <li class="orch-lane" data-state="running">
-            <span class="ol-status">running…</span>
-            <span class="ol-title">Stale Retry-After header</span>
-            <span class="ol-flow" data-cli="codex">debug-logs</span>
-            <span class="ol-meta">step 2/4 · diagnose</span>
-          </li>
-          <li class="orch-lane" data-state="paused">
-            <span class="ol-status">paused</span>
-            <span class="ol-title">Flaky checkout test</span>
-            <span class="ol-flow" data-cli="claude">flaky-test-hunter</span>
-            <span class="ol-meta">checkpoint — freed its slot · <strong>continue →</strong></span>
-          </li>
-          <li class="orch-lane" data-state="queued">
-            <span class="ol-status">queued</span>
-            <span class="ol-title">Deprecated API in billing</span>
-            <span class="ol-flow" data-cli="codex">analyze-stack-trace</span>
-            <span class="ol-meta">waiting for a slot</span>
-          </li>
-          <li class="orch-lane" data-state="queued">
-            <span class="ol-status">queued</span>
-            <span class="ol-title">Missing index on orders</span>
-            <span class="ol-flow" data-cli="claude">migration-plan</span>
-            <span class="ol-meta">waiting for a slot</span>
-          </li>
-        </ul>
+        <div class="orch-batch" aria-label="an orchestration batch running">
+          <header class="orch-batch-head">
+            <span class="orch-batch-title">Batch · 6 asks</span>
+            <div class="orch-batch-stats">
+              <span class="ob-done">1 done</span>
+              <span class="ob-run">2 running</span>
+              <span class="ob-pause">1 paused</span>
+              <span class="ob-queue">2 queued</span>
+              <span class="ob-cap">max 2</span>
+            </div>
+          </header>
 
-        <p class="orch-batch-note">↪ The paused checkpoint doesn't stall the batch — it <strong>freed its slot</strong>, so the next queued ask pumps in behind it. Continue it from the Flows tab whenever you're ready.</p>
-      </div>
+          <ul class="orch-lanes">
+            <li class="orch-lane" data-state="done">
+              <span class="ol-status">done</span>
+              <span class="ol-title">Typo in onboarding doc</span>
+              <span class="ol-flow" data-cli="claude">docs-from-code</span>
+              <span class="ol-meta">PR #418 · +4 −1</span>
+            </li>
+            <li class="orch-lane" data-state="running">
+              <span class="ol-status">running…</span>
+              <span class="ol-title">Null deref in /login</span>
+              <span class="ol-flow" data-cli="codex">debug-logs</span>
+              <span class="ol-meta">step 3/4 · build</span>
+            </li>
+            <li class="orch-lane" data-state="running">
+              <span class="ol-status">running…</span>
+              <span class="ol-title">Stale Retry-After header</span>
+              <span class="ol-flow" data-cli="codex">debug-logs</span>
+              <span class="ol-meta">step 2/4 · diagnose</span>
+            </li>
+            <li class="orch-lane" data-state="paused">
+              <span class="ol-status">paused</span>
+              <span class="ol-title">Flaky checkout test</span>
+              <span class="ol-flow" data-cli="claude">flaky-test-hunter</span>
+              <span class="ol-meta">checkpoint — freed its slot · <strong>continue →</strong></span>
+            </li>
+            <li class="orch-lane" data-state="queued">
+              <span class="ol-status">queued</span>
+              <span class="ol-title">Deprecated API in billing</span>
+              <span class="ol-flow" data-cli="codex">analyze-stack-trace</span>
+              <span class="ol-meta">waiting for a slot</span>
+            </li>
+            <li class="orch-lane" data-state="queued">
+              <span class="ol-status">queued</span>
+              <span class="ol-title">Missing index on orders</span>
+              <span class="ol-flow" data-cli="claude">migration-plan</span>
+              <span class="ol-meta">waiting for a slot</span>
+            </li>
+          </ul>
+
+          <p class="orch-batch-note">↪ The paused checkpoint doesn't stall the batch — it <strong>freed its slot</strong>, so the next queued ask pumps in behind it. Continue it from the Flows tab whenever you're ready.</p>
+        </div>
+      </figure>
+
 
 
       <!-- ── 04b · schedules — the third beat of the orchestrator story ── -->
