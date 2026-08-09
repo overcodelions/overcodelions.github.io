@@ -61,7 +61,7 @@
           <div class="spec"><dt>license</dt><dd class="v">Apache 2.0</dd></div>
           <div class="spec"><dt>platform</dt><dd class="v">macOS · Windows · Linux</dd></div>
           <div class="spec"><dt>stack</dt><dd class="v">Electron · React · TypeScript</dd></div>
-          <div class="spec"><dt>telemetry</dt><dd class="v"><em>none</em></dd></div>
+          <div class="spec"><dt>telemetry</dt><dd class="v"><em>none in the app</em></dd></div>
           <div class="spec"><dt>built by</dt><dd class="v">a father &amp; son</dd></div>
         </dl>
       </aside>
@@ -324,7 +324,7 @@
           </details>
           <details class="faq-item">
             <summary>Is there any telemetry?</summary>
-            <p>None. No analytics, no crash reporting, no phone-home on launch. Conversation history is files on disk you can open in any editor. You can verify all of that in the source — that's rather the point.</p>
+            <p>None in the app. No analytics, no crash reporting, no phone-home on launch. Conversation history is files on disk you can open in any editor. You can verify all of that in the source — that's rather the point.</p>
           </details>
           <details class="faq-item">
             <summary>Can we use this at a company?</summary>
@@ -374,6 +374,7 @@
     <p class="footer-fine">
       Codelions is the umbrella under which we ship small, open-source desktop tools. Not affiliated with Anthropic, OpenAI, Google, or GitHub.
       &nbsp;·&nbsp; <span class="footer-dogfood">This site was built in <a href="overcli/">overcli</a>, with <code>claude</code>, <code>codex</code>, and <code>ollama</code>.</span>
+      &nbsp;·&nbsp; This site counts pageviews with Cloudflare Web Analytics — no cookies, no personal data. The app itself sends <a href="#faq">nothing</a>.
       &nbsp;·&nbsp; <button class="footer-hint" id="story-hint" type="button" aria-label="Open the longer story">press <kbd>?</kbd> for the longer story</button>
     </p>
   </footer>
@@ -491,5 +492,8 @@
     })();
   </script>
   <script src="palettes.js" defer></script>
+  <!-- Cloudflare Web Analytics — cookieless, no personal data -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ff1becd88dfa4ff4a8230ff3357b87cc"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
