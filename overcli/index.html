@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Overcli — five coding agents, one honest window</title>
   <meta name="description" content="Overcli is a cross-platform desktop app that puts a real GUI in front of claude, codex, gemini, copilot, and ollama command-line agents. Conversations, diffs, worktrees, and usage stats in one window." />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K0Z4VYP3RD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1302,7 +1300,7 @@ steps:
     <p class="footer-fine">
       Overcli is a fan-built client. Not affiliated with Anthropic, OpenAI, or Google. The <code>claude</code>, <code>codex</code>, and <code>gemini</code> binaries are their respective projects.
       &nbsp;·&nbsp; <span class="footer-dogfood">This very site was built in overcli, with <code>claude</code>, <code>codex</code>, and <code>ollama</code>.</span>
-      &nbsp;·&nbsp; This page uses Google Analytics. The app does not — see <a href="#faq">telemetry</a>.
+      &nbsp;·&nbsp; This site counts pageviews with Cloudflare Web Analytics — no cookies, no personal data. The app itself sends <a href="#faq">nothing</a>.
     </p>
   </footer>
 
@@ -1322,5 +1320,8 @@ steps:
 
   <script src="app.js"></script>
   <script src="../palettes.js" defer></script>
+  <!-- Cloudflare Web Analytics — cookieless, no personal data -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ff1becd88dfa4ff4a8230ff3357b87cc"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
