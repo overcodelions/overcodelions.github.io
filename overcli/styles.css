@@ -1177,8 +1177,10 @@ kbd {
 @media (max-width: 960px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
 
-/* lone last card (22 in a 3-col grid) sits centered; empty flanks blend into bg */
-@media (min-width: 961px) { .feature:last-child { grid-column: 2; } }
+/* a last card left alone on its own row sits centered; empty flanks blend into bg.
+   Scoped to :nth-child(3n+1) so it only fires when the count actually leaves one
+   over — an even 3-wide grid keeps its last row intact. */
+@media (min-width: 961px) { .feature:nth-child(3n+1):last-child { grid-column: 2; } }
 
 .feature {
   background: var(--bg);

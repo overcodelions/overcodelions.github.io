@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.13.4" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.14.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.13.4 is out</strong> — the <strong>file tree updates itself</strong> as agents write, and worktrees that outlived their work finally have an exit ramp: a sweep that finds the trees nothing points at any more, in a Storage pane of its own.</span>
+    <span class="rr-text"><strong>v0.14.0 is out</strong> — <strong>⌘K searches everything</strong>, not just conversations: chats, agents, runs, flows, projects and workspaces from one input. The flow library is grouped by where each flow came from and its search reaches the registry, and a first run with no CLI installed now says so from the first frame.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,7 +30,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.13.4 · beta</span>
+      <span class="brand-ver">v0.14.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -323,79 +323,87 @@
         <article class="feature">
           <span class="feature-num">11</span>
           <h3>Keyboard first</h3>
-          <p><kbd>⌘P</kbd> file finder. <kbd>⌘\</kbd> toggles the sidebar. <kbd>⌘,</kbd> opens settings. <kbd>⌘K</kbd> jumps conversations. It is not a website; it is a tool.</p>
+          <p><kbd>⌘P</kbd> file finder. <kbd>⌘\</kbd> toggles the sidebar. <kbd>⌘,</kbd> opens settings. <kbd>⌘1</kbd>–<kbd>⌘9</kbd> jumps between open files. It is not a website; it is a tool.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">12</span>
+          <h3>⌘K finds anything</h3>
+          <p>One input over the whole app — <em>chats</em>, <em>agents</em>, <em>runs</em>, <em>flows</em>, <em>projects</em>, <em>workspaces</em>, archived threads and app actions. A quick switcher that only indexed conversations meant everything else could be found only by knowing which tab it lived behind, which is the opposite of the point.</p>
+          <p class="feature-note">Ranking is a pure module with its own tests, because "an exact project name should beat a chat that merely mentions the word" degrades silently — a test catches it, a screenshot doesn't.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">13</span>
           <h3>Agent worktrees</h3>
           <p>Create, update, rebase, merge, push, or remove a git worktree from inside the conversation. Agents work in isolation; you merge when you like what you read.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">13</span>
+          <span class="feature-num">14</span>
           <h3>Changes bar</h3>
           <p>A live <code>+/−</code> rollup sits above the composer, counting everything the agent has touched this turn. Click to expand the diff, click a file to jump to it. The commit badge is one click away.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">14</span>
+          <span class="feature-num">15</span>
           <h3>Local model dashboard</h3>
           <p>A proper UI for your Ollama install: browse the catalog, filter by maker or country, pull and delete with one click, watch server logs live, and see a readout of the GPU you're actually running on.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">15</span>
+          <span class="feature-num">16</span>
           <h3>Usage dashboard</h3>
           <p>Rolling 5h / 24h / 7d stats, broken down by backend, model, and project. Know what you're burning before the invoice tells you.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">16</span>
+          <span class="feature-num">17</span>
           <h3>Smart downgrades</h3>
           <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">17</span>
+          <span class="feature-num">18</span>
           <h3>Health badges</h3>
           <p>Per-backend status pills: <em>ready</em>, <em>unauthenticated</em>, <em>missing</em>, <em>error</em>. The app tells you which CLI is broken before you try to use it.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">18</span>
+          <span class="feature-num">19</span>
           <h3>Colosseum</h3>
           <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">19</span>
+          <span class="feature-num">20</span>
           <h3>Flows</h3>
           <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
+          <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">20</span>
+          <span class="feature-num">21</span>
           <h3>Orchestrator</h3>
           <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it below ↓</a></p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">21</span>
+          <span class="feature-num">22</span>
           <h3>Scheduled runs</h3>
           <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
           <p class="feature-note">A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">22</span>
+          <span class="feature-num">23</span>
           <h3>Flow watch</h3>
           <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
           <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">23</span>
+          <span class="feature-num">24</span>
           <h3>Install MCP once, everywhere</h3>
           <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
         </article>
@@ -1176,7 +1184,7 @@ steps:
           </details>
           <details class="faq-item">
             <summary>Which agents does it actually drive?</summary>
-            <p><code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code>. Overcli drives the CLIs you already have installed and signed in — it is a window over them, not a reimplementation of them.</p>
+            <p><code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code>. Overcli drives the CLIs you already have installed and signed in — it is a window over them, not a reimplementation of them. If you have none of them yet, the start screen walks you through it and keeps watching — install a CLI in a terminal and the app unblocks itself without a restart.</p>
           </details>
           <details class="faq-item">
             <summary>Do we need to provision API keys?</summary>
@@ -1287,7 +1295,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.13.4 · beta</span>
+      <span class="sl-cell">v0.14.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
