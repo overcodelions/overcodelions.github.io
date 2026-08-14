@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.14.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.14.1" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.14.0 is out</strong> — <strong>⌘K searches everything</strong>, not just conversations: chats, agents, runs, flows, projects and workspaces from one input. The flow library is grouped by where each flow came from and its search reaches the registry, and a first run with no CLI installed now says so from the first frame.</span>
+    <span class="rr-text"><strong>v0.14.1 is out</strong> — the <strong>Orchestrator has an idle stage</strong>: once nothing is being composed, the runs take the full width and every count in the bar is a filter. A scheduled batch can now launch a <strong>capped</strong> number of its own proposals, a retried flow step is told why it was sent back, and the Gemini catalog moves to the 3.x line.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,7 +30,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.14.0 · beta</span>
+      <span class="brand-ver">v0.14.1 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -386,13 +386,14 @@
           <span class="feature-num">21</span>
           <h3>Orchestrator</h3>
           <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it below ↓</a></p>
+          <p class="feature-note">The tab has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">22</span>
           <h3>Scheduled runs</h3>
-          <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
-          <p class="feature-note">A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
+          <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — by default every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
+          <p class="feature-note">For a producer you have learned to trust, a schedule can launch its own proposals — but the <em>cap</em> is required, not optional. The first N go in producer order, which is best-first, and everything past it stays parked with a note saying why. A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
         </article>
 
         <article class="feature">
@@ -895,7 +896,10 @@ steps:
             A schedule is a trigger on work you already defined, so it lives inside <strong>Flows</strong> rather than
             becoming a fourth place to launch from. Point one at a flow and it runs. Point one at the orchestrator and it
             investigates your sources — then <strong>parks</strong> what it found. The producer decides how many items
-            exist, so dispatching that unattended is the one thing a schedule must not do.
+            exist, so an unbounded unattended dispatch is the one thing a schedule must not do. Once you trust a
+            producer you can let it launch its own proposals, but only under a <strong>required cap</strong> — the
+            hazard was never that a scheduled batch ran, it was the producer deciding at 3am that there were thirty
+            things to do.
           </p>
         </div>
 
@@ -1096,7 +1100,7 @@ steps:
             <span class="col-rank">III</span>
             <div>
               <p class="col-name">gemini</p>
-              <p class="col-model">2.5-pro</p>
+              <p class="col-model">3.1-pro</p>
             </div>
             <span class="col-timer" data-timer="gemini">0.0s</span>
           </header>
@@ -1295,7 +1299,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.14.0 · beta</span>
+      <span class="sl-cell">v0.14.1 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>

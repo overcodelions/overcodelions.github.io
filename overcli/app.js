@@ -67,9 +67,9 @@
     },
     gemini: {
       pill: 'Gemini CLI',
-      label: 'gemini 2.5',
-      modelTag: '2.5-pro <em>thinking</em>',
-      modelFull: 'gemini-2.5-pro',
+      label: 'gemini 3.1',
+      modelTag: '3.1-pro <em>thinking</em>',
+      modelFull: 'gemini-3.1-pro',
       ctx: 'ctx 22% · 220k/1.0M',
       ctxTitle: '219,880 of 1,000,000 context tokens in use as of the last request. Send /compact to summarize the conversation and reclaim room.',
       script: [
