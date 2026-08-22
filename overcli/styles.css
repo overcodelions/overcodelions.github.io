@@ -3773,3 +3773,106 @@ span.lr-link { color: var(--ink-muted); }
 .shot-reveal > summary:focus-visible { color: var(--accent); }
 .shot-reveal > summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
 .shot-reveal .shot { margin-top: 14px; }
+
+/* ── the screenshot badge ────────────────────────────────────────────
+   The page mixes drawn panels with photographs of the real app, and at
+   a glance they look alike — both are dark slabs in the same palette.
+   A drawn mock is introduced by a plain "↓ label"; a real screen gets
+   this. The distinction is the entire reason the photographs are here,
+   so it should not have to be inferred. */
+.shot-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px 3px 7px;
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 62%, var(--line));
+  background: color-mix(in srgb, var(--accent) 18%, var(--bg));
+  white-space: nowrap;
+  /* A ring that breathes outward — the badge has to win against a whole
+     page of dark panels, and a static pill did not. Colour stays a tint
+     of --accent so contrast holds in both the paper and terminal
+     scopes, where --accent resolves to different values. */
+  animation: shot-badge-ring 2.8s ease-out infinite;
+}
+@keyframes shot-badge-ring {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 42%, transparent); }
+  70%  { box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+.shot-badge::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  animation: shot-badge-dot 2.8s ease-in-out infinite;
+}
+@keyframes shot-badge-dot {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50%      { opacity: 1;   transform: scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shot-badge, .shot-badge::before { animation: none; }
+  .shot-badge::before { opacity: 1; transform: none; }
+}
+/* the label is a flex row so the badge sits on the text baseline block */
+.shot-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.shot-reveal[open] > summary .shot-badge,
+.shot-reveal > summary:hover .shot-badge {
+  background: color-mix(in srgb, var(--accent) 20%, var(--bg));
+}
+
+/* ── depth pass ──────────────────────────────────────────────────────
+   The raised panels (.orch-batch, .wk-funds, the app windows) read as
+   objects; the feature cards and the stage cards were flat fills next
+   to them. Same top-lit gradient the flow cards already use, plus a
+   shadow that only commits on hover, so the grid still reads as one
+   sheet at rest. */
+.feature {
+  background: linear-gradient(180deg,
+    var(--bg-lift) 0%,
+    color-mix(in srgb, var(--bg) 72%, var(--bg-lift)) 100%);
+  transition: background 220ms ease, box-shadow 260ms ease;
+}
+.feature:hover {
+  background: var(--bg-lift);
+  box-shadow:
+    0 0 0 1px var(--line-strong),
+    0 20px 38px -28px color-mix(in srgb, var(--ink) 42%, transparent);
+  z-index: 1;
+}
+
+.orch-stage {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0) 58%),
+    var(--bg-card);
+  box-shadow: 0 16px 34px -28px rgba(0, 0, 0, 0.85);
+}
+
+.wk-funds,
+.orch-batch {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 52%),
+    var(--bg-card);
+  box-shadow: 0 16px 34px -28px rgba(0, 0, 0, 0.85);
+}
+
+.ladder-rung {
+  transition: background 220ms ease, box-shadow 220ms ease;
+}
+.ladder-rung:hover {
+  box-shadow: 0 14px 30px -26px color-mix(in srgb, var(--ink) 40%, transparent);
+}
