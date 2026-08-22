@@ -271,6 +271,7 @@ kbd {
   animation: rise 900ms cubic-bezier(.2,.8,.2,1) forwards;
 }
 .headline-line[data-delay="220"] { animation-delay: 220ms; }
+.headline-line[data-delay="440"] { animation-delay: 440ms; }
 @keyframes rise {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -3323,3 +3324,452 @@ kbd {
   .orch-window .orch-batch { padding: 14px 12px 16px; }
   .orch-window-run { display: none; }
 }
+
+
+/* ═════════════════════════════════════════════════════════════════════
+   WORKERS
+   The roster sits in the same chrome as the orchestrator board, so it
+   borrows .orch-lanes/.ol-* for the rows and only adds what a roster
+   needs that a batch doesn't: a tagline beside the name, and the pot.
+   ═════════════════════════════════════════════════════════════════════ */
+
+.wk-roster {
+  padding: 18px 20px 20px;
+}
+.wk-roster-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 14px;
+}
+/* A worker's line is "who it is", not just what it's called — the tagline
+   rides in the same cell as the name so the row stays one grid row. */
+.wk-roster .ol-title em {
+  font-style: normal;
+  color: var(--ink-muted);
+}
+
+.wk-funds {
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 18px 20px 20px;
+}
+.wk-funds-head {
+  margin: 0 0 14px;
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.wk-funds-head strong {
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.wk-funds-head em { font-style: normal; }
+
+.wk-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  counter-reset: none;
+}
+.wk-bar {
+  display: grid;
+  grid-template-columns: 18px 128px 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+.wk-bar-n {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+.wk-bar-name {
+  font-size: 13px;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wk-bar-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--line);
+  overflow: hidden;
+}
+.wk-bar-track > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.wk-bar[data-state="partial"] .wk-bar-track > span { background: var(--ollama); }
+.wk-bar[data-state="dry"] { opacity: 0.6; }
+.wk-bar-val {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+/* The waterline is where the pot runs out — everything under it skips. */
+.wk-waterline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ollama);
+}
+.wk-waterline::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    color-mix(in srgb, var(--ollama) 60%, transparent) 0 6px,
+    transparent 6px 12px
+  );
+}
+.wk-funds-note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+.wk-wide-note {
+  max-width: var(--col);
+  margin: 28px auto 0;
+}
+.wk-wide-note em { font-style: italic; }
+
+@media (max-width: 620px) {
+  .wk-roster { padding: 14px 12px 16px; }
+  .wk-bar { grid-template-columns: 18px 1fr; row-gap: 6px; }
+  .wk-bar-track, .wk-bar-val { grid-column: 2; }
+}
+
+
+/* ═════════════════════════════════════════════════════════════════════
+   FEATURE BANDS
+   Twenty-seven cards in one grid is a spec sheet. Three named groups —
+   the window, the machinery, work that runs itself — give the list an
+   argument, and the third one is the release the site is standing on.
+   ═════════════════════════════════════════════════════════════════════ */
+
+.feature-band {
+  max-width: 720px;
+  margin: 52px 0 20px;
+}
+.feature-grid + .feature-band { margin-top: 64px; }
+.band-title {
+  margin: 0 0 8px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.band-title::before {
+  content: "── ";
+  color: var(--line-strong);
+}
+.band-lede {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+@media (max-width: 560px) {
+  .feature-band { margin: 40px 0 16px; }
+  .feature-grid + .feature-band { margin-top: 44px; }
+}
+
+
+/* ═════════════════════════════════════════════════════════════════════
+   THE LADDER
+   Five dark deep-dives in a row read as five products. This paper
+   section names the axis they actually sit on before you meet them, and
+   the meter is the only thing on the page drawn to be compared row to
+   row — so "how far up" is legible without reading a word.
+   ═════════════════════════════════════════════════════════════════════ */
+
+.ladder-section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(56px, 9vw, 112px) var(--pad) clamp(48px, 8vw, 96px);
+}
+.ladder-section .section-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  font-weight: 500;
+}
+
+.ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.ladder-rung {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 160px 132px;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--line);
+  transition: background 220ms;
+}
+.ladder-rung:hover { background: var(--bg-lift); }
+.lr-n {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  align-self: start;
+  padding-top: 3px;
+}
+.lr-body h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.lr-body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 62ch;
+}
+/* The one comparable thing on the page: each rung's share of "runs
+   without you", drawn on the same scale so the column reads as a climb. */
+.lr-meter {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+.lr-meter > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.ladder-rung[data-level="6"] .lr-meter > span { background: var(--ollama); }
+.lr-link {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  justify-self: end;
+  white-space: nowrap;
+}
+a.lr-link:hover { text-decoration: underline; }
+span.lr-link { color: var(--ink-muted); }
+
+.ladder-note {
+  margin: 26px 0 0;
+  max-width: 76ch;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+@media (max-width: 860px) {
+  .ladder-rung {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    row-gap: 12px;
+  }
+  .lr-meter { grid-column: 2 / -1; }
+  .lr-link { grid-column: 2 / -1; justify-self: start; }
+}
+
+
+/* ── hero: the workers beat ─────────────────────────────────────────
+   The third headline line is a coda, not a third claim — it sits under
+   the two display lines at a size that reads as an aside. */
+.headline-line--sub {
+  font-size: 0.42em;
+  font-style: italic;
+  color: var(--ink-dim);
+  letter-spacing: -0.01em;
+  margin-top: 0.28em;
+}
+/* A run nobody started should say so before you click it. */
+.active-list .is-worker { color: var(--ink-dim); }
+.active-list .is-worker .conv-dot.on { background: var(--ollama); }
+.active-list .is-worker .active-sub { color: var(--ollama); }
+/* The mock gained a fourth tab; a title bar that can't shrink was
+   dragging the whole hero grid wider than a phone. Let the strip clip
+   the way a real window does instead of setting the page's min-width. */
+.hero-right .app-chrome { min-width: 0; }
+.hero-right .app-tabs { min-width: 0; overflow: hidden; }
+
+/* ── hero proportions, overcli only ─────────────────────────────────
+   theme.css owns .hero-inner/.headline/.lede and loads after this
+   file, so these deliberately out-specify it rather than editing the
+   shared theme — overgit's hero keeps the proportions it was drawn
+   for. Overcli's mock now carries a Workers tab, a worker run in
+   Active, and a five-deep sidebar; it needs the room more than the
+   copy does, so the display type comes down and the window takes the
+   width it gives up. */
+.hero .hero-inner {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.60fr);
+  gap: clamp(28px, 3.2vw, 52px);
+}
+.hero .headline {
+  font-size: clamp(30px, 2.6vw, 42px);
+  line-height: 1.05;
+}
+.hero .hero-left .lede {
+  font-size: clamp(14px, 1.02vw, 15.5px);
+  line-height: 1.6;
+}
+@media (max-width: 1000px) {
+  .hero .hero-inner { grid-template-columns: 1fr; }
+  .hero .headline { font-size: clamp(34px, 7vw, 48px); }
+}
+
+
+/* ═════════════════════════════════════════════════════════════════════
+   SCREENSHOTS
+   The mocks show the shape; these show it is real. Framed like the app
+   windows beside them so a photograph of the product doesn't read as a
+   foreign object dropped into a drawn page.
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* Full column on purpose. These crops carry the proof as body text —
+   the reasoning in a shift, the limits row, the pipeline steps — so
+   apparent size beats pixel density here; they are meant to be read,
+   not glanced at. */
+.shot {
+  max-width: var(--col);
+  margin: 0 auto clamp(30px, 4vw, 52px);
+}
+.shot-tall { max-width: 900px; }
+/* The frame owns the border, radius and lift so the image can never
+   paint over a rounded corner — and so it can scroll on a phone
+   without taking the caption with it. */
+.shot-frame {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.shot figcaption {
+  margin: 14px 2px 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+.shot figcaption em { color: var(--ink); font-style: italic; }
+.shot figcaption code {
+  font-family: var(--f-mono);
+  font-size: 0.92em;
+}
+
+/* 02b — the dashboards: paper section, same rhythm as .features */
+.dashboards {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 72px) var(--pad) clamp(48px, 8vw, 96px);
+}
+.dashboards .section-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  font-weight: 500;
+}
+
+/* Same eyebrow as .flow-run-label, but aligned to the shot rather than
+   to the full column, so label and image share a left edge. */
+.shot-label {
+  max-width: var(--col);
+  margin: 22px auto 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.shot-label.is-tall { max-width: 900px; }
+
+/* A 2029px-wide screenshot squeezed into a 350px phone is a grey smear.
+   Below the breakpoint the frame pans instead of shrinking, so the text
+   these shots exist for stays readable. */
+@media (max-width: 760px) {
+  .shot-frame {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .shot-frame img { width: 760px; max-width: none; }
+  .shot-tall .shot-frame img { width: 620px; }
+}
+
+/* Local models get their own chip colour wherever a step names a model,
+   so a mixed cloud/local pipeline reads as mixed at a glance. */
+.orch-flow-local {
+  color: var(--ollama);
+  border: 1px solid color-mix(in srgb, var(--ollama) 45%, var(--line));
+  background: color-mix(in srgb, var(--ollama) 12%, var(--bg));
+}
+
+/* ── screenshots as disclosures ──────────────────────────────────────
+   Eight full-width screenshots down a long page turned the argument
+   into scenery — every section ended in the same dense dark slab. The
+   prose and the drawn panels carry the claim; the photograph of the
+   real screen sits one click behind it, for the reader who wants
+   proof rather than the reader who wants the point. */
+.shot-reveal {
+  max-width: var(--col);
+  margin: 26px auto clamp(28px, 4vw, 48px);
+  border-top: 1px solid var(--line);
+}
+.shot-reveal > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 2px 4px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 180ms ease;
+}
+.shot-reveal > summary::-webkit-details-marker { display: none; }
+.shot-reveal > summary::before {
+  content: "▸";
+  font-size: 9px;
+  line-height: 1;
+  color: var(--accent);
+}
+.shot-reveal[open] > summary::before { content: "▾"; }
+.shot-reveal > summary:hover,
+.shot-reveal > summary:focus-visible { color: var(--accent); }
+.shot-reveal > summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+.shot-reveal .shot { margin-top: 14px; }
