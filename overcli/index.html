@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.16.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.16.1" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.16.0 is out</strong> — <strong>everyday projects</strong>: Overcli without a repo, for people who have documents rather than code. Describe what you want and it scaffolds the folder, prepares an undo history and drops you into a conversation pointed at it. Documents open in a grid rather than a file tree, <code>.docx</code> and <code>.xlsx</code> preview with no Office installed, and every version is recoverable in plain language.</span>
+    <span class="rr-text"><strong>v0.16.1 is out</strong> — <strong>everyday projects</strong>: Overcli without a repo, for people who have documents rather than code. Describe what you want and it scaffolds the folder, prepares an undo history and drops you into a conversation pointed at it. Documents open in a grid rather than a file tree, <code>.docx</code> and <code>.xlsx</code> preview with no Office installed, and every version is recoverable in plain language.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,7 +30,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.16.0 · beta</span>
+      <span class="brand-ver">v0.16.1 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -326,6 +326,13 @@
           <p>One input over the whole app — <em>chats</em>, <em>agents</em>, <em>runs</em>, <em>flows</em>, <em>workers</em>, <em>projects</em>, <em>workspaces</em>, archived threads and app actions. ↵ goes where the subtitle says it goes — a worker row arrives at that worker's desk, ⌘↵ opens its contract. A quick switcher that only indexed conversations meant everything else could be found only by knowing which tab it lived behind, which is the opposite of the point.</p>
           <p class="feature-note">Ranking is a pure module with its own tests, because "an exact project name should beat a chat that merely mentions the word" degrades silently — a test catches it, a screenshot doesn't.</p>
         </article>
+
+        <article class="feature">
+          <span class="feature-num">10</span>
+          <h3>A sidebar you navigate by what you were doing</h3>
+          <p>The old list rendered where things <em>live</em>; people navigate by what they were <em>doing</em>. <strong>Stream</strong> is one newest-first list of chats, agents and runs together, with the owner printed once above a run of consecutive rows rather than on every one, so going flat doesn't cost you the sense of which repo you're in. <strong>Places</strong> keeps the tree for when the question really is where something lives — two layouts rather than a toggle, because they answer different questions.</p>
+          <p class="feature-note">"Active" is now <em>Working on</em>, and momentum — turns per hour, decayed — earns a row its slot, so a thread you've been forty turns deep in all morning outranks a message you fired off and forgot. Anything untouched for two days rolls up under a dashed count line in place: not hidden, which makes people hunt, and not archived, which needs a decision and an undo. Search still reaches inside it.</p>
+        </article>
       </div>
 
       <div class="feature-band">
@@ -335,57 +342,57 @@
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">10</span>
+          <span class="feature-num">11</span>
           <h3>No new subscriptions</h3>
           <p>Overcli sits on top of the CLIs you already use, with the auth they already have. Your <em>Claude Pro</em>, your <em>ChatGPT</em> plan, your <code>gcloud</code> creds, your <em>GitHub Copilot</em> seat — whatever <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>copilot</code> are signed into is what overcli runs through. Local <code>ollama</code> for the rest. No API keys to manage. No new bills.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">11</span>
+          <span class="feature-num">12</span>
           <h3>Health badges</h3>
           <p>Per-backend status pills: <em>ready</em>, <em>unauthenticated</em>, <em>missing</em>, <em>error</em>. The app tells you which CLI is broken before you try to use it.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">12</span>
+          <span class="feature-num">13</span>
           <h3>Agent worktrees</h3>
           <p>Create, update, rebase, merge, push, or remove a git worktree from inside the conversation. Agents work in isolation; you merge when you like what you read.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">13</span>
+          <span class="feature-num">14</span>
           <h3>Changes bar</h3>
           <p>A live <code>+/−</code> rollup sits above the composer, counting everything the agent has touched this turn. Click to expand the diff, click a file to jump to it. The commit badge is one click away.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">14</span>
+          <span class="feature-num">15</span>
           <h3>Local model dashboard</h3>
           <p>A proper UI for your Ollama install: browse a hand-checked catalog of <em>46 tags</em>, filter by maker or country, pull and delete with one click, watch server logs live, and see a readout of the GPU you're actually running on. <a href="#local" class="feat-link">see it below ↓</a></p>
           <p class="feature-note">It also tells you when the copy of Ollama you have is one you shouldn't still be running — read off the binary even with the server stopped, and escalated to a security finding once you're several minors behind — and when the API is answering on a non-loopback address, where anyone on your network can pull and delete your models. Nothing upgrades itself: you get the command, in a Terminal you can watch.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">15</span>
+          <span class="feature-num">16</span>
           <h3>Usage dashboard</h3>
           <p>Rolling 5h / 24h / 7d stats, broken down by backend, model, and project. Quotas are read from the CLIs themselves rather than estimated, so the number you're looking at is the one the provider is counting. Know what you're burning before the invoice tells you.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">16</span>
+          <span class="feature-num">17</span>
           <h3>Where the turn went</h3>
           <p>A Timing tab splits every turn into model time and tool time — and the tool share is split again <em>by tool name</em>, with a legend giving each tool's busy time, call count, slowest single call, and errors. Forty seconds in tools is a very different afternoon depending on whether it was one <code>Bash</code> build or thirty <code>Read</code> calls.</p>
           <p class="feature-note">Tools are ranked slowest-to-fastest on a red → amber → green ramp, so the expensive one is findable without reading a number, and nothing lands near the blue the model's share is drawn in. Parallel calls overlap, so widths are wall clock and the legend is what each tool actually spent.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">17</span>
+          <span class="feature-num">18</span>
           <h3>Install MCP once, everywhere</h3>
           <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">18</span>
+          <span class="feature-num">19</span>
           <h3>Colosseum</h3>
           <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
         </article>
@@ -398,61 +405,62 @@
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">19</span>
+          <span class="feature-num">20</span>
           <h3>Rebound reviews</h3>
           <p>After every turn, fire a second agent — on a <em>different</em> backend if you like — to review what just landed. Thinking blocks visible, round counter included. Collaboration mode loops rounds until the reviewer stops finding things to fix.</p>
           <p class="feature-note">Note: Copilot can't be a reviewer yet — its CLI doesn't read prompts from stdin. When it's your primary, overcli routes the review to claude/codex/gemini and shows a <em>"Routed via X"</em> chip so it's not surprising.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">20</span>
+          <span class="feature-num">21</span>
           <h3>Silent agents</h3>
           <p>Long-running background agents that live next to your work. A <em>doc-writer</em> that keeps <code>/docs</code> in sync as the code changes. A <em>PR-reviewer</em> that quietly comments on every pull request the moment it opens. No Slack pings. No dashboards. Just work getting done.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">21</span>
+          <span class="feature-num">22</span>
           <h3>Smart downgrades</h3>
           <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default. <a href="#local" class="feat-link">see it below ↓</a></p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">22</span>
+          <span class="feature-num">23</span>
           <h3>Flows</h3>
           <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
           <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">23</span>
+          <span class="feature-num">24</span>
           <h3>Orchestrator</h3>
           <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it below ↓</a></p>
           <p class="feature-note">The tab has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">24</span>
+          <span class="feature-num">25</span>
           <h3>Scheduled runs</h3>
           <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — by default every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
           <p class="feature-note">For a producer you have learned to trust, a schedule can launch its own proposals — but the <em>cap</em> is required, not optional. The first N go in producer order, which is best-first, and everything past it stays parked with a note saying why. A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">25</span>
+          <span class="feature-num">26</span>
           <h3>Flow watch</h3>
           <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
           <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">26</span>
+          <span class="feature-num">27</span>
           <h3>Standing workers</h3>
           <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Describe the job in prose — with a spec or a screenshot attached if you have one — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a calendar, a filing cabinet, and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="#workers" class="feat-link">see it below ↓</a></p>
           <p class="feature-note">A shift streams into the desk as it is worked, and any turn opens in a reader with a find box — a sweep across seventy tickets is a document, not a chat bubble. Leave it a <em>note</em> and the worker reads it before planning the next shift, because the record of what it did is not a thing you edit.</p>
+          <p class="feature-note">The tab opens on a work queue banded <em>Running now</em>, <em>Needs you</em>, <em>Finished today</em> — status is not a column you sort by, it is what a row is, and a single time-ordered table buries the two rows with a decision waiting on them under eight that need nothing from anyone.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">27</span>
+          <span class="feature-num">28</span>
           <h3>One pot, paid down the roster</h3>
           <p>Eight workers at $10 a month is an $80 exposure nobody ever approved. The crew now draws from a <em>single monthly pot</em>, paid down the roster in order: a worker may spend only what is left after everyone above it is funded. Drag a name up and that is a funding decision you can watch land. Pausing one releases its reserve to everyone below it.</p>
           <p class="feature-note">A worker's unspent cap is held for it, so the one that runs your morning can't be starved by the one that tidies changelogs. Shifts below the waterline skip quietly and journal why, and a dry pool notifies once for the whole roster.</p>
@@ -466,20 +474,20 @@
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">28</span>
+          <span class="feature-num">29</span>
           <h3>Everyday projects</h3>
           <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button. <a href="#documents" class="feat-link">see it below ↓</a></p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">29</span>
+          <span class="feature-num">30</span>
           <h3>Documents, not a file tree</h3>
           <p>Everyday projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
           <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">30</span>
+          <span class="feature-num">31</span>
           <h3>Auto-save, and every version back</h3>
           <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
           <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
@@ -1865,7 +1873,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.16.0 · beta</span>
+      <span class="sl-cell">v0.16.1 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
