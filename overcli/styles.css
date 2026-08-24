@@ -3876,3 +3876,94 @@ span.lr-link { color: var(--ink-muted); }
 .ladder-rung:hover {
   box-shadow: 0 14px 30px -26px color-mix(in srgb, var(--ink) 40%, transparent);
 }
+
+/* ═════════════════════════════════════════════════════════════════════
+   EVERYDAY PROJECTS
+   The signature of the feature is that documents look like documents —
+   a card grid with real names and "edited 2 days ago" — so the mock is
+   that grid rather than another list of monospace paths.
+   ═════════════════════════════════════════════════════════════════════ */
+
+.docs-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.doc {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 9px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg-lift) 70%, var(--bg));
+}
+.doc-ico {
+  grid-row: 1 / 3;
+  width: 26px;
+  height: 30px;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--bg);
+}
+.doc[data-kind="doc"] .doc-ico { background: #4a7ebb; }
+.doc[data-kind="xls"] .doc-ico { background: #3f8f5f; }
+.doc[data-kind="ppt"] .doc-ico { background: #c2603c; }
+.doc[data-kind="md"]  .doc-ico { background: var(--ink-muted); }
+.doc-name {
+  font-size: 12px;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.doc-meta {
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+
+/* the one-line ask that sits at the foot of an open document */
+.doc-ask {
+  margin-top: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--bg);
+  padding: 11px 12px 10px;
+}
+.doc-ask-line {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.doc-ask-line::before {
+  content: "✦ ";
+  color: var(--accent);
+}
+.doc-ask-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.doc-btn {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+.doc-btn-go {
+  color: var(--add);
+  border-color: color-mix(in srgb, var(--add) 45%, var(--line));
+  background: color-mix(in srgb, var(--add) 12%, var(--bg));
+}
+.doc-btn-off { color: var(--ink-muted); }
+@media (max-width: 560px) {
+  .docs-grid { grid-template-columns: 1fr; }
+}

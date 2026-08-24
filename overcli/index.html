@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.15.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.16.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.15.0 is out</strong> — <strong>standing workers get a desk you can watch</strong>: the shift streams into the page as it is worked, any turn opens in a reader with find and notes, and every worker carries a line saying what it is. The crew now draws from <strong>one monthly pot</strong> paid down the roster, and a worker exports as a <code>.worker.yaml</code> you can hand to another team.</span>
+    <span class="rr-text"><strong>v0.16.0 is out</strong> — <strong>everyday projects</strong>: Overcli without a repo, for people who have documents rather than code. Describe what you want and it scaffolds the folder, prepares an undo history and drops you into a conversation pointed at it. Documents open in a grid rather than a file tree, <code>.docx</code> and <code>.xlsx</code> preview with no Office installed, and every version is recoverable in plain language.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,7 +30,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.15.0 · beta</span>
+      <span class="brand-ver">v0.16.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -40,6 +40,7 @@
       <li><a href="#orchestrator">orchestrator</a></li>
       <li><a href="#workers">workers</a></li>
       <li><a href="#local">local</a></li>
+      <li><a href="#documents">documents</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#faq">faq</a></li>
       <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#download"><span class="bk">[</span>&nbsp;download&nbsp;<span class="bk">]</span></a></li>
@@ -455,6 +456,33 @@
           <h3>One pot, paid down the roster</h3>
           <p>Eight workers at $10 a month is an $80 exposure nobody ever approved. The crew now draws from a <em>single monthly pot</em>, paid down the roster in order: a worker may spend only what is left after everyone above it is funded. Drag a name up and that is a funding decision you can watch land. Pausing one releases its reserve to everyone below it.</p>
           <p class="feature-note">A worker's unspent cap is held for it, so the one that runs your morning can't be starved by the one that tidies changelogs. Shifts below the waterline skip quietly and journal why, and a dry pool notifies once for the whole roster.</p>
+        </article>
+      </div>
+
+      <div class="feature-band">
+        <h3 class="band-title">without a repo</h3>
+        <p class="band-lede">The same app for people who have documents rather than code — added in 0.16, and the reason "is this for me?" now has a second answer.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">28</span>
+          <h3>Everyday projects</h3>
+          <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button. <a href="#documents" class="feat-link">see it below ↓</a></p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">29</span>
+          <h3>Documents, not a file tree</h3>
+          <p>Everyday projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
+          <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">30</span>
+          <h3>Auto-save, and every version back</h3>
+          <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
+          <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
         </article>
       </div>
     </section>
@@ -1568,12 +1596,90 @@ steps:
     </section>
 
 
-    <!-- ─────────── THE EVERYDAY APP ─────────── -->
-    <!-- Eight sections of autonomous machinery earn a section that says
-         "and most days it is just this". Chat first, then what it cost. -->
-    <section class="dashboards" id="everyday">
+    <!-- ─────────── EVERYDAY PROJECTS ─────────── -->
+    <!-- 0.16 widened who this is for. It sits after the machinery rather
+         than before it, because the engineer reading top-to-bottom is
+         still the primary audience — but it is a section, not a card,
+         because "no repo required" changes the answer to "is this for
+         me". -->
+    <section class="colosseum terminal" id="documents">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;10&nbsp;] &nbsp;·&nbsp; everyday projects</p>
+        <h2 class="display-title">
+          <span>No repo. No git.</span>
+          <span class="em">No file dialog.</span>
+          <span>Just&nbsp;a&nbsp;folder&nbsp;and&nbsp;a&nbsp;conversation.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Everything above this line assumes you have a repository. <em>Everyday projects</em> are the same app for
+          people who have documents instead — a policy to revise, a spreadsheet to tidy, a board summary to write.
+          Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>,
+          prepares an undo history for it, and drops you straight into a conversation pointed at it. No path decision,
+          no file dialog, and <strong>the word "git" appears nowhere in the flow</strong> — the history is real, it is
+          just never your problem.
+        </p>
+      </div>
+
+      <div class="orch-stages" aria-label="how an everyday project works">
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Describe it</h3></header>
+          <p class="orch-stage-lede">A sentence is the whole setup. Or point it at a folder you already have and press <em>Turn on history</em>.</p>
+          <div class="orch-producer">
+            <p class="orch-prompt">“Somewhere to keep our HR policies and keep them current.”</p>
+            <div class="orch-tools">
+              <span>review my documents</span><span>draft a policy</span><span>clean up a spreadsheet</span>
+            </div>
+            <p class="orch-found">→ folder + history + a chat in it</p>
+          </div>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Work in it</h3></header>
+          <p class="orch-stage-lede">A grid of documents, not a column of paths. Drag them in from Finder; <code>.docx</code> and <code>.xlsx</code> preview with no Office installed.</p>
+          <ul class="docs-grid" aria-label="a documents view">
+            <li class="doc" data-kind="doc"><span class="doc-ico">W</span><span class="doc-name">Remote work policy</span><span class="doc-meta">edited 2 days ago</span></li>
+            <li class="doc" data-kind="xls"><span class="doc-ico">X</span><span class="doc-name">Headcount 2026</span><span class="doc-meta">edited yesterday</span></li>
+            <li class="doc" data-kind="ppt"><span class="doc-ico">P</span><span class="doc-name">Q3 board deck</span><span class="doc-meta">edited 6 Aug</span></li>
+            <li class="doc" data-kind="md"><span class="doc-ico">M</span><span class="doc-name">Onboarding notes</span><span class="doc-meta">edited just now</span></li>
+          </ul>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Change it, safely</h3></header>
+          <p class="orch-stage-lede">One line at the foot of any document — <em>“make this shorter”</em>. It runs on the fast model and then stops, and shows you a diff.</p>
+          <div class="doc-ask">
+            <p class="doc-ask-line">make this shorter</p>
+            <div class="doc-ask-actions">
+              <span class="doc-btn doc-btn-go">Keep changes</span>
+              <span class="doc-btn">Undo it</span>
+              <span class="doc-btn doc-btn-off">Try again</span>
+            </div>
+          </div>
+          <p class="orch-pr">☑ highlight a passage and only that passage is sent</p>
+        </article>
+      </div>
+
+      <p class="orch-batch-note wk-wide-note">↪ <strong>Every version is recoverable, in plain language.</strong> Everyday projects auto-save a few seconds after you stop typing, because nobody outside software thinks about saving. What makes that safe is the other half: Overcli captures a version whenever something <em>finishes</em> — a rewrite kept, documents added, a spell of editing ending — and <em>Earlier versions</em> lists them with a Restore button. Restoring moves <em>forward</em> rather than rewinding: it commits the current state first and the restored one on top, so putting the folder back is itself undoable. Large binaries are deliberately skipped, because git can never reclaim a stored blob and a big attachment revised twenty times would quietly cost a gigabyte inside someone's Documents folder.</p>
+
+      <p class="orch-batch-note wk-wide-note">↪ <strong>It is the same app, so the machinery still applies.</strong> A worker hired for an everyday project files its output into the folder its owner actually looks in, rather than only into Overcli's archive — only documents travel, each run is filed exactly once, and the arrival is checkpointed so it can be undone like anything else. Any project can be switched between <em>everyday</em> and <em>code</em> from the sidebar through a sheet that says exactly what changes, and nothing about the folder's own contents moves either way.</p>
+
+      <p class="colosseum-ribbon"><span>a sentence in</span> · <span>a folder and a history out</span> · <span>documents, not paths</span> · <span>every version recoverable</span> · <span>git never mentioned</span></p>
+    </section>
+
+
+    <!-- ─────────── DAY TO DAY ─────────── -->
+    <!-- All that machinery earns a section that says "and most days it is
+         just this". Chat first, then what it cost. Named "day to day"
+         rather than "the everyday app" since 0.16 shipped a feature
+         called everyday projects, and two of those on one page is one
+         too many. -->
+    <section class="dashboards" id="day-to-day">
       <div class="section-head">
-        <p class="kicker">[&nbsp;10&nbsp;] &nbsp;·&nbsp; the everyday app</p>
+        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; day to day</p>
         <h2 class="section-title">Most days, <em>it's just this.</em></h2>
         <p class="section-lede">Everything above is what Overcli can do when you hand it the keys. This is what it is the rest of the time: a conversation with a diff attached, and a number at the end of the month telling you what that came to. Both are real screens, not renders.</p>
       </div>
@@ -1602,7 +1708,7 @@ steps:
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;12&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Move fast without</span>
           <span>losing <em>the thread</em>.</span>
@@ -1625,7 +1731,7 @@ steps:
     <section class="faq-section" id="faq">
       <div class="faq-grid">
         <div class="section-head">
-          <p class="kicker">&#9484;&#9472; [&nbsp;12&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
+          <p class="kicker">&#9484;&#9472; [&nbsp;13&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
           <h2 class="section-title">Questions your security team will ask.</h2>
           <p class="section-lede">Short answers, and the source is right there if you'd rather read it than take our word for it.</p>
         </div>
@@ -1651,6 +1757,10 @@ steps:
             <p>None in the app. No analytics, no crash reporting, no phone-home on launch. Conversation history is files on disk you can open in any editor, and you can verify all of that in the source.</p>
           </details>
           <details class="faq-item">
+            <summary>Do we need a git repository to use it?</summary>
+            <p>No — not since 0.16. <strong>Everyday projects</strong> are folders of documents rather than code: Overcli scaffolds one, keeps an undo history for it, and never mentions git in the process. The history underneath is an ordinary repo, so nothing is locked in and any other tool can read it, but nobody is asked to learn it. A folder you already have can be brought in with one button, and any project can be switched between everyday and code without moving a single file.</p>
+          </details>
+          <details class="faq-item">
             <summary>What is an agent worktree?</summary>
             <p>Each agent works in an isolated git worktree instead of your checkout, so you can rebase, merge, or throw the whole attempt away from inside the conversation. Your working tree is never the experiment.</p>
           </details>
@@ -1672,7 +1782,7 @@ steps:
 
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;13&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;14&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Signed, notarized, and real.</h2>
         <p class="section-lede">Overcli is in beta, but the macOS builds are now <em>Developer-ID signed and notarized by Apple</em> — they open on a double-click, no right-click ceremony. Windows isn't code-signed yet, so SmartScreen may still flag it. Either way the source is right there; build it yourself.</p>
       </div>
@@ -1755,7 +1865,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.15.0 · beta</span>
+      <span class="sl-cell">v0.16.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
