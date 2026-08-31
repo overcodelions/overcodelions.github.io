@@ -22,7 +22,7 @@
 <body>
   <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.17.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.17.0 is out</strong> — <strong>flows and workers run without the app now</strong>: the same YAML runs headlessly from an <code>overcli</code> CLI, one shot in CI or on a box you own, and deploys straight to GitHub Actions or Jenkins. A flow can chain off another flow finishing, cron joins the trigger list, and a <strong>risk scan reads a flow’s own instructions</strong> before you install, save or run it.</span>
+    <span class="rr-text"><strong>v0.17.0 is out</strong> — <strong>flows and workers can run without the app</strong> — in <strong>alpha</strong>: the same YAML runs headlessly from an <code>overcli</code> CLI, one shot in CI or on a box you own, and deploys to GitHub Actions or Jenkins. Shipped and stable this release: a flow can chain off another flow finishing, cron joins the trigger list, and a <strong>risk scan reads a flow’s own instructions</strong> before you install, save or run it.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -463,8 +463,9 @@
 
         <article class="feature">
           <span class="feature-num">28</span>
-          <h3>Headless, and deployable</h3>
+          <h3>Headless, and deployable <span class="alpha-badge">alpha</span></h3>
           <p>The same flow YAML runs from an <code>overcli</code> command line with no window — one shot in CI, or on a box you own — and a flow or a worker's whole cadence deploys to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline. There is no second runtime: the app and the CLI drive the same runner and the same engine, so a flow that worked at your desk works on the runner. <a href="#headless" class="feat-link">see it below ↓</a></p>
+          <p class="feature-note">In <em>alpha</em>: runnable today, but the interface can still move. Everything else on this page is shipped.</p>
         </article>
 
         <article class="feature">
@@ -1528,12 +1529,17 @@ steps:
          is where the model runs, this is where the app doesn't have to. -->
     <section class="colosseum terminal" id="headless">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; off your desktop</p>
+        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; off your desktop &nbsp;<span class="alpha-badge">alpha</span></p>
         <h2 class="display-title">
           <span>Same flow. Same worker.</span>
           <span class="em">No window at all.</span>
           <span>In&nbsp;CI,&nbsp;or&nbsp;on&nbsp;a&nbsp;box&nbsp;you&nbsp;own.</span>
         </h2>
+        <p class="section-lede colosseum-lede">
+          <strong>This one is alpha, and we would rather say so than have you find out.</strong> The interface can still
+          move, the edges are not all found yet, and it is not the thing to hang a production pipeline on this month.
+          What follows is real and runnable today — just early.
+        </p>
         <p class="section-lede colosseum-lede">
           Until now a flow ran in one place: inside the Electron app, on the machine that had it open. The same YAML now
           runs headlessly from an <code>overcli</code> command line — and there is <strong>no second runtime</strong> to
@@ -1587,7 +1593,7 @@ steps:
 
       <p class="orch-batch-note wk-wide-note">↪ <strong>Running unattended raised the stakes, so two things got stricter.</strong> A flow is a set of instructions that later runs with real tool access, and until now the only checks were an integrity hash and a structural validation — nothing read the instructions. A <em>risk scan</em> now reads every step's prompt override and tool list for credential-file references and for network egress declared as a local effect, on the registry path and on every hand-authored save. Nothing is blocked, because a heuristic that refused a legitimate install would be worse than the warning it replaces — but a high-severity finding pauses the run. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> no longer count as local: a worker without a grant for outside actions cannot run them unwatched, and a step's declared tool list is passed to the CLI as a real allowlist rather than trusted as a label.</p>
 
-      <p class="colosseum-ribbon"><span>one YAML</span> · <span>one runtime</span> · <span>your desk or your runner</span> · <span>interval, cron, or another flow</span></p>
+      <p class="colosseum-ribbon"><span>one YAML</span> · <span>one runtime</span> · <span>your desk or your runner</span> · <span>alpha, and said so</span></p>
     </section>
 
 
@@ -1858,7 +1864,7 @@ steps:
           </details>
           <details class="faq-item">
             <summary>Can it run in CI, without the desktop app?</summary>
-            <p>Yes, since 0.17. The same flow YAML runs headlessly from an <code>overcli</code> command line — one shot in CI or on a machine you own — and a flow or a worker cadence can be deployed to GitHub Actions or Jenkins as a generated pipeline. There is no second runtime to certify: the app and the CLI drive the same runner and the same engine, so what you reviewed at a desk is what executes on the runner. It still authenticates the same way, through the CLIs and credentials you already provision.</p>
+            <p>Yes — but it is <strong>alpha</strong> as of 0.17, so treat it as something to trial rather than to depend on this quarter. The same flow YAML runs headlessly from an <code>overcli</code> command line — one shot in CI or on a machine you own — and a flow or a worker cadence can be deployed to GitHub Actions or Jenkins as a generated pipeline. There is no second runtime to certify: the app and the CLI drive the same runner and the same engine, so what you reviewed at a desk is what executes on the runner. It still authenticates the same way, through the CLIs and credentials you already provision.</p>
           </details>
           <details class="faq-item">
             <summary>What stops a flow or a worker doing something we didn't sanction?</summary>
