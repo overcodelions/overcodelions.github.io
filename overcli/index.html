@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.16.1" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.17.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.16.1 is out</strong> — <strong>everyday projects</strong>: Overcli without a repo, for people who have documents rather than code. Describe what you want and it scaffolds the folder, prepares an undo history and drops you into a conversation pointed at it. Documents open in a grid rather than a file tree, <code>.docx</code> and <code>.xlsx</code> preview with no Office installed, and every version is recoverable in plain language.</span>
+    <span class="rr-text"><strong>v0.17.0 is out</strong> — <strong>flows and workers run without the app now</strong>: the same YAML runs headlessly from an <code>overcli</code> CLI, one shot in CI or on a box you own, and deploys straight to GitHub Actions or Jenkins. A flow can chain off another flow finishing, cron joins the trigger list, and a <strong>risk scan reads a flow’s own instructions</strong> before you install, save or run it.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,7 +30,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.16.1 · beta</span>
+      <span class="brand-ver">v0.17.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -40,6 +40,7 @@
       <li><a href="#orchestrator">orchestrator</a></li>
       <li><a href="#workers">workers</a></li>
       <li><a href="#local">local</a></li>
+      <li><a href="#headless">ci</a></li>
       <li><a href="#documents">documents</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#faq">faq</a></li>
@@ -274,7 +275,7 @@
           <span class="feature-num">01</span>
           <h3>Multi-backend chat</h3>
           <p>Claude, Codex, Gemini, <em>Copilot</em>, and <em>Ollama</em> — five stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
-          <p class="feature-note">Reasoning effort is set <em>per backend</em>, because the word means something different to each of them — and turning it up lands on the turn you are watching, not the one after it.</p>
+          <p class="feature-note">Reasoning effort is set <em>per backend</em>, because the word means something different to each of them — and turning it up lands on the turn you are watching, not the one after it. Claude's <code>/design</code> canvas and its Artifact tool work here too, with permission cards that summarise what actually leaves the machine rather than showing you truncated raw JSON.</p>
         </article>
 
         <article class="feature">
@@ -393,9 +394,11 @@
 
         <article class="feature">
           <span class="feature-num">19</span>
-          <h3>Colosseum</h3>
-          <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
+          <h3>Four speeds, one ladder</h3>
+          <p><em>Full</em>, <em>Swift</em>, <em>Turbo</em> and <em>Warp</em>, on every hosted backend. Swift keeps answers concise and consolidates independent tool work. Turbo enables each backend's speed-first behaviour while keeping the model you picked. Warp also drops to that backend's fast tier — Sonnet for Claude, Luna for Codex, Flash-Lite for Gemini, Haiku for Copilot. Colour-coded icons make the ladder readable without opening a menu.</p>
+          <p class="feature-note">Leaving Warp restores the model and effort you were on rather than stranding you on the fast tier. Ollama stays manually controlled, because a local model's speed is your hardware's business and not a setting.</p>
         </article>
+
       </div>
 
       <div class="feature-band">
@@ -425,34 +428,54 @@
 
         <article class="feature">
           <span class="feature-num">23</span>
+          <h3>Colosseum</h3>
+          <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">24</span>
           <h3>Flows</h3>
           <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
           <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">24</span>
+          <span class="feature-num">25</span>
           <h3>Orchestrator</h3>
           <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it below ↓</a></p>
           <p class="feature-note">The tab has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">25</span>
+          <span class="feature-num">26</span>
           <h3>Scheduled runs</h3>
           <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — by default every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
+          <p class="feature-note">Three trigger kinds: an interval, a <em>cron</em> expression for the cadences no preset covers, or <code>onFlowComplete</code> — "when the nightly scrape succeeds, launch triage" — which reacts to runs it did not launch, bounded at a depth of five. <a href="#headless" class="feat-link">see it below ↓</a></p>
           <p class="feature-note">For a producer you have learned to trust, a schedule can launch its own proposals — but the <em>cap</em> is required, not optional. The first N go in producer order, which is best-first, and everything past it stays parked with a note saying why. A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">26</span>
+          <span class="feature-num">27</span>
           <h3>Flow watch</h3>
           <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
           <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">27</span>
+          <span class="feature-num">28</span>
+          <h3>Headless, and deployable</h3>
+          <p>The same flow YAML runs from an <code>overcli</code> command line with no window — one shot in CI, or on a box you own — and a flow or a worker's whole cadence deploys to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline. There is no second runtime: the app and the CLI drive the same runner and the same engine, so a flow that worked at your desk works on the runner. <a href="#headless" class="feat-link">see it below ↓</a></p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">29</span>
+          <h3>A risk scan before it runs</h3>
+          <p>A flow is a set of instructions that later runs with real tool access, and the only checks used to be an integrity hash and a structural validation — nothing read the instructions. Every step's prompt override and tool list is now scanned for credential-file references and for network egress declared as a <code>local</code> effect, on the registry path and on every hand-authored save.</p>
+          <p class="feature-note">Nothing is blocked: a heuristic that refused a legitimate install would be worse than the warning it replaces. A high-severity finding pauses the run instead, under its own reason. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> stopped counting as local — an unattended worker with no grant for outside actions cannot run them, and a step's declared tool list reaches the CLI as a real allowlist rather than a label.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">30</span>
           <h3>Standing workers</h3>
           <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Describe the job in prose — with a spec or a screenshot attached if you have one — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a calendar, a filing cabinet, and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="#workers" class="feat-link">see it below ↓</a></p>
           <p class="feature-note">A shift streams into the desk as it is worked, and any turn opens in a reader with a find box — a sweep across seventy tickets is a document, not a chat bubble. Leave it a <em>note</em> and the worker reads it before planning the next shift, because the record of what it did is not a thing you edit.</p>
@@ -460,7 +483,7 @@
         </article>
 
         <article class="feature">
-          <span class="feature-num">28</span>
+          <span class="feature-num">31</span>
           <h3>One pot, paid down the roster</h3>
           <p>Eight workers at $10 a month is an $80 exposure nobody ever approved. The crew now draws from a <em>single monthly pot</em>, paid down the roster in order: a worker may spend only what is left after everyone above it is funded. Drag a name up and that is a funding decision you can watch land. Pausing one releases its reserve to everyone below it.</p>
           <p class="feature-note">A worker's unspent cap is held for it, so the one that runs your morning can't be starved by the one that tidies changelogs. Shifts below the waterline skip quietly and journal why, and a dry pool notifies once for the whole roster.</p>
@@ -474,20 +497,20 @@
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">29</span>
+          <span class="feature-num">32</span>
           <h3>Everyday projects</h3>
           <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button. <a href="#documents" class="feat-link">see it below ↓</a></p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">30</span>
+          <span class="feature-num">33</span>
           <h3>Documents, not a file tree</h3>
           <p>Everyday projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
           <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">31</span>
+          <span class="feature-num">34</span>
           <h3>Auto-save, and every version back</h3>
           <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
           <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
@@ -1499,10 +1522,79 @@ steps:
     </section>
 
 
+    <!-- ─────────── HEADLESS ─────────── -->
+    <!-- 0.17 moved the runtime out of the window. It sits after "running
+         local" because the two answer the same shape of question — local
+         is where the model runs, this is where the app doesn't have to. -->
+    <section class="colosseum terminal" id="headless">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; off your desktop</p>
+        <h2 class="display-title">
+          <span>Same flow. Same worker.</span>
+          <span class="em">No window at all.</span>
+          <span>In&nbsp;CI,&nbsp;or&nbsp;on&nbsp;a&nbsp;box&nbsp;you&nbsp;own.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Until now a flow ran in one place: inside the Electron app, on the machine that had it open. The same YAML now
+          runs headlessly from an <code>overcli</code> command line — and there is <strong>no second runtime</strong> to
+          drift out of sync. The app and the CLI drive the same runner, the same flow runtime and the same worker
+          engine; only the host differs. Author it where you can watch it, then deploy the flow — or a worker's whole
+          cadence — straight to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline.
+        </p>
+      </div>
+
+      <div class="orch-stages" aria-label="from the app to CI">
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Author it here</h3></header>
+          <p class="orch-stage-lede">Build the flow in the app, watch it run, pause it, hijack a participant — the loop you already have.</p>
+          <div class="orch-producer">
+            <p class="orch-prompt">flows/nightly-triage.yaml</p>
+            <div class="orch-tools">
+              <span>research</span><span>build</span><span>review</span>
+            </div>
+            <p class="orch-found">→ a file on disk</p>
+          </div>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Run it anywhere</h3></header>
+          <p class="orch-stage-lede">One shot, no window. The same engine the app uses, so a flow that worked at your desk works on the runner.</p>
+          <ul class="orch-map">
+            <li><span class="orch-cand">overcli flow run</span><span class="orch-flow" data-cli="codex">headless</span></li>
+            <li><span class="orch-cand">overcli worker shift</span><span class="orch-flow" data-cli="codex">headless</span></li>
+            <li><span class="orch-cand">GitHub Actions</span><span class="orch-flow" data-cli="claude">generated</span></li>
+            <li><span class="orch-cand">Jenkins</span><span class="orch-flow" data-cli="claude">generated</span></li>
+          </ul>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Trigger it from anything</h3></header>
+          <p class="orch-stage-lede">Three kinds now. An interval, a <em>cron</em> expression for the cadences no preset covers, or another flow finishing.</p>
+          <div class="orch-cap">
+            <span class="orch-cap-label">5 &amp; 35 past</span>
+            <span class="orch-cap-val">cron</span>
+            <span class="orch-cap-label">deploys verbatim</span>
+          </div>
+          <p class="orch-pr">☑ or: when the nightly scrape succeeds, launch triage</p>
+        </article>
+      </div>
+
+      <p class="orch-batch-note wk-wide-note">↪ <strong>Cron rejects rather than guesses.</strong> The parser is ours rather than a dependency — five fields is too small a surface to buy a supply-chain edge for — and it names the offending field instead of quietly interpreting it. The editor previews the next three firings as you type, because a validity check alone cannot tell you whether the expression says what you meant. Chaining is bounded too: <code>onFlowComplete</code> reacts to runs it did not launch, so a manual run, a schedule's run and a worker's run all count, loops stop at a depth of five, and self-chaining is refused at edit time.</p>
+
+      <p class="orch-batch-note wk-wide-note">↪ <strong>Running unattended raised the stakes, so two things got stricter.</strong> A flow is a set of instructions that later runs with real tool access, and until now the only checks were an integrity hash and a structural validation — nothing read the instructions. A <em>risk scan</em> now reads every step's prompt override and tool list for credential-file references and for network egress declared as a local effect, on the registry path and on every hand-authored save. Nothing is blocked, because a heuristic that refused a legitimate install would be worse than the warning it replaces — but a high-severity finding pauses the run. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> no longer count as local: a worker without a grant for outside actions cannot run them unwatched, and a step's declared tool list is passed to the CLI as a real allowlist rather than trusted as a label.</p>
+
+      <p class="colosseum-ribbon"><span>one YAML</span> · <span>one runtime</span> · <span>your desk or your runner</span> · <span>interval, cron, or another flow</span></p>
+    </section>
+
+
     <!-- ─────────── COLOSSEUM ─────────── -->
     <section class="colosseum terminal" id="colosseum">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
+        <p class="kicker">[&nbsp;10&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
         <h2 class="display-title">
           <span>One prompt.</span>
           <span class="em">Five agents.</span>
@@ -1612,7 +1704,7 @@ steps:
          me". -->
     <section class="colosseum terminal" id="documents">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;10&nbsp;] &nbsp;·&nbsp; everyday projects</p>
+        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; everyday projects</p>
         <h2 class="display-title">
           <span>No repo. No git.</span>
           <span class="em">No file dialog.</span>
@@ -1687,7 +1779,7 @@ steps:
          too many. -->
     <section class="dashboards" id="day-to-day">
       <div class="section-head">
-        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; day to day</p>
+        <p class="kicker">[&nbsp;12&nbsp;] &nbsp;·&nbsp; day to day</p>
         <h2 class="section-title">Most days, <em>it's just this.</em></h2>
         <p class="section-lede">Everything above is what Overcli can do when you hand it the keys. This is what it is the rest of the time: a conversation with a diff attached, and a number at the end of the month telling you what that came to. Both are real screens, not renders.</p>
       </div>
@@ -1716,7 +1808,7 @@ steps:
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;12&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;13&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Move fast without</span>
           <span>losing <em>the thread</em>.</span>
@@ -1739,7 +1831,7 @@ steps:
     <section class="faq-section" id="faq">
       <div class="faq-grid">
         <div class="section-head">
-          <p class="kicker">&#9484;&#9472; [&nbsp;13&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
+          <p class="kicker">&#9484;&#9472; [&nbsp;14&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
           <h2 class="section-title">Questions your security team will ask.</h2>
           <p class="section-lede">Short answers, and the source is right there if you'd rather read it than take our word for it.</p>
         </div>
@@ -1763,6 +1855,14 @@ steps:
           <details class="faq-item">
             <summary>Is there any telemetry?</summary>
             <p>None in the app. No analytics, no crash reporting, no phone-home on launch. Conversation history is files on disk you can open in any editor, and you can verify all of that in the source.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can it run in CI, without the desktop app?</summary>
+            <p>Yes, since 0.17. The same flow YAML runs headlessly from an <code>overcli</code> command line — one shot in CI or on a machine you own — and a flow or a worker cadence can be deployed to GitHub Actions or Jenkins as a generated pipeline. There is no second runtime to certify: the app and the CLI drive the same runner and the same engine, so what you reviewed at a desk is what executes on the runner. It still authenticates the same way, through the CLIs and credentials you already provision.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What stops a flow or a worker doing something we didn't sanction?</summary>
+            <p>Three things. A <strong>risk scan</strong> reads each step's prompt override and tool list before you install, save or run it, looking for credential-file references and for network egress declared as local — a high-severity finding pauses the run. A step's declared tool list is enforced as a real allowlist rather than trusted as a label, so a step that declares nothing no longer keeps everything. And <code>bash</code>, <code>websearch</code> and <code>webfetch</code> require the same approval as pushing or sending, so an unattended worker without a grant for outside actions stops rather than proceeding.</p>
           </details>
           <details class="faq-item">
             <summary>Do we need a git repository to use it?</summary>
@@ -1790,7 +1890,7 @@ steps:
 
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;14&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;15&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Signed, notarized, and real.</h2>
         <p class="section-lede">Overcli is in beta, but the macOS builds are now <em>Developer-ID signed and notarized by Apple</em> — they open on a double-click, no right-click ceremony. Windows isn't code-signed yet, so SmartScreen may still flag it. Either way the source is right there; build it yourself.</p>
       </div>
@@ -1873,7 +1973,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.16.1 · beta</span>
+      <span class="sl-cell">v0.17.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
