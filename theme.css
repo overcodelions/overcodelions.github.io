@@ -1492,3 +1492,146 @@ kbd {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ── The cost act ──
+   [ 07 ] is deliberately PAPER while the three acts above it are dark slabs.
+   That single ground change is what breaks the unbroken dark run the page used
+   to have — the argument about money reads as a different kind of claim, and it
+   is the first thing the eye can rest on after three product demos. */
+
+/* One line in the hero carries the economics onto the first screen. It is a
+   promise; [ 07 ] is the proof. Keep them from becoming the same sentence. */
+.lede-econ { margin-top: 14px; }
+.lede-econ em { font-style: normal; color: var(--accent); font-weight: 500; }
+
+/* .display and .display-title both style their .em; .section-title never did,
+   so an accented clause in a section title rendered as flat body ink. */
+.section-title .em {
+  font-style: italic;
+  color: var(--accent);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+/* ── [ 07 ] the cost act ──────────────────────────────────────────────────
+   Two columns on the full --maxw measure: the claim on the left, the evidence
+   on the right. The three acts above it are full-bleed dark slabs, so this is
+   the only place on the page where the eye gets a different SHAPE as well as a
+   different ground — which is most of what makes the paper break register. */
+#cost .cost-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: start;
+}
+@media (max-width: 1080px) { #cost .cost-grid { grid-template-columns: 1fr; gap: 40px; } }
+#cost .cost-say .section-lede { max-width: 54ch; }
+#cost .cost-foot { margin-top: clamp(20px, 2.4vw, 30px); }
+#cost .section-head { margin-bottom: 0; }
+
+#cost .cost-evidence {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--paper-2);
+  overflow: hidden;
+  position: sticky;
+  top: 96px;
+}
+@media (max-width: 1080px) { #cost .cost-evidence { position: static; } }
+#cost .cost-stat { padding: clamp(22px, 2.4vw, 30px) clamp(16px, 1.8vw, 24px) clamp(20px, 2.2vw, 26px); }
+
+/* The headline figure. --signal is reserved for numerals in this system, which
+   is exactly what this is — the largest one on the page. */
+#cost .cost-fig { margin: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+#cost .cost-n {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(52px, 6vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--signal);
+  font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+}
+#cost .cost-of {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+#cost .cost-claim {
+  margin: 10px 0 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  max-width: 34ch;
+}
+
+/* A meter, not a chart: one measure split in two, both parts direct-labelled,
+   and the numbers repeated in the spec rows below so identity is never colour
+   alone. 2px surface gap between the fills. */
+#cost .meter {
+  display: flex;
+  gap: 2px;
+  height: 12px;
+  margin: clamp(18px, 2vw, 24px) 0 0;
+  background: var(--paper-3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+#cost .meter-seg { display: block; min-width: 3px; }
+#cost .meter-cheap { background: #5a51c9; }
+#cost .meter-prem  { background: var(--ink-muted); }
+
+#cost .meter-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 12px 0 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+#cost .meter-key .mk { display: inline-flex; align-items: center; gap: 7px; }
+#cost .meter-key b { color: var(--ink); font-weight: 600; }
+#cost .sw { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+#cost .sw-cheap { background: #5a51c9; }
+#cost .sw-prem  { background: var(--ink-muted); }
+
+#cost .cost-evidence .spec { border-top: 1px solid var(--line); border-bottom: 0; }
+#cost .spec .v em { font-weight: 600; }
+
+/* ── Pacing inside the two long acts ─────────────────────────────────────
+   [ 04 ] and [ 05 ] are 3,878px and 4,030px back to back — a third of the
+   page — and both used to open with the same move: centred kicker, centred
+   display title, centred lede. Left-aligning their heads gives the pair a
+   different axis from [ 03 ], which keeps the centred treatment, so the eye
+   gets told it has moved. A 162-word centred paragraph was also just hard to
+   read: every line started somewhere new. */
+#flows-model .colosseum-head,
+#workers .colosseum-head {
+  text-align: left;
+  /* The BOX stays on the content column — a .colosseum.terminal is full-bleed,
+     so margin-inline:0 would pin this to the viewport edge and detach the head
+     from the mocks below it, which all sit on --col. Only the TEXT goes left. */
+  max-width: var(--col);
+  margin-inline: auto;
+}
+/* Roughly the measure the centred head used (820-920px), so the title keeps
+   its original three-line break instead of snapping mid-phrase. */
+#flows-model .display-title,
+#workers .display-title { max-width: 900px; }
+#flows-model .colosseum-lede,
+#workers .colosseum-lede { margin-inline: 0; max-width: 62ch; }
+
+/* The orchestrator is a sub-block of [ 05 ] now, not a peer section — but it
+   arrived carrying a full-size Ask/Map/Run pipeline that sat directly under
+   the workers' own Hire/Shift/Review, in the identical component. Same idea
+   twice at the same weight. Scaling the sub-block's cards down makes it read
+   as the detail it is. */
+#orchestrator .orch-stages { gap: 10px; }
+#orchestrator .orch-stage { padding: 16px 15px; border-radius: 9px; gap: 9px; }
+#orchestrator .orch-stage-head h3 { font-size: 16px; }
+#orchestrator .orch-stage-lede { font-size: 12px; }
+#orchestrator .orch-arrow { font-size: 15px; }

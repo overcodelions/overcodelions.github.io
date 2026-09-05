@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.17.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.18.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.17.0 is out</strong> — <strong>flows and workers can run without the app</strong> — in <strong>alpha</strong>: the same YAML runs headlessly from an <code>overcli</code> CLI, one shot in CI or on a box you own, and deploys to GitHub Actions or Jenkins. Shipped and stable this release: a flow can chain off another flow finishing, cron joins the trigger list, and a <strong>risk scan reads a flow’s own instructions</strong> before you install, save or run it.</span>
+    <span class="rr-text"><strong>v0.18.0 is out</strong> — <strong>Claude in Chrome, per conversation</strong> — opt in on the turn that actually needs a browser, and the live MCP servers behind it now show up in the Capabilities sheet. <strong>GPT-6 Astra</strong> joins the codex line at the <strong>frontier</strong> tier — opt-in, so <code>gpt-5.6-sol</code> stays the auto-pick. Also shipping: <strong>outbound webhooks</strong> so notifications reach you away from the desktop, a <strong>day view for the Workers tab</strong> with a way to skip triage, and <strong>faster starts</strong>.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,18 +30,15 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.17.0 · beta</span>
+      <span class="brand-ver">v0.18.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
-      <li><a href="#features">features</a></li>
       <li><a href="#rebound">rebound</a></li>
       <li><a href="#flows-model">flows</a></li>
-      <li><a href="#orchestrator">orchestrator</a></li>
       <li><a href="#workers">workers</a></li>
-      <li><a href="#local">local</a></li>
-      <li><a href="#headless">ci</a></li>
-      <li><a href="#documents">documents</a></li>
+      <li><a href="#cost">cost</a></li>
+      <li><a href="#features">features</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#faq">faq</a></li>
       <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#download"><span class="bk">[</span>&nbsp;download&nbsp;<span class="bk">]</span></a></li>
@@ -64,6 +61,7 @@
           <p class="lede">
             Overcli wraps <code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code> in one desktop app — conversations, diffs, worktrees, usage. Then it keeps going without you: flows, scheduled batches, and <em>standing workers</em> you hire, fund, and review. Stop juggling terminals. Start reading the work.
           </p>
+          <p class="lede lede-econ">And it runs the cheap steps on cheap models — <em>every flow step names its own</em> — so the bill is not five frontier subscriptions.</p>
           <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">CLI</span> &nbsp;— a GUI that sits <em>over</em> your <em>CLIs</em>. Yes, that's the name.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#download">
@@ -258,266 +256,6 @@
 
 
     <!-- ─────────── FEATURES ─────────── -->
-    <section class="features" id="features">
-      <div class="section-head">
-        <p class="kicker">[&nbsp;02&nbsp;] &nbsp;·&nbsp; what's in the box</p>
-        <h2 class="section-title">Built by engineers obsessed with their dev environment.</h2>
-        <p class="section-lede">Every surface below exists because somebody got annoyed that it didn't. No feature-ballast, no PM checkboxes — just the pieces you miss the moment you pop back into a raw terminal. They fall into three groups: <em>the window</em> you read the work in, <em>the machinery</em> underneath it, and the growing pile of <em>work that runs itself</em>.</p>
-      </div>
-
-      <div class="feature-band">
-        <h3 class="band-title">the window</h3>
-        <p class="band-lede">What you look at while the agent works — the surfaces that made a terminal a bad place to explore.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-num">01</span>
-          <h3>Multi-backend chat</h3>
-          <p>Claude, Codex, Gemini, <em>Copilot</em>, and <em>Ollama</em> — five stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
-          <p class="feature-note">Reasoning effort is set <em>per backend</em>, because the word means something different to each of them — and turning it up lands on the turn you are watching, not the one after it. Claude's <code>/design</code> canvas and its Artifact tool work here too, with permission cards that summarise what actually leaves the machine rather than showing you truncated raw JSON.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">02</span>
-          <h3>Tool cards, not wall-of-text</h3>
-          <p>File edits render as diffs. Bash lives in a terminal block. Reads, writes, todos each get their own card — so you can actually see what the agent did.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">03</span>
-          <h3>Permission &amp; approval, first-class</h3>
-          <p>Claude permission prompts and Codex approval cards (exec + apply_patch) are proper UI elements — not modals interrupting the flow.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">04</span>
-          <h3>File editor, right there</h3>
-          <p>Syntax highlighting, line-range highlighting, HTML &amp; Markdown preview tabs for previewable files, and a one-click <em>download</em> out of the preview pane beside the file's own path. No context-switch to VS Code to check the agent's work.</p>
-          <p class="feature-note">An <code>.html</code> report previews the way it does in a browser — the CDN React + Tailwind page our dashboard flows ask agents to write actually paints, and a link in it opens in your browser. The frame can still neither phone home nor read a file it wasn't shown.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">05</span>
-          <h3>History from disk</h3>
-          <p>Loads prior transcripts straight out of <code>~/.claude/projects</code>, <code>~/.codex/sessions</code>, and <code>~/.gemini/tmp</code>. Nothing gets re-invented; we just read the files you already have.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">06</span>
-          <h3>Extensions browser</h3>
-          <p>One searchable pane for everything the CLIs can do — slash commands, sub-agents, skills, plugins, MCP servers — unified across Claude, Codex, Gemini, and Ollama. Rescan on demand; no YAML to edit.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">07</span>
-          <h3>Workspaces — projects of projects</h3>
-          <p>Group related repos into a single <em>workspace</em> and every agent inherits the map: it knows the projects belong together and navigates between them naturally. Ask for a change that spans <code>api-gateway</code> and <code>billing-svc</code> and the agent edits both, runs both test suites, and shows one review. The feature that makes polyrepo feel like monorepo.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">08</span>
-          <h3>Keyboard first</h3>
-          <p><kbd>⌘P</kbd> file finder. <kbd>⌘\</kbd> toggles the sidebar. <kbd>⌘,</kbd> opens settings. <kbd>⌘1</kbd>–<kbd>⌘9</kbd> jumps between open files. It is not a website; it is a tool.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">09</span>
-          <h3>⌘K finds anything</h3>
-          <p>One input over the whole app — <em>chats</em>, <em>agents</em>, <em>runs</em>, <em>flows</em>, <em>workers</em>, <em>projects</em>, <em>workspaces</em>, archived threads and app actions. ↵ goes where the subtitle says it goes — a worker row arrives at that worker's desk, ⌘↵ opens its contract. A quick switcher that only indexed conversations meant everything else could be found only by knowing which tab it lived behind, which is the opposite of the point.</p>
-          <p class="feature-note">Ranking is a pure module with its own tests, because "an exact project name should beat a chat that merely mentions the word" degrades silently — a test catches it, a screenshot doesn't.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">10</span>
-          <h3>A sidebar you navigate by what you were doing</h3>
-          <p>The old list rendered where things <em>live</em>; people navigate by what they were <em>doing</em>. <strong>Stream</strong> is one newest-first list of chats, agents and runs together, with the owner printed once above a run of consecutive rows rather than on every one, so going flat doesn't cost you the sense of which repo you're in. <strong>Places</strong> keeps the tree for when the question really is where something lives — two layouts rather than a toggle, because they answer different questions.</p>
-          <p class="feature-note">"Active" is now <em>Working on</em>, and momentum — turns per hour, decayed — earns a row its slot, so a thread you've been forty turns deep in all morning outranks a message you fired off and forgot. Anything untouched for two days rolls up under a dashed count line in place: not hidden, which makes people hunt, and not archived, which needs a decision and an undo. Search still reaches inside it.</p>
-        </article>
-      </div>
-
-      <div class="feature-band">
-        <h3 class="band-title">the machinery</h3>
-        <p class="band-lede">What sits under the window: the CLIs, the credentials, the worktrees, and the numbers that say what it cost.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-num">11</span>
-          <h3>No new subscriptions</h3>
-          <p>Overcli sits on top of the CLIs you already use, with the auth they already have. Your <em>Claude Pro</em>, your <em>ChatGPT</em> plan, your <code>gcloud</code> creds, your <em>GitHub Copilot</em> seat — whatever <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>copilot</code> are signed into is what overcli runs through. Local <code>ollama</code> for the rest. No API keys to manage. No new bills.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">12</span>
-          <h3>Health badges</h3>
-          <p>Per-backend status pills: <em>ready</em>, <em>unauthenticated</em>, <em>missing</em>, <em>error</em>. The app tells you which CLI is broken before you try to use it.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">13</span>
-          <h3>Agent worktrees</h3>
-          <p>Create, update, rebase, merge, push, or remove a git worktree from inside the conversation. Agents work in isolation; you merge when you like what you read.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">14</span>
-          <h3>Changes bar</h3>
-          <p>A live <code>+/−</code> rollup sits above the composer, counting everything the agent has touched this turn. Click to expand the diff, click a file to jump to it. The commit badge is one click away.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">15</span>
-          <h3>Local model dashboard</h3>
-          <p>A proper UI for your Ollama install: browse a hand-checked catalog of <em>46 tags</em>, filter by maker or country, pull and delete with one click, watch server logs live, and see a readout of the GPU you're actually running on. <a href="#local" class="feat-link">see it below ↓</a></p>
-          <p class="feature-note">It also tells you when the copy of Ollama you have is one you shouldn't still be running — read off the binary even with the server stopped, and escalated to a security finding once you're several minors behind — and when the API is answering on a non-loopback address, where anyone on your network can pull and delete your models. Nothing upgrades itself: you get the command, in a Terminal you can watch.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">16</span>
-          <h3>Usage dashboard</h3>
-          <p>Rolling 5h / 24h / 7d stats, broken down by backend, model, and project. Quotas are read from the CLIs themselves rather than estimated, so the number you're looking at is the one the provider is counting. Know what you're burning before the invoice tells you.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">17</span>
-          <h3>Where the turn went</h3>
-          <p>A Timing tab splits every turn into model time and tool time — and the tool share is split again <em>by tool name</em>, with a legend giving each tool's busy time, call count, slowest single call, and errors. Forty seconds in tools is a very different afternoon depending on whether it was one <code>Bash</code> build or thirty <code>Read</code> calls.</p>
-          <p class="feature-note">Tools are ranked slowest-to-fastest on a red → amber → green ramp, so the expensive one is findable without reading a number, and nothing lands near the blue the model's share is drawn in. Parallel calls overlap, so widths are wall clock and the legend is what each tool actually spent.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">18</span>
-          <h3>Install MCP once, everywhere</h3>
-          <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">19</span>
-          <h3>Four speeds, one ladder</h3>
-          <p><em>Full</em>, <em>Swift</em>, <em>Turbo</em> and <em>Warp</em>, on every hosted backend. Swift keeps answers concise and consolidates independent tool work. Turbo enables each backend's speed-first behaviour while keeping the model you picked. Warp also drops to that backend's fast tier — Sonnet for Claude, Luna for Codex, Flash-Lite for Gemini, Haiku for Copilot. Colour-coded icons make the ladder readable without opening a menu.</p>
-          <p class="feature-note">Leaving Warp restores the model and effort you were on rather than stranding you on the fast tier. Ollama stays manually controlled, because a local model's speed is your hardware's business and not a setting.</p>
-        </article>
-
-      </div>
-
-      <div class="feature-band">
-        <h3 class="band-title">work that runs itself</h3>
-        <p class="band-lede">Everything that keeps going once you stop typing — ordered by how much you hand over, and how little it asks of you.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-num">20</span>
-          <h3>Rebound reviews</h3>
-          <p>After every turn, fire a second agent — on a <em>different</em> backend if you like — to review what just landed. Thinking blocks visible, round counter included. Collaboration mode loops rounds until the reviewer stops finding things to fix.</p>
-          <p class="feature-note">Note: Copilot can't be a reviewer yet — its CLI doesn't read prompts from stdin. When it's your primary, overcli routes the review to claude/codex/gemini and shows a <em>"Routed via X"</em> chip so it's not surprising.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">21</span>
-          <h3>Silent agents</h3>
-          <p>Long-running background agents that live next to your work. A <em>doc-writer</em> that keeps <code>/docs</code> in sync as the code changes. A <em>PR-reviewer</em> that quietly comments on every pull request the moment it opens. No Slack pings. No dashboards. Just work getting done.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">22</span>
-          <h3>Smart downgrades</h3>
-          <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default. <a href="#local" class="feat-link">see it below ↓</a></p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">23</span>
-          <h3>Colosseum</h3>
-          <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task. <a href="#colosseum" class="feat-link">see it below ↓</a></p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">24</span>
-          <h3>Flows</h3>
-          <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
-          <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">25</span>
-          <h3>Orchestrator</h3>
-          <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it below ↓</a></p>
-          <p class="feature-note">The tab has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">26</span>
-          <h3>Scheduled runs</h3>
-          <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — by default every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
-          <p class="feature-note">Three trigger kinds: an interval, a <em>cron</em> expression for the cadences no preset covers, or <code>onFlowComplete</code> — "when the nightly scrape succeeds, launch triage" — which reacts to runs it did not launch, bounded at a depth of five. <a href="#headless" class="feat-link">see it below ↓</a></p>
-          <p class="feature-note">For a producer you have learned to trust, a schedule can launch its own proposals — but the <em>cap</em> is required, not optional. The first N go in producer order, which is best-first, and everything past it stays parked with a note saying why. A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">27</span>
-          <h3>Flow watch</h3>
-          <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
-          <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">28</span>
-          <h3>Headless, and deployable <span class="alpha-badge">alpha</span></h3>
-          <p>The same flow YAML runs from an <code>overcli</code> command line with no window — one shot in CI, or on a box you own — and a flow or a worker's whole cadence deploys to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline. There is no second runtime: the app and the CLI drive the same runner and the same engine, so a flow that worked at your desk works on the runner. <a href="#headless" class="feat-link">see it below ↓</a></p>
-          <p class="feature-note">In <em>alpha</em>: runnable today, but the interface can still move. Everything else on this page is shipped.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">29</span>
-          <h3>A risk scan before it runs</h3>
-          <p>A flow is a set of instructions that later runs with real tool access, and the only checks used to be an integrity hash and a structural validation — nothing read the instructions. Every step's prompt override and tool list is now scanned for credential-file references and for network egress declared as a <code>local</code> effect, on the registry path and on every hand-authored save.</p>
-          <p class="feature-note">Nothing is blocked: a heuristic that refused a legitimate install would be worse than the warning it replaces. A high-severity finding pauses the run instead, under its own reason. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> stopped counting as local — an unattended worker with no grant for outside actions cannot run them, and a step's declared tool list reaches the CLI as a real allowlist rather than a label.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">30</span>
-          <h3>Standing workers</h3>
-          <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Describe the job in prose — with a spec or a screenshot attached if you have one — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a calendar, a filing cabinet, and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="#workers" class="feat-link">see it below ↓</a></p>
-          <p class="feature-note">A shift streams into the desk as it is worked, and any turn opens in a reader with a find box — a sweep across seventy tickets is a document, not a chat bubble. Leave it a <em>note</em> and the worker reads it before planning the next shift, because the record of what it did is not a thing you edit.</p>
-          <p class="feature-note">The tab opens on a work queue banded <em>Running now</em>, <em>Needs you</em>, <em>Finished today</em> — status is not a column you sort by, it is what a row is, and a single time-ordered table buries the two rows with a decision waiting on them under eight that need nothing from anyone.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">31</span>
-          <h3>One pot, paid down the roster</h3>
-          <p>Eight workers at $10 a month is an $80 exposure nobody ever approved. The crew now draws from a <em>single monthly pot</em>, paid down the roster in order: a worker may spend only what is left after everyone above it is funded. Drag a name up and that is a funding decision you can watch land. Pausing one releases its reserve to everyone below it.</p>
-          <p class="feature-note">A worker's unspent cap is held for it, so the one that runs your morning can't be starved by the one that tidies changelogs. Shifts below the waterline skip quietly and journal why, and a dry pool notifies once for the whole roster.</p>
-        </article>
-      </div>
-
-      <div class="feature-band">
-        <h3 class="band-title">without a repo</h3>
-        <p class="band-lede">The same app for people who have documents rather than code — added in 0.16, and the reason "is this for me?" now has a second answer.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-num">32</span>
-          <h3>Everyday projects</h3>
-          <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button. <a href="#documents" class="feat-link">see it below ↓</a></p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">33</span>
-          <h3>Documents, not a file tree</h3>
-          <p>Everyday projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
-          <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">34</span>
-          <h3>Auto-save, and every version back</h3>
-          <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
-          <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
-        </article>
-      </div>
-    </section>
 
 
     <!-- ─────────── THE LADDER ─────────── -->
@@ -527,7 +265,7 @@
          argument. -->
     <section class="ladder-section" id="ladder">
       <div class="section-head">
-        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; how much runs without you</p>
+        <p class="kicker">[&nbsp;02&nbsp;] &nbsp;·&nbsp; how much runs without you</p>
         <h2 class="section-title">Six rungs. <em>You pick how far up you go.</em></h2>
         <p class="section-lede">Everything below this line is the same axis seen from different heights: how much of the work you hand over, and how little it asks of you on the way. Nothing here is a mode you have to adopt — the rung you stop at is a decision about trust, and you make it per project, per flow, per worker. Most people live on the first two for a month before they climb.</p>
       </div>
@@ -576,7 +314,7 @@
             <p>The same batch, on a clock, while you're asleep — parked for your approval by default, and never launching more than the cap you set.</p>
           </div>
           <span class="lr-meter" aria-hidden="true"><span style="width:80%"></span></span>
-          <a class="lr-link" href="#schedules">schedules ↓</a>
+          <a class="lr-link" href="#workers">workers ↓</a>
         </li>
         <li class="ladder-rung" data-level="6">
           <span class="lr-n">06</span>
@@ -596,7 +334,7 @@
     <!-- ─────────── REBOUND ─────────── -->
     <section class="colosseum terminal" id="rebound">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; rebound reviews</p>
+        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; rebound reviews</p>
         <h2 class="display-title">
           <span>Ship a turn.</span>
           <span class="em">Bounce it back.</span>
@@ -683,7 +421,7 @@
     <!-- ─────────── FLOWS MODEL ─────────── -->
     <section class="colosseum terminal" id="flows-model">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; flows model</p>
+        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; flows model</p>
         <h2 class="display-title">
           <span>Define.</span>
           <span class="em">Verify.</span>
@@ -855,7 +593,7 @@ steps:
       <!-- featured flows from the registry -->
       <div class="flows-featured" id="flows-featured">
         <div class="flows-featured-head">
-          <p class="kicker">[&nbsp;05b&nbsp;] &nbsp;·&nbsp; ready to run</p>
+          <p class="kicker">[&nbsp;04b&nbsp;] &nbsp;·&nbsp; ready to run</p>
           <h3 class="flows-featured-title">35 open-source flows ship with Overcli.</h3>
         </div>
 
@@ -1026,244 +764,12 @@ steps:
 
 
     <!-- ─────────── ORCHESTRATOR ─────────── -->
-    <section class="colosseum terminal" id="orchestrator">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; orchestrator</p>
-        <h2 class="display-title">
-          <span>Point it at a backlog.</span>
-          <span class="em">It carves out the work.</span>
-          <span>Flows&nbsp;run&nbsp;in&nbsp;parallel.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          The <em>Orchestrator</em> turns a pile of tickets into a batch of running flows. A <em>producer</em> turn investigates your MCP sources — Jira, GitHub, Linear, Zendesk, Sentry, ProductBoard — and pulls out small, self-contained asks. Map each one to a flow, hit launch, and Overcli runs them side by side, each in its own git worktree, opening a PR as it finishes. When a flow pauses for a human checkpoint it frees its slot, so the rest of the batch keeps moving.
-        </p>
-      </div>
-
-      <!-- three stages: ask → map → run -->
-      <div class="orch-stages" aria-label="orchestrator pipeline">
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Ask</h3></header>
-          <p class="orch-stage-lede">A producer turn investigates with your MCP tools — read-only, never editing — and proposes candidates.</p>
-          <div class="orch-producer">
-            <p class="orch-prompt">“Find small, safe bugs in my open issues.”</p>
-            <div class="orch-tools">
-              <span>github·search</span><span>jira·list</span><span>sentry·issues</span>
-            </div>
-            <p class="orch-found">→ 6 candidates</p>
-          </div>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Map</h3></header>
-          <p class="orch-stage-lede">Each ask maps to one flow + a base branch. Take the producer's suggestion or override per row.</p>
-          <ul class="orch-map">
-            <li><span class="orch-cand">Null deref in /login</span><span class="orch-flow" data-cli="codex">debug-logs</span></li>
-            <li><span class="orch-cand">Stale Retry-After header</span><span class="orch-flow" data-cli="codex">debug-logs</span></li>
-            <li><span class="orch-cand">Typo in onboarding doc</span><span class="orch-flow" data-cli="claude">docs-from-code</span></li>
-            <li><span class="orch-cand">Flaky checkout test</span><span class="orch-flow" data-cli="claude">flaky-test-hunter</span></li>
-            <li><span class="orch-cand">+ 2 more</span><span class="orch-flow orch-flow-muted">mapped</span></li>
-          </ul>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Run</h3></header>
-          <p class="orch-stage-lede">Launch. Flows run in parallel, each in an isolated worktree — up to N at a time, your call (1–8).</p>
-          <div class="orch-cap">
-            <span class="orch-cap-label">run at most</span>
-            <span class="orch-cap-val">2</span>
-            <span class="orch-cap-label">at a time</span>
-          </div>
-          <p class="orch-pr">☑ open a PR when each finishes</p>
-        </article>
-      </div>
-
-      <details class="shot-reveal">
-        <summary><span class="shot-badge">screenshot</span> one ask, fanned out</summary>
-        <figure class="shot">
-          <div class="shot-frame">
-            <img src="assets/shot-orchestrator.png" width="2189" height="1344" loading="lazy" decoding="async"
-                 alt="The Orchestrator tab in three numbered stages: a producer turn investigating the project's test coverage and reporting what it found and what it deliberately dropped; eight candidate asks, each sized small or medium and mapped to a flow; and a flow-runs panel. A footer sets the parallel cap to two and offers to open a PR when each finishes." />
-          </div>
-          <figcaption>The producer's turn is the whole feature, and it is worth reading: it reports what it found, then a paragraph headed <em>“What I deliberately dropped.”</em> — the two big stateful panes it refuses to touch, because standing up a render harness "is a design decision, which is your call, not an autonomous run". Eight asks came out, each sized and mapped to a flow, and nothing launches until you press the button — two at a time, a PR per finish.</figcaption>
-        </figure>
-      </details>
-
-      <p class="flow-run-label">↓ &nbsp;one batch, mid-run</p>
-
-      <!-- live batch ledger -->
-      <!-- The batch runs live (see app.js), so frame it as the app rather
-           than as a list — same window chrome as the hero, Orchestrator tab
-           active instead of Chat. -->
-      <figure class="app-window orch-window" aria-label="the Orchestrator tab, mid-batch">
-        <header class="app-chrome">
-          <span class="chrome-dot red"></span>
-          <span class="chrome-dot yellow"></span>
-          <span class="chrome-dot green"></span>
-          <span class="chrome-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" />
-              <line x1="6" y1="3" x2="6" y2="13" stroke="currentColor" />
-            </svg>
-          </span>
-          <nav class="app-tabs">
-            <button class="app-tab" type="button" tabindex="-1">Chat</button>
-            <button class="app-tab" type="button" tabindex="-1">Flows</button>
-            <button class="app-tab is-active" type="button" tabindex="-1">Orchestrator</button>
-          </nav>
-          <span class="chrome-spacer"></span>
-          <div class="chrome-right">
-            <span class="orch-window-run">payments-platform</span>
-          </div>
-        </header>
-
-        <div class="orch-batch" aria-label="an orchestration batch running">
-          <header class="orch-batch-head">
-            <span class="orch-batch-title">Batch · 6 asks</span>
-            <div class="orch-batch-stats">
-              <span class="ob-done">1 done</span>
-              <span class="ob-run">2 running</span>
-              <span class="ob-pause">1 paused</span>
-              <span class="ob-queue">2 queued</span>
-              <span class="ob-cap">max 2</span>
-            </div>
-          </header>
-
-          <ul class="orch-lanes">
-            <li class="orch-lane" data-state="done">
-              <span class="ol-status">done</span>
-              <span class="ol-title">Typo in onboarding doc</span>
-              <span class="ol-flow" data-cli="claude">docs-from-code</span>
-              <span class="ol-meta">PR #418 · +4 −1</span>
-            </li>
-            <li class="orch-lane" data-state="running">
-              <span class="ol-status">running…</span>
-              <span class="ol-title">Null deref in /login</span>
-              <span class="ol-flow" data-cli="codex">debug-logs</span>
-              <span class="ol-meta">step 3/4 · build</span>
-            </li>
-            <li class="orch-lane" data-state="running">
-              <span class="ol-status">running…</span>
-              <span class="ol-title">Stale Retry-After header</span>
-              <span class="ol-flow" data-cli="codex">debug-logs</span>
-              <span class="ol-meta">step 2/4 · diagnose</span>
-            </li>
-            <li class="orch-lane" data-state="paused">
-              <span class="ol-status">paused</span>
-              <span class="ol-title">Flaky checkout test</span>
-              <span class="ol-flow" data-cli="claude">flaky-test-hunter</span>
-              <span class="ol-meta">checkpoint — freed its slot · <strong>continue →</strong></span>
-            </li>
-            <li class="orch-lane" data-state="queued">
-              <span class="ol-status">queued</span>
-              <span class="ol-title">Deprecated API in billing</span>
-              <span class="ol-flow" data-cli="codex">analyze-stack-trace</span>
-              <span class="ol-meta">waiting for a slot</span>
-            </li>
-            <li class="orch-lane" data-state="queued">
-              <span class="ol-status">queued</span>
-              <span class="ol-title">Missing index on orders</span>
-              <span class="ol-flow" data-cli="claude">migration-plan</span>
-              <span class="ol-meta">waiting for a slot</span>
-            </li>
-          </ul>
-
-          <p class="orch-batch-note">↪ The paused checkpoint doesn't stall the batch — it <strong>freed its slot</strong>, so the next queued ask pumps in behind it. Continue it from the Flows tab whenever you're ready.</p>
-        </div>
-      </figure>
-
-
-
-      <!-- ── 04b · schedules — the third beat of the orchestrator story ── -->
-      <div class="sched" id="schedules">
-        <div class="sched-head">
-          <p class="kicker">[&nbsp;06b&nbsp;] &nbsp;·&nbsp; on a cadence</p>
-          <h3 class="sched-title">Run it every morning. <em>Park what needs a human.</em></h3>
-          <p class="sched-lede">
-            A schedule is a trigger on work you already defined, so it lives inside <strong>Flows</strong> rather than
-            becoming a fourth place to launch from. Point one at a flow and it runs. Point one at the orchestrator and it
-            investigates your sources — then <strong>parks</strong> what it found. The producer decides how many items
-            exist, so an unbounded unattended dispatch is the one thing a schedule must not do. Once you trust a
-            producer you can let it launch its own proposals, but only under a <strong>required cap</strong> — the
-            hazard was never that a scheduled batch ran, it was the producer deciding at 3am that there were thirty
-            things to do.
-          </p>
-        </div>
-
-        <div class="sched-grid">
-          <ul class="sched-list">
-            <li class="sched-row" data-state="parked">
-              <header class="sched-row-head">
-                <span class="sched-dot"></span>
-                <span class="sched-name">Morning triage</span>
-                <span class="sched-target">propose a batch</span>
-                <span class="sched-cad">weekdays · 08:00</span>
-                <span class="sched-state">5 proposed</span>
-              </header>
-              <ul class="sched-proposals">
-                <li><span class="sp-n">SR-12</span> Null deref in <code>/login</code> <em>analyze-stack-trace</em></li>
-                <li><span class="sp-n">SR-12</span> Flaky checkout test <em>flaky-test-hunter</em></li>
-                <li><span class="sp-n">SR-12</span> Deprecated API in billing <em>migration-plan</em></li>
-                <li class="sp-more">+ 2 more</li>
-              </ul>
-              <footer class="sched-actions">
-                <span class="sched-btn sched-btn-go">Review &amp; pick</span>
-                <span class="sched-btn">Launch all</span>
-                <span class="sched-btn sched-btn-off">Discard</span>
-              </footer>
-            </li>
-
-            <li class="sched-row" data-state="running">
-              <header class="sched-row-head">
-                <span class="sched-dot"></span>
-                <span class="sched-name">Nightly dep audit</span>
-                <span class="sched-target">run a flow</span>
-                <span class="sched-cad">every day · 02:00</span>
-                <span class="sched-state">running · SR-31</span>
-              </header>
-            </li>
-
-            <li class="sched-row" data-state="armed">
-              <header class="sched-row-head">
-                <span class="sched-dot"></span>
-                <span class="sched-name">Docs drift check</span>
-                <span class="sched-target">run a flow</span>
-                <span class="sched-cad">every 1h · weekdays 08–17</span>
-                <span class="sched-state">in 41m</span>
-              </header>
-            </li>
-          </ul>
-
-          <aside class="sched-side">
-            <p class="sched-side-title">in the title bar</p>
-            <ul class="sched-states">
-              <li data-state="parked"><span class="sched-dot"></span><strong>Waiting</strong><span>a batch is parked on your approval</span></li>
-              <li data-state="running"><span class="sched-dot"></span><strong>Running</strong><span>a scheduled run is going right now</span></li>
-              <li data-state="armed"><span class="sched-dot"></span><strong>Scheduled · in 3h</strong><span>armed and idle — the countdown is what proves it isn't forgotten</span></li>
-            </ul>
-            <p class="sched-side-note">Waiting outranks running: one needs a human, the other just needs time. Nothing renders at all when no schedule is enabled.</p>
-          </aside>
-        </div>
-
-        <p class="sched-note">
-          Every occurrence is numbered <code>[SR-n]</code> — a scheduled prompt is fixed by definition, so the twelfth
-          morning run would otherwise be titled exactly like the first. A schedule missed while the app was closed
-          coalesces into one catch-up run or skips; it never stampedes on wake. <strong>Run now</strong> is a test drive:
-          it produces a real run but leaves the cadence exactly where it found it.
-        </p>
-      </div>
-
-      <p class="colosseum-ribbon"><span>backlog in</span> · <span>self-contained asks out</span> · <span>parallel, isolated worktrees</span> · <span>a PR per finish</span> · <span>on your cadence, parked for approval</span></p>
-    </section>
 
 
     <!-- ─────────── WORKERS ─────────── -->
     <section class="colosseum terminal" id="workers">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; standing workers</p>
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; standing workers</p>
         <h2 class="display-title">
           <span>Hire it once.</span>
           <span class="em">It wakes on its own clock.</span>
@@ -1412,7 +918,7 @@ steps:
       <!-- ── 05b · the pot — one number you approve once ── -->
       <div class="sched" id="funds">
         <div class="sched-head">
-          <p class="kicker">[&nbsp;07b&nbsp;] &nbsp;·&nbsp; the pot</p>
+          <p class="kicker">[&nbsp;05b&nbsp;] &nbsp;·&nbsp; the pot</p>
           <h3 class="sched-title">One monthly budget. <em>Paid down the roster.</em></h3>
           <p class="sched-lede">
             Every worker used to carry its own cap and nothing carried the sum, so the number that actually mattered —
@@ -1442,264 +948,471 @@ steps:
       <p class="orch-batch-note wk-wide-note">↪ <strong>A worker is a file you can hand to another team.</strong> Its Settings tab carries the job as YAML — readable on screen before you send it, saveable as a <code>.worker.yaml</code>, with the flows it launches embedded whole rather than merely named. What deliberately doesn't travel is everything that is a record of what happened <em>here</em>: the id, the hire date, the shift history, the project path, and above all the trust level. An imported worker always lands on probation, because trust is earned against the person who will review the work — and a file that could arrive pre-trusted would be a way to hand somebody a worker that launches runs unattended on day one.</p>
 
       <p class="colosseum-ribbon"><span>a job description in</span> · <span>a contract and a flow out</span> <span>· its own clock</span> · <span>probation until you say otherwise</span> · <span>one pot, paid down the roster</span></p>
+
+      <div class="sched" id="orchestrator">
+        <div class="sched-head">
+          <p class="kicker">[&nbsp;05c&nbsp;] &nbsp;·&nbsp; the orchestrator</p>
+          <h3 class="sched-title">Point it at a backlog. <em>It carves out the work.</em></h3>
+          <p class="sched-lede">A <em>producer</em> turn investigates your MCP sources — Jira, GitHub, Linear, Zendesk, Sentry, ProductBoard — and pulls out small, self-contained asks. Map each to a flow, hit launch, and Overcli runs them side by side, each in its own git worktree, opening a PR as it finishes. A flow that pauses for a checkpoint frees its slot, so the rest of the batch keeps moving.</p>
+        </div>
+      <!-- three stages: ask → map → run -->
+      <div class="orch-stages" aria-label="orchestrator pipeline">
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Ask</h3></header>
+          <p class="orch-stage-lede">A producer turn investigates with your MCP tools — read-only, never editing — and proposes candidates.</p>
+          <div class="orch-producer">
+            <p class="orch-prompt">“Find small, safe bugs in my open issues.”</p>
+            <div class="orch-tools">
+              <span>github·search</span><span>jira·list</span><span>sentry·issues</span>
+            </div>
+            <p class="orch-found">→ 6 candidates</p>
+          </div>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Map</h3></header>
+          <p class="orch-stage-lede">Each ask maps to one flow + a base branch. Take the producer's suggestion or override per row.</p>
+          <ul class="orch-map">
+            <li><span class="orch-cand">Null deref in /login</span><span class="orch-flow" data-cli="codex">debug-logs</span></li>
+            <li><span class="orch-cand">Stale Retry-After header</span><span class="orch-flow" data-cli="codex">debug-logs</span></li>
+            <li><span class="orch-cand">Typo in onboarding doc</span><span class="orch-flow" data-cli="claude">docs-from-code</span></li>
+            <li><span class="orch-cand">Flaky checkout test</span><span class="orch-flow" data-cli="claude">flaky-test-hunter</span></li>
+            <li><span class="orch-cand">+ 2 more</span><span class="orch-flow orch-flow-muted">mapped</span></li>
+          </ul>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Run</h3></header>
+          <p class="orch-stage-lede">Launch. Flows run in parallel, each in an isolated worktree — up to N at a time, your call (1–8).</p>
+          <div class="orch-cap">
+            <span class="orch-cap-label">run at most</span>
+            <span class="orch-cap-val">2</span>
+            <span class="orch-cap-label">at a time</span>
+          </div>
+          <p class="orch-pr">☑ open a PR when each finishes</p>
+        </article>
+      </div>
+
+      <details class="shot-reveal">
+        <summary><span class="shot-badge">screenshot</span> one ask, fanned out</summary>
+        <figure class="shot">
+          <div class="shot-frame">
+            <img src="assets/shot-orchestrator.png" width="2189" height="1344" loading="lazy" decoding="async"
+                 alt="The Orchestrator tab in three numbered stages: a producer turn investigating the project's test coverage and reporting what it found and what it deliberately dropped; eight candidate asks, each sized small or medium and mapped to a flow; and a flow-runs panel. A footer sets the parallel cap to two and offers to open a PR when each finishes." />
+          </div>
+          <figcaption>The producer's turn is the whole feature, and it is worth reading: it reports what it found, then a paragraph headed <em>“What I deliberately dropped.”</em> — the two big stateful panes it refuses to touch, because standing up a render harness "is a design decision, which is your call, not an autonomous run". Eight asks came out, each sized and mapped to a flow, and nothing launches until you press the button — two at a time, a PR per finish.</figcaption>
+        </figure>
+      </details>
+
+      <p class="flow-run-label">↓ &nbsp;one batch, mid-run</p>
+
+      <!-- live batch ledger -->
+      <!-- The batch runs live (see app.js), so frame it as the app rather
+           than as a list — same window chrome as the hero, Orchestrator tab
+           active instead of Chat. -->
+      <figure class="app-window orch-window" aria-label="the Orchestrator tab, mid-batch">
+        <header class="app-chrome">
+          <span class="chrome-dot red"></span>
+          <span class="chrome-dot yellow"></span>
+          <span class="chrome-dot green"></span>
+          <span class="chrome-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" />
+              <line x1="6" y1="3" x2="6" y2="13" stroke="currentColor" />
+            </svg>
+          </span>
+          <nav class="app-tabs">
+            <button class="app-tab" type="button" tabindex="-1">Chat</button>
+            <button class="app-tab" type="button" tabindex="-1">Flows</button>
+            <button class="app-tab is-active" type="button" tabindex="-1">Orchestrator</button>
+          </nav>
+          <span class="chrome-spacer"></span>
+          <div class="chrome-right">
+            <span class="orch-window-run">payments-platform</span>
+          </div>
+        </header>
+
+        <div class="orch-batch" aria-label="an orchestration batch running">
+          <header class="orch-batch-head">
+            <span class="orch-batch-title">Batch · 6 asks</span>
+            <div class="orch-batch-stats">
+              <span class="ob-done">1 done</span>
+              <span class="ob-run">2 running</span>
+              <span class="ob-pause">1 paused</span>
+              <span class="ob-queue">2 queued</span>
+              <span class="ob-cap">max 2</span>
+            </div>
+          </header>
+
+          <ul class="orch-lanes">
+            <li class="orch-lane" data-state="done">
+              <span class="ol-status">done</span>
+              <span class="ol-title">Typo in onboarding doc</span>
+              <span class="ol-flow" data-cli="claude">docs-from-code</span>
+              <span class="ol-meta">PR #418 · +4 −1</span>
+            </li>
+            <li class="orch-lane" data-state="running">
+              <span class="ol-status">running…</span>
+              <span class="ol-title">Null deref in /login</span>
+              <span class="ol-flow" data-cli="codex">debug-logs</span>
+              <span class="ol-meta">step 3/4 · build</span>
+            </li>
+            <li class="orch-lane" data-state="running">
+              <span class="ol-status">running…</span>
+              <span class="ol-title">Stale Retry-After header</span>
+              <span class="ol-flow" data-cli="codex">debug-logs</span>
+              <span class="ol-meta">step 2/4 · diagnose</span>
+            </li>
+            <li class="orch-lane" data-state="paused">
+              <span class="ol-status">paused</span>
+              <span class="ol-title">Flaky checkout test</span>
+              <span class="ol-flow" data-cli="claude">flaky-test-hunter</span>
+              <span class="ol-meta">checkpoint — freed its slot · <strong>continue →</strong></span>
+            </li>
+            <li class="orch-lane" data-state="queued">
+              <span class="ol-status">queued</span>
+              <span class="ol-title">Deprecated API in billing</span>
+              <span class="ol-flow" data-cli="codex">analyze-stack-trace</span>
+              <span class="ol-meta">waiting for a slot</span>
+            </li>
+            <li class="orch-lane" data-state="queued">
+              <span class="ol-status">queued</span>
+              <span class="ol-title">Missing index on orders</span>
+              <span class="ol-flow" data-cli="claude">migration-plan</span>
+              <span class="ol-meta">waiting for a slot</span>
+            </li>
+          </ul>
+
+          <p class="orch-batch-note">↪ The paused checkpoint doesn't stall the batch — it <strong>freed its slot</strong>, so the next queued ask pumps in behind it. Continue it from the Flows tab whenever you're ready.</p>
+        </div>
+      </figure>
+
+
+
+      <!-- ── 04b · schedules — the third beat of the orchestrator story ── -->
+
+      <p class="colosseum-ribbon"><span>backlog in</span> · <span>self-contained asks out</span> · <span>parallel, isolated worktrees</span> · <span>a PR per finish</span> · <span>on your cadence, parked for approval</span></p>
+      </div>
     </section>
+
+    <!-- ─────────── 07 · WHAT IT COSTS TO RUN ─────────── -->
+    <section class="colosseum" id="cost">
+      <div class="cost-grid">
+
+        <div class="cost-say">
+          <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; what it costs to run</p>
+          <h2 class="section-title">Every step names its own model. <span class="em">Most of them don't need the expensive one.</span></h2>
+          <p class="section-lede">A flow step that greps a repo, drafts a changelog or files a ticket does not need a frontier model to do it. Point the premium judgement at a premium model and the bulk at a cheaper — or local — one, and the clock gets cheap enough to leave running. This is not a dial you tune afterwards; it is how a flow is written in the first place.</p>
+          <p class="section-lede cost-foot">The cheapest agent is still the one on your own machine: <code>ollama</code> is a peer of the other four backends, not a lesser fifth, and every place the app picks a model is a place you can pick a local one. That matters most at the top of the ladder, where a worker on an hourly clock is the one thing here spending money while nobody is watching.</p>
+        </div>
+
+        <figure class="cost-evidence">
+          <figcaption class="plate-head">the flows we ship &nbsp;·&nbsp; model mix</figcaption>
+
+          <div class="cost-stat">
+            <p class="cost-fig"><span class="cost-n">86</span> <span class="cost-of">of 130 steps</span></p>
+            <p class="cost-claim">run on something other than the expensive model.</p>
+
+            <div class="meter" role="img" aria-label="Of 130 flow steps, 86 run on a cheaper or local model and 44 run on a premium model.">
+              <span class="meter-seg meter-cheap" style="flex-grow: 86;"></span>
+              <span class="meter-seg meter-prem" style="flex-grow: 44;"></span>
+            </div>
+            <p class="meter-key">
+              <span class="mk"><i class="sw sw-cheap" aria-hidden="true"></i>cheaper &amp; local <b>86</b></span>
+              <span class="mk"><i class="sw sw-prem" aria-hidden="true"></i>premium <b>44</b></span>
+            </p>
+          </div>
+
+          <dl class="spec"><dt class="k">the mix</dt><dd class="v">sonnet <em>62</em> &nbsp;·&nbsp; opus <em>44</em> &nbsp;·&nbsp; gpt-5.6-terra <em>17</em> &nbsp;·&nbsp; fable <em>7</em></dd></dl>
+          <dl class="spec"><dt class="k">downgrades</dt><dd class="v">near a rate or cost ceiling: opus <em>→</em> sonnet, cloud <em>→</em> local ollama, rather than stopping</dd></dl>
+          <dl class="spec"><dt class="k">the ceiling</dt><dd class="v">one monthly pot for the whole crew, paid down the roster in order</dd></dl>
+          <!-- TODO: add a measured row here — one real flow's spend vs the same flow forced all-opus.
+               It is the one number a buyer will test, and we should not claim it until we have run it. -->
+        </figure>
+
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="section-head">
+        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; what's in the box</p>
+        <h2 class="section-title">Built by engineers obsessed with their dev environment.</h2>
+        <p class="section-lede">Every surface here exists because somebody got annoyed that it didn't. No feature-ballast, no PM checkboxes — just the pieces you miss the moment you pop back into a raw terminal. They fall into four groups: <em>the window</em> you read the work in, <em>the machinery</em> underneath it, the growing pile of <em>work that runs itself</em>, and what is left when there is <em>no repo at all</em>.</p>
+      </div>
+
+      <div class="feature-band">
+        <h3 class="band-title">the window</h3>
+        <p class="band-lede">What you look at while the agent works — the surfaces that made a terminal a bad place to explore.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">01</span>
+          <h3>Multi-backend chat</h3>
+          <p>Claude, Codex, Gemini, <em>Copilot</em>, and <em>Ollama</em> — five stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
+          <p class="feature-note">Reasoning effort is set <em>per backend</em>, because the word means something different to each of them — and turning it up lands on the turn you are watching, not the one after it. Claude's <code>/design</code> canvas and its Artifact tool work here too, with permission cards that summarise what actually leaves the machine rather than showing you truncated raw JSON.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">02</span>
+          <h3>Tool cards, not wall-of-text</h3>
+          <p>File edits render as diffs. Bash lives in a terminal block. Reads, writes, todos each get their own card — so you can actually see what the agent did.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">03</span>
+          <h3>Permission &amp; approval, first-class</h3>
+          <p>Claude permission prompts and Codex approval cards (exec + apply_patch) are proper UI elements — not modals interrupting the flow.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">04</span>
+          <h3>File editor, right there</h3>
+          <p>Syntax highlighting, line-range highlighting, HTML &amp; Markdown preview tabs for previewable files, and a one-click <em>download</em> out of the preview pane beside the file's own path. No context-switch to VS Code to check the agent's work.</p>
+          <p class="feature-note">An <code>.html</code> report previews the way it does in a browser — the CDN React + Tailwind page our dashboard flows ask agents to write actually paints, and a link in it opens in your browser. The frame can still neither phone home nor read a file it wasn't shown.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">05</span>
+          <h3>History from disk</h3>
+          <p>Loads prior transcripts straight out of <code>~/.claude/projects</code>, <code>~/.codex/sessions</code>, and <code>~/.gemini/tmp</code>. Nothing gets re-invented; we just read the files you already have.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">06</span>
+          <h3>Extensions browser</h3>
+          <p>One searchable pane for everything the CLIs can do — slash commands, sub-agents, skills, plugins, MCP servers — unified across Claude, Codex, Gemini, and Ollama. Rescan on demand; no YAML to edit.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">07</span>
+          <h3>Workspaces — projects of projects</h3>
+          <p>Group related repos into a single <em>workspace</em> and every agent inherits the map: it knows the projects belong together and navigates between them naturally. Ask for a change that spans <code>api-gateway</code> and <code>billing-svc</code> and the agent edits both, runs both test suites, and shows one review. The feature that makes polyrepo feel like monorepo.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">08</span>
+          <h3>Keyboard first</h3>
+          <p><kbd>⌘P</kbd> file finder. <kbd>⌘\</kbd> toggles the sidebar. <kbd>⌘,</kbd> opens settings. <kbd>⌘1</kbd>–<kbd>⌘9</kbd> jumps between open files. It is not a website; it is a tool.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">09</span>
+          <h3>⌘K finds anything</h3>
+          <p>One input over the whole app — <em>chats</em>, <em>agents</em>, <em>runs</em>, <em>flows</em>, <em>workers</em>, <em>projects</em>, <em>workspaces</em>, archived threads and app actions. ↵ goes where the subtitle says it goes — a worker row arrives at that worker's desk, ⌘↵ opens its contract. A quick switcher that only indexed conversations meant everything else could be found only by knowing which tab it lived behind, which is the opposite of the point.</p>
+          <p class="feature-note">Ranking is a pure module with its own tests, because "an exact project name should beat a chat that merely mentions the word" degrades silently — a test catches it, a screenshot doesn't.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">10</span>
+          <h3>A sidebar you navigate by what you were doing</h3>
+          <p>The old list rendered where things <em>live</em>; people navigate by what they were <em>doing</em>. <strong>Stream</strong> is one newest-first list of chats, agents and runs together, with the owner printed once above a run of consecutive rows rather than on every one, so going flat doesn't cost you the sense of which repo you're in. <strong>Places</strong> keeps the tree for when the question really is where something lives — two layouts rather than a toggle, because they answer different questions.</p>
+          <p class="feature-note">"Active" is now <em>Working on</em>, and momentum — turns per hour, decayed — earns a row its slot, so a thread you've been forty turns deep in all morning outranks a message you fired off and forgot. Anything untouched for two days rolls up under a dashed count line in place: not hidden, which makes people hunt, and not archived, which needs a decision and an undo. Search still reaches inside it.</p>
+        </article>
+      </div>
+
+      <div class="feature-band">
+        <h3 class="band-title">the machinery</h3>
+        <p class="band-lede">What sits under the window: the CLIs, the credentials, the worktrees, and the numbers that say what it cost.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">11</span>
+          <h3>No new subscriptions</h3>
+          <p>Overcli sits on top of the CLIs you already use, with the auth they already have. Your <em>Claude Pro</em>, your <em>ChatGPT</em> plan, your <code>gcloud</code> creds, your <em>GitHub Copilot</em> seat — whatever <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>copilot</code> are signed into is what overcli runs through. Local <code>ollama</code> for the rest. No API keys to manage. No new bills.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">12</span>
+          <h3>Health badges</h3>
+          <p>Per-backend status pills: <em>ready</em>, <em>unauthenticated</em>, <em>missing</em>, <em>error</em>. The app tells you which CLI is broken before you try to use it.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">13</span>
+          <h3>Agent worktrees</h3>
+          <p>Create, update, rebase, merge, push, or remove a git worktree from inside the conversation. Agents work in isolation; you merge when you like what you read.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">14</span>
+          <h3>Changes bar</h3>
+          <p>A live <code>+/−</code> rollup sits above the composer, counting everything the agent has touched this turn. Click to expand the diff, click a file to jump to it. The commit badge is one click away.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">15</span>
+          <h3>Local model dashboard</h3>
+          <p>A proper UI for your Ollama install: browse a hand-checked catalog of <em>46 tags</em>, filter by maker or country, pull and delete with one click, watch server logs live, and see a readout of the GPU you're actually running on.</p>
+          <p class="feature-note">It also tells you when the copy of Ollama you have is one you shouldn't still be running — read off the binary even with the server stopped, and escalated to a security finding once you're several minors behind — and when the API is answering on a non-loopback address, where anyone on your network can pull and delete your models. Nothing upgrades itself: you get the command, in a Terminal you can watch.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">16</span>
+          <h3>Usage dashboard</h3>
+          <p>Rolling 5h / 24h / 7d stats, broken down by backend, model, and project. Quotas are read from the CLIs themselves rather than estimated, so the number you're looking at is the one the provider is counting. Know what you're burning before the invoice tells you.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">17</span>
+          <h3>Where the turn went</h3>
+          <p>A Timing tab splits every turn into model time and tool time — and the tool share is split again <em>by tool name</em>, with a legend giving each tool's busy time, call count, slowest single call, and errors. Forty seconds in tools is a very different afternoon depending on whether it was one <code>Bash</code> build or thirty <code>Read</code> calls.</p>
+          <p class="feature-note">Tools are ranked slowest-to-fastest on a red → amber → green ramp, so the expensive one is findable without reading a number, and nothing lands near the blue the model's share is drawn in. Parallel calls overlap, so widths are wall clock and the legend is what each tool actually spent.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">18</span>
+          <h3>Install MCP once, everywhere</h3>
+          <p>Add a <em>Model Context Protocol</em> server in one place and Overcli writes it into every CLI's config in the exact format each one wants — <code>~/.claude.json</code>, <code>~/.codex/config.toml</code>, <code>~/.gemini/settings.json</code> — dropping a <code>.bak</code> first. Pick from a curated catalog with one-click install, or copy a server you already have on one backend across to all the others. No hand-edited TOML, no format-juggling.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">19</span>
+          <h3>Four speeds, one ladder</h3>
+          <p><em>Full</em>, <em>Swift</em>, <em>Turbo</em> and <em>Warp</em>, on every hosted backend. Swift keeps answers concise and consolidates independent tool work. Turbo enables each backend's speed-first behaviour while keeping the model you picked. Warp also drops to that backend's fast tier — Sonnet for Claude, Luna for Codex, Flash-Lite for Gemini, Haiku for Copilot. Colour-coded icons make the ladder readable without opening a menu.</p>
+          <p class="feature-note">Leaving Warp restores the model and effort you were on rather than stranding you on the fast tier. Ollama stays manually controlled, because a local model's speed is your hardware's business and not a setting.</p>
+        </article>
+
+      </div>
+
+      <div class="feature-band">
+        <h3 class="band-title">work that runs itself</h3>
+        <p class="band-lede">Everything that keeps going once you stop typing — ordered by how much you hand over, and how little it asks of you.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">20</span>
+          <h3>Rebound reviews</h3>
+          <p>After every turn, fire a second agent — on a <em>different</em> backend if you like — to review what just landed. Thinking blocks visible, round counter included. Collaboration mode loops rounds until the reviewer stops finding things to fix.</p>
+          <p class="feature-note">Note: Copilot can't be a reviewer yet — its CLI doesn't read prompts from stdin. When it's your primary, overcli routes the review to claude/codex/gemini and shows a <em>"Routed via X"</em> chip so it's not surprising.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">21</span>
+          <h3>Silent agents</h3>
+          <p>Long-running background agents that live next to your work. A <em>doc-writer</em> that keeps <code>/docs</code> in sync as the code changes. A <em>PR-reviewer</em> that quietly comments on every pull request the moment it opens. No Slack pings. No dashboards. Just work getting done.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">22</span>
+          <h3>Smart downgrades</h3>
+          <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default. <a href="#cost" class="feat-link">see it above ↑</a></p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">23</span>
+          <h3>Colosseum</h3>
+          <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">24</span>
+          <h3>Flows</h3>
+          <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
+          <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">25</span>
+          <h3>Orchestrator</h3>
+          <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it above ↑</a></p>
+          <p class="feature-note">The tab has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">26</span>
+          <h3>Scheduled runs</h3>
+          <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — by default every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
+          <p class="feature-note">Three trigger kinds: an interval, a <em>cron</em> expression for the cadences no preset covers, or <code>onFlowComplete</code> — "when the nightly scrape succeeds, launch triage" — which reacts to runs it did not launch, bounded at a depth of five.</p>
+          <p class="feature-note">For a producer you have learned to trust, a schedule can launch its own proposals — but the <em>cap</em> is required, not optional. The first N go in producer order, which is best-first, and everything past it stays parked with a note saying why. A missed schedule coalesces or skips rather than stampeding on wake, and "Run now" is a test drive — it never re-anchors the cadence.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">27</span>
+          <h3>Flow watch</h3>
+          <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
+          <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">28</span>
+          <h3>Headless, and deployable <span class="alpha-badge">alpha</span></h3>
+          <p>The same flow YAML runs from an <code>overcli</code> command line with no window — one shot in CI, or on a box you own — and a flow or a worker's whole cadence deploys to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline. There is no second runtime: the app and the CLI drive the same runner and the same engine, so a flow that worked at your desk works on the runner.</p>
+          <p class="feature-note">In <em>alpha</em>: runnable today, but the interface can still move. Everything else on this page is shipped.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">29</span>
+          <h3>A risk scan before it runs</h3>
+          <p>A flow is a set of instructions that later runs with real tool access, and the only checks used to be an integrity hash and a structural validation — nothing read the instructions. Every step's prompt override and tool list is now scanned for credential-file references and for network egress declared as a <code>local</code> effect, on the registry path and on every hand-authored save.</p>
+          <p class="feature-note">Nothing is blocked: a heuristic that refused a legitimate install would be worse than the warning it replaces. A high-severity finding pauses the run instead, under its own reason. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> stopped counting as local — an unattended worker with no grant for outside actions cannot run them, and a step's declared tool list reaches the CLI as a real allowlist rather than a label.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">30</span>
+          <h3>Standing workers</h3>
+          <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Describe the job in prose — with a spec or a screenshot attached if you have one — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a calendar, a filing cabinet, and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="#workers" class="feat-link">see it above ↑</a></p>
+          <p class="feature-note">A shift streams into the desk as it is worked, and any turn opens in a reader with a find box — a sweep across seventy tickets is a document, not a chat bubble. Leave it a <em>note</em> and the worker reads it before planning the next shift, because the record of what it did is not a thing you edit.</p>
+          <p class="feature-note">The tab opens on a work queue banded <em>Running now</em>, <em>Needs you</em>, <em>Finished today</em> — status is not a column you sort by, it is what a row is, and a single time-ordered table buries the two rows with a decision waiting on them under eight that need nothing from anyone.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">31</span>
+          <h3>One pot, paid down the roster</h3>
+          <p>Eight workers at $10 a month is an $80 exposure nobody ever approved. The crew now draws from a <em>single monthly pot</em>, paid down the roster in order: a worker may spend only what is left after everyone above it is funded. Drag a name up and that is a funding decision you can watch land. Pausing one releases its reserve to everyone below it.</p>
+          <p class="feature-note">A worker's unspent cap is held for it, so the one that runs your morning can't be starved by the one that tidies changelogs. Shifts below the waterline skip quietly and journal why, and a dry pool notifies once for the whole roster.</p>
+        </article>
+      </div>
+
+      <div class="feature-band">
+        <h3 class="band-title">without a repo</h3>
+        <p class="band-lede">The same app for people who have documents rather than code — added in 0.16, and the reason "is this for me?" now has a second answer.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-num">32</span>
+          <h3>Everyday projects</h3>
+          <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">33</span>
+          <h3>Documents, not a file tree</h3>
+          <p>Everyday projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
+          <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">34</span>
+          <h3>Auto-save, and every version back</h3>
+          <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
+          <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
+        </article>
+      </div>
+    </section>
+
 
 
     <!-- ─────────── LOCAL ─────────── -->
     <!-- The obvious objection to a worker that wakes every three hours is
          the bill. This is the answer, so it sits directly under workers
          rather than beside the dashboards. -->
-    <section class="colosseum terminal" id="local">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;08&nbsp;] &nbsp;·&nbsp; running local</p>
-        <h2 class="display-title">
-          <span>The cheapest agent</span>
-          <span class="em">is the one on your own machine.</span>
-          <span>And&nbsp;it&nbsp;never&nbsp;leaves&nbsp;it.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          <code>ollama</code> is not a lesser fifth backend bolted on the side — it is a peer of the other four, and every
-          place the app picks a model is a place you can pick a local one. That matters most at the top of the ladder:
-          a worker on an hourly clock is the one thing here <em>spending money while nobody watches</em>, and a flow step
-          that greps a repo or drafts a changelog does not need a frontier model to do it. Point the expensive judgement
-          at a premium model and the bulk at a local one, and the clock gets cheap enough to leave running.
-        </p>
-      </div>
-
-      <div class="orch-stages" aria-label="where local models get used">
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">1</span><h3>In a flow</h3></header>
-          <p class="orch-stage-lede">Every step names its own model, so one pipeline can straddle both. Artifacts hand across the boundary unchanged.</p>
-          <ul class="orch-map">
-            <li><span class="orch-cand">research</span><span class="orch-flow" data-cli="claude">sonnet 5</span></li>
-            <li><span class="orch-cand">build</span><span class="orch-flow orch-flow-local">qwen3.8 27b</span></li>
-            <li><span class="orch-cand">test &amp; fix</span><span class="orch-flow orch-flow-local">qwen3.8 27b</span></li>
-            <li><span class="orch-cand">review</span><span class="orch-flow" data-cli="claude">opus 5</span></li>
-          </ul>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">2</span><h3>In a worker</h3></header>
-          <p class="orch-stage-lede">A worker launches a flow, so it inherits that split. The planning turn stays sharp; the shift's actual labour runs on your GPU.</p>
-          <div class="orch-producer">
-            <p class="orch-prompt">“Every 3 hours, weekdays 8am–11am.”</p>
-            <div class="orch-tools">
-              <span>plan · cloud</span><span>execute · local</span>
-            </div>
-            <p class="orch-found">→ a clock you can afford</p>
-          </div>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">3</span><h3>When you hit a cap</h3></header>
-          <p class="orch-stage-lede">Near a rate or cost ceiling, Overcli can step down on its own rather than stopping — so the next turn still ships.</p>
-          <div class="orch-cap">
-            <span class="orch-cap-label">opus</span>
-            <span class="orch-cap-val">→ local</span>
-            <span class="orch-cap-label">still ships</span>
-          </div>
-          <p class="orch-pr">☑ off by default — you turn it on per project</p>
-        </article>
-      </div>
-
-      <details class="shot-reveal">
-        <summary><span class="shot-badge">screenshot</span> local models, on this machine</summary>
-        <figure class="shot">
-          <div class="shot-frame">
-            <img src="assets/shot-ollama.png" width="2029" height="898" loading="lazy" decoding="async"
-                 alt="The Local models tab: an updates and security panel reporting the installed Ollama version is behind the latest stable release, rated medium, with an update button; a readout of the machine's RAM, CPU and GPU; and a recommended-models list with sizes, licences, country of origin and tool support." />
-          </div>
-          <figcaption>The catalog is sized to the machine it actually found — 64&nbsp;GB and an M1 Max here — with the licence and the country of origin on every row, and the tool-calling flag that decides whether a model can run a flow step at all. The same page tells you when the Ollama you have is one you shouldn't still be running: rated, explained, and never upgraded without your click.</figcaption>
-        </figure>
-      </details>
-
-      <p class="orch-batch-note wk-wide-note">↪ <strong>The privacy answer is the same answer.</strong> Overcli adds no server, no proxy and no account of its own — it runs the CLIs you already installed, with the credentials they already hold. Pick <code>ollama</code> for a step, a worker, or the whole project, and the code in that step never leaves the machine. The server Overcli starts is pinned to loopback for both host and origins, and if something else is already answering on a non-loopback address the app says so, because that API has no authentication and anyone on your network could pull or delete your models.</p>
-
-      <p class="colosseum-ribbon"><span>a peer backend, not a fallback</span> · <span>per step, per worker, per project</span> · <span>a clock you can afford</span> · <span>nothing leaves the box</span></p>
-    </section>
 
 
     <!-- ─────────── HEADLESS ─────────── -->
     <!-- 0.17 moved the runtime out of the window. It sits after "running
          local" because the two answer the same shape of question — local
          is where the model runs, this is where the app doesn't have to. -->
-    <section class="colosseum terminal" id="headless">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; off your desktop &nbsp;<span class="alpha-badge">alpha</span></p>
-        <h2 class="display-title">
-          <span>Same flow. Same worker.</span>
-          <span class="em">No window at all.</span>
-          <span>In&nbsp;CI,&nbsp;or&nbsp;on&nbsp;a&nbsp;box&nbsp;you&nbsp;own.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          <strong>This one is alpha, and we would rather say so than have you find out.</strong> The interface can still
-          move, the edges are not all found yet, and it is not the thing to hang a production pipeline on this month.
-          What follows is real and runnable today — just early.
-        </p>
-        <p class="section-lede colosseum-lede">
-          Until now a flow ran in one place: inside the Electron app, on the machine that had it open. The same YAML now
-          runs headlessly from an <code>overcli</code> command line — and there is <strong>no second runtime</strong> to
-          drift out of sync. The app and the CLI drive the same runner, the same flow runtime and the same worker
-          engine; only the host differs. Author it where you can watch it, then deploy the flow — or a worker's whole
-          cadence — straight to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline.
-        </p>
-      </div>
-
-      <div class="orch-stages" aria-label="from the app to CI">
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Author it here</h3></header>
-          <p class="orch-stage-lede">Build the flow in the app, watch it run, pause it, hijack a participant — the loop you already have.</p>
-          <div class="orch-producer">
-            <p class="orch-prompt">flows/nightly-triage.yaml</p>
-            <div class="orch-tools">
-              <span>research</span><span>build</span><span>review</span>
-            </div>
-            <p class="orch-found">→ a file on disk</p>
-          </div>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Run it anywhere</h3></header>
-          <p class="orch-stage-lede">One shot, no window. The same engine the app uses, so a flow that worked at your desk works on the runner.</p>
-          <ul class="orch-map">
-            <li><span class="orch-cand">overcli flow run</span><span class="orch-flow" data-cli="codex">headless</span></li>
-            <li><span class="orch-cand">overcli worker shift</span><span class="orch-flow" data-cli="codex">headless</span></li>
-            <li><span class="orch-cand">GitHub Actions</span><span class="orch-flow" data-cli="claude">generated</span></li>
-            <li><span class="orch-cand">Jenkins</span><span class="orch-flow" data-cli="claude">generated</span></li>
-          </ul>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Trigger it from anything</h3></header>
-          <p class="orch-stage-lede">Three kinds now. An interval, a <em>cron</em> expression for the cadences no preset covers, or another flow finishing.</p>
-          <div class="orch-cap">
-            <span class="orch-cap-label">5 &amp; 35 past</span>
-            <span class="orch-cap-val">cron</span>
-            <span class="orch-cap-label">deploys verbatim</span>
-          </div>
-          <p class="orch-pr">☑ or: when the nightly scrape succeeds, launch triage</p>
-        </article>
-      </div>
-
-      <p class="orch-batch-note wk-wide-note">↪ <strong>Cron rejects rather than guesses.</strong> The parser is ours rather than a dependency — five fields is too small a surface to buy a supply-chain edge for — and it names the offending field instead of quietly interpreting it. The editor previews the next three firings as you type, because a validity check alone cannot tell you whether the expression says what you meant. Chaining is bounded too: <code>onFlowComplete</code> reacts to runs it did not launch, so a manual run, a schedule's run and a worker's run all count, loops stop at a depth of five, and self-chaining is refused at edit time.</p>
-
-      <p class="orch-batch-note wk-wide-note">↪ <strong>Running unattended raised the stakes, so two things got stricter.</strong> A flow is a set of instructions that later runs with real tool access, and until now the only checks were an integrity hash and a structural validation — nothing read the instructions. A <em>risk scan</em> now reads every step's prompt override and tool list for credential-file references and for network egress declared as a local effect, on the registry path and on every hand-authored save. Nothing is blocked, because a heuristic that refused a legitimate install would be worse than the warning it replaces — but a high-severity finding pauses the run. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> no longer count as local: a worker without a grant for outside actions cannot run them unwatched, and a step's declared tool list is passed to the CLI as a real allowlist rather than trusted as a label.</p>
-
-      <p class="colosseum-ribbon"><span>one YAML</span> · <span>one runtime</span> · <span>your desk or your runner</span> · <span>alpha, and said so</span></p>
-    </section>
 
 
     <!-- ─────────── COLOSSEUM ─────────── -->
-    <section class="colosseum terminal" id="colosseum">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;10&nbsp;] &nbsp;·&nbsp; colosseum mode</p>
-        <h2 class="display-title">
-          <span>One prompt.</span>
-          <span class="em">Five agents.</span>
-          <span>One diff&nbsp;to&nbsp;rule&nbsp;them.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          Fire the same task at every backend in parallel — cloud or local. Watch the answers land at their own pace. Compare the diffs side by side. Pick the best. Keep it. Discard the rest.
-        </p>
-      </div>
-
-      <div class="col-grid">
-        <div class="col col-claude">
-          <header class="col-head">
-            <span class="col-rank">I</span>
-            <div>
-              <p class="col-name">claude</p>
-              <p class="col-model">opus 5</p>
-            </div>
-            <span class="col-timer" data-timer="claude">0.0s</span>
-          </header>
-          <pre class="col-out" data-col="claude"></pre>
-          <footer class="col-foot">
-            <span>touched <strong>3</strong> files</span>
-            <span class="add">+18</span>
-            <span class="rem">−4</span>
-          </footer>
-        </div>
-
-        <div class="col col-codex">
-          <header class="col-head">
-            <span class="col-rank">II</span>
-            <div>
-              <p class="col-name">codex</p>
-              <p class="col-model">gpt-5</p>
-            </div>
-            <span class="col-timer" data-timer="codex">0.0s</span>
-          </header>
-          <pre class="col-out" data-col="codex"></pre>
-          <footer class="col-foot">
-            <span>touched <strong>2</strong> files</span>
-            <span class="add">+22</span>
-            <span class="rem">−3</span>
-          </footer>
-        </div>
-
-        <div class="col col-gemini">
-          <header class="col-head">
-            <span class="col-rank">III</span>
-            <div>
-              <p class="col-name">gemini</p>
-              <p class="col-model">3.1-pro</p>
-            </div>
-            <span class="col-timer" data-timer="gemini">0.0s</span>
-          </header>
-          <pre class="col-out" data-col="gemini"></pre>
-          <footer class="col-foot">
-            <span>touched <strong>2</strong> files</span>
-            <span class="add">+14</span>
-            <span class="rem">−1</span>
-          </footer>
-        </div>
-
-        <div class="col col-copilot">
-          <header class="col-head">
-            <span class="col-rank">IV</span>
-            <div>
-              <p class="col-name">copilot <span class="col-tag">github</span></p>
-              <p class="col-model">gpt-5</p>
-            </div>
-            <span class="col-timer" data-timer="copilot">0.0s</span>
-          </header>
-          <pre class="col-out" data-col="copilot"></pre>
-          <footer class="col-foot">
-            <span>touched <strong>2</strong> files</span>
-            <span class="add">+17</span>
-            <span class="rem">−2</span>
-          </footer>
-        </div>
-
-        <div class="col col-ollama">
-          <header class="col-head">
-            <span class="col-rank">V</span>
-            <div>
-              <p class="col-name">ollama <span class="col-tag">local</span></p>
-              <p class="col-model">llama3-8b</p>
-            </div>
-            <span class="col-timer" data-timer="ollama">0.0s</span>
-          </header>
-          <pre class="col-out" data-col="ollama"></pre>
-          <footer class="col-foot">
-            <span>touched <strong>1</strong> file</span>
-            <span class="add">+11</span>
-            <span class="rem">−2</span>
-          </footer>
-        </div>
-      </div>
-
-      <p class="colosseum-ribbon"><span>same prompt</span> · <span>five answers</span> · <span>one diff</span></p>
-    </section>
 
 
     <!-- ─────────── EVERYDAY PROJECTS ─────────── -->
@@ -1708,73 +1421,6 @@ steps:
          still the primary audience — but it is a section, not a card,
          because "no repo required" changes the answer to "is this for
          me". -->
-    <section class="colosseum terminal" id="documents">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; everyday projects</p>
-        <h2 class="display-title">
-          <span>No repo. No git.</span>
-          <span class="em">No file dialog.</span>
-          <span>Just&nbsp;a&nbsp;folder&nbsp;and&nbsp;a&nbsp;conversation.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          Everything above this line assumes you have a repository. <em>Everyday projects</em> are the same app for
-          people who have documents instead — a policy to revise, a spreadsheet to tidy, a board summary to write.
-          Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>,
-          prepares an undo history for it, and drops you straight into a conversation pointed at it. No path decision,
-          no file dialog, and <strong>the word "git" appears nowhere in the flow</strong> — the history is real, it is
-          just never your problem.
-        </p>
-      </div>
-
-      <div class="orch-stages" aria-label="how an everyday project works">
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Describe it</h3></header>
-          <p class="orch-stage-lede">A sentence is the whole setup. Or point it at a folder you already have and press <em>Turn on history</em>.</p>
-          <div class="orch-producer">
-            <p class="orch-prompt">“Somewhere to keep our HR policies and keep them current.”</p>
-            <div class="orch-tools">
-              <span>review my documents</span><span>draft a policy</span><span>clean up a spreadsheet</span>
-            </div>
-            <p class="orch-found">→ folder + history + a chat in it</p>
-          </div>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Work in it</h3></header>
-          <p class="orch-stage-lede">A grid of documents, not a column of paths. Drag them in from Finder; <code>.docx</code> and <code>.xlsx</code> preview with no Office installed.</p>
-          <ul class="docs-grid" aria-label="a documents view">
-            <li class="doc" data-kind="doc"><span class="doc-ico">W</span><span class="doc-name">Remote work policy</span><span class="doc-meta">edited 2 days ago</span></li>
-            <li class="doc" data-kind="xls"><span class="doc-ico">X</span><span class="doc-name">Headcount 2026</span><span class="doc-meta">edited yesterday</span></li>
-            <li class="doc" data-kind="ppt"><span class="doc-ico">P</span><span class="doc-name">Q3 board deck</span><span class="doc-meta">edited 6 Aug</span></li>
-            <li class="doc" data-kind="md"><span class="doc-ico">M</span><span class="doc-name">Onboarding notes</span><span class="doc-meta">edited just now</span></li>
-          </ul>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Change it, safely</h3></header>
-          <p class="orch-stage-lede">One line at the foot of any document — <em>“make this shorter”</em>. It runs on the fast model and then stops, and shows you a diff.</p>
-          <div class="doc-ask">
-            <p class="doc-ask-line">make this shorter</p>
-            <div class="doc-ask-actions">
-              <span class="doc-btn doc-btn-go">Keep changes</span>
-              <span class="doc-btn">Undo it</span>
-              <span class="doc-btn doc-btn-off">Try again</span>
-            </div>
-          </div>
-          <p class="orch-pr">☑ highlight a passage and only that passage is sent</p>
-        </article>
-      </div>
-
-      <p class="orch-batch-note wk-wide-note">↪ <strong>Every version is recoverable, in plain language.</strong> Everyday projects auto-save a few seconds after you stop typing, because nobody outside software thinks about saving. What makes that safe is the other half: Overcli captures a version whenever something <em>finishes</em> — a rewrite kept, documents added, a spell of editing ending — and <em>Earlier versions</em> lists them with a Restore button. Restoring moves <em>forward</em> rather than rewinding: it commits the current state first and the restored one on top, so putting the folder back is itself undoable. Large binaries are deliberately skipped, because git can never reclaim a stored blob and a big attachment revised twenty times would quietly cost a gigabyte inside someone's Documents folder.</p>
-
-      <p class="orch-batch-note wk-wide-note">↪ <strong>It is the same app, so the machinery still applies.</strong> A worker hired for an everyday project files its output into the folder its owner actually looks in, rather than only into Overcli's archive — only documents travel, each run is filed exactly once, and the arrival is checkpointed so it can be undone like anything else. Any project can be switched between <em>everyday</em> and <em>code</em> from the sidebar through a sheet that says exactly what changes, and nothing about the folder's own contents moves either way.</p>
-
-      <p class="colosseum-ribbon"><span>a sentence in</span> · <span>a folder and a history out</span> · <span>documents, not paths</span> · <span>every version recoverable</span> · <span>git never mentioned</span></p>
-    </section>
 
 
     <!-- ─────────── DAY TO DAY ─────────── -->
@@ -1785,7 +1431,7 @@ steps:
          too many. -->
     <section class="dashboards" id="day-to-day">
       <div class="section-head">
-        <p class="kicker">[&nbsp;12&nbsp;] &nbsp;·&nbsp; day to day</p>
+        <p class="kicker">[&nbsp;08&nbsp;] &nbsp;·&nbsp; day to day</p>
         <h2 class="section-title">Most days, <em>it's just this.</em></h2>
         <p class="section-lede">Everything above is what Overcli can do when you hand it the keys. This is what it is the rest of the time: a conversation with a diff attached, and a number at the end of the month telling you what that came to. Both are real screens, not renders.</p>
       </div>
@@ -1814,7 +1460,7 @@ steps:
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;13&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Move fast without</span>
           <span>losing <em>the thread</em>.</span>
@@ -1837,14 +1483,14 @@ steps:
     <section class="faq-section" id="faq">
       <div class="faq-grid">
         <div class="section-head">
-          <p class="kicker">&#9484;&#9472; [&nbsp;14&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
+          <p class="kicker">&#9484;&#9472; [&nbsp;10&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
           <h2 class="section-title">Questions your security team will ask.</h2>
           <p class="section-lede">Short answers, and the source is right there if you'd rather read it than take our word for it.</p>
         </div>
         <div class="faq-list">
           <details class="faq-item">
             <summary>What does it cost?</summary>
-            <p>Nothing. Overcli is <strong>free and open source</strong> under Apache 2.0 — no licence to buy, no per-seat pricing, no paid tier holding features back. It drives the agent subscriptions you already pay for, so there is no new invoice from us and none from anyone else either.</p>
+            <p><strong>The app is free.</strong> Overcli is open source under Apache 2.0 — no licence to buy, no per-seat pricing, no paid tier holding features back, and no invoice from us. What you do pay for is model usage on the agent subscriptions you already have, which is why <a class="feat-link" href="#cost">every flow step names its own model</a> and why the crew draws from a pot you set.</p>
           </details>
           <details class="faq-item">
             <summary>Which agents does it actually drive?</summary>
@@ -1896,7 +1542,7 @@ steps:
 
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;15&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Signed, notarized, and real.</h2>
         <p class="section-lede">Overcli is in beta, but the macOS builds are now <em>Developer-ID signed and notarized by Apple</em> — they open on a double-click, no right-click ceremony. Windows isn't code-signed yet, so SmartScreen may still flag it. Either way the source is right there; build it yourself.</p>
       </div>
@@ -1979,7 +1625,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.17.0 · beta</span>
+      <span class="sl-cell">v0.18.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
