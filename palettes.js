@@ -22,8 +22,8 @@
     {
       id: 'indigo',
       name: 'Deep indigo',
-      note: 'current — warm paper, deepened brand indigo',
-      swatch: ['#f8f7f4', '#332ba0', '#b03c0a'],
+      note: 'current — cool paper, brand indigo',
+      swatch: ['#f6f7f9', '#4434d6', '#b03c0a'],
       vars: {} // theme.css defaults
     },
     {

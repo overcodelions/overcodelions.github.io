@@ -1,0 +1,9 @@
+title = "Codelions website gitleaks configuration"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Cloudflare Web Analytics site tokens are public browser identifiers"
+regexTarget = "line"
+regexes = ['''data-cf-beacon='\{"token":\s*"[A-Fa-f0-9]+"\}'(?:\s+defer)?''']

@@ -1,11 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════════════
    CODELIONS DESIGN SYSTEM — "Instrument"
    ───────────────────────────────────────────────────────────────────────
-   One visual language across codelions.com, /overcli and /overgit.
+   One visual language across codelions.com, /overcli, /overgit and /overdb.
 
    The idea: these are precision instruments for engineers, so the site
-   reads like a well-set technical manual — warm paper, hairline rules,
-   square corners, a strict mono/serif/sans split — and the product
+   reads like a well-set technical manual — cool paper, hairline rules,
+   softened corners, a grotesk display over a quiet sans — and the product
    itself appears as a dark instrument slab dropped into that page.
 
    LAYERING
@@ -21,30 +21,30 @@
      Warm bone, pulled back a touch from the original #f7f5f0 so it reads as
      paper rather than cream. The warmth is the brand; the restraint is what
      keeps it from looking boutique. */
-  --paper:      #f8f7f4;
+  --paper:      #f6f7f9;
   --paper-2:    #ffffff;   /* raised cell */
-  --paper-3:    #eeece6;   /* sunken / alt fill */
-  --paper-4:    #e6e3da;   /* deepest paper */
+  --paper-3:    #edeff3;   /* sunken / alt fill */
+  --paper-4:    #e4e7ec;   /* deepest paper */
 
   /* ── Ink ──
      --ink-muted carries every eyebrow, chip and meta row, so it has to clear
      AA on paper: #8b8794 only managed 3.7:1 and read as washed out. */
-  --ink:        #14141a;
-  --ink-dim:    #55525f;   /* ~7:1 on paper, ~6.4:1 on paper-3 */
-  --ink-muted:  #67646f;   /* ~5.3:1 on paper, ~4.9:1 on paper-3 */
+  --ink:        #0d0f15;
+  --ink-dim:    #4a4f5b;   /* ~7:1 on paper, ~6.4:1 on paper-3 */
+  --ink-muted:  #5c6270;   /* ~5.3:1 on paper, ~4.9:1 on paper-3 */
 
   /* ── Rules (hairlines do the work that shadows would) ── */
-  --line:        #e2ded6;
-  --line-strong: #cbc6bb;
+  --line:        #e3e6ec;
+  --line-strong: #cdd2db;
 
   /* ── Brand ──
      Deepened from #4f46c8. That violet read as consumer-AI and only cleared
      6.2:1; this sits in the same family as the app's own accent but at
      9.8:1 on paper, which is what makes it feel considered rather than
      bright. Ink stays the primary — the indigo is a signature, not a UI. */
-  --accent:      #332ba0;
-  --accent-hot:  #241d7d;
-  --accent-wash: #eae8f8;
+  --accent:      #4434d6;
+  --accent-hot:  #3426b0;
+  --accent-wash: #ebe9fc;
   --signal:      #b03c0a;   /* burnt orange — numerals + live state only.
                                Darkened from #c2410c so the section numerals
                                clear AA on the sunken --paper-3 bands too. */
@@ -69,9 +69,9 @@
   --bg-deep: var(--paper-3);
 
   /* ── Type ── */
-  --f-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --f-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --f-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --f-display: 'Bricolage Grotesque', 'Geist', system-ui, sans-serif;
+  --f-sans:    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --f-mono:    'Geist Mono', 'SF Mono', Menlo, monospace;
 
   /* ── Rhythm ──
      ONE content width for every page and every section — nav, hero, feature
@@ -83,8 +83,8 @@
   /* The measured content column — --maxw with both gutters removed. Use this
      for anything inside a full-bleed section so it lines up with the rest. */
   --col:   calc(var(--maxw) - var(--pad) * 2);
-  --r:     4px;    /* square-ish. we are not a consumer app. */
-  --r-lg:  6px;
+  --r:     10px;
+  --r-lg:  16px;
 }
 
 /* Dark product palette. Everything inside a `.terminal` renders as the
@@ -1635,3 +1635,145 @@ kbd {
 #orchestrator .orch-stage-head h3 { font-size: 16px; }
 #orchestrator .orch-stage-lede { font-size: 12px; }
 #orchestrator .orch-arrow { font-size: 15px; }
+
+/* ═════════════════════════════ MODERN LAYER ═════════════════════════════
+   The 2026 refresh. Kept as one block at the end so it wins over every
+   component rule above without a specificity fight, and so the whole pass
+   can be read (or reverted) in one place.
+
+   The moves: one grotesk display face carries the personality; labels are
+   sentence case in the body sans instead of tracked mono caps; buttons lose
+   the brackets and the uppercase; corners soften; the dark product windows
+   get real depth. Mono stays where it is data — numerals, code, the tmux
+   status line. */
+
+:root {
+  --shadow-1:   0 1px 2px rgba(13, 15, 21, 0.06), 0 1px 1px rgba(13, 15, 21, 0.04);
+  --shadow-win: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+                0 50px 100px -40px rgba(13, 15, 21, 0.5),
+                0 20px 40px -24px rgba(13, 15, 21, 0.3);
+}
+
+body { font-feature-settings: normal; letter-spacing: -0.005em; }
+kbd { border-radius: 5px; }
+
+/* Display — Bricolage at a real weight, tight, optical sizing on. */
+.display, .headline, .section-title, .display-title,
+.story-modal-title, #cost .cost-n {
+  font-family: var(--f-display);
+  font-weight: 620;
+  font-optical-sizing: auto;
+  font-variation-settings: normal;
+  letter-spacing: -0.035em;
+}
+.headline { line-height: 1.02; }
+.section-title { letter-spacing: -0.03em; }
+
+/* The second line of a headline steps back in tone rather than switching
+   to an italic accent — one face, two values. */
+.em,
+.display .em, .headline .em, .headline-line.em, .display-title .em,
+.section-title .em, .story-modal-title .em {
+  font-style: normal;
+  font-weight: inherit;
+  font-variation-settings: normal;
+  color: var(--ink-muted);
+}
+.display-title em { font-style: normal; color: var(--accent); }
+
+/* Labels: sentence case, body sans, no tracking. */
+.eyebrow, .rule-head, .kicker, .hero-meta, .plate-head,
+.spec dt, .spec .k, .brand-ver, .dl-platform em, .note-tag,
+.story-modal-tag, .story-modal-close, #cost .cost-of {
+  font-family: var(--f-sans);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.eyebrow, .rule-head, .kicker { font-size: 14px; font-weight: 500; }
+.eyebrow::before { display: none; }
+.rule-head .n, .eyebrow .n { font-family: var(--f-mono); font-size: 12.5px; }
+.hero-meta, .plate-head, .spec dt, .spec .k { font-size: 13px; }
+.brand-ver { font-size: 12.5px; }
+.note-tag { font-size: 13px !important; }
+
+.cell-title, .feature h3 {
+  font-family: var(--f-sans);
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  text-transform: none;
+  color: var(--ink);
+}
+.feature, .lp-cards .cell { padding: 28px 26px 30px; }
+
+/* Buttons: sans, sentence weight, soft corners, no brackets. */
+.btn, .dl-btn {
+  font-family: var(--f-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  border-radius: var(--r);
+}
+.btn { padding: 11px 18px; }
+.btn .bk, .btn-bracket { display: none; }
+.btn-primary, .dl-btn { box-shadow: var(--shadow-1); }
+.btn-primary:hover, .btn-accent:hover, .dl-btn:hover,
+.btn-ghost:hover { transform: none; }
+.btn-primary:hover, .dl-btn:hover { background: var(--accent); border-color: var(--accent); }
+.nav-cta { padding: 8px 14px; }
+.btn-chip {
+  font-family: var(--f-sans);
+  font-size: 13.5px;
+  letter-spacing: 0;
+  border-style: solid;
+  border-color: var(--line);
+  border-radius: var(--r);
+}
+
+.link-arrow { font-family: var(--f-sans); font-size: 14px; }
+
+/* Nav */
+.brand, .brand-name {
+  font-family: var(--f-display);
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.brand-mark { border-radius: 8px; }
+.nav-links a { font-family: var(--f-sans); font-size: 14px; letter-spacing: 0; }
+.nav-back { border-radius: 999px; padding: 5px 12px; }
+@media (max-width: 1240px) { .nav-links a { font-size: 13.5px; } }
+
+/* Chips + ribbon */
+.chip { font-family: var(--f-sans); font-size: 12.5px; letter-spacing: 0; border-radius: 999px; padding: 5px 12px; }
+.release-ribbon { font-family: var(--f-sans); font-size: 13.5px; }
+.rr-badge {
+  font-family: var(--f-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  border-radius: 999px;
+}
+
+/* Surfaces */
+.plate, .dl-table, .dl-note, .feature-grid, .lp-cards, .status-line { border-radius: var(--r-lg); }
+.dl-note { border-left-width: 1px; border-top: 3px solid var(--signal); }
+.app-window.terminal,
+.terminal .app-window,
+.lp-win {
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-win);
+}
+
+.faq-item summary { font-size: 17.5px; font-weight: 550; letter-spacing: -0.015em; }
+.story-modal { border-top-width: 1px; }
+
+/* Centred showcase heads: the kicker is a capped block, so centre the box as
+   well as its text. overcli's left-aligned acts keep theirs on the edge. */
+.colosseum-head .kicker, .section-head.centered .kicker { margin-inline: auto; }
+#flows-model .colosseum-head .kicker,
+#workers .colosseum-head .kicker { margin-inline: 0; }
+/* Not .headline: its lines are already explicit blocks, and balancing splits them. */
+.display-title, .section-title, .display { text-wrap: balance; }

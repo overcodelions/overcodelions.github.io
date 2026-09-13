@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="../theme.css" />
 </head>
@@ -37,6 +37,7 @@
       <li><a href="#rebound">rebound</a></li>
       <li><a href="#flows-model">flows</a></li>
       <li><a href="#workers">workers</a></li>
+      <li><a href="#services">services</a></li>
       <li><a href="#cost">cost</a></li>
       <li><a href="#features">features</a></li>
       <li><a href="#story">story</a></li>
@@ -1100,6 +1101,120 @@ steps:
     </section>
 
     <!-- ─────────── 07 · WHAT IT COSTS TO RUN ─────────── -->
+    <!-- ─────────── SERVICES — COMING SOON ─────────── -->
+    <!-- Merged on master after 0.18.0 and not in a release yet. Unnumbered on
+         purpose: it slots between acts without renumbering them, and [ next ]
+         says what it is. Swap for a number when it ships. -->
+    <section class="colosseum terminal" id="services">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;next&nbsp;] &nbsp;·&nbsp; services <span class="svc-soon">coming soon</span></p>
+        <h2 class="display-title">
+          <span>Run the whole stack.</span>
+          <span class="em">Point it at any branch.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          A Services pane that starts, stops, and watches every service a workspace runs, each bound to the checkout or worktree it should run from. When a flow finishes on a branch, the stack can follow it there. It's built and merged, and ships in the next release.
+        </p>
+      </div>
+
+      <div class="svc-board" aria-label="a preview of the Services pane, with a port clash, a log, and a worktree handoff">
+        <div class="svc-pane">
+          <header class="svc-pane-head">
+            <span class="svc-pane-title">Services</span>
+            <span class="svc-pane-ws">payments-platform</span>
+            <span class="svc-filter"><b>all</b> running problems</span>
+            <span class="svc-btn svc-btn-go">Start group</span>
+          </header>
+
+          <p class="svc-group">REST services <span class="svc-ref">⎇ feat/cost-ceiling</span> <span class="svc-count">3 of 3 running</span></p>
+          <ul class="svc-rows">
+            <li><span class="svc-dot ok"></span><span class="svc-name">api-gateway</span><span class="svc-kind">spring boot</span><span class="svc-port">:8080</span><span class="svc-state">ready · http /actuator/health</span></li>
+            <li><span class="svc-dot ok"></span><span class="svc-name">billing-svc</span><span class="svc-kind">spring boot</span><span class="svc-port">:8081</span><span class="svc-state">ready · 14 s</span></li>
+            <li class="is-sel"><span class="svc-dot wait"></span><span class="svc-name">ledger-core</span><span class="svc-kind">gradle</span><span class="svc-port">:8082</span><span class="svc-state">waiting for log "Started LedgerApplication"</span></li>
+          </ul>
+
+          <p class="svc-group">Processors <span class="svc-count">1 module, 3 ways</span></p>
+          <ul class="svc-rows">
+            <li><span class="svc-dot ok"></span><span class="svc-name">payment-processor</span><span class="svc-kind">maven</span><span class="svc-port">:9001</span><span class="svc-state">ready</span></li>
+            <li class="is-copy"><span class="svc-dot ok"></span><span class="svc-name">refunds</span><span class="svc-kind">copy · <code>--mode=refunds</code></span><span class="svc-port">:9002</span><span class="svc-state">ready</span></li>
+            <li class="is-copy"><span class="svc-dot off"></span><span class="svc-name">retries</span><span class="svc-kind">copy · <code>--mode=retries</code></span><span class="svc-port">:9003</span><span class="svc-state">stopped</span></li>
+          </ul>
+
+          <p class="svc-group">Front ends <span class="svc-count">1 problem</span></p>
+          <ul class="svc-rows">
+            <li><span class="svc-dot ok"></span><span class="svc-name">web</span><span class="svc-kind">vite</span><span class="svc-port">:5173</span><span class="svc-state">ready</span></li>
+            <li class="is-bad"><span class="svc-dot bad"></span><span class="svc-name">notifications</span><span class="svc-kind">node</span><span class="svc-port">:8090</span><span class="svc-state">port held by another stack</span></li>
+          </ul>
+
+          <div class="svc-clash">
+            <p><b>:8090 is held</b> by notifications in <em>checkout-flow</em>, running from worktree <code>feat/webhooks</code>. Starting here would take it from a run you may not be watching.</p>
+            <div class="svc-clash-row">
+              <span class="svc-btn svc-btn-go">Run alongside on :8091</span>
+              <span class="svc-btn">Stop the other one</span>
+              <span class="svc-btn">Cancel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-side">
+          <div class="svc-log">
+            <header class="svc-log-head">
+              <span class="svc-log-name">ledger-core</span>
+              <span class="svc-log-search">⌕ placeholder</span>
+              <span class="svc-lvl err">2 error</span>
+              <span class="svc-lvl warn">5 warn</span>
+              <span class="svc-log-raw">Raw</span>
+            </header>
+            <div class="svc-log-body">
+              <p><span class="l-info">INFO</span><span class="l-time">09:14:02.118</span><span class="l-thr">main</span><span class="l-log">o.s.b.StartupInfoLogger</span><span class="l-msg">Starting LedgerApplication using Java 21</span></p>
+              <p><span class="l-info">INFO</span><span class="l-time">09:14:03.402</span><span class="l-thr">main</span><span class="l-log">c.z.h.HikariDataSource</span><span class="l-msg">HikariPool-1 - Start completed.</span></p>
+              <p class="is-hit"><span class="l-warn">WARN</span><span class="l-time">09:14:03.977</span><span class="l-thr">main</span><span class="l-log">o.s.c.PropertySource</span><span class="l-msg">Could not resolve <mark>placeholder</mark> 'ledger.db.ip', using default</span></p>
+              <p><span class="l-info">INFO</span><span class="l-time">09:14:05.260</span><span class="l-thr">main</span><span class="l-log">o.s.b.w.e.tomcat</span><span class="l-msg">Tomcat started on port 8082 (http)</span></p>
+            </div>
+            <footer class="svc-log-foot">Select lines to ask your AI about them</footer>
+          </div>
+
+          <div class="svc-handoff">
+            <p class="svc-handoff-h">A flow finished on <code>feat/cost-ceiling</code></p>
+            <p>Move this workspace's services to that branch? Each one moves to its own repo's worktree.</p>
+            <ul>
+              <li><span class="svc-dot ok"></span> 4 services move and restart</li>
+              <li><span class="svc-dot off"></span> web skipped: pinned to <code>main</code></li>
+              <li><span class="svc-dot off"></span> infra skipped: no such branch in that repo</li>
+              <li><span class="svc-mirror">↳</span> local config linked in: <code>application-local.properties</code>, <code>.env.local</code></li>
+            </ul>
+            <div class="svc-clash-row">
+              <span class="svc-btn svc-btn-go">Move 4 services</span>
+              <span class="svc-btn">Not now</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <dl class="svc-points">
+        <div>
+          <dt>Import the setup you already have</dt>
+          <dd>Tiltfiles, compose files, Procfiles, and IntelliJ or VS Code run configurations come in as they are. Shared options are factored out, and credentials move into your keychain instead of ten copies of one password.</dd>
+        </div>
+        <div>
+          <dt>Works out how a checkout boots</dt>
+          <dd>With nothing to import, it reads the build files, per module in multi-module Gradle and Maven builds, and shows why it decided each thing so you can check it before trusting it.</dd>
+        </div>
+        <div>
+          <dt>One owner per port</dt>
+          <dd>Several flows can run on different worktrees at once. When two stacks want the same port, you get a choice to run alongside or stop the other one, not a silent takeover.</dd>
+        </div>
+        <div>
+          <dt>A stack that follows the branch</dt>
+          <dd>Move a whole stack to a branch or worktree in one step. Gitignored local config from the main checkout is linked in, so a service doesn't fail on a missing placeholder. It's offered when a flow lands, never done automatically.</dd>
+        </div>
+        <div>
+          <dt>Output that reads like the terminal</dt>
+          <dd>Colours come through, JVM lines split into level, time, thread, and logger columns, and you can search, filter by level, or switch to Raw. Services start in dependency order, and each one is ready when its HTTP, port, log, or command check passes.</dd>
+        </div>
+      </dl>
+    </section>
+
     <section class="colosseum" id="cost">
       <div class="cost-grid">
 
@@ -1628,6 +1743,8 @@ steps:
       <span class="sl-cell">v0.18.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
+      <span class="sl-cell"><a href="../overgit/">overgit</a></span>
+      <span class="sl-cell"><a href="../overdb/">overdb</a></span>
       <span class="sl-cell sl-spacer"></span>
       <span class="sl-cell">built by</span>
       <span class="sl-cell"><a href="https://github.com/lionelfarr" target="_blank" rel="noopener">lionel</a></span>

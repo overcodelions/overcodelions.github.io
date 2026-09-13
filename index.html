@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codelions — desktop tools for people who live in their terminals</title>
-  <meta name="description" content="Codelions builds desktop tools for developers who live in terminals. Overcli wraps coding-agent CLIs in one window. Overgit groups repos into workspaces and tickets-across-repos into worksets. Both open source, both honest." />
+  <meta name="description" content="Codelions builds desktop tools for developers who live in terminals. Overcli wraps coding-agent CLIs in one window. Overgit groups repos into workspaces and tickets-across-repos into worksets. Overdb, coming soon, runs one query across every environment." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="theme.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -19,11 +19,12 @@
       <span class="brand-bracket">[</span>
       <span class="brand-name">codelions</span>
       <span class="brand-bracket">]</span>
-      <span class="brand-ver">two tools · one philosophy</span>
+      <span class="brand-ver">three tools · one philosophy</span>
     </a>
     <ul class="nav-links">
       <li><a href="#overcli">overcli</a></li>
       <li><a href="#overgit">overgit</a></li>
+      <li><a href="#overdb">overdb</a></li>
       <li><a href="#philosophy">philosophy</a></li>
       <li><a href="#faq">faq</a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions" target="_blank" rel="noopener">github&nbsp;↗</a></li>
@@ -38,7 +39,7 @@
       <div class="lp-hero-copy">
         <p class="eyebrow">Codelions <span class="sep">·</span> desktop tools for people who live in terminals</p>
         <h1 class="display lp-headline">
-          Two tools.<br />
+          Three tools.<br />
           <span class="em">One philosophy.</span>
         </h1>
         <p class="lede">
@@ -48,6 +49,7 @@
         <div class="btn-row">
           <a class="btn btn-primary" href="overcli/"><span class="bk">[</span>&nbsp;explore overcli&nbsp;<span class="bk">]</span></a>
           <a class="btn btn-ghost" href="overgit/">explore overgit</a>
+          <a class="btn btn-ghost" href="overdb/">preview overdb</a>
           <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">view source ↗</a>
         </div>
       </div>
@@ -57,7 +59,7 @@
           <span class="dot dot-ready"></span> specimen · codelions
         </div>
         <dl class="lp-specs">
-          <div class="spec"><dt>tools</dt><dd class="v">overcli <em>·</em> overgit</dd></div>
+          <div class="spec"><dt>tools</dt><dd class="v">overcli <em>·</em> overgit <em>·</em> overdb</dd></div>
           <div class="spec"><dt>license</dt><dd class="v">Apache 2.0</dd></div>
           <div class="spec"><dt>platform</dt><dd class="v">macOS · Windows · Linux</dd></div>
           <div class="spec"><dt>stack</dt><dd class="v">Electron · React · TypeScript</dd></div>
@@ -72,7 +74,7 @@
       <div class="shell">
         <div class="lp-slab-head">
           <p class="rule-head"><span class="n">00</span> &nbsp;the shape of the work</p>
-          <h2 class="display display-sm">Agents on the left. Repos on the right.<br /><span class="em">Both of them legible.</span></h2>
+          <h2 class="display display-sm">Agents, repos, and databases.<br /><span class="em">All of them legible.</span></h2>
         </div>
 
         <div class="lp-windows">
@@ -124,6 +126,30 @@
                 <li><span class="lp-repo">#88</span><span class="lp-branch">token bucket · billing-svc</span><span class="lp-delta lp-clean">review</span></li>
               </ul>
               <p class="lp-status">commit · push · archive — across all three, in one action</p>
+            </div>
+          </figure>
+
+          <!-- overdb mock -->
+          <figure class="lp-win">
+            <figcaption class="lp-win-bar">
+              <span class="lp-tl"></span><span class="lp-tl"></span><span class="lp-tl"></span>
+              <span class="lp-win-name">overdb</span>
+              <span class="lp-win-tag">orders-db · 3 envs</span>
+            </figcaption>
+            <div class="lp-win-body">
+              <p class="lp-prompt"><span class="lp-caret">›</span> select status, count(*) from orders group by 1</p>
+              <p class="lp-group">fan-out <span class="lp-count lp-active">3 of 3 ok</span></p>
+              <ul class="lp-repos">
+                <li><span class="lp-repo">refunded</span><span class="lp-branch">local 3 · staging 4</span><span class="lp-delta"><span class="r">prod 41</span></span></li>
+                <li><span class="lp-repo">pending_review</span><span class="lp-branch">prod only</span><span class="lp-delta"><span class="r">+7</span></span></li>
+                <li><span class="lp-repo">paid</span><span class="lp-branch">within 1%</span><span class="lp-delta lp-clean">match</span></li>
+              </ul>
+              <p class="lp-group">schema drift <span class="lp-count">staging vs prod</span></p>
+              <ul class="lp-repos">
+                <li><span class="lp-repo">orders.refund_reason</span><span class="lp-branch">missing on staging</span><span class="lp-delta"><span class="r">breaking</span></span></li>
+                <li><span class="lp-repo">orders_customer_idx</span><span class="lp-branch">staging only</span><span class="lp-delta lp-clean">notable</span></li>
+              </ul>
+              <p class="lp-status"><span class="dot dot-ready"></span> read-only by default · layered safeguards</p>
             </div>
           </figure>
         </div>
@@ -191,6 +217,7 @@
           <span class="chip">macOS · Windows · Linux</span>
           <span class="chip">Apache 2.0</span>
           <span class="chip">signed &amp; notarized</span>
+          <a class="chip chip-soon" href="overcli/#services">services · coming soon</a>
         </div>
       </div>
     </section>
@@ -255,10 +282,70 @@
       </div>
     </section>
 
+    <!-- ─────────────────────────── OVERDB ─────────────────────────── -->
+    <section class="lp-product shell" id="overdb">
+      <p class="rule-head"><span class="n">03</span> &nbsp;overdb <span class="lp-soon">· coming soon</span></p>
+      <div class="lp-product-head">
+        <h2 class="section-title">Every query, every plan.<br /><span class="lp-italic">Every environment.</span></h2>
+        <div class="lp-product-aside">
+          <p class="section-lede">
+            A desktop database client with completion from your real schema, searchable query history, and
+            performance tools that show where a plan went wrong. It can also run one query across local, staging,
+            and prod and diff the results. Every connection starts read-only, with safeguards matched to each engine.
+          </p>
+          <div class="btn-row lp-tight">
+            <a class="btn btn-primary" href="overdb/">preview overdb</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-cards">
+        <article class="cell">
+          <span class="cell-n">01</span>
+          <h3 class="cell-title">The everyday work</h3>
+          <p class="cell-body">Browse a table, filter and sort on the server, and edit a value in place with the UPDATE shown first. Completion from the catalog writes joins for you, and every statement you run is kept and searchable.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">02</span>
+          <h3 class="cell-title">Environments and drift</h3>
+          <p class="cell-body">Run one query across local, staging, and prod and diff the results against a baseline. Schema drift is ranked breaking, notable, or quiet.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">03</span>
+          <h3 class="cell-title">Read-only, with layered safeguards</h3>
+          <p class="cell-body">Postgres, MySQL, and SQLite use engine-level read-only modes. DynamoDB fails closed in the client; a read-only IAM policy is the durable boundary. Turning on writes for prod means typing its name.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">04</span>
+          <h3 class="cell-title">Build a query with your AI</h3>
+          <p class="cell-body">Describe what you want in plain words and your <code>claude</code>, <code>codex</code>, or <code>gemini</code> login writes the SQL into your editor. Nothing runs on its own, and result rows are not intentionally added to prompts.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">05</span>
+          <h3 class="cell-title">Performance you can act on</h3>
+          <p class="cell-body">The plan drawn as a river: as wide as the rows in flight, narrowing where the WHERE throws them away and flaring where a loop multiplies them. Plus estimate versus actual and slow queries from the server itself.</p>
+        </article>
+        <article class="cell">
+          <span class="cell-n">06</span>
+          <h3 class="cell-title">Four engines, done properly</h3>
+          <p class="cell-body">Postgres, MySQL, SQLite, and DynamoDB. Aurora, Redshift, CockroachDB, and Timescale are detected as variants and handled where they actually differ.</p>
+        </article>
+      </div>
+
+      <div class="lp-product-foot">
+        <div class="chip-row">
+          <span class="chip"><span class="dot"></span> pre-v0.1 · coming soon</span>
+          <span class="chip">macOS · Windows · Linux</span>
+          <span class="chip">Apache 2.0</span>
+          <span class="chip">read-only by default</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ─────────────────────────── PHILOSOPHY ─────────────────────────── -->
     <section class="lp-philosophy" id="philosophy">
       <div class="shell">
-        <p class="rule-head"><span class="n">03</span> &nbsp;the bar we hold ourselves to</p>
+        <p class="rule-head"><span class="n">04</span> &nbsp;the bar we hold ourselves to</p>
         <div class="lp-philo-grid">
           <div class="lp-philo-lead">
             <h2 class="display display-sm">Move fast without<br /><span class="em">losing the thread.</span></h2>
@@ -291,7 +378,7 @@
           <div class="lp-tenet">
             <span class="lp-tenet-n">03</span>
             <h3>Reversible</h3>
-            <p>Both tools are overlays. Uninstall and the repos, the auth, and the history are exactly as you left them.</p>
+            <p>Every tool is an overlay. Uninstall and the repos, the databases, the auth, and the history are exactly as you left them.</p>
           </div>
         </div>
 
@@ -299,20 +386,20 @@
           Built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and his son
           <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a> under
           <a href="https://github.com/overcodelions" target="_blank" rel="noopener">Codelions</a>.
-          Open-source — issues and PRs welcome on both repos.
+          Overcli and overgit are open source — issues and PRs welcome. Overdb is coming soon.
         </p>
       </div>
     </section>
 
     <!-- ─────────────────────────── FAQ ─────────────────────────── -->
     <section class="lp-faq shell" id="faq">
-      <p class="rule-head"><span class="n">04</span> &nbsp;questions we actually get</p>
+      <p class="rule-head"><span class="n">05</span> &nbsp;questions we actually get</p>
       <div class="lp-faq-grid">
         <h2 class="section-title lp-faq-title">Frequently<br />asked questions</h2>
         <div class="faq-list">
           <details class="faq-item">
             <summary>Why does Codelions exist?</summary>
-            <p>Because the terminal is a great place to run things and a bad place to explore them. Output scrolls away, diffs flash past, and there's nowhere to follow a thread sideways. Both tools give that work a surface you can read, re-read, and reason about — without giving up the CLI underneath.</p>
+            <p>Because the terminal is a great place to run things and a bad place to explore them. Output scrolls away, diffs flash past, and there's nowhere to follow a thread sideways. Each tool gives that work a surface you can read, re-read, and reason about — without giving up the CLI underneath.</p>
           </details>
           <details class="faq-item">
             <summary>Who are these tools for?</summary>
@@ -320,7 +407,7 @@
           </details>
           <details class="faq-item">
             <summary>What does it cost?</summary>
-            <p>Nothing. Both are free and open source under Apache 2.0. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p>
+            <p>Nothing. Overcli and overgit are free and open source under Apache 2.0, and overdb is planned to join them when it is ready. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p>
           </details>
           <details class="faq-item">
             <summary>Is there any telemetry?</summary>
@@ -328,7 +415,7 @@
           </details>
           <details class="faq-item">
             <summary>Can we use this at a company?</summary>
-            <p>Yes. Apache 2.0 covers commercial use, and because everything runs locally against your own credentials there's no vendor in the path of your source code. Both apps build from the repo if your security team would rather compile them itself.</p>
+            <p>Yes. Apache 2.0 covers commercial use, and because everything runs locally against your own credentials there's no vendor in the path of your source code. The apps build from source if your security team would rather compile them itself.</p>
           </details>
           <details class="faq-item">
             <summary>What platforms are supported?</summary>
@@ -346,10 +433,11 @@
     <section class="lp-cta">
       <div class="shell lp-cta-inner">
         <p class="eyebrow">Read the source <span class="sep">·</span> read the diffs</p>
-        <h2 class="display">Two open-source tools,<br /><span class="em">designed as siblings.</span></h2>
+        <h2 class="display">Two open-source tools, one coming soon.<br /><span class="em">Designed as siblings.</span></h2>
         <div class="btn-row lp-cta-buttons">
           <a class="btn btn-accent" href="overcli/"><span class="bk">[</span>&nbsp;get overcli&nbsp;<span class="bk">]</span></a>
           <a class="btn btn-ghost" href="overgit/">get overgit</a>
+          <a class="btn btn-ghost" href="overdb/">preview overdb</a>
           <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">github.com/overcodelions ↗</a>
         </div>
       </div>
@@ -363,6 +451,7 @@
       </span>
       <span class="sl-cell"><a href="overcli/">overcli</a></span>
       <span class="sl-cell"><a href="overgit/">overgit</a></span>
+      <span class="sl-cell"><a href="overdb/">overdb</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell sl-spacer"></span>
       <span class="sl-cell">built by</span>
@@ -401,7 +490,7 @@
           He took to the agents immediately. What he didn't take to was the terminal — not because it was over his head, but because it's a bad place to <em>explore</em>. Output scrolls away. There's no "scroll back, the answer was a screen ago." Diffs flash past. Cursor keys behave oddly. There's nowhere to poke around, no way to follow a thread sideways. The interface that should have let him roam the code just streamed at him and moved on.
         </p>
         <p>
-          So we built <a href="overcli/">overcli</a> — a GUI for those CLIs that worked for <em>both</em> of us, not just him. Diffs you can read and re-read. Conversations you can scroll. Permission prompts that are buttons. Room to explore instead of a feed that disappears. The terminal is still there underneath; the dead-end UX isn't. <a href="overgit/">Overgit</a> followed once the work started spanning multiple repos and we hit the same kind of wall, this time around <code>git</code>.
+          So we built <a href="overcli/">overcli</a> — a GUI for those CLIs that worked for <em>both</em> of us, not just him. Diffs you can read and re-read. Conversations you can scroll. Permission prompts that are buttons. Room to explore instead of a feed that disappears. The terminal is still there underneath; the dead-end UX isn't. <a href="overgit/">Overgit</a> followed once the work started spanning multiple repos and we hit the same kind of wall, this time around <code>git</code>. <a href="overdb/">Overdb</a> is next, for the same wall one layer down: the database.
         </p>
         <p>
           Two things came out of it, and both are why this is worth doing. Owen got to build real software — bug reports from real users, cross-platform builds that fail in obscure ways, gatekeeper warnings, license headers — texture no tutorial fakes. And the code itself ended up better for it, because every weird abstraction is a question you'd have to answer to Owen. <em>Explainable, not clever</em> isn't a slogan up here; it's the only version of the code that survives the next conversation downstairs.

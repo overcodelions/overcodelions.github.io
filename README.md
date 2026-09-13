@@ -7,10 +7,11 @@ Umbrella marketing site for the [Codelions](https://github.com/overcodelions) op
 ```
 .
 ├── theme.css         shared design system — the brand lives here
-├── index.html        landing — "two tools, one philosophy"
+├── index.html        landing — "three tools, one philosophy"
 ├── styles.css        landing-only styles (hero plate, mock windows, layouts)
 ├── overcli/          product page for overcli
 ├── overgit/          product page for overgit
+├── overdb/           product page for overdb (coming soon)
 ├── assets/           shared assets (icon used in landing nav + footer)
 └── CNAME             custom domain pinned to overcodelions.com
 ```
@@ -19,12 +20,13 @@ Umbrella marketing site for the [Codelions](https://github.com/overcodelions) op
 
 `theme.css` owns every shared surface across all three pages: colour, type,
 buttons, cards, section headers, nav, footer, the story modal. Change the
-brand there once and all three pages move together.
+brand there once and every page moves together.
 
-The look is **"Instrument"** — warm bone paper, hairline rules, square
-corners, and a strict three-face split: **Fraunces** for display, **Inter**
-for body, **JetBrains Mono** for every label, button, and data readout. The
-products themselves appear as dark slabs dropped into that page.
+The look is **"Instrument"** — cool paper, hairline rules, softened
+corners, and three faces: **Bricolage Grotesque** for display, **Geist** for
+body, labels and buttons, **Geist Mono** for code and data readouts. The
+products themselves appear as dark slabs dropped into that page. The 2026
+refresh lives in one "modern layer" block at the end of `theme.css`.
 
 ### The `.terminal` seam
 
@@ -56,6 +58,7 @@ Two consequences worth knowing:
 
 - **overcli** → https://github.com/overcodelions/overcli
 - **overgit** → https://github.com/overcodelions/overgit
+- **overdb** → https://github.com/overcodelions/overdb (private until release)
 
 ## Run locally
 
