@@ -45,7 +45,7 @@
     <header class="hero">
       <div class="hero-inner">
         <div class="hero-left">
-          <p class="kicker">A desktop database client for Postgres, MySQL, SQLite, and DynamoDB</p>
+          <p class="kicker">A desktop database client for Postgres, MySQL, MariaDB, SQLite, DynamoDB, and the managed servers built on them</p>
           <h1 class="headline">
             <span class="headline-line">Every query, every plan,</span>
             <span class="headline-line em">every environment.</span>
@@ -64,8 +64,10 @@
           <ul class="hero-meta">
             <li><span class="dot dot-ready"></span> Postgres</li>
             <li><span class="dot dot-ready"></span> MySQL</li>
+            <li><span class="dot dot-ready"></span> MariaDB</li>
             <li><span class="dot dot-ready"></span> SQLite</li>
             <li><span class="dot dot-ready"></span> DynamoDB</li>
+            <li><a class="odb-more-engines" href="#engines">+ Redshift, Aurora, CockroachDB, Timescale</a></li>
             <li class="meta-sep">│</li>
             <li>Electron · React · TypeScript</li>
           </ul>
@@ -839,8 +841,24 @@
     <section class="features" id="features">
       <div class="section-head">
         <p class="kicker">Everything else in the window</p>
-        <h2 class="section-title">A few engines, done properly.</h2>
-        <p class="section-lede">The grid, the schema browser, charts, and health checks you'd expect, built for Postgres, MySQL, SQLite, and DynamoDB instead of every engine at once.</p>
+        <h2 class="section-title">Ten databases, done properly.</h2>
+        <p class="section-lede">The grid, the schema browser, charts, and health checks you'd expect, for ten kinds of database instead of every one ever made. Postgres-compatible and MySQL-compatible servers get the differences that matter to them rather than being treated as plain Postgres or MySQL.</p>
+
+        <dl class="odb-engines" id="engines">
+          <div>
+            <dt>Postgres family</dt>
+            <dd>PostgreSQL · Amazon Redshift · Aurora PostgreSQL · CockroachDB · TimescaleDB</dd>
+          </div>
+          <div>
+            <dt>MySQL family</dt>
+            <dd>MySQL · MariaDB · Aurora MySQL</dd>
+          </div>
+          <div>
+            <dt>And</dt>
+            <dd>SQLite · Amazon DynamoDB</dd>
+          </div>
+        </dl>
+        <p class="odb-engines-note">Overdb works out which one it's talking to when it connects, so Redshift doesn't show up as plain Postgres. Picking a managed type fills in its usual port and turns on TLS where the server requires it: 5439 for Redshift, 26257 for CockroachDB.</p>
       </div>
 
       <div class="feature-grid">
@@ -941,7 +959,7 @@
           </details>
           <details class="faq-item">
             <summary>Which engines are supported?</summary>
-            <p>Postgres, MySQL and MariaDB, SQLite, and DynamoDB. Postgres-compatible servers like Aurora, Redshift, CockroachDB, and Timescale are detected as variants and handled differently where they actually differ. Warehouses and general document stores are out of scope on purpose.</p>
+            <p>Ten: PostgreSQL, Amazon Redshift, Aurora PostgreSQL, CockroachDB, and TimescaleDB; MySQL, MariaDB, and Aurora MySQL; SQLite; and Amazon DynamoDB. They run on four drivers, and overdb detects which server it's connected to so it can handle the places they differ, like Redshift having no indexes or MariaDB's performance views. SQL Server, Oracle, and document stores like MongoDB aren't supported.</p>
           </details>
           <details class="faq-item">
             <summary>Where are passwords stored?</summary>
@@ -964,8 +982,9 @@
         <dl class="plate odb-soon-plate">
           <div class="plate-head"><span class="dot dot-ready"></span> Where overdb stands</div>
           <div class="spec"><dt>Status</dt><dd class="v">pre-v0.1, <em>in active development</em></dd></div>
-          <div class="spec"><dt>Engines</dt><dd class="v">Postgres, MySQL / MariaDB, SQLite, DynamoDB</dd></div>
-          <div class="spec"><dt>Variants</dt><dd class="v">Aurora, Redshift, CockroachDB, Timescale</dd></div>
+          <div class="spec"><dt>Postgres family</dt><dd class="v">PostgreSQL, Redshift, Aurora PostgreSQL, CockroachDB, TimescaleDB</dd></div>
+          <div class="spec"><dt>MySQL family</dt><dd class="v">MySQL, MariaDB, Aurora MySQL</dd></div>
+          <div class="spec"><dt>Also</dt><dd class="v">SQLite, Amazon DynamoDB</dd></div>
           <div class="spec"><dt>Platforms</dt><dd class="v">macOS, Windows, Linux</dd></div>
           <div class="spec"><dt>License</dt><dd class="v">Apache 2.0</dd></div>
           <div class="spec"><dt>Stack</dt><dd class="v">Electron, React, TypeScript, one process per connection</dd></div>
