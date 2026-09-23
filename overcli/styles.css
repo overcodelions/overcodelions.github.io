@@ -3996,11 +3996,11 @@ h3 .alpha-badge { margin-left: 8px; }
 .colosseum-lede + .colosseum-lede { margin-top: 16px; }
 
 
-/* ═════════════════════════ SERVICES — COMING SOON ═════════════════════════
+/* ═════════════════════════ SERVICES ═════════════════════════════════════════
    Namespaced `svc-` so none of it can reach the existing mocks. Rows, not
    cards, like the pane itself: the only loud thing should be a failure. */
 
-.svc-soon {
+.svc-new {
   margin-left: 8px;
   padding: 2px 9px;
   border-radius: 999px;
@@ -4108,14 +4108,14 @@ h3 .alpha-badge { margin-left: 8px; }
 .svc-log-raw { font-size: 11.5px; color: var(--ink-muted); }
 .svc-log-body { padding: 8px 0; overflow-x: auto; background: var(--bg); }
 .svc-log-body p {
-  display: grid; grid-template-columns: 40px 88px 40px 170px minmax(260px, 1fr); gap: 10px;
+  display: grid; grid-template-columns: 40px 88px 170px minmax(260px, 1fr); gap: 10px;
   margin: 0; padding: 3px 14px; font-family: var(--f-mono); font-size: 11px; line-height: 1.5; white-space: nowrap;
   min-width: max-content;
 }
 .svc-log-body p.is-hit { background: color-mix(in srgb, #fbbf24 8%, transparent); }
 .l-info { color: #7cc4ff; }
 .l-warn { color: #fbbf24; }
-.l-time, .l-thr { color: var(--ink-muted); }
+.l-time { color: var(--ink-muted); }
 .l-log { color: var(--claude); overflow: hidden; text-overflow: ellipsis; }
 .l-msg { color: var(--ink); }
 .svc-log-body mark { background: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--ink); border-radius: 2px; padding: 0 1px; }

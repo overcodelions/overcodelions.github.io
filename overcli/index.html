@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.18.0" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.19.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.18.0 is out</strong> — <strong>Claude in Chrome, per conversation</strong> — opt in on the turn that actually needs a browser, and the live MCP servers behind it now show up in the Capabilities sheet. <strong>GPT-6 Astra</strong> joins the codex line at the <strong>frontier</strong> tier — opt-in, so <code>gpt-5.6-sol</code> stays the auto-pick. Also shipping: <strong>outbound webhooks</strong> so notifications reach you away from the desktop, a <strong>day view for the Workers tab</strong> with a way to skip triage, and <strong>faster starts</strong>.</span>
+    <span class="rr-text"><strong>v0.19.0 is out</strong> — <strong>the Services pane ships</strong>: run a workspace's whole stack from one place, with credentials in your keychain and secrets masked in every log. <strong>Claude Opus 5.5</strong> is now the default premium model, and saved flows get a reviewed <strong>Upgrade models</strong> action. Also shipping: a <strong>per-run cost ceiling</strong> for flows, <code>overcli serve</code> for headless schedules and workers, <strong>Intel Mac builds</strong>, and rebuilt onboarding.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,7 +30,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.18.0 · beta</span>
+      <span class="brand-ver">v0.19.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -194,7 +194,7 @@
                 <header class="chat-header">
                   <h4 class="chat-title">add a rate limiter to /api/login</h4>
                   <span class="cli-pill" data-cli-pill>Claude CLI</span>
-                  <span class="chat-model-tag" data-chat-model>opus 5 <em>[1m]</em></span>
+                  <span class="chat-model-tag" data-chat-model>opus 5.5 <em>[1m]</em></span>
                   <div class="chat-actions">
                     <span class="act-pill">⑂ fork ▾</span>
                     <span class="act-pill act-danger">⊘ Bypass <em>(dangerous)</em></span>
@@ -438,9 +438,9 @@
           <div class="flow-builder-rail">
             <span class="flow-start">your request</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 5</em></span>
+            <span class="flow-step" data-flow-step="research" data-cli="claude"><strong>research</strong><em>claude · opus 5.5</em></span>
             <span class="flow-arrow">→</span>
-            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 5</em></span>
+            <span class="flow-step" data-flow-step="design" data-cli="claude"><strong>design</strong><em>claude · opus 5.5</em></span>
             <span class="flow-arrow">→</span>
             <span class="flow-step" data-flow-step="build" data-cli="ollama"><strong>build</strong><em>ollama · qwen2.5-coder</em></span>
             <span class="flow-arrow">→</span>
@@ -449,7 +449,7 @@
 
           <div class="flow-participants" data-flow-participants>
             <p class="flow-subhead">Participants</p>
-            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 5</span><span>2 steps</span></div>
+            <div class="flow-participant" data-cli="claude"><span>Thinker</span><span>Claude · opus 5.5</span><span>2 steps</span></div>
             <div class="flow-participant" data-cli="ollama"><span>Local</span><span>Ollama · qwen2.5-coder</span><span>1 step</span></div>
           </div>
 
@@ -480,9 +480,9 @@ open_source: true
 available_to: everyone
 steps:
   - id: research
-    use: claude/opus-5
+    use: claude/opus-5-5
   - id: design
-    use: claude/opus-5
+    use: claude/opus-5-5
   - id: build
     use: ollama/qwen2.5-coder</pre>
         </aside>
@@ -595,7 +595,7 @@ steps:
       <div class="flows-featured" id="flows-featured">
         <div class="flows-featured-head">
           <p class="kicker">[&nbsp;04b&nbsp;] &nbsp;·&nbsp; ready to run</p>
-          <h3 class="flows-featured-title">35 open-source flows ship with Overcli.</h3>
+          <h3 class="flows-featured-title">38 open-source flows in the registry.</h3>
         </div>
 
         <!-- spotlight: one flow, many backends -->
@@ -624,7 +624,7 @@ steps:
             <li class="fsp-step" data-cli="claude">
               <span class="fsp-n">2</span>
               <div class="fsp-body"><strong>plan</strong><span class="fsp-role">planner · scopes it against the repo</span></div>
-              <span class="fsp-model" data-cli="claude">claude · opus 5</span>
+              <span class="fsp-model" data-cli="claude">claude · opus 5.5</span>
               <span class="fsp-out">plan.md</span>
             </li>
             <li class="fsp-step" data-cli="codex">
@@ -636,7 +636,7 @@ steps:
             <li class="fsp-step fsp-loop" data-cli="claude">
               <span class="fsp-n">4</span>
               <div class="fsp-body"><strong>review</strong><span class="fsp-role">reviewer · auto-bounces to build on fail ↺</span></div>
-              <span class="fsp-model" data-cli="claude">claude · opus 5</span>
+              <span class="fsp-model" data-cli="claude">claude · opus 5.5</span>
               <span class="fsp-out">review.md</span>
             </li>
             <li class="fsp-step" data-cli="codex">
@@ -1100,20 +1100,18 @@ steps:
       </div>
     </section>
 
-    <!-- ─────────── 07 · WHAT IT COSTS TO RUN ─────────── -->
-    <!-- ─────────── SERVICES — COMING SOON ─────────── -->
-    <!-- Merged on master after 0.18.0 and not in a release yet. Unnumbered on
-         purpose: it slots between acts without renumbering them, and [ next ]
-         says what it is. Swap for a number when it ships. -->
+    <!-- ─────────── 06 · SERVICES ─────────── -->
+    <!-- Shipped in 0.19.0. The clash and handoff buttons carry the pane's own
+         labels, so keep them in step with ServicesPane.tsx. -->
     <section class="colosseum terminal" id="services">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;next&nbsp;] &nbsp;·&nbsp; services <span class="svc-soon">coming soon</span></p>
+        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; services <span class="svc-new">new in 0.19</span></p>
         <h2 class="display-title">
           <span>Run the whole stack.</span>
           <span class="em">Point it at any branch.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          A Services pane that starts, stops, and watches every service a workspace runs, each bound to the checkout or worktree it should run from. When a flow finishes on a branch, the stack can follow it there. It's built and merged, and ships in the next release.
+          A Services pane that starts, stops, and watches every service a workspace runs, each bound to the checkout or worktree it should run from. When a flow finishes on a branch, the stack can follow it there. Each service keeps its own log file with secrets masked, and one still running from your last session is picked back up instead of showing as stopped.
         </p>
       </div>
 
@@ -1149,8 +1147,8 @@ steps:
           <div class="svc-clash">
             <p><b>:8090 is held</b> by notifications in <em>checkout-flow</em>, running from worktree <code>feat/webhooks</code>. Starting here would take it from a run you may not be watching.</p>
             <div class="svc-clash-row">
-              <span class="svc-btn svc-btn-go">Run alongside on :8091</span>
-              <span class="svc-btn">Stop the other one</span>
+              <span class="svc-btn svc-btn-go">Use :18090 instead</span>
+              <span class="svc-btn">Stop it and start</span>
               <span class="svc-btn">Cancel</span>
             </div>
           </div>
@@ -1166,10 +1164,10 @@ steps:
               <span class="svc-log-raw">Raw</span>
             </header>
             <div class="svc-log-body">
-              <p><span class="l-info">INFO</span><span class="l-time">09:14:02.118</span><span class="l-thr">main</span><span class="l-log">o.s.b.StartupInfoLogger</span><span class="l-msg">Starting LedgerApplication using Java 21</span></p>
-              <p><span class="l-info">INFO</span><span class="l-time">09:14:03.402</span><span class="l-thr">main</span><span class="l-log">c.z.h.HikariDataSource</span><span class="l-msg">HikariPool-1 - Start completed.</span></p>
-              <p class="is-hit"><span class="l-warn">WARN</span><span class="l-time">09:14:03.977</span><span class="l-thr">main</span><span class="l-log">o.s.c.PropertySource</span><span class="l-msg">Could not resolve <mark>placeholder</mark> 'ledger.db.ip', using default</span></p>
-              <p><span class="l-info">INFO</span><span class="l-time">09:14:05.260</span><span class="l-thr">main</span><span class="l-log">o.s.b.w.e.tomcat</span><span class="l-msg">Tomcat started on port 8082 (http)</span></p>
+              <p><span class="l-info">INFO</span><span class="l-time">09:14:02.118</span><span class="l-log">o.s.b.StartupInfoLogger</span><span class="l-msg">Starting LedgerApplication using Java 21</span></p>
+              <p><span class="l-info">INFO</span><span class="l-time">09:14:03.402</span><span class="l-log">c.z.h.HikariDataSource</span><span class="l-msg">HikariPool-1 - Start completed.</span></p>
+              <p class="is-hit"><span class="l-warn">WARN</span><span class="l-time">09:14:03.977</span><span class="l-log">o.s.c.PropertySource</span><span class="l-msg">Could not resolve <mark>placeholder</mark> 'ledger.db.ip', using default</span></p>
+              <p><span class="l-info">INFO</span><span class="l-time">09:14:05.260</span><span class="l-log">o.s.b.w.e.tomcat</span><span class="l-msg">Tomcat started on port 8082 (http)</span></p>
             </div>
             <footer class="svc-log-foot">Select lines to ask your AI about them</footer>
           </div>
@@ -1184,7 +1182,7 @@ steps:
               <li><span class="svc-mirror">↳</span> local config linked in: <code>application-local.properties</code>, <code>.env.local</code></li>
             </ul>
             <div class="svc-clash-row">
-              <span class="svc-btn svc-btn-go">Move 4 services</span>
+              <span class="svc-btn svc-btn-go">Switch them over</span>
               <span class="svc-btn">Not now</span>
             </div>
           </div>
@@ -1198,19 +1196,19 @@ steps:
         </div>
         <div>
           <dt>Works out how a checkout boots</dt>
-          <dd>With nothing to import, it reads the build files, per module in multi-module Gradle and Maven builds, and shows why it decided each thing so you can check it before trusting it.</dd>
+          <dd>With nothing to import, it reads the build files, per module in multi-module Gradle and Maven builds, and flags anything it is unsure of as worth a check before you trust it.</dd>
         </div>
         <div>
           <dt>One owner per port</dt>
-          <dd>Several flows can run on different worktrees at once. When two stacks want the same port, you get a choice to run alongside or stop the other one, not a silent takeover.</dd>
+          <dd>Several flows can run on different worktrees at once. When two stacks want the same port, you get a choice to run on another port or stop the other one, not a silent takeover.</dd>
         </div>
         <div>
           <dt>A stack that follows the branch</dt>
-          <dd>Move a whole stack to a branch or worktree in one step. Gitignored local config from the main checkout is linked in, so a service doesn't fail on a missing placeholder. It's offered when a flow lands, never done automatically.</dd>
+          <dd>Move a whole stack to another branch's worktree in one step. Gitignored local config from the main checkout is linked in, so a service doesn't fail on a missing placeholder. It's offered when a flow lands, never done automatically.</dd>
         </div>
         <div>
           <dt>Output that reads like the terminal</dt>
-          <dd>Colours come through, JVM lines split into level, time, thread, and logger columns, and you can search, filter by level, or switch to Raw. Services start in dependency order, and each one is ready when its HTTP, port, log, or command check passes.</dd>
+          <dd>Colours come through, JVM lines split into level, time, and logger columns, and you can search, filter by level, or switch to Raw. Services start in dependency order, and each one is ready when its HTTP, port, log, or command check passes.</dd>
         </div>
       </dl>
     </section>
@@ -1219,7 +1217,7 @@ steps:
       <div class="cost-grid">
 
         <div class="cost-say">
-          <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; what it costs to run</p>
+          <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; what it costs to run</p>
           <h2 class="section-title">Every step names its own model. <span class="em">Most of them don't need the expensive one.</span></h2>
           <p class="section-lede">A flow step that greps a repo, drafts a changelog or files a ticket does not need a frontier model to do it. Point the premium judgement at a premium model and the bulk at a cheaper — or local — one, and the clock gets cheap enough to leave running. This is not a dial you tune afterwards; it is how a flow is written in the first place.</p>
           <p class="section-lede cost-foot">The cheapest agent is still the one on your own machine: <code>ollama</code> is a peer of the other four backends, not a lesser fifth, and every place the app picks a model is a place you can pick a local one. That matters most at the top of the ladder, where a worker on an hourly clock is the one thing here spending money while nobody is watching.</p>
@@ -1229,22 +1227,23 @@ steps:
           <figcaption class="plate-head">the flows we ship &nbsp;·&nbsp; model mix</figcaption>
 
           <div class="cost-stat">
-            <p class="cost-fig"><span class="cost-n">86</span> <span class="cost-of">of 130 steps</span></p>
-            <p class="cost-claim">run on something other than the expensive model.</p>
+            <p class="cost-fig"><span class="cost-n">99</span> <span class="cost-of">of 154 steps</span></p>
+            <p class="cost-claim">run on something other than a premium model.</p>
 
-            <div class="meter" role="img" aria-label="Of 130 flow steps, 86 run on a cheaper or local model and 44 run on a premium model.">
-              <span class="meter-seg meter-cheap" style="flex-grow: 86;"></span>
-              <span class="meter-seg meter-prem" style="flex-grow: 44;"></span>
+            <div class="meter" role="img" aria-label="Of 154 flow steps, 99 run on a cheaper model and 55 run on a premium or frontier model.">
+              <span class="meter-seg meter-cheap" style="flex-grow: 99;"></span>
+              <span class="meter-seg meter-prem" style="flex-grow: 55;"></span>
             </div>
             <p class="meter-key">
-              <span class="mk"><i class="sw sw-cheap" aria-hidden="true"></i>cheaper &amp; local <b>86</b></span>
-              <span class="mk"><i class="sw sw-prem" aria-hidden="true"></i>premium <b>44</b></span>
+              <span class="mk"><i class="sw sw-cheap" aria-hidden="true"></i>cheaper <b>99</b></span>
+              <span class="mk"><i class="sw sw-prem" aria-hidden="true"></i>premium <b>55</b></span>
             </p>
           </div>
 
-          <dl class="spec"><dt class="k">the mix</dt><dd class="v">sonnet <em>62</em> &nbsp;·&nbsp; opus <em>44</em> &nbsp;·&nbsp; gpt-5.6-terra <em>17</em> &nbsp;·&nbsp; fable <em>7</em></dd></dl>
+          <dl class="spec"><dt class="k">the mix</dt><dd class="v">sonnet <em>72</em> &nbsp;·&nbsp; opus <em>48</em> &nbsp;·&nbsp; gpt-5.6-terra <em>27</em> &nbsp;·&nbsp; fable <em>7</em></dd></dl>
           <dl class="spec"><dt class="k">downgrades</dt><dd class="v">near a rate or cost ceiling: opus <em>→</em> sonnet, cloud <em>→</em> local ollama, rather than stopping</dd></dl>
-          <dl class="spec"><dt class="k">the ceiling</dt><dd class="v">one monthly pot for the whole crew, paid down the roster in order</dd></dl>
+          <dl class="spec"><dt class="k">per run</dt><dd class="v">a cost ceiling on each flow run: past it, the run stops and tells you</dd></dl>
+          <dl class="spec"><dt class="k">the pot</dt><dd class="v">one monthly budget for the whole crew, paid down the roster in order</dd></dl>
           <!-- TODO: add a measured row here — one real flow's spend vs the same flow forced all-opus.
                It is the one number a buyer will test, and we should not claim it until we have run it. -->
         </figure>
@@ -1254,7 +1253,7 @@ steps:
 
     <section class="features" id="features">
       <div class="section-head">
-        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; what's in the box</p>
+        <p class="kicker">[&nbsp;08&nbsp;] &nbsp;·&nbsp; what's in the box</p>
         <h2 class="section-title">Built by engineers obsessed with their dev environment.</h2>
         <p class="section-lede">Every surface here exists because somebody got annoyed that it didn't. No feature-ballast, no PM checkboxes — just the pieces you miss the moment you pop back into a raw terminal. They fall into four groups: <em>the window</em> you read the work in, <em>the machinery</em> underneath it, the growing pile of <em>work that runs itself</em>, and what is left when there is <em>no repo at all</em>.</p>
       </div>
@@ -1393,6 +1392,13 @@ steps:
           <p class="feature-note">Leaving Warp restores the model and effort you were on rather than stranding you on the fast tier. Ollama stays manually controlled, because a local model's speed is your hardware's business and not a setting.</p>
         </article>
 
+        <article class="feature">
+          <span class="feature-num">20</span>
+          <h3>Services, in a pane of their own</h3>
+          <p>Start, stop and watch every service a workspace runs — imported from the Tiltfiles, compose files, Procfiles and IDE run configurations you already have, or read from the build. Services start in dependency order, a port has one owner at a time, and the whole stack can move to the worktree a flow just finished on. <a href="#services" class="feat-link">see it above ↑</a></p>
+          <p class="feature-note">Credentials live in your OS keychain, not in a config file, and known secrets are masked in every log line before it is written. Mention <code>@service</code> in a chat to hand the agent a running service's latest log, and a service left running from your last session is taken back rather than killed.</p>
+        </article>
+
       </div>
 
       <div class="feature-band">
@@ -1402,46 +1408,46 @@ steps:
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">20</span>
+          <span class="feature-num">21</span>
           <h3>Rebound reviews</h3>
           <p>After every turn, fire a second agent — on a <em>different</em> backend if you like — to review what just landed. Thinking blocks visible, round counter included. Collaboration mode loops rounds until the reviewer stops finding things to fix.</p>
           <p class="feature-note">Note: Copilot can't be a reviewer yet — its CLI doesn't read prompts from stdin. When it's your primary, overcli routes the review to claude/codex/gemini and shows a <em>"Routed via X"</em> chip so it's not surprising.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">21</span>
+          <span class="feature-num">22</span>
           <h3>Silent agents</h3>
           <p>Long-running background agents that live next to your work. A <em>doc-writer</em> that keeps <code>/docs</code> in sync as the code changes. A <em>PR-reviewer</em> that quietly comments on every pull request the moment it opens. No Slack pings. No dashboards. Just work getting done.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">22</span>
+          <span class="feature-num">23</span>
           <h3>Smart downgrades</h3>
           <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default. <a href="#cost" class="feat-link">see it above ↑</a></p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">23</span>
+          <span class="feature-num">24</span>
           <h3>Colosseum</h3>
           <p>Fire one prompt at every backend at once. Watch the answers land side by side, compare the diffs, keep the winner, discard the rest. The fastest way to tell which agent actually understood the task.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">24</span>
+          <span class="feature-num">25</span>
           <h3>Flows</h3>
           <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>35 ship in the box</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
           <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">25</span>
+          <span class="feature-num">26</span>
           <h3>Orchestrator</h3>
           <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="#orchestrator" class="feat-link">see it above ↑</a></p>
           <p class="feature-note">The tab has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">26</span>
+          <span class="feature-num">27</span>
           <h3>Scheduled runs</h3>
           <p>A schedule is a trigger on work you already defined, so it lives inside <em>Flows</em> rather than as a fourth place to launch from. Fire a flow on a cadence, or point a schedule at the orchestrator and have it <em>park</em> what it finds — by default every item lands proposed and nothing launches until you approve it. Intervals take days and an active window, so "every hour, weekdays, 8–5" is one trigger and not twenty-four.</p>
           <p class="feature-note">Three trigger kinds: an interval, a <em>cron</em> expression for the cadences no preset covers, or <code>onFlowComplete</code> — "when the nightly scrape succeeds, launch triage" — which reacts to runs it did not launch, bounded at a depth of five.</p>
@@ -1449,28 +1455,29 @@ steps:
         </article>
 
         <article class="feature">
-          <span class="feature-num">27</span>
+          <span class="feature-num">28</span>
           <h3>Flow watch</h3>
           <p>When a flow finishes, it doesn't have to stop caring. Put a run in <em>watch</em> and it keeps an eye on the thing it touched — the <em>PR</em>, the <em>Jira ticket</em>, the <em>Slack thread</em> — answering follow-up questions with the full context of what it just did. A cheap detect pass polls every tick; the real model only wakes when someone actually asks something.</p>
           <p class="feature-note">It tends, it never re-does. If a comment asks for real work — a code change, a re-run — the watcher flags you instead of touching the repo, and pings you on the desktop.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">28</span>
+          <span class="feature-num">29</span>
           <h3>Headless, and deployable <span class="alpha-badge">alpha</span></h3>
           <p>The same flow YAML runs from an <code>overcli</code> command line with no window — one shot in CI, or on a box you own — and a flow or a worker's whole cadence deploys to <em>GitHub Actions</em> or <em>Jenkins</em> as a generated pipeline. There is no second runtime: the app and the CLI drive the same runner and the same engine, so a flow that worked at your desk works on the runner.</p>
+          <p class="feature-note">New in 0.19: <code>overcli serve</code> keeps schedules and standing workers running headless on a box you own, under a single-daemon lock so two copies never fire the same shift.</p>
           <p class="feature-note">In <em>alpha</em>: runnable today, but the interface can still move. Everything else on this page is shipped.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">29</span>
+          <span class="feature-num">30</span>
           <h3>A risk scan before it runs</h3>
           <p>A flow is a set of instructions that later runs with real tool access, and the only checks used to be an integrity hash and a structural validation — nothing read the instructions. Every step's prompt override and tool list is now scanned for credential-file references and for network egress declared as a <code>local</code> effect, on the registry path and on every hand-authored save.</p>
           <p class="feature-note">Nothing is blocked: a heuristic that refused a legitimate install would be worse than the warning it replaces. A high-severity finding pauses the run instead, under its own reason. Separately, <code>bash</code>, <code>websearch</code> and <code>webfetch</code> stopped counting as local — an unattended worker with no grant for outside actions cannot run them, and a step's declared tool list reaches the CLI as a real allowlist rather than a label.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">30</span>
+          <span class="feature-num">31</span>
           <h3>Standing workers</h3>
           <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Describe the job in prose — with a spec or a screenshot attached if you have one — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a calendar, a filing cabinet, and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="#workers" class="feat-link">see it above ↑</a></p>
           <p class="feature-note">A shift streams into the desk as it is worked, and any turn opens in a reader with a find box — a sweep across seventy tickets is a document, not a chat bubble. Leave it a <em>note</em> and the worker reads it before planning the next shift, because the record of what it did is not a thing you edit.</p>
@@ -1478,10 +1485,17 @@ steps:
         </article>
 
         <article class="feature">
-          <span class="feature-num">31</span>
+          <span class="feature-num">32</span>
           <h3>One pot, paid down the roster</h3>
           <p>Eight workers at $10 a month is an $80 exposure nobody ever approved. The crew now draws from a <em>single monthly pot</em>, paid down the roster in order: a worker may spend only what is left after everyone above it is funded. Drag a name up and that is a funding decision you can watch land. Pausing one releases its reserve to everyone below it.</p>
           <p class="feature-note">A worker's unspent cap is held for it, so the one that runs your morning can't be starved by the one that tidies changelogs. Shifts below the waterline skip quietly and journal why, and a dry pool notifies once for the whole roster.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">33</span>
+          <h3>A cost ceiling on every run</h3>
+          <p>Set a ceiling per flow run in Settings, and a run that spends past it stops and tells you why, rather than finishing a job nobody priced. It is a stop-loss, not a hard cap: it is checked after each turn reports its cost, so one expensive turn can land above it before the run halts.</p>
+          <p class="feature-note">When Opus 5.5 became the default premium model, saved flows did not move on their own. <em>Upgrade models</em> shows the exact change for each flow, and nothing moves until you tick it — a pinned model can be deliberate.</p>
         </article>
       </div>
 
@@ -1492,20 +1506,20 @@ steps:
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">32</span>
+          <span class="feature-num">34</span>
           <h3>Everyday projects</h3>
           <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">33</span>
+          <span class="feature-num">35</span>
           <h3>Documents, not a file tree</h3>
           <p>Everyday projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
           <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">34</span>
+          <span class="feature-num">36</span>
           <h3>Auto-save, and every version back</h3>
           <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
           <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
@@ -1546,7 +1560,7 @@ steps:
          too many. -->
     <section class="dashboards" id="day-to-day">
       <div class="section-head">
-        <p class="kicker">[&nbsp;08&nbsp;] &nbsp;·&nbsp; day to day</p>
+        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; day to day</p>
         <h2 class="section-title">Most days, <em>it's just this.</em></h2>
         <p class="section-lede">Everything above is what Overcli can do when you hand it the keys. This is what it is the rest of the time: a conversation with a diff attached, and a number at the end of the month telling you what that came to. Both are real screens, not renders.</p>
       </div>
@@ -1575,7 +1589,7 @@ steps:
     <!-- ─────────── PHILOSOPHY ─────────── -->
     <section class="story" id="story">
       <div class="story-body">
-        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
+        <p class="kicker">[&nbsp;10&nbsp;] &nbsp;·&nbsp; why overcli exists</p>
         <h2 class="display-title story-title">
           <span>Move fast without</span>
           <span>losing <em>the thread</em>.</span>
@@ -1598,7 +1612,7 @@ steps:
     <section class="faq-section" id="faq">
       <div class="faq-grid">
         <div class="section-head">
-          <p class="kicker">&#9484;&#9472; [&nbsp;10&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
+          <p class="kicker">&#9484;&#9472; [&nbsp;11&nbsp;] &nbsp;·&nbsp; before you install it at work</p>
           <h2 class="section-title">Questions your security team will ask.</h2>
           <p class="section-lede">Short answers, and the source is right there if you'd rather read it than take our word for it.</p>
         </div>
@@ -1657,7 +1671,7 @@ steps:
 
     <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">[&nbsp;11&nbsp;] &nbsp;·&nbsp; grab a build</p>
+        <p class="kicker">[&nbsp;12&nbsp;] &nbsp;·&nbsp; grab a build</p>
         <h2 class="section-title">Signed, notarized, and real.</h2>
         <p class="section-lede">Overcli is in beta, but the macOS builds are now <em>Developer-ID signed and notarized by Apple</em> — they open on a double-click, no right-click ceremony. Windows isn't code-signed yet, so SmartScreen may still flag it. Either way the source is right there; build it yourself.</p>
       </div>
@@ -1740,7 +1754,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.18.0 · beta</span>
+      <span class="sl-cell">v0.19.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell"><a href="../overgit/">overgit</a></span>
