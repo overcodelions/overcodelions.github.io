@@ -60,7 +60,6 @@
 @media (max-width: 900px) {
   .lp-windows { grid-template-columns: 1fr; }
 }
-.lp-soon { color: var(--signal); }
 
 .lp-win {
   margin: 0;
@@ -392,7 +391,3 @@
 .lp-cta-inner .display { max-width: 18ch; margin-inline: auto; }
 .lp-cta-buttons { justify-content: center; margin-top: 36px; }
 
-/* A chip for something built but not released yet. It links to where the
-   preview lives, so it is an anchor wearing the chip's clothes. */
-.chip-soon { color: var(--signal); border-color: color-mix(in srgb, var(--signal) 35%, var(--line)); }
-.chip-soon:hover { border-color: var(--signal); }

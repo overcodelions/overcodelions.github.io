@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Overdb — a database client for queries, plans, and environments</title>
-  <meta name="description" content="Overdb is a database client for everyday querying, performance, and history, built for teams with more than one environment. Schema-aware completion, estimate-vs-actual plans, slow queries, searchable history, and one query run across local, staging, and prod. Read-only by default, with safeguards matched to each engine. Coming soon from Codelions." />
+  <meta name="description" content="Overdb is a database client for everyday querying, performance, and history, built for teams with more than one environment. Schema-aware completion, plans drawn as the work each step does, slow queries, searchable history, and one query run across local, staging, and prod. Read-only by default, with safeguards matched to each engine. From Codelions, open source." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,17 +13,17 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="#soon">
-    <span class="rr-badge">coming soon</span>
-    <span class="rr-text"><strong>overdb is being prepared for open source.</strong> The query editor, history, plan analysis, slow queries, fan-out, and schema drift are working today. There are no public builds yet.</span>
-    <span class="rr-cta">where it stands</span>
+  <a class="release-ribbon" href="https://github.com/overcodelions/overdb/releases/tag/v0.1.0" target="_blank" rel="noopener">
+    <span class="rr-badge">new</span>
+    <span class="rr-text"><strong>overdb v0.1.0 is out, and open source.</strong> The first public build: the query editor, history, plans drawn as the work each step does, slow queries, fan-out across environments, and schema drift. <strong>Postgres, MySQL, SQLite and DynamoDB</strong>, signed and notarized on macOS.</span>
+    <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
   <nav class="site-nav" aria-label="primary">
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overdb</span>
-      <span class="brand-ver">pre-v0.1 · coming soon</span>
+      <span class="brand-ver">v0.1.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -34,8 +34,8 @@
       <li><a href="#environments">environments</a></li>
       <li><a href="#drift">drift</a></li>
       <li><a href="#faq">faq</a></li>
-      <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#soon">get notified</a></li>
-      <li><a class="nav-repo" href="https://github.com/overcodelions" target="_blank" rel="noopener">github&nbsp;↗</a></li>
+      <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#download"><span class="bk">[</span>&nbsp;download&nbsp;<span class="bk">]</span></a></li>
+      <li><a class="nav-repo" href="https://github.com/overcodelions/overdb" target="_blank" rel="noopener">github&nbsp;↗</a></li>
     </ul>
   </nav>
 
@@ -51,11 +51,11 @@
             <span class="headline-line em">every environment.</span>
           </h1>
           <p class="lede">
-            Browse tables, filter results, and edit a value in place. Write queries with completion from your real schema or describe one and let your own AI write it, search every statement you've run, and see plans that show where the estimate went wrong. Because the same schema lives in local, staging, and prod, overdb can also run a query on all of them and diff the results. <strong>Read-only until you say otherwise</strong>, with safeguards matched to each engine.
+            Browse tables, filter results, and edit a value in place. Write queries with completion from your real schema or describe one and let your own AI write it, search every statement you've run, and see plans drawn as the work each step does. Because the same schema lives in local, staging, and prod, overdb can also run a query on all of them and diff the results. <strong>Read-only until you say otherwise</strong>, with safeguards matched to each engine.
           </p>
           <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">db</span> &nbsp;— a client that sits <em>over</em> your databases. It doesn't change your schema, and it doesn't send your rows anywhere.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#soon">See where it stands</a>
+            <a class="btn btn-primary" href="#download">Download overdb</a>
             <a class="btn btn-ghost" href="#usage">See how it works</a>
             <a class="btn-chip" href="../overgit/" aria-label="See the sibling project, overgit">
               <kbd>sibling</kbd>&nbsp;&nbsp;meet overgit
@@ -83,7 +83,7 @@
 
             <div class="odb-app">
               <aside class="odb-side">
-                <div class="odb-search"><span>⌕</span> tables, queries, connections <kbd>⌘K</kbd></div>
+                <div class="odb-search"><span>⌕</span> Find a connection <kbd>⌘K</kbd></div>
 
                 <p class="odb-side-h">Environment sets</p>
                 <ul class="odb-list">
@@ -91,17 +91,21 @@
                   <li><span class="odb-set">◎</span> identity <span class="odb-n">2</span></li>
                 </ul>
 
-                <p class="odb-side-h">Payments</p>
+                <p class="odb-side-h">local</p>
                 <ul class="odb-list">
                   <li><span class="odb-env env-local">local</span> orders-db <span class="odb-eng">pg 16</span></li>
-                  <li><span class="odb-env env-staging">stage</span> orders-db <span class="odb-eng">pg 16</span></li>
-                  <li><span class="odb-env env-prod">prod</span> orders-db <span class="odb-eng">aurora</span></li>
                   <li><span class="odb-env env-local">local</span> ledger <span class="odb-eng">mysql</span></li>
+                  <li><span class="odb-env env-local">local</span> sessions <span class="odb-eng">sqlite</span></li>
                 </ul>
 
-                <p class="odb-side-h">Identity</p>
+                <p class="odb-side-h">staging</p>
                 <ul class="odb-list">
-                  <li><span class="odb-env env-local">local</span> sessions <span class="odb-eng">sqlite</span></li>
+                  <li><span class="odb-env env-staging">stage</span> orders-db <span class="odb-eng">pg 16</span></li>
+                </ul>
+
+                <p class="odb-side-h">prod</p>
+                <ul class="odb-list">
+                  <li><span class="odb-env env-prod">prod</span> orders-db <span class="odb-eng">aurora</span></li>
                   <li><span class="odb-env env-prod">prod</span> users <span class="odb-eng">dynamo</span></li>
                 </ul>
               </aside>
@@ -117,34 +121,34 @@
                 <pre class="odb-editor"><span class="odb-ln"><i>1</i><b class="k">select</b> status, <b class="f">count</b>(*) <b class="k">as</b> orders</span><span class="odb-ln"><i>2</i><b class="k">from</b> orders</span><span class="odb-ln"><i>3</i><b class="k">where</b> created_at &gt; now() - <b class="k">interval</b> <b class="s">'1 day'</b></span><span class="odb-ln"><i>4</i><b class="k">group by</b> status;</span></pre>
 
                 <div class="odb-outcomes">
-                  <div class="odb-out"><span class="odb-env env-local">local</span><b>3 rows</b><em>4 ms</em></div>
-                  <div class="odb-out"><span class="odb-env env-staging">stage</span><b>3 rows</b><em>11 ms</em></div>
-                  <div class="odb-out is-base"><span class="odb-env env-prod">prod</span><b>4 rows</b><em>38 ms · baseline</em></div>
+                  <div class="odb-out"><span class="odb-env env-local">local</span><b>3 rows</b><em>4 ms · 1 fewer rows</em></div>
+                  <div class="odb-out"><span class="odb-env env-staging">stage</span><b>3 rows</b><em>11 ms · 1 fewer rows</em></div>
+                  <div class="odb-out is-base"><span class="odb-env env-prod">prod</span><b>4 rows</b><em>38 ms · the baseline</em></div>
                 </div>
 
                 <div class="odb-grid-wrap">
                   <table class="odb-grid">
                     <thead>
-                      <tr><th>status</th><th class="num">local</th><th class="num">staging</th><th class="num">prod</th></tr>
+                      <tr><th>status</th><th class="num">orders</th></tr>
                     </thead>
                     <tbody>
-                      <tr><td>paid</td><td class="num">1,204</td><td class="num">1,198</td><td class="num">1,212</td></tr>
-                      <tr><td>shipped</td><td class="num">866</td><td class="num">861</td><td class="num">871</td></tr>
-                      <tr class="is-diff"><td>refunded</td><td class="num">3</td><td class="num">4</td><td class="num hot">41</td></tr>
-                      <tr class="is-only"><td>pending_review</td><td class="num gap">absent</td><td class="num gap">absent</td><td class="num hot">7</td></tr>
+                      <tr><td>paid</td><td class="num">1,212</td></tr>
+                      <tr><td>shipped</td><td class="num">871</td></tr>
+                      <tr><td>refunded</td><td class="num">41</td></tr>
+                      <tr class="is-only"><td>pending_review</td><td class="num hot">7</td></tr>
                     </tbody>
                   </table>
                 </div>
 
                 <footer class="odb-status">
                   <span class="dot dot-ready"></span> 3 of 3 succeeded
-                  <span class="odb-status-sep"></span> 2 rows differ from prod
+                  <span class="odb-status-sep"></span> 2 differ from prod
                   <span class="odb-status-sep"></span> nothing written
                 </footer>
               </section>
             </div>
           </figure>
-          <p class="hero-caption">One query, three servers, one diff against the environment you trust.</p>
+          <p class="hero-caption">One query, three servers, each one compared with the environment you trust.</p>
         </div>
       </div>
     </header>
@@ -281,7 +285,7 @@
       <dl class="odb-bx-points">
         <div>
           <dt>A first look, one click</dt>
-          <dd>Clicking a table asks for 200 rows. On DynamoDB it asks for 5 items, so a quick look never turns into a paid full-table scan. Results default to 1,000 rows, not 100,000.</dd>
+          <dd>Clicking a table asks for 200 rows. On DynamoDB it asks for 5 items, so a quick look never turns into a paid full-table scan. Results stop at 10,000 rows unless you raise the limit.</dd>
         </div>
         <div>
           <dt>Filters that cover the whole table</dt>
@@ -312,7 +316,7 @@
           <span class="em">Read it before it runs.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          Type what you're after in plain words, or ask a question about the schema. Overdb sends it to the <code>claude</code>, <code>codex</code>, or <code>gemini</code> CLI you already use, along with the table names, column types, and constraints it needs. The SQL comes back into your editor and doesn't run until you press Run.
+          Type what you're after in plain words, or ask a question about the schema. Overdb sends it to the <code>claude</code>, <code>codex</code>, or <code>gemini</code> CLI you already use, along with the table names, column types, and primary and foreign keys it needs. The SQL comes back into your editor and doesn't run until you press Run.
         </p>
       </div>
 
@@ -321,7 +325,6 @@
           <header class="odb-ask-top">
             <span class="odb-ask-title">Ask</span>
             <span class="odb-ask-thread">orders-db · 3 questions</span>
-            <span class="odb-ask-tool" title="Uses this CLI's existing login">claude ▾</span>
           </header>
 
           <div class="odb-ask-body">
@@ -377,14 +380,14 @@
               <p class="odb-ask-sent-h is-yes">What the AI sees</p>
               <ul>
                 <li>Table and column names</li>
-                <li>Column types and constraints</li>
+                <li>Column types, primary and foreign keys</li>
                 <li>Plan statistics, when you ask it to explain</li>
               </ul>
             </div>
             <div>
               <p class="odb-ask-sent-h is-no">What it never sees</p>
               <ul>
-                <li>Your rows or any values in them</li>
+                <li>Result rows or bound parameter values</li>
                 <li>Passwords or connection secrets</li>
                 <li>Anything on a connection you didn't ask about</li>
               </ul>
@@ -481,7 +484,7 @@
       <figure class="odb-board odb-river" data-state="before" aria-label="an animated plan river for a query joining customers to orders">
         <header class="odb-board-head">
           <div>
-            <h3>The work this query does <span class="odb-tag">explain analyze</span></h3>
+            <h3>The work this query does <span class="odb-tag">explain</span></h3>
             <p><code>select … from customers c join orders o on o.customer_id = c.id where c.region = 'eu' order by o.created_at desc limit 20</code></p>
           </div>
           <div class="odb-seg" role="group" aria-label="Show the plan before or after the fix">
@@ -490,8 +493,8 @@
           </div>
         </header>
 
-        <p class="odb-verdict rv-before">Reads <b>48,120</b> rows to return <b>20</b>. Most of that is <b>customers</b>, which has no index on <code>region</code>.</p>
-        <p class="odb-verdict rv-after">Reads <b>1,200</b> rows to reach the join. Customers is fixed. The next cost is the <b>sort</b>: 37,200 rows ordered so 20 can be kept.</p>
+        <p class="odb-verdict rv-before">Plans to read about <b>48,120</b> rows to return <b>20</b>. Most of that is <b>customers</b>, which has no index on <code>region</code>.</p>
+        <p class="odb-verdict rv-after">Plans to read about <b>1,200</b> rows to reach the join. Customers is fixed. The next cost is the <b>sort</b>: 37,200 rows ordered so 20 can be kept.</p>
 
         <div class="odb-river-scroll">
           <svg class="odb-river-svg" viewBox="0 0 1180 204" role="img" aria-labelledby="river-desc">
@@ -501,7 +504,7 @@
             <g class="rv-before">
               <path d="M92 89 H188 V151 H92 Z" fill="#34d399" fill-opacity=".3" />
               <path d="M92 120 H188" stroke="#34d399" stroke-width="9" stroke-opacity=".75" class="trace-flow" />
-              <text x="140" y="81" text-anchor="middle" class="rv-mono" fill="#34d399">48,120</text>
+              <text x="140" y="81" text-anchor="middle" class="rv-mono" fill="#34d399">≈ 48,120</text>
 
               <path d="M388 89 L428 114 L428 126 L388 151 Z" fill="#fb923c" class="plan-strain" style="--strain: 2.3s" />
               <path d="M388 89 L428 114 M388 151 L428 126" stroke="#fb923c" stroke-opacity=".5" stroke-width="1.2" />
@@ -519,7 +522,7 @@
             <g class="rv-after">
               <path d="M92 114 H188 V126 H92 Z" fill="#34d399" fill-opacity=".3" />
               <path d="M92 120 H188" stroke="#34d399" stroke-width="6" class="trace-flow" />
-              <text x="140" y="106" text-anchor="middle" class="rv-mono" fill="#34d399">1,200</text>
+              <text x="140" y="106" text-anchor="middle" class="rv-mono" fill="#34d399">≈ 1,200</text>
 
               <path d="M388 114 L446 114 L484 92.6 L484 147.4 L446 126 L388 126 Z" fill="#fb923c" fill-opacity=".34" />
               <path d="M388 120 H484" stroke="#34d399" stroke-width="6" class="trace-flow" />
@@ -531,7 +534,7 @@
 
             <path d="M684 92.6 H780 V147.4 H684 Z" fill="#34d399" fill-opacity=".3" />
             <path d="M684 120 H780" stroke="#34d399" stroke-width="9" stroke-opacity=".75" class="trace-flow" />
-            <text x="732" y="84" text-anchor="middle" class="rv-mono" fill="#34d399">37,200</text>
+            <text x="732" y="84" text-anchor="middle" class="rv-mono" fill="#34d399">≈ 37,200</text>
 
             <path d="M980 92.6 L1020 118.1 L1020 121.9 L980 147.4 Z" fill="#fb923c" class="plan-strain" style="--strain: 2.5s" />
             <path d="M980 92.6 L1020 118.1 M980 147.4 L1020 121.9" stroke="#fb923c" stroke-opacity=".5" stroke-width="1.2" />
@@ -552,7 +555,7 @@
 
             <rect x="1076" y="92" width="104" height="56" rx="5" class="rv-chip rv-chip-cool" />
             <text x="1128" y="118" text-anchor="middle" class="rv-label">result</text>
-            <text x="1128" y="133" text-anchor="middle" class="rv-mono rv-before" fill="#34d399">20 · 2,140 ms</text>
+            <text x="1128" y="133" text-anchor="middle" class="rv-mono rv-before" fill="#34d399">20</text>
             <text x="1128" y="133" text-anchor="middle" class="rv-mono rv-after" fill="#34d399">20 · 412 ms</text>
 
             <!-- ── node: customers ── -->
@@ -594,7 +597,7 @@
           <dl class="odb-legend">
             <div>
               <dt><span class="lg lg-thick" aria-hidden="true"></span>Width is rows</dt>
-              <dd>The stream is as wide as the rows moving between two steps. It uses a square-root scale so 20 rows next to 48,120 still shows up. The numbers on the labels are exact.</dd>
+              <dd>The stream is as wide as the rows moving between two steps. It uses a square-root scale so 20 rows next to 48,120 still shows up. The numbers on the labels are the planner's own, not rounded by the drawing.</dd>
             </div>
             <div>
               <dt><span class="lg lg-neck" aria-hidden="true"></span>A narrowing is waste</dt>
@@ -610,16 +613,16 @@
             </div>
             <div>
               <dt><span class="lg lg-est" aria-hidden="true">≈</span>Estimated, not measured</dt>
-              <dd>With plain <code>EXPLAIN</code>, every count is the planner's guess and gets a ≈. With <code>ANALYZE</code>, the counts are what actually happened.</dd>
+              <dd>Overdb runs a plain <code>EXPLAIN</code>, so every count is the planner's estimate and carries a ≈. It never runs your query to measure the plan.</dd>
             </div>
           </dl>
 
           <aside class="odb-reading">
             <p class="odb-reading-h">What this river is telling you</p>
             <ol>
-              <li><b>customers</b> is the widest stream and the sharpest narrowing: 48,120 rows read, 46,920 thrown away. An index on <code>customers(region)</code> removes the cone.</li>
+              <li><b>customers</b> is the widest stream and the sharpest narrowing: about 48,120 rows read, 46,920 thrown away. An index on <code>customers(region)</code> removes the cone.</li>
               <li>The flare into <b>orders</b> is fine. It uses an index, and 31 orders per customer is normal for this data.</li>
-              <li>The <b>sort</b> still reads 37,200 rows to keep 20. An index on <code>orders(customer_id, created_at desc)</code> would let the limit stop early.</li>
+              <li>The <b>sort</b> still reads about 37,200 rows to keep 20. An index on <code>orders(customer_id, created_at desc)</code> would let the limit stop early.</li>
             </ol>
             <p class="odb-reading-foot">In the app, <em>What would make this faster?</em> sends this plan, not your rows, to your own <code>claude</code>, <code>codex</code>, or <code>gemini</code> login, and puts any proposed index in the editor for you to read.</p>
           </aside>
@@ -636,29 +639,29 @@
         <p class="kicker">Performance</p>
         <h2 class="display-title">
           <span>Not a prettier plan tree.</span>
-          <span class="em">The row it went wrong on.</span>
+          <span class="em">The step doing the work.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          Under the river is the ledger: every step with its estimated and actual rows side by side, because a big gap between them is usually the cause. Alongside it: what the server itself spends time on across every client, from <code>pg_stat_statements</code> or <code>performance_schema</code>, measured from when you opened the pane.
+          Under the river is the ledger: every step's rows per run, times the runs, multiplied out into the work it does — the sum a plan table leaves you to do in your head, and where a nested loop's cost hides. Alongside it: what the server itself spends time on across every client, from <code>pg_stat_statements</code> or <code>performance_schema</code>, measured from when you opened the pane.
         </p>
       </div>
 
       <div class="odb-board odb-perf" aria-label="an explain plan ledger and the slow queries pane">
         <div class="odb-plan">
-          <p class="odb-panel-h">Ledger <span>the table under the river · 2.14 s</span></p>
+          <p class="odb-panel-h">Ledger <span>the table under the river · planner estimates</span></p>
           <div class="odb-plan-grid-wrap">
           <table class="odb-grid odb-plan-grid">
-            <thead><tr><th>node</th><th class="num">estimated</th><th class="num">actual</th><th class="num">off by</th><th class="num">time</th></tr></thead>
+            <thead><tr><th>step</th><th class="num">rows</th><th class="num">runs</th><th class="num">work</th><th class="num">share</th></tr></thead>
             <tbody>
-              <tr><td>Limit</td><td class="num">20</td><td class="num">20</td><td class="num ok">1×</td><td class="num">2.14 s</td></tr>
-              <tr><td class="ind1">Sort · created_at desc</td><td class="num">1,200</td><td class="num">41,870</td><td class="num warn">35×</td><td class="num">2.13 s</td></tr>
-              <tr class="is-hot"><td class="ind2">Seq Scan on orders</td><td class="num">1,200</td><td class="num">3,712,004</td><td class="num hot">3,093×</td><td class="num">1.98 s</td></tr>
+              <tr><td>Limit</td><td class="num">20</td><td class="num">1</td><td class="num">20</td><td class="num ok">0%</td></tr>
+              <tr><td class="ind1">Sort · created_at desc</td><td class="num">41,870</td><td class="num">1</td><td class="num">41,870</td><td class="num warn">1%</td></tr>
+              <tr class="is-hot"><td class="ind2">Seq Scan on orders</td><td class="num">3,712,004</td><td class="num">1</td><td class="num hot">3,712,004</td><td class="num hot">99%</td></tr>
             </tbody>
           </table>
           </div>
           <div class="odb-callout odb-ai">
             <p class="odb-callout-h">Explained by your AI <span class="odb-callout-sub">claude, codex, or gemini, whichever you use</span></p>
-            <p>The planner expected about 1,200 rows for <code>customer_id = $1</code> and read all 3.7M, because there's no index on <code>orders.customer_id</code>. An index on <code>(customer_id, created_at desc)</code> would also remove the sort.</p>
+            <p>To find about 41,870 rows for <code>customer_id = $1</code>, the planner expects to read all 3.7M rows of orders, because there's no index on <code>orders.customer_id</code>. An index on <code>(customer_id, created_at desc)</code> would also remove the sort.</p>
           </div>
         </div>
 
@@ -677,7 +680,7 @@
         </div>
       </div>
 
-      <p class="colosseum-ribbon"><span>estimate versus actual</span> · <span>what the server says it spends time on</span> · <span>health without zeros for missing data</span></p>
+      <p class="colosseum-ribbon"><span>the work each step does</span> · <span>what the server says it spends time on</span> · <span>health without zeros for missing data</span></p>
     </section>
 
 
@@ -721,7 +724,7 @@
           <li class="odb-lane is-warn">
             <span class="odb-env env-prod">prod-us</span>
             <span class="odb-lane-out ok">20 rows</span>
-            <span class="odb-lane-plan">Seq Scan on orders · 3.7M rows read</span>
+            <span class="odb-lane-plan">Seq Scan on orders · ≈ 3.7M rows to read</span>
             <span class="odb-lane-t">2.14 s</span>
           </li>
           <li class="odb-lane is-bad">
@@ -734,10 +737,7 @@
 
         <div class="odb-callout">
           <p class="odb-callout-h">The plans diverge</p>
-          <p>prod-us seq-scans <code>orders</code>, estimating 1,200 rows and reading 3.7 million, where staging uses <code>orders_customer_idx</code>. That index exists on staging and not on prod-us.</p>
-          <pre class="odb-ddl"><span class="c">-- proposed. copy it and run it yourself.</span>
-<b class="k">create index concurrently</b> orders_customer_idx
-  <b class="k">on</b> orders (customer_id, created_at <b class="k">desc</b>);</pre>
+          <p>prod-us reads all of <code>orders</code>, where staging narrows it with <code>orders_customer_idx</code>. Each server's plan is laid side by side, step against step, so the one that took the long way stands out. Ask your AI why, and any index it proposes lands in the editor for you to read.</p>
         </div>
       </div>
 
@@ -777,7 +777,7 @@
             <ul>
               <li><code>orders.refund_reason</code><span>on prod-us, missing on staging</span></li>
               <li><code>payments.amount</code><span>numeric(12,2) on prod-us, integer on staging</span></li>
-              <li><code>orders_status_check</code><span>allows pending_review on prod-us only</span></li>
+              <li><code>customers.email</code><span>not null on staging, nullable on prod-us</span></li>
             </ul>
           </div>
           <div class="odb-drift-group is-notable">
@@ -799,7 +799,7 @@
           <p class="odb-ddl-h">To bring staging in line with prod-us <span>returned as text · there is no Run button</span></p>
           <pre class="odb-ddl"><b class="k">alter table</b> orders <b class="k">add column</b> refund_reason text;
 <b class="k">alter table</b> payments <b class="k">alter column</b> amount <b class="k">type</b> numeric(12,2);
-<span class="c">-- orders_status_check: review by hand, dropping a constraint is never generated</span></pre>
+<span class="c">-- extra on staging: review by hand, drops are never generated as runnable SQL</span></pre>
         </div>
       </div>
 
@@ -829,7 +829,7 @@
           <div class="odb-input">orders-db (prod-u<span class="odb-caret"></span></div>
           <div class="odb-confirm-row">
             <span class="odb-btn">Cancel</span>
-            <span class="odb-btn odb-btn-danger is-disabled">Enable writes</span>
+            <span class="odb-btn odb-btn-danger is-disabled">Enable</span>
           </div>
           <p class="odb-confirm-foot">Cancelling someone else's session in Live health asks for the same thing.</p>
         </figure>
@@ -864,8 +864,8 @@
       <div class="feature-grid">
         <article class="feature">
           <span class="feature-num">01</span>
-          <h3>Connection groups</h3>
-          <p>A durable grouping: "these are Payments." Groups are the sidebar's sections and the target for bulk actions. A connection can be in a group and an environment set at the same time. The two ideas don't overlap.</p>
+          <h3>Four ways in</h3>
+          <p>With no connections yet, overdb offers a server it found answering on this machine, an import from DataGrip, IntelliJ or <code>~/.pgpass</code>, a blank form that fills itself from a pasted URL, or a sample: one small shop database in local, staging and prod, drifted apart on purpose, so you can see an environment set work before you point it at yours.</p>
         </article>
         <article class="feature">
           <span class="feature-num">02</span>
@@ -875,7 +875,7 @@
         <article class="feature">
           <span class="feature-num">03</span>
           <h3>Performance you can act on</h3>
-          <p>Estimated rows next to actual rows, because that gap is the useful signal. Plans are compared across environments, and <em>Slow queries</em> reads <code>pg_stat_statements</code> or <code>performance_schema</code> from the time you opened the pane, so you can watch a deploy land.</p>
+          <p>Every step's estimated rows with the loops multiplied out, so the step doing the work is the one you see. Plans are compared across environments, and <em>Slow queries</em> reads <code>pg_stat_statements</code> or <code>performance_schema</code> from the time you opened the pane, so you can watch a deploy land.</p>
         </article>
         <article class="feature">
           <span class="feature-num">04</span>
@@ -942,11 +942,11 @@
         </div>
         <div class="faq-list">
           <details class="faq-item">
-            <summary>When can I use it?</summary>
-            <p>Not quite yet. Overdb is pre-v0.1. The engine layer, fan-out, schema drift, the Ask panel, and health all work, but it isn't packaged for release. When it is, it'll be listed here and on the Codelions GitHub.</p>
+            <summary>Is it ready to use?</summary>
+            <p>It's v0.1.0 and in beta: the first public build, so expect rough edges and tell us about them in the issues. Everything on this page is in it. Because every connection starts read-only, the safest way to try it is exactly how it starts.</p>
           </details>
           <details class="faq-item">
-            <summary>What will it cost?</summary>
+            <summary>What does it cost?</summary>
             <p>Nothing. Like overcli and overgit, it's Apache 2.0, with no account, no server, and no paid tier. The AI features use a CLI you already have and are already logged in to.</p>
           </details>
           <details class="faq-item">
@@ -970,34 +970,80 @@
     </section>
 
 
-    <!-- ─────────── COMING SOON ─────────── -->
-    <section class="download" id="soon">
+    <!-- ─────────── DOWNLOAD ─────────── -->
+    <section class="download" id="download">
       <div class="section-head">
-        <p class="kicker">Coming soon</p>
-        <h2 class="section-title">No download yet.</h2>
-        <p class="section-lede">Overdb is being prepared for open source alongside overcli and overgit. The first public build will be announced here with a download table, like its siblings have.</p>
+        <p class="kicker">Grab a build</p>
+        <h2 class="section-title">Signed, notarized, and read-only by default.</h2>
+        <p class="section-lede">Overdb v0.1.0 is its first public release. The macOS builds are <em>Developer-ID signed and notarized by Apple</em>, with the same Developer ID as overcli and overgit, so they open on a double-click. Windows isn't code-signed yet, so SmartScreen may still flag it. The source is right there if you'd rather build it yourself.</p>
       </div>
 
       <div class="dl-wrap">
-        <dl class="plate odb-soon-plate">
-          <div class="plate-head"><span class="dot dot-ready"></span> Where overdb stands</div>
-          <div class="spec"><dt>Status</dt><dd class="v">pre-v0.1, <em>in active development</em></dd></div>
-          <div class="spec"><dt>Postgres family</dt><dd class="v">PostgreSQL, Redshift, Aurora PostgreSQL, CockroachDB, TimescaleDB</dd></div>
-          <div class="spec"><dt>MySQL family</dt><dd class="v">MySQL, MariaDB, Aurora MySQL</dd></div>
-          <div class="spec"><dt>Also</dt><dd class="v">SQLite, Amazon DynamoDB</dd></div>
-          <div class="spec"><dt>Platforms</dt><dd class="v">macOS, Windows, Linux</dd></div>
-          <div class="spec"><dt>License</dt><dd class="v">Apache 2.0</dd></div>
-          <div class="spec"><dt>Stack</dt><dd class="v">Electron, React, TypeScript, one process per connection</dd></div>
-        </dl>
+        <table class="dl-table">
+          <tbody>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">⌘</span>
+                <span>
+                  <strong>macOS</strong>
+                  <em>arm64 + x64</em>
+                </span>
+              </td>
+              <td class="dl-format">.dmg &nbsp;· &nbsp;.zip</td>
+              <td class="dl-size">~ 115 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overdb/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">⊞</span>
+                <span>
+                  <strong>Windows</strong>
+                  <em>x64 + arm64</em>
+                </span>
+              </td>
+              <td class="dl-format">NSIS installer</td>
+              <td class="dl-size">~ 185 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overdb/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="dl-platform">
+                <span class="dl-glyph">🐧</span>
+                <span>
+                  <strong>Linux</strong>
+                  <em>x64 + arm64</em>
+                </span>
+              </td>
+              <td class="dl-format">.AppImage &nbsp;· &nbsp;.deb</td>
+              <td class="dl-size">~ 90–120 MB</td>
+              <td class="dl-action">
+                <a class="dl-btn" href="https://github.com/overcodelions/overdb/releases" target="_blank" rel="noopener">
+                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
         <aside class="dl-note">
-          <p class="note-tag">In the meantime</p>
-          <p>Its two siblings are shipping now. <strong>overcli</strong> puts five coding-agent CLIs in one window, and <strong>overgit</strong> handles repos in groups and tickets that span several of them.</p>
-          <div class="btn-row odb-soon-btns">
-            <a class="btn btn-primary" href="../overcli/">Get overcli</a>
-            <a class="btn btn-ghost" href="../overgit/">Get overgit</a>
-          </div>
-          <p class="note-foot">Follow <a href="https://github.com/overcodelions" target="_blank" rel="noopener">github.com/overcodelions</a> to see overdb when it's released.</p>
+          <p class="note-tag">&#9888; heads up</p>
+          <p>
+            macOS opens clean: signed with a Developer ID and <em>notarized by Apple</em>, so there's no Gatekeeper prompt.
+            Windows isn't code-signed yet, so SmartScreen may say <em>"unrecognized app"</em> → <strong>More info</strong> → <strong>Run anyway</strong>.
+            New to it? Open overdb with no connections and pick <em>the sample</em>: three copies of one small database, drifted apart on purpose.
+          </p>
+          <p class="note-snippet">
+            <span class="snippet-prompt">$</span>
+            <span>git clone https://github.com/overcodelions/overdb &amp;&amp; cd overdb &amp;&amp; npm install &amp;&amp; npm run dist:mac</span>
+          </p>
+          <p class="note-foot">— if you'd rather build it yourself.</p>
         </aside>
       </div>
     </section>
@@ -1011,8 +1057,9 @@
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overdb
       </span>
-      <span class="sl-cell">pre-v0.1 · coming soon</span>
-      <span class="sl-cell"><a href="https://github.com/overcodelions" target="_blank" rel="noopener">github</a></span>
+      <span class="sl-cell">v0.1.0 · beta</span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions/overdb" target="_blank" rel="noopener">github</a></span>
+      <span class="sl-cell"><a href="https://github.com/overcodelions/overdb/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>
       <span class="sl-cell">sibling of</span>
       <span class="sl-cell"><a href="../overcli/">overcli</a></span>
