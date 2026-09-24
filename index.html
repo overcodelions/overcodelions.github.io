@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codelions — desktop tools for people who live in their terminals</title>
-  <meta name="description" content="Codelions builds desktop tools for developers who live in terminals. Overcli wraps coding-agent CLIs in one window. Overgit groups repos into workspaces and tickets-across-repos into worksets. Overdb, coming soon, runs one query across every environment." />
+  <meta name="description" content="Codelions builds desktop tools for developers who live in terminals. Overcli wraps coding-agent CLIs in one window. Overgit groups repos into workspaces and tickets-across-repos into worksets. Overdb runs one query across every environment." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,7 +49,7 @@
         <div class="btn-row">
           <a class="btn btn-primary" href="overcli/"><span class="bk">[</span>&nbsp;explore overcli&nbsp;<span class="bk">]</span></a>
           <a class="btn btn-ghost" href="overgit/">explore overgit</a>
-          <a class="btn btn-ghost" href="overdb/">preview overdb</a>
+          <a class="btn btn-ghost" href="overdb/">explore overdb</a>
           <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">view source ↗</a>
         </div>
       </div>
@@ -213,7 +213,7 @@
 
       <div class="lp-product-foot">
         <div class="chip-row">
-          <span class="chip"><span class="dot dot-ready"></span> v0.19.0 · beta</span>
+          <span class="chip"><span class="dot dot-ready"></span> v0.19.1 · beta</span>
           <span class="chip">macOS · Windows · Linux</span>
           <span class="chip">Apache 2.0</span>
           <span class="chip">signed &amp; notarized</span>
@@ -275,7 +275,7 @@
 
       <div class="lp-product-foot">
         <div class="chip-row">
-          <span class="chip"><span class="dot dot-ready"></span> v0.3.0 · beta</span>
+          <span class="chip"><span class="dot dot-ready"></span> v0.4.1 · beta</span>
           <span class="chip">macOS · Windows · Linux</span>
           <span class="chip">Apache 2.0</span>
           <span class="chip">plain git underneath</span>
@@ -286,7 +286,7 @@
 
     <!-- ─────────────────────────── OVERDB ─────────────────────────── -->
     <section class="lp-product shell" id="overdb">
-      <p class="rule-head"><span class="n">03</span> &nbsp;overdb <span class="lp-soon">· coming soon</span></p>
+      <p class="rule-head"><span class="n">03</span> &nbsp;overdb</p>
       <div class="lp-product-head">
         <h2 class="section-title">Every query, every plan.<br /><span class="lp-italic">Every environment.</span></h2>
         <div class="lp-product-aside">
@@ -296,7 +296,8 @@
             and prod and diff the results. Every connection starts read-only, with safeguards matched to each engine.
           </p>
           <div class="btn-row lp-tight">
-            <a class="btn btn-primary" href="overdb/">preview overdb</a>
+            <a class="btn btn-primary" href="overdb/"><span class="bk">[</span>&nbsp;open overdb&nbsp;<span class="bk">]</span></a>
+            <a class="link-arrow" href="https://github.com/overcodelions/overdb" target="_blank" rel="noopener">source ↗</a>
           </div>
         </div>
       </div>
@@ -325,7 +326,7 @@
         <article class="cell">
           <span class="cell-n">05</span>
           <h3 class="cell-title">Performance you can act on</h3>
-          <p class="cell-body">The plan drawn as a river: as wide as the rows in flight, narrowing where the WHERE throws them away and flaring where a loop multiplies them. Plus estimate versus actual and slow queries from the server itself.</p>
+          <p class="cell-body">The plan drawn as a river: as wide as the rows in flight, narrowing where the WHERE throws them away and flaring where a loop multiplies them. Plus the work each step does, and slow queries from the server itself.</p>
         </article>
         <article class="cell">
           <span class="cell-n">06</span>
@@ -336,7 +337,7 @@
 
       <div class="lp-product-foot">
         <div class="chip-row">
-          <span class="chip"><span class="dot"></span> pre-v0.1 · coming soon</span>
+          <span class="chip"><span class="dot dot-ready"></span> v0.1.0 · beta</span>
           <span class="chip">macOS · Windows · Linux</span>
           <span class="chip">Apache 2.0</span>
           <span class="chip">read-only by default</span>
@@ -388,7 +389,7 @@
           Built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and his son
           <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a> under
           <a href="https://github.com/overcodelions" target="_blank" rel="noopener">Codelions</a>.
-          Overcli and overgit are open source — issues and PRs welcome. Overdb is coming soon.
+          Overcli, overgit and overdb are open source — issues and PRs welcome.
         </p>
       </div>
     </section>
@@ -409,7 +410,7 @@
           </details>
           <details class="faq-item">
             <summary>What does it cost?</summary>
-            <p>Nothing. Overcli and overgit are free and open source under Apache 2.0, and overdb is planned to join them when it is ready. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p>
+            <p>Nothing. Overcli, overgit and overdb are free and open source under Apache 2.0. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p>
           </details>
           <details class="faq-item">
             <summary>Is there any telemetry?</summary>
@@ -435,11 +436,11 @@
     <section class="lp-cta">
       <div class="shell lp-cta-inner">
         <p class="eyebrow">Read the source <span class="sep">·</span> read the diffs</p>
-        <h2 class="display">Two open-source tools, one coming soon.<br /><span class="em">Designed as siblings.</span></h2>
+        <h2 class="display">Three open-source tools.<br /><span class="em">Designed as siblings.</span></h2>
         <div class="btn-row lp-cta-buttons">
           <a class="btn btn-accent" href="overcli/"><span class="bk">[</span>&nbsp;get overcli&nbsp;<span class="bk">]</span></a>
           <a class="btn btn-ghost" href="overgit/">get overgit</a>
-          <a class="btn btn-ghost" href="overdb/">preview overdb</a>
+          <a class="btn btn-ghost" href="overdb/">get overdb</a>
           <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">github.com/overcodelions ↗</a>
         </div>
       </div>

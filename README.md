@@ -11,7 +11,7 @@ Umbrella marketing site for the [Codelions](https://github.com/overcodelions) op
 ├── styles.css        landing-only styles (hero plate, mock windows, layouts)
 ├── overcli/          product page for overcli
 ├── overgit/          product page for overgit
-├── overdb/           product page for overdb (coming soon)
+├── overdb/           product page for overdb
 ├── assets/           shared assets (icon used in landing nav + footer)
 └── CNAME             custom domain pinned to overcodelions.com
 ```
@@ -58,7 +58,7 @@ Two consequences worth knowing:
 
 - **overcli** → https://github.com/overcodelions/overcli
 - **overgit** → https://github.com/overcodelions/overgit
-- **overdb** → https://github.com/overcodelions/overdb (private until release)
+- **overdb** → https://github.com/overcodelions/overdb
 
 ## Run locally
 
