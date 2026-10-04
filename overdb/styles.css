@@ -135,6 +135,38 @@
   background: color-mix(in srgb, var(--odb-accent) 18%, transparent);
 }
 .odb-set { color: var(--odb-accent); }
+/* 0.2.0 sidebar: environment tabs on top, connections under their
+   environment with branches nested beneath, sets in a dock below. */
+.odb-star { margin-left: auto; color: var(--ink-muted); }
+.odb-envtabs {
+  display: flex; gap: 2px; padding: 3px; margin: -6px 0 6px;
+  border: 1px solid var(--line); border-radius: 7px; font-size: 10.5px; color: var(--ink-muted);
+}
+.odb-envtabs > * { flex: 1; text-align: center; padding: 2px 0; border-radius: 5px; font-weight: 500; }
+.odb-envtabs b { background: var(--bg-lift); color: var(--ink); font-weight: 600; }
+.odb-side-h .odb-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
+.odb-side-h { display: flex; align-items: center; }
+.odb-dot.env-local, .odb-dots .env-local { background: var(--env-local); }
+.odb-dot.env-staging, .odb-dots .env-staging { background: var(--env-staging); }
+.odb-dot.env-prod, .odb-dots .env-prod { background: var(--env-prod); }
+.odb-eng-tag {
+  font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; color: var(--ink-muted);
+  border: 1px solid var(--line); border-radius: 4px; padding: 0 3px; min-width: 20px; text-align: center;
+}
+.odb-list li.odb-branch { padding-left: 22px; font-size: 11.5px; }
+.odb-br { color: var(--odb-accent); }
+.odb-svc {
+  margin-left: auto; font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--odb-accent); border: 1px solid color-mix(in srgb, var(--odb-accent) 50%, transparent); border-radius: 4px; padding: 0 4px;
+}
+.odb-dock { margin-top: 14px; padding-top: 4px; border-top: 1px solid var(--line); }
+.odb-dots { margin-left: auto; display: inline-flex; gap: 3px; }
+.odb-dots i { width: 6px; height: 6px; border-radius: 50%; }
+.odb-schema { font-family: var(--f-mono); font-size: 11px; font-weight: 400; color: var(--ink-muted); }
+.odb-pill-ai { color: var(--odb-accent); border-color: color-mix(in srgb, var(--odb-accent) 45%, transparent); }
+.odb-board-head .odb-pill-ai { margin-left: auto; align-self: center; }
+.odb-board-head .odb-pill-ai + .odb-run { margin-left: -6px; }
+.odb-pill-on { color: var(--ink); border-color: var(--line-strong); background: var(--bg-lift); }
 .odb-n, .odb-eng {
   margin-left: auto;
   font-family: var(--f-mono);
@@ -975,3 +1007,85 @@
 .odb-engines dt { margin: 0 0 4px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
 .odb-engines dd { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-dim); }
 .odb-engines-note { margin: 16px 0 0; max-width: 72ch; font-size: 14px; line-height: 1.6; color: var(--ink-muted); }
+
+
+/* ═════════════ 0.2.0: SEED GATES ═════════════
+   The four checks a seed must pass, as the sheet shows them: each a tick. */
+.odb-gates { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.odb-gates li {
+  padding: 4px 10px 4px 8px; border: 1px solid var(--line); border-radius: 999px;
+  font-size: 12px; color: var(--ink-dim); background: var(--bg);
+}
+.odb-gates li::before { content: "✓"; color: var(--odb-good); margin-right: 6px; font-weight: 700; }
+#branches .odb-board, #seed .odb-board { max-width: var(--col); }
+
+/* The 0.2.0 set header: name, badge and Run on one row, its Query and
+   Schema drift tabs on the next, so neither wraps by accident. */
+.odb-qtabs { flex-basis: 100%; display: flex; gap: 6px; }
+.odb-drift-group ul + .odb-drift-h { margin-top: 14px; }
+
+/* Two lede paragraphs in one head read as one block without a gap. */
+.colosseum-lede + .colosseum-lede { margin-top: 16px; }
+
+
+/* ═════════════ 0.2.0: THE SERVICES SWITCH ═════════════
+   The title-bar chip and its menu, drawn from ServicesChip.tsx's own
+   labels. It is the payoff of the branches section, so it gets the room. */
+.odb-switch-wrap { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 22px; align-items: start; }
+@media (max-width: 860px) { .odb-switch-wrap { grid-template-columns: minmax(0, 1fr); } }
+.odb-switch { margin: 0; display: grid; gap: 8px; justify-items: start; }
+.odb-switch-chip {
+  display: inline-flex; gap: 6px; align-items: center; padding: 4px 10px;
+  border: 1px solid var(--line-strong); border-radius: 7px; background: var(--bg); font-size: 12px;
+}
+.odb-switch-chip span { color: var(--ink-muted); }
+.odb-switch-chip b { color: var(--ink); }
+.odb-switch-chip i { font-style: normal; color: var(--ink-muted); font-size: 10px; }
+.odb-switch-menu {
+  width: 100%; padding: 8px; border: 1px solid var(--line-strong); border-radius: 10px;
+  background: var(--bg); box-shadow: 0 18px 40px -18px rgba(0,0,0,.6);
+}
+.odb-switch-cap { margin: 0 6px 6px; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-muted); }
+.odb-switch-src { margin: 0; padding: 4px 8px 6px; display: grid; gap: 2px; font-size: 12px; }
+.odb-switch-src b { color: var(--ink); }
+.odb-switch-src span { color: var(--ink-muted); font-size: 11px; }
+.odb-switch-src code { color: var(--ink); font-size: 11px; }
+.odb-switch-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.odb-switch-menu li { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 7px; font-size: 12px; }
+.odb-switch-menu li i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--ink-muted) 60%, transparent); flex: none; }
+.odb-switch-menu li span { flex: 1; min-width: 0; display: grid; }
+.odb-switch-menu li b { font-weight: 500; color: var(--ink); }
+.odb-switch-menu li em { font-style: normal; font-size: 11px; color: var(--ink-muted); }
+.odb-switch-menu li kbd { font-family: var(--f-mono); font-size: 10px; color: var(--ink-muted); }
+.odb-switch-menu li.is-on { background: color-mix(in srgb, var(--odb-accent) 20%, transparent); }
+.odb-switch-menu li.is-on i { border: 4px solid var(--odb-accent); }
+.odb-switch-menu li.is-on b { font-weight: 650; }
+.odb-switch-foot { margin: 6px 0 0; padding: 8px 8px 2px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 8px; font-size: 12px; }
+.odb-switch-foot b { font-weight: 500; color: var(--ink); }
+.odb-switch-foot span { color: var(--ink-muted); font-size: 11px; }
+.odb-switch-say p + p { margin-top: 10px; }
+.odb-switch-say .odb-callout-h { color: var(--odb-accent); }
+.odb-switch-say { background: color-mix(in srgb, var(--odb-accent) 8%, transparent); border-color: color-mix(in srgb, var(--odb-accent) 40%, transparent); }
+
+
+/* ═════════════ 0.2.0: SERVICES → PROXY → TARGET ═════════════ */
+.odb-route { display: grid; grid-template-columns: 1fr auto 1fr auto 1.2fr; gap: 14px; align-items: center; }
+@media (max-width: 860px) {
+  .odb-route { grid-template-columns: minmax(0, 1fr); }
+  .odb-route-arrow { transform: rotate(90deg); justify-self: center; }
+}
+.odb-route-col { display: grid; gap: 8px; align-content: center; }
+.odb-route-h { margin: 0 0 2px; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-muted); }
+.odb-route-arrow { font-size: 22px; color: var(--ink-muted); }
+.odb-route-node {
+  display: grid; gap: 2px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px;
+  background: var(--bg); font-family: var(--f-mono); font-size: 12px; color: var(--ink-dim);
+}
+.odb-route-node b { font-family: var(--f-sans); font-weight: 600; color: var(--ink); font-size: 13px; }
+.odb-route-node em { font-style: normal; font-family: var(--f-sans); font-size: 11.5px; color: var(--ink-muted); }
+.odb-route-node code { color: var(--ink); }
+.odb-route-node.is-proxy { border-color: color-mix(in srgb, var(--odb-accent) 55%, transparent); background: color-mix(in srgb, var(--odb-accent) 12%, transparent); }
+.odb-route-node.is-remote { border-style: dashed; }
+.odb-route-node.is-on { border-color: var(--odb-accent); box-shadow: 0 0 0 1px var(--odb-accent) inset; }
+.odb-switch-src2 { margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--line); }
+#proxy .odb-board { max-width: var(--col); }
