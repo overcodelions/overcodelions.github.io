@@ -542,6 +542,23 @@ kbd {
   color: var(--ink-muted);
   font-size: 11px;
 }
+/* Places | Work, the 0.20 sidebar's two views. Same shape as the app's:
+   a pill track with the active half lifted. */
+.sidebar-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 3px;
+  margin-bottom: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+.sidebar-switch span { padding: 3px 0; text-align: center; border-radius: 5px; }
+.sidebar-switch .is-on { background: var(--bg-lift); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+.sidebar-switch b { margin-left: 4px; font-weight: 600; color: var(--accent); }
 .search-glyph { color: var(--ink-muted); }
 .search-placeholder { color: var(--ink-muted); opacity: 0.7; }
 
@@ -4036,6 +4053,9 @@ h3 .alpha-badge { margin-left: 8px; }
 .svc-pane-ws { font-size: 12.5px; color: var(--ink-muted); margin-right: auto; }
 .svc-filter { display: inline-flex; gap: 10px; font-size: 12px; color: var(--ink-muted); }
 .svc-filter b { color: var(--ink); font-weight: 600; }
+/* The Services | Output switch and the status filter sit side by side in
+   the real header; a rule keeps them reading as two controls. */
+.svc-filter + .svc-filter { padding-left: 12px; border-left: 1px solid var(--line); }
 
 .svc-btn {
   display: inline-flex; align-items: center;

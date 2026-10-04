@@ -559,7 +559,7 @@
       {
         label: 'opus researches, sonnet designs, local builds',
         research: { cli: 'claude', model: 'claude · opus 5.5',        yaml: 'claude/opus-5-5' },
-        design:   { cli: 'claude', model: 'claude · sonnet 4.6',    yaml: 'claude/sonnet-4-6' },
+        design:   { cli: 'claude', model: 'claude · sonnet 5.5',    yaml: 'claude/sonnet-5-5' },
         build:    { cli: 'ollama', model: 'ollama · llama3.2',      yaml: 'ollama/llama3.2' }
       },
       {
@@ -571,7 +571,7 @@
       {
         label: 'all-claude, haiku for the diff',
         research: { cli: 'claude', model: 'claude · opus 5.5',        yaml: 'claude/opus-5-5' },
-        design:   { cli: 'claude', model: 'claude · sonnet 4.6',    yaml: 'claude/sonnet-4-6' },
+        design:   { cli: 'claude', model: 'claude · sonnet 5.5',    yaml: 'claude/sonnet-5-5' },
         build:    { cli: 'claude', model: 'claude · haiku 4.5',     yaml: 'claude/haiku-4-5' }
       }
     ];
