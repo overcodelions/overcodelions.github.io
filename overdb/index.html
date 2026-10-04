@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overdb/releases/tag/v0.1.2" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overdb/releases/tag/v0.2.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>overdb v0.1.2 is out</strong> — it now <strong>updates itself</strong> from GitHub Releases, <strong>imports your DBeaver connections</strong>, filing the ones DBeaver marks as production as prod, and says why a connection failed to open, with the likely fixes, instead of flashing the driver's raw error. Open source, for <strong>Postgres, MySQL, SQLite and DynamoDB</strong>.</span>
+    <span class="rr-text"><strong>overdb v0.2.0 is out</strong> — <strong>a database for every ticket</strong>: build a small local copy of a dev or staging server once and branch it per ticket. A <strong>services proxy</strong> gives your services one address that reaches the shared server or any local branch — switch what's behind it in one click, with no config to edit. <strong>Seed for a ticket</strong> writes test data from a description and lets you read it back before it commits. <strong>Database maps</strong> learn from your code what the schema can't say, and <strong>schema drift</strong> is grouped by what it does, works from a kept catalog, and exports as one HTML file. Branches and the background proxy are built for macOS first.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -23,7 +23,7 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overdb</span>
-      <span class="brand-ver">v0.1.2 · beta</span>
+      <span class="brand-ver">v0.2.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
@@ -33,6 +33,9 @@
       <li><a href="#river">plan river</a></li>
       <li><a href="#environments">environments</a></li>
       <li><a href="#drift">drift</a></li>
+      <li><a href="#branches">branches</a></li>
+      <li><a href="#proxy">proxy</a></li>
+      <li><a href="#seed">seed</a></li>
       <li><a href="#faq">faq</a></li>
       <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#download"><span class="bk">[</span>&nbsp;download&nbsp;<span class="bk">]</span></a></li>
       <li><a class="nav-repo" href="https://github.com/overcodelions/overdb" target="_blank" rel="noopener">github&nbsp;↗</a></li>
@@ -53,7 +56,7 @@
           <p class="lede">
             Browse tables, filter results, and edit a value in place. Write queries with completion from your real schema or describe one and let your own AI write it, search every statement you've run, and see plans drawn as the work each step does. Because the same schema lives in local, staging, and prod, overdb can also run a query on all of them and diff the results. <strong>Read-only until you say otherwise</strong>, with safeguards matched to each engine.
           </p>
-          <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">db</span> &nbsp;— a client that sits <em>over</em> your databases. It doesn't change your schema, and it doesn't send your rows anywhere.</p>
+          <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">db</span> &nbsp;— a client that sits <em>over</em> your databases. It never changes a server you didn't point it at, and it doesn't send your rows anywhere.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#download">Download overdb</a>
             <a class="btn btn-ghost" href="#usage">See how it works</a>
@@ -83,39 +86,45 @@
 
             <div class="odb-app">
               <aside class="odb-side">
-                <div class="odb-search"><span>⌕</span> Find a connection <kbd>⌘K</kbd></div>
+                <div class="odb-search"><span>⌕</span> Find a connection or set <span class="odb-star" title="Only starred">☆</span></div>
 
-                <p class="odb-side-h">Environment sets</p>
+                <div class="odb-envtabs" aria-hidden="true"><b>All</b><span>Local</span><span>Staging</span><span>Prod</span></div>
+
+                <p class="odb-side-h"><i class="odb-dot env-local"></i>Local <span class="odb-n">3</span></p>
                 <ul class="odb-list">
-                  <li class="is-active"><span class="odb-set">◎</span> orders-db <span class="odb-n">3</span></li>
-                  <li><span class="odb-set">◎</span> identity <span class="odb-n">2</span></li>
+                  <li class="is-active"><span class="odb-eng-tag">pg</span> orders-db <span class="odb-n">2 branches</span></li>
+                  <li class="odb-branch"><span class="odb-br">⎇</span> PROJ-123 <span class="odb-svc">services</span></li>
+                  <li class="odb-branch"><span class="odb-br">⎇</span> PROJ-118 <span class="odb-n">· base is newer</span></li>
+                  <li><span class="odb-eng-tag">my</span> ledger</li>
+                  <li><span class="odb-eng-tag">sq</span> sessions</li>
                 </ul>
 
-                <p class="odb-side-h">local</p>
+                <p class="odb-side-h"><i class="odb-dot env-staging"></i>Staging <span class="odb-n">1</span></p>
                 <ul class="odb-list">
-                  <li><span class="odb-env env-local">local</span> orders-db <span class="odb-eng">pg 16</span></li>
-                  <li><span class="odb-env env-local">local</span> ledger <span class="odb-eng">mysql</span></li>
-                  <li><span class="odb-env env-local">local</span> sessions <span class="odb-eng">sqlite</span></li>
+                  <li><span class="odb-eng-tag">pg</span> orders-db</li>
                 </ul>
 
-                <p class="odb-side-h">staging</p>
+                <p class="odb-side-h"><i class="odb-dot env-prod"></i>Prod <span class="odb-n">2</span></p>
                 <ul class="odb-list">
-                  <li><span class="odb-env env-staging">stage</span> orders-db <span class="odb-eng">pg 16</span></li>
+                  <li><span class="odb-eng-tag">pg</span> orders-db <span class="odb-n">aurora</span></li>
+                  <li><span class="odb-eng-tag">dy</span> users</li>
                 </ul>
 
-                <p class="odb-side-h">prod</p>
-                <ul class="odb-list">
-                  <li><span class="odb-env env-prod">prod</span> orders-db <span class="odb-eng">aurora</span></li>
-                  <li><span class="odb-env env-prod">prod</span> users <span class="odb-eng">dynamo</span></li>
-                </ul>
+                <div class="odb-dock">
+                  <p class="odb-side-h">Sets · compare <span class="odb-n">2</span></p>
+                  <ul class="odb-list">
+                    <li class="is-active"><span class="odb-set">◎</span> orders-db <span class="odb-dots"><i class="env-local"></i><i class="env-staging"></i><i class="env-prod"></i></span></li>
+                    <li><span class="odb-set">◎</span> identity <span class="odb-dots"><i class="env-local"></i><i class="env-prod"></i></span></li>
+                  </ul>
+                </div>
               </aside>
 
               <section class="odb-main">
                 <header class="odb-qhead">
-                  <span class="odb-target">orders-db <em>local, staging, prod</em></span>
+                  <span class="odb-target">orders-db <em>3 members · against prod-us</em></span>
                   <span class="odb-pill odb-pill-safe">read-only</span>
-                  <span class="odb-pill">auto-commit</span>
                   <span class="odb-run">Run on 3 &nbsp;⌘↵</span>
+                  <span class="odb-qtabs"><span class="odb-pill odb-pill-on">Query</span><span class="odb-pill">Schema drift</span></span>
                 </header>
 
                 <pre class="odb-editor"><span class="odb-ln"><i>1</i><b class="k">select</b> status, <b class="f">count</b>(*) <b class="k">as</b> orders</span><span class="odb-ln"><i>2</i><b class="k">from</b> orders</span><span class="odb-ln"><i>3</i><b class="k">where</b> created_at &gt; now() - <b class="k">interval</b> <b class="s">'1 day'</b></span><span class="odb-ln"><i>4</i><b class="k">group by</b> status;</span></pre>
@@ -166,7 +175,7 @@
         <li class="odb-step">
           <span class="odb-step-n">1</span>
           <h3>Connect once</h3>
-          <p>Add local, staging, and prod, tag each with its environment, and group them into an environment set with prod as the baseline. Every connection opens read-only.</p>
+          <p>Add local, staging, and prod, tag each with its environment, and group them into an environment set with prod as the baseline. Every connection you add opens read-only.</p>
           <p class="odb-step-do">New connection <span>→</span> tag <code>prod</code> <span>→</span> add to set</p>
           <a class="odb-step-link" href="#safety">How writes stay off</a>
         </li>
@@ -179,9 +188,9 @@
         </li>
         <li class="odb-step">
           <span class="odb-step-n">3</span>
-          <h3>Explain it and read the river</h3>
-          <p>Run Explain. The river shows where the server reads rows and throws them away, and where a loop multiplies them. The thin places and the orange cones are where the time goes.</p>
-          <p class="odb-step-do">Explain <span>→</span> plan view</p>
+          <h3>Plan it and read the river</h3>
+          <p>Press Plan on the statement (<kbd>⌥↵</kbd>), or Explain to have your AI read the plan too. The river shows where the server reads rows and throws them away, and where a loop multiplies them. The thin places and the orange cones are where the time goes.</p>
+          <p class="odb-step-do">Plan <span>→</span> plan view</p>
           <a class="odb-step-link" href="#river">How to read a river</a>
         </li>
         <li class="odb-step">
@@ -194,9 +203,9 @@
         <li class="odb-step">
           <span class="odb-step-n">5</span>
           <h3>Ship the fix safely</h3>
-          <p>Compare schemas to confirm the index exists on staging only, then copy the proposed DDL. On a prod connection, enabling writes means typing its name first.</p>
-          <p class="odb-step-do">Schema drift <span>→</span> copy DDL</p>
-          <a class="odb-step-link" href="#drift">Ranked schema drift</a>
+          <p>Compare schemas to confirm the index exists on staging only, then copy the proposed SQL. Or hand the plan to overcli and let it find the code behind the query. On a prod connection, enabling writes means typing its name first.</p>
+          <p class="odb-step-do">Schema drift <span>→</span> copy SQL <span>·</span> Fix it in overcli</p>
+          <a class="odb-step-link" href="#drift">Drift, grouped by what it does</a>
         </li>
       </ol>
     </section>
@@ -362,8 +371,9 @@
 
         <div class="odb-ask-editor">
           <header class="odb-board-head">
-            <div><h3>orders-db <span class="odb-env env-prod">prod</span> <span class="odb-pill odb-pill-safe">read-only</span></h3></div>
-            <span class="odb-run">Run &nbsp;⌘↵</span>
+            <div><h3>orders-db <span class="odb-schema">/ public</span> <span class="odb-env env-prod">prod</span> <span class="odb-pill odb-pill-safe">🔒 Read-only ▾</span></h3></div>
+            <span class="odb-pill odb-pill-ai">✦ Ask ⌘I</span>
+            <span class="odb-run">Run &nbsp;⌘↵ ▾</span>
           </header>
           <pre class="odb-sql odb-ask-inserted"><span class="c">-- Suggested by claude</span>
 <b class="k">select</b> c.id, c.email, <b class="f">max</b>(o.created_at) <b class="k">as</b> last_order_at
@@ -433,8 +443,9 @@
       <div class="odb-board odb-bench" aria-label="the query editor with schema completion, ORM placeholders, and history">
         <div class="odb-bench-editor">
           <header class="odb-board-head">
-            <div><h3>orders-db <span class="odb-env env-local">local</span></h3></div>
-            <span class="odb-run">Run &nbsp;⌘↵</span>
+            <div><h3>orders-db <span class="odb-schema">/ public</span> <span class="odb-env env-local">local</span> <span class="odb-pill odb-pill-safe">🔒 Read-only ▾</span></h3></div>
+            <span class="odb-pill odb-pill-ai">✦ Ask · Seed</span>
+            <span class="odb-run">Run &nbsp;⌘↵ ▾</span>
           </header>
           <pre class="odb-sql"><b class="k">select</b> o.id, o.total, c.email
 <b class="k">from</b> orders o
@@ -750,30 +761,30 @@
       <div class="colosseum-head">
         <p class="kicker">Schema drift</p>
         <h2 class="display-title">
-          <span>Drift, ranked by</span>
-          <span class="em">how much it matters.</span>
+          <span>Drift, grouped by</span>
+          <span class="em">what it does.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          Compare every member of a set against its baseline, catalog to catalog, without running a statement. A missing column and a differently spelled <code>varchar</code> aren't the same news, so overdb doesn't report them at the same volume. Findings come back as <strong>breaking</strong>, <strong>notable</strong>, or <strong>quiet</strong>, so the typos don't bury the missing column.
+          Compare every member of a set against its baseline, catalog to catalog, without running a statement. A missing column and a differently spelled <code>varchar</code> aren't the same news, so findings are grouped by consequence — what <strong>breaks</strong>, what threatens <strong>integrity</strong>, what changes <strong>behaviour</strong> or <strong>performance</strong>, and what exists <strong>only on one server</strong> — each with a line on what that means. Every table that differs sits on one page with the two servers side by side and only the differing words lit. A table that isn't deployed yet is listed apart rather than counted as drift, and spelling-only differences stay hidden until you ask.
         </p>
       </div>
 
       <div class="odb-board odb-drift" aria-label="a schema drift report between staging and prod">
         <header class="odb-board-head">
           <div>
-            <h3>staging <span class="odb-vs">compared with</span> prod-us <span class="odb-tag">baseline</span></h3>
-            <p>Read from both catalogs. No statement was run.</p>
+            <h3>staging <span class="odb-vs">compared with</span> prod-us <span class="odb-tag">★ baseline</span></h3>
+            <p>Read from both catalogs; prod-us from its kept catalog, 3 days old, so this works off its VPN. No statement was run.</p>
           </div>
           <div class="odb-counts">
-            <span class="odb-count bad">3 breaking</span>
-            <span class="odb-count warn">2 notable</span>
-            <span class="odb-count">9 quiet</span>
+            <span class="odb-count">Export report…</span>
+            <span class="odb-count">Copy as Markdown</span>
+            <span class="odb-count">2 tables ignored</span>
           </div>
         </header>
 
         <div class="odb-drift-cols">
           <div class="odb-drift-group is-breaking">
-            <p class="odb-drift-h">Breaking</p>
+            <p class="odb-drift-h">Breaks</p>
             <ul>
               <li><code>orders.refund_reason</code><span>on prod-us, missing on staging</span></li>
               <li><code>payments.amount</code><span>numeric(12,2) on prod-us, integer on staging</span></li>
@@ -781,14 +792,21 @@
             </ul>
           </div>
           <div class="odb-drift-group is-notable">
-            <p class="odb-drift-h">Notable</p>
+            <p class="odb-drift-h">Behaviour</p>
             <ul>
-              <li><code>orders_customer_idx</code><span>on staging, missing on prod-us</span></li>
               <li><code>customers.locale</code><span>defaults to 'en-US' on prod-us, 'en' on staging</span></li>
+            </ul>
+            <p class="odb-drift-h">Only on staging</p>
+            <ul>
+              <li><code>orders_customer_idx</code><span>never dropped for you</span></li>
             </ul>
           </div>
           <div class="odb-drift-group is-quiet">
-            <p class="odb-drift-h">Quiet</p>
+            <p class="odb-drift-h">Not on staging yet</p>
+            <ul>
+              <li><code>refund_audit</code><span>a new table on prod-us, not counted as drift</span></li>
+            </ul>
+            <p class="odb-drift-h">Cosmetic · hidden</p>
             <ul>
               <li><code>9 columns</code><span>varchar(255) and character varying(255): the same type, spelled two ways</span></li>
             </ul>
@@ -803,7 +821,245 @@
         </div>
       </div>
 
-      <p class="colosseum-ribbon"><span>catalog to catalog</span> · <span>ranked, not listed</span> · <span>nothing destructive is runnable</span></p>
+      <p class="colosseum-ribbon"><span>catalog to catalog</span> · <span>grouped by what it does</span> · <span>works from a kept catalog</span> · <span>one HTML file to share</span> · <span>nothing destructive is runnable</span></p>
+    </section>
+
+
+    <!-- ─────────── BRANCHES PER TICKET (0.2.0) ─────────── -->
+    <!-- Every claim here was checked against v0.2.0. The macOS-only parts
+         (copy-on-write clones, the background helper, so taking over 3306)
+         are said where they come up, not in a footnote. -->
+    <section class="colosseum terminal" id="branches">
+      <div class="colosseum-head">
+        <p class="kicker">Branches per ticket</p>
+        <h2 class="display-title">
+          <span>A database for every ticket.</span>
+          <span class="em">Seed it, break it, throw it away.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Build a <strong>base</strong> once: a small, real copy of a dev, sandbox or staging database, running on a server overdb starts on this machine. Then every ticket gets a <strong>branch</strong> — a clone of the base on its own port, with its own connection — to seed, break and throw away. A <strong>proxy</strong> sits where your services already connect, and one click in the title bar points them at whichever branch you're working on.
+        </p>
+        <p class="section-lede colosseum-lede">
+          All of it runs on <em>your</em> machine, on <code>127.0.0.1</code> — not a shared dev box anyone else can reach. The shared dev, sandbox or staging server is only the source: overdb reads it once to build the base, and never writes to it. A branch is named for whatever you're doing — a ticket key like <code>PROJ-123</code>, an experiment, an idea — and there's no tracker to connect.
+        </p>
+      </div>
+
+      <div class="odb-board" aria-label="a base, its branches, and the proxy your services connect through">
+        <header class="odb-board-head">
+          <div>
+            <h3>orders-db <span class="odb-tag">base</span></h3>
+            <p>Copied from staging: every table, the rows for your tenant and logins, and everything tied to them.</p>
+          </div>
+        </header>
+
+        <ul class="odb-lanes">
+          <li class="odb-lane">
+            <span class="odb-env env-local">base</span>
+            <span class="odb-lane-out ok">orders-db</span>
+            <span class="odb-lane-plan">the copy every branch is cloned from · Rebuild takes it again</span>
+            <span class="odb-lane-t">stopped</span>
+          </li>
+          <li class="odb-lane">
+            <span class="odb-env env-local">branch</span>
+            <span class="odb-lane-out ok">PROJ-123</span>
+            <span class="odb-lane-plan">services reach this one · seeded for the ticket · writes on</span>
+            <span class="odb-lane-t">:3317</span>
+          </li>
+          <li class="odb-lane is-warn">
+            <span class="odb-env env-local">branch</span>
+            <span class="odb-lane-out ok">PROJ-118</span>
+            <span class="odb-lane-plan">base is newer · Reset to base takes its fresh data, keeping the name and port</span>
+            <span class="odb-lane-t">:3318</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <dl class="odb-bx-points">
+        <div>
+          <dt>Create a base</dt>
+          <dd>overdb reads the catalog, finds the tenant — the table most others point at — and asks which tenant and logins you work with. Every table is sorted with a reason and a size: rows for your starting points, copy whole, start empty, leave out, or schema only. The recipe saves to <code>.overdb/baseline.json</code> in your repo.</dd>
+        </div>
+        <div>
+          <dt>Built on its own server</dt>
+          <dd>MySQL and MariaDB are copied into a server of the same kind; Postgres and Redshift into Postgres. overdb starts that server itself, with its own directory and port, and never touches yours. It only ever sends reads to the server it copies, and never copies from production or from an untagged server.</dd>
+        </div>
+        <div>
+          <dt>Branches you can throw away</dt>
+          <dd>A branch is a clone of the base with its own connection in the sidebar, nested under the one it came from. On macOS the clone is copy-on-write, so it's instant and nearly free; elsewhere it's a full copy of the base. Reset puts it back to the base in seconds.</dd>
+        </div>
+        <div>
+          <dt>How to connect</dt>
+          <dd>Each branch has a <em>How to connect</em> guide built from its own address: use it in overdb, point one service at it (<code>.env</code>, JDBC, the mysql client — the password never shown), or switch every service through the proxy below.</dd>
+        </div>
+        <div>
+          <dt>macOS first</dt>
+          <dd>Bases and branches are built for macOS today. The background helper that keeps the proxy running when overdb is closed is a macOS LaunchAgent, and servers install through Homebrew. Everything else on this page runs on Windows and Linux too.</dd>
+        </div>
+      </dl>
+
+      <p class="colosseum-ribbon"><span>a base once</span> · <span>a branch per ticket</span> · <span>on your machine</span> · <span>never from prod</span></p>
+    </section>
+
+
+    <!-- ─────────── THE SERVICES PROXY (0.2.0) ─────────── -->
+    <!-- Labels from ServicesChip.tsx / ticketsStore.ts / TicketsSheet.tsx at
+         v0.2.0. A remote server's proxy takes a spare port only, and one
+         reached through an SSH tunnel can't be a proxy target itself. -->
+    <section class="colosseum terminal" id="proxy">
+      <div class="colosseum-head">
+        <p class="kicker">The services proxy</p>
+        <h2 class="display-title">
+          <span>One connection, local or remote.</span>
+          <span class="em">Switch what's behind it in one click.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Every base gets a proxy: one address your services keep, forwarded to the database you pick. Point a service at it once, and from then on the same port reaches the <strong>shared dev or staging server</strong> the base was copied from, or <strong>any local branch</strong> of it — no <code>.env</code> to edit, no service to restart, no second set of credentials to juggle. When you're done with a ticket, one click sends your services back to the shared server.
+        </p>
+      </div>
+
+      <div class="odb-board" aria-label="local services reaching a remote server or a local branch through one proxy address">
+        <div class="odb-route" aria-hidden="true">
+          <div class="odb-route-col">
+            <p class="odb-route-h">Your services</p>
+            <span class="odb-route-node">api-gateway</span>
+            <span class="odb-route-node">billing-svc</span>
+            <span class="odb-route-node">order-worker</span>
+          </div>
+          <div class="odb-route-arrow">→</div>
+          <div class="odb-route-col">
+            <p class="odb-route-h">One address, never edited</p>
+            <span class="odb-route-node is-proxy"><b>overdb proxy</b><code>127.0.0.1:3310</code></span>
+          </div>
+          <div class="odb-route-arrow">→</div>
+          <div class="odb-route-col">
+            <p class="odb-route-h">Whatever you pick</p>
+            <span class="odb-route-node is-remote"><b>orders-db · staging</b><em>the shared server · remote</em></span>
+            <span class="odb-route-node is-on"><b>PROJ-123</b><em>branch · local · running</em></span>
+            <span class="odb-route-node"><b>PROJ-118</b><em>branch · local · stopped</em></span>
+          </div>
+        </div>
+
+        <div class="odb-switch-wrap">
+          <figure class="odb-switch" aria-label="the Services switch in overdb's title bar, open">
+            <div class="odb-switch-chip"><span>Services</span> <b>PROJ-123</b> <span>· ledger</span> <i>▾</i></div>
+            <div class="odb-switch-menu">
+              <p class="odb-switch-cap">What your services connect to</p>
+              <p class="odb-switch-src"><b>orders-db · staging</b><span>Services connect to <code>127.0.0.1:3310</code> · 6 open</span></p>
+              <ul>
+                <li><i></i><span><b>orders-db · staging</b><em>staging-db.internal:3306 · all its data</em></span></li>
+                <li class="is-on"><i></i><span><b>PROJ-123</b><em>branch · running · :3317</em></span><kbd>⌥⌘1</kbd></li>
+                <li><i></i><span><b>PROJ-118</b><em>stopped · starts when chosen</em></span><kbd>⌥⌘2</kbd></li>
+              </ul>
+              <p class="odb-switch-src odb-switch-src2"><b>ledger</b><span>Services connect to <code>127.0.0.1:5440</code> · 2 open</span></p>
+              <ul>
+                <li class="is-on"><i></i><span><b>Your own server</b><em>127.0.0.1:5432 · all its data</em></span></li>
+                <li><i></i><span><b>PROJ-123</b><em>stopped · starts when chosen</em></span><kbd>⌥⌘3</kbd></li>
+              </ul>
+              <p class="odb-switch-foot"><b>Branches and proxies…</b><span>⌥⌘0 sends all back</span></p>
+            </div>
+          </figure>
+
+          <div class="odb-callout odb-switch-say">
+            <p class="odb-callout-h">Your services never change. What's behind them does.</p>
+            <p>The proxy forwards byte for byte. Switching closes the connections it carries, and each service's pool reconnects to the new target on its own. A base copied from a shared server forwards to that server directly when no branch is chosen, with TLS passed through and the certificate still checked against the server's real name — so the same port is your staging database one minute and your ticket's branch the next.</p>
+            <p>A service that uses two databases is switched in two places: every base has its own proxy, the title bar lists them all, and <kbd>⌥⌘0</kbd> sends every one back. It moves your services only, never what an overdb tab is querying, and <em>What services see</em> is a read-only connection to exactly where they point.</p>
+          </div>
+        </div>
+      </div>
+
+      <dl class="odb-bx-points">
+        <div>
+          <dt>Remote or local, one port</dt>
+          <dd>The same address reaches the shared dev, sandbox or staging server, or any branch of its base on this machine. MySQL proxies default to <code>:3310</code>, Postgres to <code>:5440</code>; a port that's taken says who holds it.</dd>
+        </div>
+        <div>
+          <dt>Nothing to reconfigure</dt>
+          <dd>Point a service at the proxy once — its <code>.env</code>, a JDBC URL, a Spring profile — and leave it. Switching never needs another change, and the How to connect guide writes the line for you.</dd>
+        </div>
+        <div>
+          <dt>Or take over 3306</dt>
+          <dd>For your own local server, the proxy can listen on <code>3306</code> and <code>/tmp/mysql.sock</code> themselves, so services need no change at all. overdb shows the lines to move your server once and never edits another program's config. macOS only, and it needs the background helper.</dd>
+        </div>
+        <div>
+          <dt>Keeps running when overdb doesn't</dt>
+          <dd>On macOS, <em>Keep running when overdb is closed</em> moves the proxy and the branches into a small LaunchAgent, removable from the same panel. Without it, quitting asks first while services may still be using the proxy.</dd>
+        </div>
+        <div>
+          <dt>Fenced in</dt>
+          <dd>Loopback only, one port per proxy, and a proxy for a production connection is refused. A server reached through an SSH tunnel can't be a proxy target itself — its branches still work through the proxy.</dd>
+        </div>
+      </dl>
+
+      <p class="colosseum-ribbon"><span>one address</span> · <span>remote or local</span> · <span>no .env edits</span> · <span>no restarts</span> · <span>one click back</span></p>
+    </section>
+
+
+    <!-- ─────────── SEED FOR A TICKET + DATABASE MAPS (0.2.0) ─────────── -->
+    <section class="colosseum terminal" id="seed">
+      <div class="colosseum-head">
+        <p class="kicker">Seed for a ticket</p>
+        <h2 class="display-title">
+          <span>Describe the data.</span>
+          <span class="em">Read what landed before it stays.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          Paste the ticket, or say what data it needs. Your AI proposes a plan in plain words and writes the SQL, overdb checks it, and it runs inside a transaction you commit or roll back after reading back what landed. A seed only ever runs on a local database, with no override.
+        </p>
+      </div>
+
+      <div class="odb-board odb-seed" aria-label="seeding a local branch for a ticket">
+        <header class="odb-board-head">
+          <div>
+            <h3>Seed PROJ-123 <span class="odb-env env-local">local</span></h3>
+            <p>“A customer with two refunded orders and one pending, on the EU tenant.”</p>
+          </div>
+        </header>
+
+        <ul class="odb-gates" aria-label="the checks before a seed may run">
+          <li>Tagged local</li>
+          <li>Writes already on</li>
+          <li>On this machine</li>
+          <li>Dev-sized</li>
+        </ul>
+
+        <pre class="odb-sql"><span class="c">-- INSERTs only · every table and column real · parents before children</span>
+<b class="k">insert into</b> customers (id, email, tenant_id) <b class="k">values</b> (<b class="n">90412</b>, <b class="s">'seed+proj123@example.test'</b>, <b class="n">7</b>);
+<b class="k">insert into</b> orders (id, customer_id, status, total) <b class="k">values</b>
+  (<b class="n">771201</b>, <b class="n">90412</b>, <b class="s">'refunded'</b>, <b class="n">42.00</b>),
+  (<b class="n">771202</b>, <b class="n">90412</b>, <b class="s">'refunded'</b>, <b class="n">18.50</b>),
+  (<b class="n">771203</b>, <b class="n">90412</b>, <b class="s">'pending'</b>, <b class="n">64.00</b>);</pre>
+
+        <div class="odb-callout odb-ai">
+          <p class="odb-callout-h">Read back · 4 rows in 2 tables <span class="odb-callout-sub">Commit · Roll back</span></p>
+          <p>Commit saves the seed and its teardown — a script that deletes exactly what the seed made — as saved queries.</p>
+        </div>
+      </div>
+
+      <dl class="odb-bx-points">
+        <div>
+          <dt>Only where it's safe</dt>
+          <dd>The connection must be tagged local, have writes on, and really be on this machine — no tunnel, and the port held by a database server, not ssh or a cloud proxy. Postgres, MySQL and SQLite can be seeded.</dd>
+        </div>
+        <div>
+          <dt>Checked before you see it</dt>
+          <dd>INSERTs only, every table and column real, parents before children, and a teardown that deletes exactly what the seed made. A seed can span several schemas, suggested from the ticket's own words.</dd>
+        </div>
+        <div>
+          <dt>Reads the code, carefully</dt>
+          <dd>With a linked repo and the <code>claude</code> CLI, the investigation reads your code for what the schema can't say: allowed status values, JSON shapes, app rules. Read, Grep and Glob only — no shell, no MCP servers, and <code>.env</code> files denied. With <code>codex</code> or <code>gemini</code> it plans from the schema alone.</dd>
+        </div>
+        <div>
+          <dt>A map of your database</dt>
+          <dd><em>Map this database</em> reads each linked repo once and writes down what only the code knows about each table — what a row is, who owns it, the values its columns take, the links no foreign key declares — each cited to a <code>path:line</code>, every name checked against the real catalog. Seeds and bases plan from it. It needs <code>claude</code>.</dd>
+        </div>
+        <div>
+          <dt>Knows when it's behind</dt>
+          <dd>The map records each repo's commit and a fingerprint of each schema, says when it's behind, and Refresh re-reads only the files git says changed. It lives in its own pane beside the diagram, kept on this machine or shared through git in <code>.overdb/map/</code>.</dd>
+        </div>
+      </dl>
+
+      <p class="colosseum-ribbon"><span>local only</span> · <span>INSERTs only</span> · <span>read back before commit</span> · <span>no rows to the model</span></p>
     </section>
 
 
@@ -818,7 +1074,8 @@
           <dl class="plate odb-guarantees">
             <div class="spec"><dt>Read-only</dt><dd class="v">engine-level enforcement for SQL databases; fail-closed classification plus <em>read-only IAM</em> for DynamoDB</dd></div>
             <div class="spec"><dt>Transactions</dt><dd class="v">manual mode keeps one open so a DELETE can be reviewed, and <em>rolls back after 90 s idle</em></dd></div>
-            <div class="spec"><dt>AI prompts</dt><dd class="v">schema context, SQL, errors, and plan statistics; <em>result rows are not intentionally added</em></dd></div>
+            <div class="spec"><dt>AI prompts</dt><dd class="v">schema context, SQL, errors, plan statistics, and — when you link a repo — code read with Read, Grep and Glob only; <em>result rows are not intentionally added</em></dd></div>
+            <div class="spec"><dt>Seeds &amp; bases</dt><dd class="v">seeds run only on a local connection on this machine; bases, copies and proxies are <em>refused for prod and untagged servers</em>, with no override</dd></div>
             <div class="spec"><dt>Credentials</dt><dd class="v">OS keychain, environment variable, or a 1Password <em>op://</em> reference</dd></div>
           </dl>
         </div>
@@ -885,7 +1142,7 @@
         <article class="feature">
           <span class="feature-num">05</span>
           <h3>ER diagram</h3>
-          <p>The foreign-key graph, read from the constraints the server holds and never guessed from column names. It opens on one table and its neighbors, because a 900-table diagram tells you nothing. Export to SVG or PNG.</p>
+          <p>The foreign-key graph, read from the constraints the server holds, plus — dashed, in the AI colour, and cited — the links your database map read from the code. A switch turns those off. It opens on one table and its neighbors, because a 900-table diagram tells you nothing. Export to SVG or PNG.</p>
         </article>
         <article class="feature">
           <span class="feature-num">06</span>
@@ -907,6 +1164,21 @@
           <h3>History and saved queries</h3>
           <p>Every statement you run is kept across restarts and grouped with a run count. Search by text, connection, or outcome. Give a statement a name and it becomes a saved query.</p>
         </article>
+        <article class="feature">
+          <span class="feature-num">10</span>
+          <h3>Fix it in overcli</h3>
+          <p>A plan, or a statement in the slow-query pane, can be handed to <a href="../overcli/">overcli</a> to find and fix the code behind it. The statement, plan and findings go; result rows never do. The first send asks which repo uses the database and remembers it.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-num">11</span>
+          <h3>Repos know their schemas</h3>
+          <p>Link any number of repos to a set or a connection, and each says which schemas its code uses. overdb suggests them by scanning for datasource config and <code>schema.table</code> names — names and counts only, with <code>.env</code> and keys never opened — and you confirm.</p>
+        </article>
+        <article class="feature">
+          <span class="feature-num">12</span>
+          <h3>A set that knows who's reachable</h3>
+          <p>Before you press Run, a set's Query tab knows which members it can reach. With one of two on its VPN, Run says <em>Run on 1 of 2</em> and the other is skipped rather than failed; with none, it says why, in plain words, and points to schema drift, which works from kept catalogs.</p>
+        </article>
       </div>
     </section>
 
@@ -923,7 +1195,7 @@
           Once overgit was handling the repos, the next thing we kept doing by hand was one layer down. Run a query on local. Run it again on staging. Paste it into a prod tab, compare the three results by eye, and hope you're actually connected to the server you think you are.
         </p>
         <p>
-          Overdb makes that comparison the main feature instead of something you do in tabs. It follows the same rules as its siblings: it's an overlay, it's local, and you can check what it does. It doesn't touch your schema, it doesn't send your rows anywhere, and when it isn't sure what a server meant, it tells you.
+          Overdb makes that comparison the main feature instead of something you do in tabs. It follows the same rules as its siblings: it's an overlay, it's local, and you can check what it does. It doesn't touch a server you didn't point it at, it doesn't send your rows anywhere, and when it isn't sure what a server meant, it tells you.
         </p>
         <p class="story-sig">
           Sibling of <a href="../overcli/">overcli</a> and <a href="../overgit/">overgit</a>. Written &amp; maintained by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a>.
@@ -943,7 +1215,7 @@
         <div class="faq-list">
           <details class="faq-item">
             <summary>Is it ready to use?</summary>
-            <p>It's v0.1.2 and in beta: an early public build, so expect rough edges and tell us about them in the issues. Everything on this page is in it. Because every connection starts read-only, the safest way to try it is exactly how it starts.</p>
+            <p>It's v0.2.0 and in beta: an early public build, so expect rough edges and tell us about them in the issues. Everything on this page is in it. Because every connection you add starts read-only, the safest way to try it is exactly how it starts.</p>
           </details>
           <details class="faq-item">
             <summary>What does it cost?</summary>
@@ -951,11 +1223,11 @@
           </details>
           <details class="faq-item">
             <summary>Can it write to prod by accident?</summary>
-            <p>Every connection starts read-only. Postgres uses <code>BEGIN READ ONLY</code>, MySQL uses <code>START TRANSACTION READ ONLY</code>, and SQLite opens with its <code>readOnly</code> flag. DynamoDB has no server-side read-only mode, so overdb fails closed on statements it cannot classify; use a read-only IAM policy as the durable boundary. Turning writes on for a <code>prod</code> connection means typing that connection's name.</p>
+            <p>Every connection you add starts read-only; the only ones overdb opens with writes on are the local branches it makes for you. Postgres uses <code>BEGIN READ ONLY</code>, MySQL uses <code>START TRANSACTION READ ONLY</code>, and SQLite opens with its <code>readOnly</code> flag. DynamoDB has no server-side read-only mode, so overdb fails closed on statements it cannot classify; use a read-only IAM policy as the durable boundary. Turning writes on for a <code>prod</code> connection means typing that connection's name. Seeds run only on a connection that is tagged local, has writes on and is really on this machine, and bases, copies and proxies are refused for production and untagged servers. None of those has an override.</p>
           </details>
           <details class="faq-item">
             <summary>Does the AI see our data?</summary>
-            <p>Overdb does not intentionally add result rows or bound parameter values to prompts. Depending on the feature, a prompt can include your question, schema metadata, SQL text, server errors, and plan statistics, so literals or database errors may still contain sensitive values. The prompt goes to the <code>claude</code>, <code>codex</code>, or <code>gemini</code> CLI already on your machine, and proposed SQL goes into the editor without running.</p>
+            <p>Overdb does not intentionally add result rows or bound parameter values to prompts. Depending on the feature, a prompt can include your question, schema metadata, SQL text, server errors, and plan statistics, so literals or database errors may still contain sensitive values. A ticket you paste into Seed goes too. When you link a repo, the <code>claude</code> CLI reads your code for seeds, bases and database maps with Read, Grep and Glob only — no shell, no MCP servers, and <code>.env</code> and key files denied. The prompt goes to the <code>claude</code>, <code>codex</code>, or <code>gemini</code> CLI already on your machine, and proposed SQL goes into the editor without running.</p>
           </details>
           <details class="faq-item">
             <summary>Which engines are supported?</summary>
@@ -1022,7 +1294,7 @@
                 </span>
               </td>
               <td class="dl-format">.AppImage &nbsp;· &nbsp;.deb</td>
-              <td class="dl-size">~ 90–120 MB</td>
+              <td class="dl-size">~ 90–125 MB</td>
               <td class="dl-action">
                 <a class="dl-btn" href="https://github.com/overcodelions/overdb/releases" target="_blank" rel="noopener">
                   <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
@@ -1037,6 +1309,7 @@
           <p>
             macOS opens clean: signed with a Developer ID and <em>notarized by Apple</em>, so there's no Gatekeeper prompt.
             Windows isn't code-signed yet, so SmartScreen may say <em>"unrecognized app"</em> → <strong>More info</strong> → <strong>Run anyway</strong>.
+            Bases and branches need a local MySQL, MariaDB or Postgres server, which overdb can install with Homebrew, and database maps need the <code>claude</code> CLI.
             New to it? Open overdb with no connections and pick <em>the sample</em>: three copies of one small database, drifted apart on purpose.
           </p>
           <p class="note-snippet">
@@ -1057,7 +1330,7 @@
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overdb
       </span>
-      <span class="sl-cell">v0.1.2 · beta</span>
+      <span class="sl-cell">v0.2.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overdb" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overdb/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell sl-spacer"></span>

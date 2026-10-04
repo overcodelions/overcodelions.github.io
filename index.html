@@ -292,8 +292,9 @@
         <div class="lp-product-aside">
           <p class="section-lede">
             A desktop database client with completion from your real schema, searchable query history, and
-            performance tools that show where a plan went wrong. It can also run one query across local, staging,
-            and prod and diff the results. Every connection starts read-only, with safeguards matched to each engine.
+            plans drawn as the work each step does. It runs one query across local, staging, and prod and compares
+            the results, and gives every ticket its own local database to seed and break. Every connection you add
+            starts read-only, with safeguards matched to each engine.
           </p>
           <div class="btn-row lp-tight">
             <a class="btn btn-primary" href="overdb/"><span class="bk">[</span>&nbsp;open overdb&nbsp;<span class="bk">]</span></a>
@@ -311,7 +312,7 @@
         <article class="cell">
           <span class="cell-n">02</span>
           <h3 class="cell-title">Environments and drift</h3>
-          <p class="cell-body">Run one query across local, staging, and prod and diff the results against a baseline. Schema drift is ranked breaking, notable, or quiet.</p>
+          <p class="cell-body">Run one query across local, staging, and prod and compare each result with a baseline. Schema drift is grouped by what it does, works from a kept catalog when a server is out of reach, and exports as one HTML file.</p>
         </article>
         <article class="cell">
           <span class="cell-n">03</span>
@@ -320,8 +321,8 @@
         </article>
         <article class="cell">
           <span class="cell-n">04</span>
-          <h3 class="cell-title">Build a query with your AI</h3>
-          <p class="cell-body">Describe what you want in plain words and your <code>claude</code>, <code>codex</code>, or <code>gemini</code> login writes the SQL into your editor. Nothing runs on its own, and result rows are not intentionally added to prompts.</p>
+          <h3 class="cell-title">A database for every ticket</h3>
+          <p class="cell-body">Copy a dev or staging database to this machine once and branch it per ticket. One proxy address lets your services reach the shared server or any local branch, switched in one click. <em>Seed for a ticket</em> writes the test data from a description, and your <code>claude</code>, <code>codex</code>, or <code>gemini</code> login writes queries too. Built for macOS first.</p>
         </article>
         <article class="cell">
           <span class="cell-n">05</span>
@@ -337,7 +338,7 @@
 
       <div class="lp-product-foot">
         <div class="chip-row">
-          <span class="chip"><span class="dot dot-ready"></span> v0.1.2 · beta</span>
+          <span class="chip"><span class="dot dot-ready"></span> v0.2.0 · beta</span>
           <span class="chip">macOS · Windows · Linux</span>
           <span class="chip">Apache 2.0</span>
           <span class="chip">read-only by default</span>
