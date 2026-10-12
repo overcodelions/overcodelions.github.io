@@ -761,16 +761,52 @@ steps:
     <!-- ─────────── WORKERS ─────────── -->
     <section class="colosseum terminal" id="workers">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; standing workers</p>
+        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; workers &amp; teams</p>
         <h2 class="display-title">
-          <span>Hire it once.</span>
-          <span class="em">It wakes on its own clock.</span>
-          <span>You&nbsp;review&nbsp;the&nbsp;work.</span>
+          <span>A worker is a specialist.</span>
+          <span class="em">A team is several, on one job.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          A schedule fires work you already defined. A <em>worker</em> decides what the work should be — which is the exact point where "it runs on a cron" stops being a good enough answer. So the guarantees come first. Every worker is hired on <strong>probation</strong> and launches nothing until you approve it; promotion is an explicit act you take. The whole crew spends from a <strong>single monthly pot</strong> you set once, paid down the roster in order, and a worker below the waterline skips its shift and journals why rather than quietly overspending. <em>Then</em> the clock. Hire one through a conversation: say what the job is — attach the spec or the screenshot if you have one — answer the few questions the drafter asks, and whichever backend you're signed into drafts the contract and the flow it launches. From there it wakes on its own, reads its journal, proposes what it thinks is worth doing, and files what it produces, keeping a <em>desk</em>, a filing cabinet, and a journal you can read. When you're off, <em>Go away</em> takes the whole crew offline until you're back.
+          Hire specialists, each on its own beat and its own clock. When a job needs more than one of them, put them on a <a href="#teams">team</a>.
         </p>
       </div>
+
+      <!-- Concept A from the workers-and-teams design canvas: the two side by
+           side, matching rows, so the difference reads across. Every fact is
+           checked against 0.21 (see the Teams section's comment). -->
+      <div class="wt-compare">
+        <article class="wt-card">
+          <header class="wt-card-head">
+            <span class="wt-face" aria-hidden="true">V</span>
+            <span class="wt-id"><span class="wt-kind">Worker</span><b>Vantage</b><em>the 7am dashboard</em></span>
+          </header>
+          <p class="wt-say">One beat, owned for good. It wakes on its own clock, decides what's worth doing, and files what it makes.</p>
+          <dl class="wt-facts">
+            <div><dt>runs on</dt><dd>its own clock</dd></div>
+            <div><dt>keeps</dt><dd>a desk and a journal</dd></div>
+            <div><dt>starts on</dt><dd>probation</dd></div>
+            <div><dt>spends from</dt><dd>the crew's monthly pot</dd></div>
+          </dl>
+          <p class="wt-use">use it for → the work that comes back every day</p>
+        </article>
+
+        <article class="wt-card wt-card-team">
+          <header class="wt-card-head">
+            <span class="wt-faces" aria-hidden="true"><span class="wt-face wt-face-c">C</span><span class="wt-face">M</span><span class="wt-face">A</span><span class="wt-face">O</span></span>
+            <span class="wt-id"><span class="wt-kind">Team</span><b>Proposal team</b><em>a coordinator and three specialists</em></span>
+          </header>
+          <p class="wt-say">One job, argued over. A coordinator plans who contributes and who challenges; you approve; the members work their pieces; you get one finished pack.</p>
+          <dl class="wt-facts">
+            <div><dt>runs on</dt><dd>one task, start to finish</dd></div>
+            <div><dt>you're needed</dt><dd>twice: brief and plan</dd></div>
+            <div><dt>code lands on</dt><dd><code>team/&lt;task&gt;</code></dd></div>
+            <div><dt>spends from</dt><dd>a budget per task</dd></div>
+          </dl>
+          <p class="wt-use">use it for → the job too big, or too contested, for one</p>
+        </article>
+      </div>
+
+      <p class="wt-sub">Workers, one at a time: hired through a conversation, on probation until you promote them.</p>
 
       <!-- three stages: hire → shift → review -->
       <div class="orch-stages" aria-label="the life of a worker">
@@ -1107,52 +1143,48 @@ steps:
           <span class="em">Get it back already argued over.</span>
         </h2>
         <p class="section-lede colosseum-lede">
-          A worker owns a beat. A <strong>team</strong> owns a task. Write one brief, and a <em>coordinator</em> plans the stages — who contributes, who challenges, who answers the challenge — for you to approve. Then the members work their pieces, each on its own backend, files land in one shared folder, a member pushes back on the draft, and the coordinator writes the final <strong>pack</strong>. You're needed twice: the brief and the plan. Teams live in the Workers tab and switch on with it under <em>Settings → Labs</em>.
-        </p>
-        <p class="section-lede colosseum-lede">
-          And the pack isn't the end. Ask the team follow-up questions in its conversation — <code>@Name</code> for one member, <code>@everyone</code> for all of them — or hand a piece of work back to whoever should do it, and it runs as a real run while the conversation stays open.
+          Brief a team, approve the coordinator's plan, and get back one finished pack — then keep the conversation going. Teams live in the Workers tab and switch on with it under <em>Settings → Labs</em>.
         </p>
       </div>
 
-      <div class="orch-stages" aria-label="a team task: brief, plan, pack">
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Brief</h3></header>
-          <p class="orch-stage-lede">Say what you want, what it's for, and what you want back. Attach specs, screenshots or PDFs. The coordinator asks what it needs to know first.</p>
-          <div class="orch-producer">
-            <p class="orch-prompt">“Should we ship offline mode this quarter? Make the case three ways and tell me what you'd do.”</p>
-            <div class="orch-tools">
-              <span>roadmap.pdf</span><span>usage.csv</span>
-            </div>
-            <p class="orch-found">→ 2 questions, answered</p>
+      <!-- Concept B from the design canvas: a team is built from your crew. -->
+      <div class="wt-flow" aria-label="three workers from the crew put on one task with a coordinator, ending in one pack">
+        <div class="wt-crew">
+          <p class="wt-label">Your crew · specialists</p>
+          <div class="wt-member is-picked"><span class="wt-face" aria-hidden="true">M</span><span><b>Mira</b><em>market research</em></span></div>
+          <div class="wt-member is-picked"><span class="wt-face" aria-hidden="true">A</span><span><b>Ansel</b><em>product design</em></span></div>
+          <div class="wt-member is-picked"><span class="wt-face" aria-hidden="true">O</span><span><b>Ola</b><em>engineering</em></span></div>
+          <div class="wt-member is-busy"><span class="wt-face" aria-hidden="true">V</span><span><b>Vantage</b><em>the 7am dashboard · on shift</em></span></div>
+          <div class="wt-member is-busy"><span class="wt-face" aria-hidden="true">B</span><span><b>Bricklayer</b><em>tidies the changelog</em></span></div>
+        </div>
+
+        <span class="wt-arrow" aria-hidden="true">→</span>
+
+        <div class="wt-team">
+          <div class="wt-team-top"><p class="wt-label">Team · on one task</p><code>team/offline-mode</code></div>
+          <p class="wt-brief">“Should we ship offline mode this quarter? Make the case three ways and tell me what you'd do.”</p>
+          <div class="wt-coord"><span class="wt-face wt-face-c" aria-hidden="true">C</span><span><b>Coordinator</b><em>plans the stages · writes the pack</em></span></div>
+          <div class="wt-roles">
+            <div><b>Mira</b><em>contributes</em></div>
+            <div><b>Ansel</b><em>contributes</em></div>
+            <div><b>Ola</b><em>contributes</em></div>
+            <div class="is-hire"><b>Vik</b><em>hired for this · challenges</em></div>
           </div>
-        </article>
+          <p class="wt-note">Nothing runs until you approve the plan.</p>
+        </div>
 
-        <span class="orch-arrow">→</span>
+        <span class="wt-arrow" aria-hidden="true">→</span>
 
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Plan</h3></header>
-          <p class="orch-stage-lede">The coordinator proposes the stages and who does what — and who to hire if the crew is missing someone. Nothing runs until you approve.</p>
-          <ul class="orch-map">
-            <li><span class="orch-cand">Contribute · market, design, engineering</span><span class="orch-flow" data-cli="claude">3 pieces</span></li>
-            <li><span class="orch-cand">Draft · coordinator</span><span class="orch-flow" data-cli="codex">1</span></li>
-            <li><span class="orch-cand">Challenge · ranked objections</span><span class="orch-flow" data-cli="claude">1</span></li>
-            <li><span class="orch-cand">Respond, then synthesize</span><span class="orch-flow" data-cli="codex">pack</span></li>
+        <div class="wt-pack">
+          <p class="wt-label">One pack</p>
+          <p class="wt-pack-name">PROPOSAL.md</p>
+          <p class="wt-pack-say">Three cases, the objections against them, and a recommendation.</p>
+          <ul>
+            <li>Ask follow-ups in its conversation — <code>@Name</code> or <code>@everyone</code></li>
+            <li>Hand work back to a member</li>
+            <li class="wt-merge">Merge into main</li>
           </ul>
-          <p class="orch-pr">☑ Approve, hire 1 and start</p>
-        </article>
-
-        <span class="orch-arrow">→</span>
-
-        <article class="orch-stage">
-          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Pack</h3></header>
-          <p class="orch-stage-lede">One finished deliverable in the shared folder, versioned, with the code on its own branch ready for you to merge.</p>
-          <div class="orch-cap">
-            <span class="orch-cap-label">PROPOSAL.md</span>
-            <span class="orch-cap-val">v2</span>
-            <span class="orch-cap-label">2 follow-ups in</span>
-          </div>
-          <p class="orch-pr">☑ Merge into main · per repo, when you're happy</p>
-        </article>
+        </div>
       </div>
 
       <figure class="app-window tm-window" aria-label="a team task's plan as swimlanes, mid-run">
