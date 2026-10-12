@@ -4162,3 +4162,38 @@ h3 .alpha-badge { margin-left: 8px; }
    minmax(auto, 1fr), so the log's full-length lines set the column's minimum
    and pushed the whole board past a phone's width. */
 @media (max-width: 1080px) { .svc-board { grid-template-columns: minmax(0, 1fr); } }
+
+
+/* ═════════════════════════ 06 · TEAMS (0.21) ═════════════════════════
+   The swimlane plan, drawn from TeamDesk.tsx: a lane per member and the
+   coordinator, a column per stage, cell states as the desk names them. */
+#teams .orch-stages, #teams .tm-window, #teams .tm-points, #teams .tm-starters { max-width: var(--col); margin-inline: auto; }
+#teams .tm-points { margin-top: clamp(22px, 3vw, 36px) !important; }
+.tm-window { margin-top: clamp(22px, 3vw, 36px); padding: 16px 18px; background: var(--bg-lift); border: 1px solid var(--line-strong); border-radius: 14px; }
+.tm-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.tm-title { font-weight: 600; color: var(--ink); font-size: 13.5px; margin-right: auto; }
+.tm-legend { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-muted); }
+.tm-sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; margin-left: 6px; }
+.tm-sw-m { background: color-mix(in srgb, var(--accent) 70%, transparent); }
+.tm-sw-c { background: color-mix(in srgb, #fbbf24 75%, transparent); }
+.tm-why { font-size: 11.5px; color: var(--accent); }
+.tm-lanes { display: grid; gap: 6px; padding-top: 12px; overflow-x: auto; }
+.tm-row { display: grid; grid-template-columns: 150px repeat(5, minmax(84px, 1fr)); gap: 6px; align-items: center; min-width: 620px; }
+.tm-cols span { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-muted); text-align: center; }
+.tm-who { font-size: 12.5px; color: var(--ink); }
+.tm-who em { display: block; font-style: normal; font-size: 11px; color: var(--ink-muted); }
+.tm-cell { display: block; text-align: center; padding: 6px 4px; border-radius: 7px; font-size: 11.5px; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--ink); }
+.tm-cell.tm-c { border-color: color-mix(in srgb, #fbbf24 45%, transparent); background: color-mix(in srgb, #fbbf24 14%, transparent); }
+.tm-cell.is-done { opacity: .7; }
+.tm-cell.is-run { box-shadow: 0 0 0 1px var(--accent) inset; }
+.tm-cell.is-next { background: transparent; border-style: dashed; color: var(--ink-muted); }
+.tm-cell.is-wait { display: inline-block; padding: 4px 10px; border-color: color-mix(in srgb, #fbbf24 55%, transparent); background: transparent; color: #fbbf24; }
+.tm-foot { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 12px; color: var(--ink-muted); }
+.tm-chip { padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink); font-size: 11.5px; }
+.tm-starters { margin-top: clamp(22px, 3vw, 36px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .tm-starters { grid-template-columns: 1fr; } }
+.tm-starters-h { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--ink-muted); }
+.tm-starter { display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-lift); }
+.tm-starter b { color: var(--ink); font-size: 14px; }
+.tm-starter span { color: var(--ink-dim); font-size: 13px; line-height: 1.55; }
+.tm-starter em { font-style: normal; font-family: var(--f-mono); font-size: 11px; color: var(--accent); }
