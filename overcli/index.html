@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="../theme.css" />
 </head>
 <body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.20.1" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.21.0" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.20 is out</strong> <span class="rr-sub">(v0.20.1 is the live build)</span> — <strong>Work</strong> replaces Recent: every chat, run, batch and PR on a branch as one searchable record. <strong>Claude Sonnet 5.5</strong> is the default fast model, and on macOS <strong>flow-step writes are sandboxed</strong>. Workers are hired <strong>through a conversation</strong>, report to a <strong>Today</strong> inbox, and the whole crew can <strong>go away</strong> while you do. Also: <em>Ask about this</em> on selected code, and one search across every service's output. On a new install, Workers, the Orchestrator, Colosseum, Local models and Services start switched off under <strong>Settings → Labs</strong>.</span>
+    <span class="rr-text"><strong>v0.21.0 is out</strong> — <strong>Teams</strong>: write one brief, approve the coordinator's plan, and get back one finished pack — contributed, challenged and argued over by a crew of workers, on its own branch, with a conversation afterwards for follow-ups. Also: flows can use <strong>Claude Design</strong>, and <strong>Claude Haiku 5.5</strong> joins the catalog. On a new install, Workers (and with it Teams), the Orchestrator, Compare models, Local models and Services start switched off under <strong>Settings → Labs</strong>.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
 
@@ -30,15 +30,15 @@
     <a href="#top" class="brand">
       <img class="brand-mark" src="assets/icon.png" alt="" />
       <span class="brand-name">overcli</span>
-      <span class="brand-ver">v0.20.1 · beta</span>
+      <span class="brand-ver">v0.21.0 · beta</span>
     </a>
     <ul class="nav-links">
       <li><a class="nav-back" href="../">← codelions</a></li>
       <li><a href="#rebound">rebound</a></li>
       <li><a href="#flows-model">flows</a></li>
       <li><a href="#workers">workers</a></li>
+      <li><a href="#teams">teams</a></li>
       <li><a href="#services">services</a></li>
-      <li><a href="#cost">cost</a></li>
       <li><a href="#features">features</a></li>
       <li><a href="#story">story</a></li>
       <li><a href="#faq">faq</a></li>
@@ -893,7 +893,7 @@ steps:
             </li>
           </ul>
 
-          <p class="orch-batch-note">↪ The tab opens on <strong>Today</strong>, an inbox for the crew: what needs you, then what is working, then what was filed today, with earlier days below. Clear an item once you've read it and it stays findable under Cleared. Beside it the crew is a rail of faces in the order you set, with status as a ring on the face, so the list never reshuffles as work finishes. Click a face for that worker's own inbox, its name for its desk.</p>
+          <p class="orch-batch-note">↪ The tab opens on <strong>Today</strong>, an inbox for the crew: what needs you, then what is working, then what was filed today, with earlier days below. Clear an item once you've read it and it stays findable under Cleared. Beside it the crew is a rail of faces in the order you set, with status as a ring on the face, so the list never reshuffles as work finishes. Click a face for that worker's own inbox, its name for its desk. <a href="#teams" class="feat-link">Teams</a> sit above the crew in the same rail.</p>
         </div>
       </figure>
 
@@ -1094,12 +1094,144 @@ steps:
       </div>
     </section>
 
-    <!-- ─────────── 06 · SERVICES ─────────── -->
+    <!-- ─────────── 06 · TEAMS (0.21) ─────────── -->
+    <!-- Checked against v0.21.0. Labels are the app's own (TeamDesk.tsx,
+         TeamEditor.tsx, WorkersPane.tsx). Teams live in the Workers tab and
+         ride the Workers lab. Merging is a button; the budget is checked
+         before each stage, so it is not a hard stop mid-stage. -->
+    <section class="colosseum terminal" id="teams">
+      <div class="colosseum-head">
+        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; teams <span class="svc-new">new in 0.21</span></p>
+        <h2 class="display-title">
+          <span>Hand off the whole job.</span>
+          <span class="em">Get it back already argued over.</span>
+        </h2>
+        <p class="section-lede colosseum-lede">
+          A worker owns a beat. A <strong>team</strong> owns a task. Write one brief, and a <em>coordinator</em> plans the stages — who contributes, who challenges, who answers the challenge — for you to approve. Then the members work their pieces, each on its own backend, files land in one shared folder, a member pushes back on the draft, and the coordinator writes the final <strong>pack</strong>. You're needed twice: the brief and the plan. Teams live in the Workers tab and switch on with it under <em>Settings → Labs</em>.
+        </p>
+        <p class="section-lede colosseum-lede">
+          And the pack isn't the end. Ask the team follow-up questions in its conversation — <code>@Name</code> for one member, <code>@everyone</code> for all of them — or hand a piece of work back to whoever should do it, and it runs as a real run while the conversation stays open.
+        </p>
+      </div>
+
+      <div class="orch-stages" aria-label="a team task: brief, plan, pack">
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">1</span><h3>Brief</h3></header>
+          <p class="orch-stage-lede">Say what you want, what it's for, and what you want back. Attach specs, screenshots or PDFs. The coordinator asks what it needs to know first.</p>
+          <div class="orch-producer">
+            <p class="orch-prompt">“Should we ship offline mode this quarter? Make the case three ways and tell me what you'd do.”</p>
+            <div class="orch-tools">
+              <span>roadmap.pdf</span><span>usage.csv</span>
+            </div>
+            <p class="orch-found">→ 2 questions, answered</p>
+          </div>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">2</span><h3>Plan</h3></header>
+          <p class="orch-stage-lede">The coordinator proposes the stages and who does what — and who to hire if the crew is missing someone. Nothing runs until you approve.</p>
+          <ul class="orch-map">
+            <li><span class="orch-cand">Contribute · market, design, engineering</span><span class="orch-flow" data-cli="claude">3 pieces</span></li>
+            <li><span class="orch-cand">Draft · coordinator</span><span class="orch-flow" data-cli="codex">1</span></li>
+            <li><span class="orch-cand">Challenge · ranked objections</span><span class="orch-flow" data-cli="claude">1</span></li>
+            <li><span class="orch-cand">Respond, then synthesize</span><span class="orch-flow" data-cli="codex">pack</span></li>
+          </ul>
+          <p class="orch-pr">☑ Approve, hire 1 and start</p>
+        </article>
+
+        <span class="orch-arrow">→</span>
+
+        <article class="orch-stage">
+          <header class="orch-stage-head"><span class="orch-n">3</span><h3>Pack</h3></header>
+          <p class="orch-stage-lede">One finished deliverable in the shared folder, versioned, with the code on its own branch ready for you to merge.</p>
+          <div class="orch-cap">
+            <span class="orch-cap-label">PROPOSAL.md</span>
+            <span class="orch-cap-val">v2</span>
+            <span class="orch-cap-label">2 follow-ups in</span>
+          </div>
+          <p class="orch-pr">☑ Merge into main · per repo, when you're happy</p>
+        </article>
+      </div>
+
+      <figure class="app-window tm-window" aria-label="a team task's plan as swimlanes, mid-run">
+        <header class="tm-head">
+          <span class="tm-title">This task's plan · 5 stages</span>
+          <span class="tm-legend"><i class="tm-sw tm-sw-m"></i>Members <i class="tm-sw tm-sw-c"></i>Coordinator</span>
+          <span class="tm-why">Why this plan</span>
+        </header>
+        <div class="tm-lanes" role="table">
+          <div class="tm-row tm-cols" role="row">
+            <span></span><span>Contribute</span><span>Draft</span><span>Challenge</span><span>Respond</span><span>Synthesize</span>
+          </div>
+          <div class="tm-row" role="row">
+            <span class="tm-who">Mira <em>market</em></span>
+            <span class="tm-cell is-done">Done</span><span></span><span></span><span class="tm-cell is-run">Working…</span><span></span>
+          </div>
+          <div class="tm-row" role="row">
+            <span class="tm-who">Ansel <em>design</em></span>
+            <span class="tm-cell is-done">Done</span><span></span><span></span><span class="tm-cell is-next">Up next</span><span></span>
+          </div>
+          <div class="tm-row" role="row">
+            <span class="tm-who">Ola <em>engineering</em></span>
+            <span class="tm-cell is-done">Done</span><span></span><span></span><span class="tm-cell is-run">Working…</span><span></span>
+          </div>
+          <div class="tm-row" role="row">
+            <span class="tm-who">Vik <em>hired for this</em></span>
+            <span></span><span></span><span class="tm-cell is-done">Done</span><span></span><span></span>
+          </div>
+          <div class="tm-row tm-row-c" role="row">
+            <span class="tm-who">Coordinator</span>
+            <span></span><span class="tm-cell tm-c is-done">Done</span><span></span><span></span><span class="tm-cell tm-c is-next">Up next</span>
+          </div>
+        </div>
+        <footer class="tm-foot">
+          <span class="tm-chip">Pack v1</span>
+          <span>After the pack · asked for in the conversation</span>
+          <span class="tm-cell is-wait">Waiting on you</span>
+        </footer>
+      </figure>
+
+      <dl class="svc-points tm-points">
+        <div>
+          <dt>Hire as you build</dt>
+          <dd>Describe the team and it suggests a roster, or hire for one role yourself. A plan can propose hires too, made when you approve it. Hires join the crew on demand — no shifts of their own — and start with no browser and no MCP connectors.</dd>
+        </div>
+        <div>
+          <dt>One branch per task</dt>
+          <dd>Code work lands on <code>team/&lt;task&gt;</code> in every repo the task touches. Each piece forks from it and merges back in a checkout of the task's own, never yours. A conflict stops the stage — Retry, or Continue without — and the pack offers <em>Merge into main</em> per repo, when you're happy.</dd>
+        </div>
+        <div>
+          <dt>The plan as swimlanes</dt>
+          <dd>A lane per member and the coordinator, a column per stage, follow-up work after the pack in its own area. Click a cell to open that piece's file, or its run if there's nothing to read yet.</dd>
+        </div>
+        <div>
+          <dt>Checkpoints you choose</dt>
+          <dd>You always approve the plan. By default you also answer the coordinator's questions, review the pack before it's filed, and start follow-up work yourself. Members keep their own permissions unless you let them work without asking.</dd>
+        </div>
+        <div>
+          <dt>A budget per task</dt>
+          <dd>Each task has one — $1,000 by default — checked before every stage. At the line the task pauses and offers to add more and continue. Every piece still draws on its member's share of the crew's monthly pot.</dd>
+        </div>
+      </dl>
+
+      <div class="tm-starters" aria-label="starter teams">
+        <p class="tm-starters-h">Start from one of these — the team is drafted for you, and you change anything before it hires</p>
+        <div class="tm-starter"><b>Release team</b><span>Checks the candidate, writes the notes and the site update, and calls go or no-go.</span><em>release notes · go / no-go</em></div>
+        <div class="tm-starter"><b>Proposal team</b><span>Market, design and engineering each make the case; a challenger pushes on all three.</span><em>proposal · options · recommendation</em></div>
+        <div class="tm-starter"><b>Review panel</b><span>Security, performance and UX read the same change and agree on what must be fixed first.</span><em>ranked findings · fix plan</em></div>
+      </div>
+
+      <p class="colosseum-ribbon"><span>one brief in</span> · <span>one finished pack out</span> · <span>argued over on the way</span> · <span>its own branch</span> · <span>you approve the plan</span></p>
+    </section>
+
+    <!-- ─────────── 07 · SERVICES ─────────── -->
     <!-- Shipped in 0.19.0. The clash and handoff buttons carry the pane's own
          labels, so keep them in step with ServicesPane.tsx. -->
     <section class="colosseum terminal" id="services">
       <div class="colosseum-head">
-        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; services <span class="svc-new">search every output</span></p>
+        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; services <span class="svc-new">search every output</span></p>
         <h2 class="display-title">
           <span>Run the whole stack.</span>
           <span class="em">Point it at any branch.</span>
@@ -1202,44 +1334,6 @@ steps:
       </dl>
     </section>
 
-    <section class="colosseum" id="cost">
-      <div class="cost-grid">
-
-        <div class="cost-say">
-          <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; what it costs to run</p>
-          <h2 class="section-title">Every step names its own model. <span class="em">Most of them don't need the expensive one.</span></h2>
-          <p class="section-lede">A flow step that greps a repo, drafts a changelog or files a ticket does not need a frontier model to do it. Point the premium judgement at a premium model and the bulk at a cheaper — or local — one, and the clock gets cheap enough to leave running. This is not a dial you tune afterwards; it is how a flow is written in the first place.</p>
-          <p class="section-lede cost-foot">The cheapest agent is still the one on your own machine: <code>ollama</code> is a peer of the other four backends, not a lesser fifth, and every place the app picks a model is a place you can pick a local one. That matters most at the top of the ladder, where a worker on an hourly clock is the one thing here spending money while nobody is watching.</p>
-        </div>
-
-        <figure class="cost-evidence">
-          <figcaption class="plate-head">the flows we ship &nbsp;·&nbsp; model mix</figcaption>
-
-          <div class="cost-stat">
-            <p class="cost-fig"><span class="cost-n">99</span> <span class="cost-of">of 154 steps</span></p>
-            <p class="cost-claim">run on something other than a premium model.</p>
-
-            <div class="meter" role="img" aria-label="Of 154 flow steps, 99 run on a cheaper model and 55 run on a premium or frontier model.">
-              <span class="meter-seg meter-cheap" style="flex-grow: 99;"></span>
-              <span class="meter-seg meter-prem" style="flex-grow: 55;"></span>
-            </div>
-            <p class="meter-key">
-              <span class="mk"><i class="sw sw-cheap" aria-hidden="true"></i>cheaper <b>99</b></span>
-              <span class="mk"><i class="sw sw-prem" aria-hidden="true"></i>premium <b>55</b></span>
-            </p>
-          </div>
-
-          <dl class="spec"><dt class="k">the mix</dt><dd class="v">sonnet <em>72</em> &nbsp;·&nbsp; opus <em>48</em> &nbsp;·&nbsp; gpt-5.6-terra <em>27</em> &nbsp;·&nbsp; fable <em>7</em></dd></dl>
-          <dl class="spec"><dt class="k">downgrades</dt><dd class="v">near a rate or cost ceiling: opus <em>→</em> sonnet, cloud <em>→</em> local ollama, rather than stopping</dd></dl>
-          <dl class="spec"><dt class="k">per run</dt><dd class="v">a cost ceiling on each flow run: past it, the run stops and tells you</dd></dl>
-          <dl class="spec"><dt class="k">the pot</dt><dd class="v">one monthly budget for the whole crew, paid down the roster in order</dd></dl>
-          <!-- TODO: add a measured row here — one real flow's spend vs the same flow forced all-opus.
-               It is the one number a buyer will test, and we should not claim it until we have run it. -->
-        </figure>
-
-      </div>
-    </section>
-
     <section class="features" id="features">
       <div class="section-head">
         <p class="kicker">[&nbsp;08&nbsp;] &nbsp;·&nbsp; what's in the box</p>
@@ -1257,7 +1351,7 @@ steps:
           <span class="feature-num">01</span>
           <h3>Multi-backend chat</h3>
           <p>Claude, Codex, Gemini, <em>Copilot</em>, and <em>Ollama</em> — five stream parsers, one consistent UI. Markdown. Syntax highlight. Streaming tokens. Cloud or local, same window.</p>
-          <p class="feature-note">Reasoning effort is set <em>per backend</em>, because the word means something different to each of them — and turning it up lands on the turn you are watching, not the one after it. Claude's <code>/design</code> canvas and its Artifact tool work here too, with permission cards that summarise what actually leaves the machine rather than showing you truncated raw JSON.</p>
+          <p class="feature-note">Reasoning effort is set <em>per backend</em>, because the word means something different to each of them — and turning it up lands on the turn you are watching, not the one after it. Claude's <code>/design</code> canvas and its Artifact tool work here too — behind the experimental <em>Claude Design and artifacts</em> setting and a claude.ai login — with permission cards that summarise what actually leaves the machine rather than showing you truncated raw JSON.</p>
         </article>
 
         <article class="feature">
@@ -1426,7 +1520,7 @@ steps:
         <article class="feature">
           <span class="feature-num">25</span>
           <h3>Smart downgrades</h3>
-          <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default. <a href="#cost" class="feat-link">see it above ↑</a></p>
+          <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default.</p>
         </article>
 
         <article class="feature">
@@ -1439,6 +1533,7 @@ steps:
           <span class="feature-num">27</span>
           <h3>Flows</h3>
           <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>38 in the registry</em>; define your own in a few lines of YAML. <a href="#flows-model" class="feat-link">see them below ↓</a></p>
+          <p class="feature-note">A Claude step can use <em>Claude Design (Artifact)</em> to produce a design, deck or document; the designer marks it <code>effect: external</code>, and it needs the experimental Claude Design setting on.</p>
           <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
         </article>
 
@@ -1506,11 +1601,18 @@ steps:
           <span class="feature-num">36</span>
           <h3>Away mode</h3>
           <p><em>Go away</em> takes the whole crew offline — until you're back, tomorrow morning, Monday morning, or in a week. While you're away no shift starts, batches queued before you left launch nothing more, and handoffs wait for you. Manual shifts and errands still run, and runs already going finish.</p>
-          <p class="feature-note">Coming back restarts every worker's clock from now, so there is no pile of missed shifts waiting, and a worker you paused stays paused. A single shift can be paused too, which holds its queue and stops its flows after their current step.</p>
+          <p class="feature-note">Coming back restarts every worker's clock from now, so there is no pile of missed shifts waiting, and a worker you paused stays paused. A single shift can be paused too, which holds its queue and stops its flows after their current step. Team stages are held as well — the task says <em>Crew away</em>, with <em>Start now</em>.</p>
         </article>
 
         <article class="feature">
           <span class="feature-num">37</span>
+          <h3>Teams</h3>
+          <p>Put workers together on one task. A coordinator plans the stages for you to approve, members contribute and challenge, files land in one shared folder, and the coordinator writes the pack. Code lands on its own <code>team/&lt;task&gt;</code> branch, merged when you say. <a href="#teams" class="feat-link">see it above ↑</a></p>
+          <p class="feature-note">After the pack, the team's conversation stays open: ask follow-ups, <code>@</code> a member, or hand work back. Each task has a budget, $1,000 by default, checked before every stage.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">38</span>
           <h3>A cost ceiling on every run</h3>
           <p>Set a ceiling per flow run in Settings, and a run that spends past it stops and tells you why, rather than finishing a job nobody priced. It is a stop-loss, not a hard cap: it is checked after each turn reports its cost, so one expensive turn can land above it before the run halts.</p>
           <p class="feature-note">When Opus 5.5 became the default premium model, saved flows did not move on their own. <em>Upgrade models</em> shows the exact change for each flow, and nothing moves until you tick it — a pinned model can be deliberate.</p>
@@ -1524,20 +1626,20 @@ steps:
 
       <div class="feature-grid">
         <article class="feature">
-          <span class="feature-num">38</span>
+          <span class="feature-num">39</span>
           <h3>Documents projects</h3>
           <p>Describe what you want and Overcli scaffolds a folder under <code>~/Documents/Overcli&nbsp;Projects/</code>, prepares an undo history, and opens a conversation pointed at it. No path decision, no file dialog, and <em>git is never mentioned</em>. A folder you already have joins the same way — the explorer's dead end is now a <em>Turn on history</em> button.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">39</span>
+          <span class="feature-num">40</span>
           <h3>Documents, not a file tree</h3>
           <p>Documents projects open into a card grid with real file-type icons, human names, and <em>edited 2 days ago</em> — one folder at a time, with a breadcrumb. Code projects keep the explorer tree, because a nested column of monospace paths is right for a repo and wrong for a folder of Word documents. Drag files in from Finder; the project's own <code>.git</code> never appears.</p>
           <p class="feature-note"><code>.doc</code>, <code>.docx</code>, <code>.xls</code>, <code>.xlsx</code>, <code>.ppt</code> and <code>.pptx</code> preview with no Office installed. Three converters are <em>raced</em> rather than queued — LibreOffice, Quick Look, Office COM — so a hung LibreOffice no longer costs thirty seconds. The result renders sandboxed with no scripts and no outbound channel, because a document someone emailed you is untrusted input.</p>
         </article>
 
         <article class="feature">
-          <span class="feature-num">40</span>
+          <span class="feature-num">41</span>
           <h3>Auto-save, and every version back</h3>
           <p>Documents save themselves a few seconds after you stop typing, because nobody outside software thinks about saving. A version is captured whenever something <em>finishes</em>, and <em>Earlier versions</em> lists them in plain language with a Restore button.</p>
           <p class="feature-note">Restoring moves forward rather than rewinding — the current state is committed first and the restored one on top — so putting the folder back is itself undoable. Ask for a change in one line at the foot of any document and you get a before/after diff with <em>Keep changes</em>, <em>Undo it</em> or <em>Try again</em>; highlight a passage first and only that passage is sent.</p>
@@ -1637,7 +1739,7 @@ steps:
         <div class="faq-list">
           <details class="faq-item">
             <summary>What does it cost?</summary>
-            <p><strong>The app is free.</strong> Overcli is open source under Apache 2.0 — no licence to buy, no per-seat pricing, no paid tier holding features back, and no invoice from us. What you do pay for is model usage on the agent subscriptions you already have, which is why <a class="feat-link" href="#cost">every flow step names its own model</a> and why the crew draws from a pot you set.</p>
+            <p><strong>The app is free.</strong> Overcli is open source under Apache 2.0 — no licence to buy, no per-seat pricing, no paid tier holding features back, and no invoice from us. What you do pay for is model usage on the agent subscriptions you already have, which is why <a class="feat-link" href="#flows-model">every flow step names its own model</a> and why the crew draws from a pot you set.</p>
           </details>
           <details class="faq-item">
             <summary>Which agents does it actually drive?</summary>
@@ -1772,7 +1874,7 @@ steps:
         <img src="assets/icon.png" alt="" class="sl-mark" />
         overcli
       </span>
-      <span class="sl-cell">v0.20.1 · beta</span>
+      <span class="sl-cell">v0.21.0 · beta</span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a></span>
       <span class="sl-cell"><a href="https://github.com/overcodelions/overcli/issues" target="_blank" rel="noopener">issues</a></span>
       <span class="sl-cell"><a href="../overgit/">overgit</a></span>
