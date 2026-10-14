@@ -6,53 +6,55 @@ Umbrella marketing site for the [Codelions](https://github.com/overcodelions) op
 
 ```
 .
-├── theme.css         shared design system — the brand lives here
-├── index.html        landing — "three tools, one philosophy"
-├── styles.css        landing-only styles (hero plate, mock windows, layouts)
-├── overcli/          product page for overcli
-├── overgit/          product page for overgit
-├── overdb/           product page for overdb
-├── assets/           shared assets (icon used in landing nav + footer)
+├── theme.css         design tokens, base type, the release ribbon
+├── family.css        layout for the home page and the three product pages
+├── family.js         runs the live app windows (see below)
+├── index.html        home — "Over your tools. Not instead of them."
+├── overcli/          overcli page, plus features.html (all 42 features)
+├── overgit/          overgit page
+├── overdb/           overdb page
+├── assets/           shared assets (the codelions icon)
 └── CNAME             custom domain pinned to overcodelions.com
 ```
 
 ## Design system
 
-`theme.css` owns every shared surface across all three pages: colour, type,
-buttons, cards, section headers, nav, footer, the story modal. Change the
-brand there once and every page moves together.
+The look is **"Instrument"**: cool paper, hairline rules, softened corners,
+and three faces — **Bricolage Grotesque** for display, **Geist** for body,
+**Geist Mono** for eyebrows, code and data. The products appear as dark app
+windows on that paper. Every page sits on one 1184px column.
 
-The look is **"Instrument"** — cool paper, hairline rules, softened
-corners, and three faces: **Bricolage Grotesque** for display, **Geist** for
-body, labels and buttons, **Geist Mono** for code and data readouts. The
-products themselves appear as dark slabs dropped into that page. The 2026
-refresh lives in one "modern layer" block at the end of `theme.css`.
+Pages load `theme.css` first (tokens, base type, the ribbon) and
+`family.css` second. Everything in `family.css` is prefixed `fx-` so it can't
+collide with the older rules `features.html` still uses (it keeps
+`overcli/styles.css` and `overcli/app.js`). Each product sets one colour of
+its own through `--fx-c` (`.fx-overcli`, `.fx-overgit`, `.fx-overdb`).
 
-### The `.terminal` seam
+The stylesheet and script links carry a content stamp (`family.css?v=…`).
+Change the stamp when you change either file, so returning visitors don't
+keep a cached copy.
 
-Each product page still carries its own `styles.css` with ~2–3k lines of
-hand-built app-mock chrome (fake windows, diff cards, flow diagrams). Rather
-than rewrite it, product pages load:
+## The live app windows
 
-```html
-<link rel="stylesheet" href="styles.css" />   <!-- mock chrome, first -->
-<link rel="stylesheet" href="../theme.css" /> <!-- design system, last -->
-```
+Each product page draws its app and plays a short story per step. Three
+parts, all in the page itself:
 
-`theme.css` wins for anything shared, and re-points the legacy surface tokens
-(`--bg`, `--ink`, `--line`, …) at paper values. Any element wrapped in
-`.terminal` flips those tokens back to the dark app palette, so the mock CSS
-keeps working untouched. That is why `.hero-right` and the showcase
-`section.colosseum` blocks carry `class="… terminal"`.
+- a `<template id="tpl-…">` holding the window's markup, which reads values
+  through `{{holes}}`, `<sc-if value="{{…}}">` and `<sc-for list="{{…}}" as="x">`;
+- a component class registered as `window.DC['overcli']` (etc.) whose
+  `renderVals()` returns those values for the current tab and step, and whose
+  `componentDidMount()` starts the clock;
+- a host element, `<div data-dc="overcli" data-template="tpl-overcli">`.
 
-Two consequences worth knowing:
+`family.js` renders the template, patches the DOM in place (so CSS
+animations already running are not restarted every tick), wires `onClick`
+holes, starts the clock once the window is on screen, and does nothing on
+its own for visitors who ask for reduced motion. Anything marked
+`data-fit="<design width>"` is scaled down to fit narrow screens, like a
+screenshot, and never scaled up.
 
-- **Don't reuse a class name the mocks already own.** The design-system card
-  is `.cell`, not `.card`, because `.card` is a chat message inside the app
-  mock and must stay dark.
-- **Anything not wrapped in `.terminal` renders on paper.** That is the safe
-  default — a rule nobody restyled degrades to light rather than going
-  dark-on-light.
+Every label in the windows is taken from the app's own UI; check new ones
+against the product repo before shipping.
 
 ## Product repos
 
