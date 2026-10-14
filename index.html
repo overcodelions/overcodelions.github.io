@@ -9,582 +9,119 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="theme.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="family.css?v=3a56e305" />
 </head>
-<body>
-
-  <nav class="site-nav" aria-label="primary">
-    <a href="#top" class="brand">
-      <span class="brand-bracket">[</span>
-      <span class="brand-name">codelions</span>
-      <span class="brand-bracket">]</span>
-      <span class="brand-ver">three tools · one philosophy</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#overcli">overcli</a></li>
-      <li><a href="#overgit">overgit</a></li>
-      <li><a href="#overdb">overdb</a></li>
-      <li><a href="#philosophy">philosophy</a></li>
-      <li><a href="#faq">faq</a></li>
-      <li><a class="nav-repo" href="https://github.com/overcodelions" target="_blank" rel="noopener">github&nbsp;↗</a></li>
-      <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#tools"><span class="bk">[</span>&nbsp;get the tools&nbsp;<span class="bk">]</span></a></li>
-    </ul>
-  </nav>
-
-  <main id="top">
-
-    <!-- ─────────────────────────── HERO ─────────────────────────── -->
-    <header class="lp-hero shell">
-      <div class="lp-hero-copy">
-        <p class="eyebrow">Codelions <span class="sep">·</span> desktop tools for people who live in terminals</p>
-        <h1 class="display lp-headline">
-          Three tools.<br />
-          <span class="em">One philosophy.</span>
-        </h1>
-        <p class="lede">
-          We build honest desktop apps for engineers who already live in CLIs. Read the source. Read the diffs.
-          Uninstall without leaving a trace. <strong>No telemetry, no hidden state, no invented abstractions.</strong>
-        </p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="overcli/"><span class="bk">[</span>&nbsp;explore overcli&nbsp;<span class="bk">]</span></a>
-          <a class="btn btn-ghost" href="overgit/">explore overgit</a>
-          <a class="btn btn-ghost" href="overdb/">explore overdb</a>
-          <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">view source ↗</a>
-        </div>
-      </div>
-
-      <aside class="lp-plate plate" aria-label="At a glance">
-        <div class="plate-head">
-          <span class="dot dot-ready"></span> specimen · codelions
-        </div>
-        <dl class="lp-specs">
-          <div class="spec"><dt>tools</dt><dd class="v">overcli <em>·</em> overgit <em>·</em> overdb</dd></div>
-          <div class="spec"><dt>license</dt><dd class="v">Apache 2.0</dd></div>
-          <div class="spec"><dt>platform</dt><dd class="v">macOS · Windows · Linux</dd></div>
-          <div class="spec"><dt>stack</dt><dd class="v">Electron · React · TypeScript</dd></div>
-          <div class="spec"><dt>telemetry</dt><dd class="v"><em>none in the app</em></dd></div>
-          <div class="spec"><dt>built by</dt><dd class="v">a father &amp; son</dd></div>
-        </dl>
-      </aside>
-    </header>
-
-    <!-- ────────────────── DARK SLAB — THE PRODUCTS ────────────────── -->
-    <section class="slab terminal" id="tools" aria-label="The tools">
-      <div class="shell">
-        <div class="lp-slab-head">
-          <p class="rule-head"><span class="n">00</span> &nbsp;the shape of the work</p>
-          <h2 class="display display-sm">Agents, repos, and databases.<br /><span class="em">All of them legible.</span></h2>
-        </div>
-
-        <div class="lp-windows">
-          <!-- overcli mock -->
-          <figure class="lp-win">
-            <figcaption class="lp-win-bar">
-              <span class="lp-tl"></span><span class="lp-tl"></span><span class="lp-tl"></span>
-              <span class="lp-win-name">overcli</span>
-              <span class="lp-win-tag">claude · opus 5.5</span>
-            </figcaption>
-            <div class="lp-win-body">
-              <p class="lp-prompt"><span class="lp-caret">›</span> add a rate limiter to /api/login</p>
-              <div class="lp-msg">
-                <span class="lp-msg-label">opus 5.5</span>
-                <span>Planning the change — a token bucket keyed by ip + username, wired into <code>/api/login</code>, with unit tests.</span>
-              </div>
-              <div class="lp-tool">
-                <span class="lp-tool-tag">edit</span>
-                <span class="lp-tool-path">src/middleware/rateLimit.ts</span>
-                <span class="lp-tool-stat"><span class="a">+22</span> <span class="r">−0</span></span>
-              </div>
-              <pre class="lp-diff"><span class="d-meta">@@ new file @@</span><span class="d-add">+ import { bucket } from "./bucket";</span><span class="d-add">+ export const loginLimiter = bucket({</span><span class="d-add">+   cap: 10, per: "60s",</span><span class="d-add">+   key: (req) =&gt; `${req.ip}:${req.body.username}`,</span><span class="d-add">+ });</span></pre>
-              <p class="lp-status"><span class="dot dot-ready"></span> worktree <em>feature/rate-limit</em> · 3 files · ready to merge</p>
-            </div>
-          </figure>
-
-          <!-- overgit mock -->
-          <figure class="lp-win">
-            <figcaption class="lp-win-bar">
-              <span class="lp-tl"></span><span class="lp-tl"></span><span class="lp-tl"></span>
-              <span class="lp-win-name">overgit</span>
-              <span class="lp-win-tag">payments-platform</span>
-            </figcaption>
-            <div class="lp-win-body">
-              <p class="lp-group">workspace <span class="lp-count">3 repos</span></p>
-              <ul class="lp-repos">
-                <li><span class="lp-repo">api-gateway</span><span class="lp-branch">feature/rate-limit</span><span class="lp-delta"><span class="a">+34</span> <span class="r">−5</span></span></li>
-                <li><span class="lp-repo">billing-svc</span><span class="lp-branch">feature/rate-limit</span><span class="lp-delta"><span class="a">+8</span> <span class="r">−2</span></span></li>
-                <li><span class="lp-repo">ledger-core</span><span class="lp-branch">main</span><span class="lp-delta lp-clean">clean</span></li>
-              </ul>
-              <p class="lp-group">worksets <span class="lp-count lp-active">2 active</span></p>
-              <ul class="lp-repos">
-                <li><span class="lp-repo">rate-limit rollout</span><span class="lp-branch">3 repos</span><span class="lp-delta"><span class="dot dot-ready"></span></span></li>
-                <li><span class="lp-repo">pg14 migration</span><span class="lp-branch">2 repos</span><span class="lp-delta"><span class="dot dot-ready"></span></span></li>
-              </ul>
-              <p class="lp-group">pull requests <span class="lp-count">3 open</span></p>
-              <ul class="lp-repos">
-                <li><span class="lp-repo">#412</span><span class="lp-branch">rate limiter · api-gateway</span><span class="lp-delta lp-ok">approved</span></li>
-                <li><span class="lp-repo">#88</span><span class="lp-branch">token bucket · billing-svc</span><span class="lp-delta lp-clean">review</span></li>
-              </ul>
-              <p class="lp-status">commit · push · archive — across all three, in one action</p>
-            </div>
-          </figure>
-
-          <!-- overdb mock -->
-          <figure class="lp-win">
-            <figcaption class="lp-win-bar">
-              <span class="lp-tl"></span><span class="lp-tl"></span><span class="lp-tl"></span>
-              <span class="lp-win-name">overdb</span>
-              <span class="lp-win-tag">orders-db · 3 envs</span>
-            </figcaption>
-            <div class="lp-win-body">
-              <p class="lp-prompt"><span class="lp-caret">›</span> select status, count(*) from orders group by 1</p>
-              <p class="lp-group">fan-out <span class="lp-count lp-active">3 of 3 ok</span></p>
-              <ul class="lp-repos">
-                <li><span class="lp-repo">refunded</span><span class="lp-branch">local 3 · staging 4</span><span class="lp-delta"><span class="r">prod 41</span></span></li>
-                <li><span class="lp-repo">pending_review</span><span class="lp-branch">prod only</span><span class="lp-delta"><span class="r">+7</span></span></li>
-                <li><span class="lp-repo">paid</span><span class="lp-branch">within 1%</span><span class="lp-delta lp-clean">match</span></li>
-              </ul>
-              <p class="lp-group">schema drift <span class="lp-count">staging vs prod</span></p>
-              <ul class="lp-repos">
-                <li><span class="lp-repo">orders.refund_reason</span><span class="lp-branch">missing on staging</span><span class="lp-delta"><span class="r">breaking</span></span></li>
-                <li><span class="lp-repo">orders_customer_idx</span><span class="lp-branch">staging only</span><span class="lp-delta lp-clean">notable</span></li>
-              </ul>
-              <p class="lp-status"><span class="dot dot-ready"></span> read-only by default · layered safeguards</p>
-            </div>
-          </figure>
-        </div>
-
-        <p class="lp-slab-foot">
-          The dark panels are the products. Everything else on this page is paper — because a tool should look like a tool.
-        </p>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── OVERCLI ─────────────────────────── -->
-    <section class="lp-product shell" id="overcli">
-      <p class="rule-head"><span class="n">01</span> &nbsp;overcli</p>
-      <div class="lp-product-head">
-        <h2 class="section-title">Five coding agents.<br /><span class="lp-italic">One honest window.</span></h2>
-        <div class="lp-product-aside">
-          <p class="section-lede">
-            A desktop GUI over <code>claude</code>, <code>codex</code>, <code>gemini</code>, <code>copilot</code>, and <code>ollama</code>.
-            Conversations, diffs, permission flows, git worktrees, flows, standing workers and teams, and usage stats in one
-            place — running on the subscriptions you already pay for.
-          </p>
-          <div class="btn-row lp-tight">
-            <a class="btn btn-primary" href="overcli/"><span class="bk">[</span>&nbsp;open overcli&nbsp;<span class="bk">]</span></a>
-            <a class="link-arrow" href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">source ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="lp-cards">
-        <article class="cell">
-          <span class="cell-n">01</span>
-          <h3 class="cell-title">Multi-backend chat</h3>
-          <p class="cell-body">Five agent CLIs behind one conversation surface. Streaming diffs, tool cards you can re-read, permission prompts that are buttons.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">02</span>
-          <h3 class="cell-title">Agent worktrees</h3>
-          <p class="cell-body">Agents work in isolated git worktrees you can rebase, merge, or throw away from inside the conversation. No terminal context-switch.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">03</span>
-          <h3 class="cell-title">Your auth, no new bills</h3>
-          <p class="cell-body">Uses the credentials you already have — Claude Pro, a ChatGPT plan, gcloud creds, a Copilot seat. No API keys to provision.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">04</span>
-          <h3 class="cell-title">Workspaces &amp; documents</h3>
-          <p class="cell-body">Projects of projects — group the repos a piece of work actually spans and drive them together. Or no repo at all: a <em>documents</em> project is a folder of documents with an undo history, and git is never mentioned.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">05</span>
-          <h3 class="cell-title">Standing workers &amp; teams</h3>
-          <p class="cell-body">Hire a persona that wakes on its own clock, proposes what's worth doing, and files what it makes. On probation until you promote it, and the whole crew spends from one monthly pot you approve once. Or put them on a <em>team</em>: one brief, a plan you approve, members who contribute and challenge, and one finished pack back.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">06</span>
-          <h3 class="cell-title">Flows &amp; orchestrator</h3>
-          <p class="cell-body">38 open-source flows in the registry — research → plan → build → review — with an orchestrator that fans work across repos, and schedules that run them without you. The same YAML also runs headlessly from a CLI, so a flow you authored at your desk can ship to CI.</p>
-        </article>
-      </div>
-
-      <div class="lp-product-foot">
-        <div class="chip-row">
-          <span class="chip"><span class="dot dot-ready"></span> v0.21.1 · beta</span>
-          <span class="chip">macOS · Windows · Linux</span>
-          <span class="chip">Apache 2.0</span>
-          <span class="chip">signed &amp; notarized</span>
-          <a class="chip" href="overcli/#services">services · search every output</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── OVERGIT ─────────────────────────── -->
-    <section class="lp-product shell" id="overgit">
-      <p class="rule-head"><span class="n">02</span> &nbsp;overgit</p>
-      <div class="lp-product-head">
-        <h2 class="section-title">A complete git client.<br /><span class="lp-italic">Built for many repos.</span></h2>
-        <div class="lp-product-aside">
-          <p class="section-lede">
-            Staging, history, the branch graph, rebase, worktrees, and per-repo commit identity, plus what no other client
-            has: workspaces that act on a group of repos, and worksets that carry one ticket across them. It never writes
-            inside <code>.git</code>, so your repos behave the same in any other tool.
-          </p>
-          <div class="btn-row lp-tight">
-            <a class="btn btn-primary" href="overgit/"><span class="bk">[</span>&nbsp;open overgit&nbsp;<span class="bk">]</span></a>
-            <a class="link-arrow" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">source ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="lp-cards">
-        <article class="cell">
-          <span class="cell-n">01</span>
-          <h3 class="cell-title">Workspaces</h3>
-          <p class="cell-body">Durable groupings of repos — "these are Platform," "these are Payments." Fetch all, status all, reset all, as one action.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">02</span>
-          <h3 class="cell-title">Worksets</h3>
-          <p class="cell-body">A ticket you can resume across repos, pinned to a feature branch. Spin up, ship, archive, reset — without re-deriving where you were.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">03</span>
-          <h3 class="cell-title">Smart safety</h3>
-          <p class="cell-body">Every destructive flow tells you exactly what it is about to throw away, per repo, before it does it. A reset never eats work.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">04</span>
-          <h3 class="cell-title">Never touches .git</h3>
-          <p class="cell-body">Overgit is an overlay, not metadata. Uninstall any time and your repos forget it ever existed — no migration, no lock-in.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">05</span>
-          <h3 class="cell-title">Review &amp; suggest</h3>
-          <p class="cell-body">AI review and commit-message suggestions on the diff in front of you, plus <code>gh</code> pull requests aggregated across the workspace.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">06</span>
-          <h3 class="cell-title">A full git client</h3>
-          <p class="cell-body">Changes, history, graph, stash, rebase and cherry-pick, worktrees, submodules, and a "Committing as" line that shows which email a commit will use. <kbd>⌘K</kbd> and <kbd>⌘B</kbd> reach all of it.</p>
-        </article>
-      </div>
-
-      <div class="lp-product-foot">
-        <div class="chip-row">
-          <span class="chip"><span class="dot dot-ready"></span> v0.4.3 · beta</span>
-          <span class="chip">macOS · Windows · Linux</span>
-          <span class="chip">Apache 2.0</span>
-          <span class="chip">plain git underneath</span>
-          <span class="chip">signed &amp; notarized</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── OVERDB ─────────────────────────── -->
-    <section class="lp-product shell" id="overdb">
-      <p class="rule-head"><span class="n">03</span> &nbsp;overdb</p>
-      <div class="lp-product-head">
-        <h2 class="section-title">Every query, every plan.<br /><span class="lp-italic">Every environment.</span></h2>
-        <div class="lp-product-aside">
-          <p class="section-lede">
-            A desktop database client with completion from your real schema, searchable query history, and
-            plans drawn as the work each step does. It runs one query across local, staging, and prod and compares
-            the results, and gives every ticket its own local database to seed and break. Every connection you add
-            starts read-only, with safeguards matched to each engine.
-          </p>
-          <div class="btn-row lp-tight">
-            <a class="btn btn-primary" href="overdb/"><span class="bk">[</span>&nbsp;open overdb&nbsp;<span class="bk">]</span></a>
-            <a class="link-arrow" href="https://github.com/overcodelions/overdb" target="_blank" rel="noopener">source ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="lp-cards">
-        <article class="cell">
-          <span class="cell-n">01</span>
-          <h3 class="cell-title">The everyday work</h3>
-          <p class="cell-body">Browse a table, filter and sort on the server, and edit a value in place with the UPDATE shown first. Completion from the catalog writes joins for you, and every statement you run is kept and searchable.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">02</span>
-          <h3 class="cell-title">Environments and drift</h3>
-          <p class="cell-body">Run one query across local, staging, and prod and compare each result with a baseline. Schema drift is grouped by what it does, works from a kept catalog when a server is out of reach, and exports as one HTML file.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">03</span>
-          <h3 class="cell-title">Read-only, with layered safeguards</h3>
-          <p class="cell-body">Postgres, MySQL, and SQLite use engine-level read-only modes. DynamoDB fails closed in the client; a read-only IAM policy is the durable boundary. Turning on writes for prod means typing its name.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">04</span>
-          <h3 class="cell-title">A database for every ticket</h3>
-          <p class="cell-body">Copy a dev or staging database to this machine once and branch it per ticket. One proxy address lets your services reach the shared server or any local branch, switched in one click. <em>Seed for a ticket</em> writes the test data from a description, and your <code>claude</code>, <code>codex</code>, or <code>gemini</code> login writes queries too. Built for macOS first.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">05</span>
-          <h3 class="cell-title">Performance you can act on</h3>
-          <p class="cell-body">The plan drawn as a river: as wide as the rows in flight, narrowing where the WHERE throws them away and flaring where a loop multiplies them. Plus the work each step does, and slow queries from the server itself.</p>
-        </article>
-        <article class="cell">
-          <span class="cell-n">06</span>
-          <h3 class="cell-title">Ten databases, done properly</h3>
-          <p class="cell-body">PostgreSQL, Redshift, Aurora, CockroachDB, and TimescaleDB; MySQL, MariaDB, and Aurora MySQL; SQLite and DynamoDB. Overdb detects which one it's connected to and handles where they differ.</p>
-        </article>
-      </div>
-
-      <div class="lp-product-foot">
-        <div class="chip-row">
-          <span class="chip"><span class="dot dot-ready"></span> v0.2.0 · beta</span>
-          <span class="chip">macOS · Windows · Linux</span>
-          <span class="chip">Apache 2.0</span>
-          <span class="chip">read-only by default</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── PHILOSOPHY ─────────────────────────── -->
-    <section class="lp-philosophy" id="philosophy">
-      <div class="shell">
-        <p class="rule-head"><span class="n">04</span> &nbsp;the bar we hold ourselves to</p>
-        <div class="lp-philo-grid">
-          <div class="lp-philo-lead">
-            <h2 class="display display-sm">Move fast without<br /><span class="em">losing the thread.</span></h2>
-          </div>
-          <div class="lp-philo-body">
-            <p>
-              Codelions tools optimize for the fourth afternoon — when you've shipped three things with one, hit a weird
-              edge, and need to understand what happened without breaking stride. The whole point is to keep you moving:
-              a clean local setup where nothing is hidden, so you never stop to untangle what a tool did.
-            </p>
-            <p>
-              Diffs you can read, tool cards you can read again, permission flows you can follow, history that came from a
-              file on disk. No telemetry. No hidden state. No invented abstractions. If something is on screen, there's a
-              line of code you can find that put it there. That's the bar.
-            </p>
-          </div>
-        </div>
-
-        <div class="lp-tenets">
-          <div class="lp-tenet">
-            <span class="lp-tenet-n">01</span>
-            <h3>Explainable, not clever</h3>
-            <p>Every abstraction is one you'd have to justify out loud. The ones that don't survive that conversation don't ship.</p>
-          </div>
-          <div class="lp-tenet">
-            <span class="lp-tenet-n">02</span>
-            <h3>Local by default</h3>
-            <p>Your code, your credentials, your machine. Nothing phones home, because there is nothing to phone home with.</p>
-          </div>
-          <div class="lp-tenet">
-            <span class="lp-tenet-n">03</span>
-            <h3>Reversible</h3>
-            <p>Every tool is an overlay. Uninstall and the repos, the databases, the auth, and the history are exactly as you left them.</p>
-          </div>
-        </div>
-
-        <p class="lp-philo-sig">
-          Built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and his son
-          <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a> under
-          <a href="https://github.com/overcodelions" target="_blank" rel="noopener">Codelions</a>.
-          Overcli, overgit and overdb are open source — issues and PRs welcome.
-        </p>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── FAQ ─────────────────────────── -->
-    <section class="lp-faq shell" id="faq">
-      <p class="rule-head"><span class="n">05</span> &nbsp;questions we actually get</p>
-      <div class="lp-faq-grid">
-        <h2 class="section-title lp-faq-title">Frequently<br />asked questions</h2>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>Why does Codelions exist?</summary>
-            <p>Because the terminal is a great place to run things and a bad place to explore them. Output scrolls away, diffs flash past, and there's nowhere to follow a thread sideways. Each tool gives that work a surface you can read, re-read, and reason about — without giving up the CLI underneath.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Who are these tools for?</summary>
-            <p>Engineers who already live in CLIs and want to read the source, read the diffs, and uninstall without leaving a trace. If you'd rather have a hosted black box, these aren't for you — and that's fine.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What does it cost?</summary>
-            <p>Nothing. Overcli, overgit and overdb are free and open source under Apache 2.0. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Is there any telemetry?</summary>
-            <p>None in the app. No analytics, no crash reporting, no phone-home on launch. Conversation history is files on disk you can open in any editor. You can verify all of that in the source — that's rather the point.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Can we use this at a company?</summary>
-            <p>Yes. Apache 2.0 covers commercial use, and because everything runs locally against your own credentials there's no vendor in the path of your source code. The apps build from source if your security team would rather compile them itself.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What platforms are supported?</summary>
-            <p>macOS, Windows, and Linux. macOS builds are Developer-ID signed and notarized, so they open on a double-click. Windows isn't code-signed yet, so SmartScreen may still warn. Building from source is one <code>npm run dist</code> away.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Who builds Codelions?</summary>
-            <p>Lionel Farr and his son Owen Farr. Press <kbd>?</kbd> anywhere on this page for the longer story — it explains more about why the tools look the way they do than any feature list would.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── CLOSING CTA ─────────────────────────── -->
-    <section class="lp-cta">
-      <div class="shell lp-cta-inner">
-        <p class="eyebrow">Read the source <span class="sep">·</span> read the diffs</p>
-        <h2 class="display">Three open-source tools.<br /><span class="em">Designed as siblings.</span></h2>
-        <div class="btn-row lp-cta-buttons">
-          <a class="btn btn-accent" href="overcli/"><span class="bk">[</span>&nbsp;get overcli&nbsp;<span class="bk">]</span></a>
-          <a class="btn btn-ghost" href="overgit/">get overgit</a>
-          <a class="btn btn-ghost" href="overdb/">get overdb</a>
-          <a class="link-arrow" href="https://github.com/overcodelions" target="_blank" rel="noopener">github.com/overcodelions ↗</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer" aria-label="footer">
-    <div class="status-line">
-      <span class="sl-cell sl-brand">
-        [&nbsp;codelions&nbsp;]
-      </span>
-      <span class="sl-cell"><a href="overcli/">overcli</a></span>
-      <span class="sl-cell"><a href="overgit/">overgit</a></span>
-      <span class="sl-cell"><a href="overdb/">overdb</a></span>
-      <span class="sl-cell"><a href="https://github.com/overcodelions" target="_blank" rel="noopener">github</a></span>
-      <span class="sl-cell sl-spacer"></span>
-      <span class="sl-cell">built by</span>
-      <span class="sl-cell"><a href="https://github.com/lionelfarr" target="_blank" rel="noopener">lionel</a></span>
-      <span class="sl-cell">&amp;</span>
-      <span class="sl-cell"><a href="https://github.com/owenlfarr" target="_blank" rel="noopener">owen</a></span>
-      <span class="sl-cell sl-clock" id="sl-clock">00:00</span>
+<body class="fx fx-home">
+  <a class="release-ribbon" href="#latest">
+    <span class="rr-badge">new</span>
+    <span class="rr-text"><strong>Just shipped:</strong> overgit 0.4.4 and overdb 0.2.3 · overcli 0.21 brings Teams.</span>
+    <span class="rr-cta">what's new&nbsp;↓</span>
+  </a>
+  <header class="fx-nav">
+    <div class="fx-wrap">
+      <a class="fx-brand" href="" aria-label="codelions home"><span style="flex: none; width: 28px; height: 28px; border-radius: 7px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span><b>codelions</b></a>
+      <span class="fx-sep" aria-hidden="true"></span>
+      <nav class="fx-switch" aria-label="products"><a href="overcli/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span>overcli</a><a href="overgit/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span>overgit</a><a href="overdb/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</a></nav>
+      <span class="fx-navlinks"><span class="fx-meta fx-ver">three tools · one philosophy</span><a href="https://github.com/overcodelions/" target="_blank" rel="noopener">GitHub</a></span>
     </div>
-    <p class="footer-fine">
-      <span class="ff-credit"><strong>Open source</strong>, Apache 2.0. Built by a father and son, <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr.</span>
-      <span class="ff-legal">Not affiliated with Anthropic, OpenAI, Google, or GitHub. <span class="ff-sep">·</span> Pageviews counted with Cloudflare Web Analytics, no cookies. The apps send <a href="#faq">nothing</a>. <span class="ff-sep">·</span> Site built in <a href="overcli/">overcli</a>. <span class="ff-sep">·</span> <button class="footer-hint" id="story-hint" type="button" aria-label="Open the longer story">press <kbd>?</kbd> for the longer story</button></span>
-    </p>
+  </header>
+  <section class="fx-hero">
+    <div class="fx-wrap">
+      <div class="fx-hero-top"><p class="fx-eyebrow">[ <b>codelions</b> ] · desktop tools for people who live in terminals</p></div>
+      <div class="fx-hero-l"><h1 class="fx-h1">Over your tools.<br><em>Not instead of them.</em></h1></div>
+      <div class="fx-hero-r"><p class="fx-lede">Three open-source desktop apps that sit over what you already use — your agent CLIs, your repos, your database servers — and never take ownership of any of it.</p><p class="fx-meta">3 apps · Apache 2.0 · macOS · Windows · Linux</p></div>
+    </div>
+  </section>
+  <section class="fx-sec" style="padding-top: 0">
+    <div class="fx-wrap fx-grid3 fx-products" data-dc="home" data-template="tpl-home"></div>
+  </section>
+  <section class="fx-sec fx-sec--band">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>philosophy</b> ] · what all three share</p><h2 class="fx-h2">Three rules every app keeps.</h2></div><span></span></div>
+      <div class="fx-grid3"><article class="fx-card" style="padding: 24px"><span class="fx-tag">01</span><b>Over, not instead</b><p>overcli drives the official CLIs. overgit keeps none of its own data inside <code style="font-family: 'Geist Mono', monospace; font-size: 13.5px">.git</code>. overdb is read-only until you say otherwise. Stop using any of them and nothing breaks.</p></article><article class="fx-card" style="padding: 24px"><span class="fx-tag">02</span><b>Your own logins</b><p>The AI in all three runs through agent CLIs you already have — overcli drives claude, codex, gemini, copilot and ollama; overgit and overdb use the <code style="font-family: 'Geist Mono', monospace; font-size: 13.5px">claude</code>, <code style="font-family: 'Geist Mono', monospace; font-size: 13.5px">codex</code> and <code style="font-family: 'Geist Mono', monospace; font-size: 13.5px">gemini</code> you already have installed. No API keys, no new bill.</p></article><article class="fx-card" style="padding: 24px"><span class="fx-tag">03</span><b>Built in the open</b><p>Apache 2.0, source on GitHub, a changelog entry for every release. Every claim on this site can be checked in the code.</p></article></div>
+    </div>
+  </section>
+  <section class="fx-sec" id="latest">
+    <div class="fx-wrap fx-latest">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>latest</b> ] · what just shipped</p><h2 class="fx-h2" style="font-size: clamp(32px, 3.4vw, 44px)">The latest from all three.</h2><p class="fx-body" style="font-size: 16px">Highlights from each changelog.</p></div>
+      <div class="fx-releases fx-releases--family"><a href="https://github.com/overcodelions/overgit/releases/tag/v0.4.4" target="_blank" rel="noopener"><span class="d">Oct 14</span><span class="v" style="color: #0f7b5f">0.4.4</span><span class="p" style="color: #0f7b5f"><span style="flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span>overgit</span><span class="t">An interface size setting, and Stash &amp; retry that works on files hidden with skip-worktree.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overdb/releases/tag/v0.2.3" target="_blank" rel="noopener"><span class="d">Oct 14</span><span class="v" style="color: #0b6aa2">0.2.3</span><span class="p" style="color: #0b6aa2"><span style="flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</span><span class="t">The proxy comes back on by itself after a restart.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.1" target="_blank" rel="noopener"><span class="d">Oct 13</span><span class="v" style="color: #4434d6">0.21.1</span><span class="p" style="color: #4434d6"><span style="flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span>overcli</span><span class="t">A terminal drawer under the main pane, and shell edits shown as diffs.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.0" target="_blank" rel="noopener"><span class="d">Oct 11</span><span class="v" style="color: #4434d6">0.21.0</span><span class="p" style="color: #4434d6"><span style="flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span>overcli</span><span class="t">Teams: a coordinator plans, members work on one branch, you get one pack.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overdb/releases/tag/v0.2.1" target="_blank" rel="noopener"><span class="d">Oct 8</span><span class="v" style="color: #0b6aa2">0.2.1</span><span class="p" style="color: #0b6aa2"><span style="flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</span><span class="t">Every query header names its environment — production in red.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overdb/releases/tag/v0.2.0" target="_blank" rel="noopener"><span class="d">Oct 4</span><span class="v" style="color: #0b6aa2">0.2.0</span><span class="p" style="color: #0b6aa2"><span style="flex: none; width: 18px; height: 18px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</span><span class="t">Bases and branches: a writable copy of your data in seconds, behind a proxy.</span><span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+  <section class="fx-close" style="grid-template-columns: minmax(0, .45fr) minmax(0, 1fr); align-items: start">
+    <div class="fx-stack"><p class="fx-eyebrow" style="color: #8a8a99">[ <b style="color: #fb8b3c">who</b> ] · the makers</p><h2 class="fx-h2" style="font-size: clamp(32px, 3.4vw, 44px)">Built by a father and son.</h2></div>
+    <div class="fx-stack" style="gap: 20px"><p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(20px, 2vw, 25px); line-height: 1.4; font-weight: 500; color: #e6e7ec">“It started as a way to spend time building something real together — Owen learning how a production app actually comes together, Lionel getting to teach by doing instead of explaining in the abstract.”</p><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #a9a9b8">That's why the decisions look the way they do: they were chosen to be explainable, not just clever.</p><p class="fx-meta"><a href="https://github.com/lionelfarr" target="_blank" rel="noopener">@lionelfarr</a> · <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">@owenlfarr</a></p></div>
+  </section>
+  <section class="fx-sec fx-sec--rule" id="faq">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>faq</b> ]</p><h2 class="fx-h2">Frequently asked questions.</h2></div><span></span></div>
+      <div class="fx-faq"><details><summary>Why does Codelions exist?</summary><p>Because the terminal is a great place to run things and a bad place to explore them. Output scrolls away, diffs flash past, and there's nowhere to follow a thread sideways. Each tool gives that work a surface you can read, re-read, and reason about — without giving up the CLI underneath.</p></details><details><summary>Who are these tools for?</summary><p>Engineers who already live in CLIs and want to read the source, read the diffs, and uninstall cleanly. If you'd rather have a hosted black box, these aren't for you — and that's fine.</p></details><details><summary>What does it cost?</summary><p>Nothing. Overcli, overgit and overdb are free and open source under Apache 2.0. Overcli drives the agent subscriptions you already pay for — your Claude Pro plan, ChatGPT plan, gcloud credentials, or Copilot seat. No API keys to provision, no per-seat pricing, no new invoice.</p></details><details><summary>Is there any telemetry?</summary><p>None in the app. No analytics and no crash reporting; the only call out is an update check against GitHub Releases. Conversation history is files on disk you can open in any editor. You can verify all of that in the source — that's rather the point.</p></details><details><summary>Can we use this at a company?</summary><p>Yes. Apache 2.0 covers commercial use, and because everything runs locally against your own credentials there's no vendor in the path of your source code. The apps build from source if your security team would rather compile them itself.</p></details><details><summary>What platforms are supported?</summary><p>macOS, Windows, and Linux. macOS builds are Developer-ID signed and notarized, so they open on a double-click. Windows isn't code-signed yet, so SmartScreen may still warn. Building from source is one <code>npm run dist</code> away.</p></details><details><summary>Who builds Codelions?</summary><p>Lionel Farr and his son Owen Farr. The note from the two of them above explains more about why the tools look the way they do than any feature list would.</p></details></div>
+    </div>
+  </section>
+  <footer class="fx-foot">
+    <div class="fx-wrap">
+      <span><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span> <a href="">codelions</a> · <a href="overcli/">overcli</a> · <a href="overgit/">overgit</a> · <a href="overdb/">overdb</a></span>
+      <span>three tools · one philosophy · <a href="https://github.com/overcodelions/" target="_blank" rel="noopener">github</a> · Apache 2.0 · built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> &amp; <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr</span>
+    </div>
   </footer>
 
-  <!-- ─────────── STORY MODAL (toggle with ?) ─────────── -->
-  <div class="story-overlay" id="story-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="story-title">
-    <div class="story-modal" role="document">
-      <header class="story-modal-head">
-        <span class="story-modal-tag">[&nbsp;the longer story&nbsp;] &nbsp;·&nbsp; how codelions actually started</span>
-        <button class="story-modal-close" id="story-close" type="button" aria-label="Close">esc</button>
-      </header>
+<template id="tpl-home">
+      <a href="overcli/" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 20px; background: #ffffff; border: 1px solid #e3e6ec; border-top: 4px solid #4434d6; box-shadow: 0 30px 60px -44px rgba(13,15,21,.45)">
+        <span style="display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 36px; height: 36px; border-radius: 9px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="29" height="29" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span><b style="font-family: 'Bricolage Grotesque', 'Geist', sans-serif; font-size: 28px; font-weight: 650">overcli</b><span style="margin-left: auto; font-family: 'Geist Mono', monospace; font-size: 12px; color: #5c6270">v0.21.1</span></span>
+        <div style="border-radius: 14px; background: #141419; border: 1px solid #23232c; color: #ededf2; padding: 18px; height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #8a8a99">ACME-412 · rate-limit /api/login</span>
+          <sc-for list="{{cli}}" as="c" hint-placeholder-count="4"><span style="{{c.style}}"><b style="font-weight: 600">{{c.a}}</b><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #8a8a99">{{c.b}}</span></span></sc-for></div>
+        <b style="font-family: 'Bricolage Grotesque', 'Geist', sans-serif; font-size: 26px; line-height: 1.08; font-weight: 650; letter-spacing: -0.015em">Your agent CLIs, one window. Then put them in a loop.</b>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f5b">A desktop app over Claude Code, Codex, Gemini, Copilot and Ollama — then reviews, flows, shifts and teams that keep working.</p>
+        <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid #e3e6ec; font-size: 14px"><span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #5c6270"><span class="blink" style="color: #b03c0a">●</span> shipped Oct 13</span><span style="color: #4434d6; font-weight: 600">Open overcli →</span></span>
+      </a>
+      <a href="overgit/" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 20px; background: #ffffff; border: 1px solid #e3e6ec; border-top: 4px solid #0f7b5f; box-shadow: 0 30px 60px -44px rgba(13,15,21,.45)">
+        <span style="display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 36px; height: 36px; border-radius: 9px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="29" height="29" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span><b style="font-family: 'Bricolage Grotesque', 'Geist', sans-serif; font-size: 28px; font-weight: 650">overgit</b><span style="margin-left: auto; font-family: 'Geist Mono', monospace; font-size: 12px; color: #5c6270">v0.4.4</span></span>
+        <div style="border-radius: 14px; background: #141419; border: 1px solid #23232c; color: #ededf2; padding: 18px; height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; justify-content: space-between; font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #8a8a99"><span>workset · rate-limit rollout</span><span style="color: #6ee7b7">feat/rate-limit</span></span>
+          <sc-for list="{{git}}" as="g" hint-placeholder-count="3"><span style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-radius: 8px; background: #1b1b22; font-size: 13px"><span>{{g.repo}}</span><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; color: {{g.color}}">{{g.state}}</span></span></sc-for>
+          <span style="margin-top: auto; font-family: 'Geist Mono', monospace; font-size: 11.5px; color: {{gitFootColor}}">{{gitFoot}}</span></div>
+        <b style="font-family: 'Bricolage Grotesque', 'Geist', sans-serif; font-size: 26px; line-height: 1.08; font-weight: 650; letter-spacing: -0.015em">One ticket. Many repos.</b>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f5b">Worksets branch every repo a ticket touches in one go, and Landing Check tells you before you push whether it all lands.</p>
+        <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid #e3e6ec; font-size: 14px"><span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #5c6270"><span class="blink" style="color: #b03c0a">●</span> shipped Oct 14</span><span style="color: #0f7b5f; font-weight: 600">Open overgit →</span></span>
+      </a>
+      <a href="overdb/" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 20px; background: #ffffff; border: 1px solid #e3e6ec; border-top: 4px solid #0b6aa2; box-shadow: 0 30px 60px -44px rgba(13,15,21,.45)">
+        <span style="display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 36px; height: 36px; border-radius: 9px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="29" height="29" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span><b style="font-family: 'Bricolage Grotesque', 'Geist', sans-serif; font-size: 28px; font-weight: 650">overdb</b><span style="margin-left: auto; font-family: 'Geist Mono', monospace; font-size: 12px; color: #5c6270">v0.2.3</span></span>
+        <div style="border-radius: 14px; background: #141419; border: 1px solid #23232c; color: #ededf2; padding: 18px; height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #c4b5fd">select status, count(*) from orders group by 1</span>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+            <sc-for list="{{db}}" as="e" hint-placeholder-count="3"><div style="{{e.style}}"><span style="font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: .06em; color: {{e.tagColor}}">{{e.env}}</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; line-height: 1.6; white-space: pre-line">{{e.rows}}</span></div></sc-for>
+          </div>
+          <span style="margin-top: auto; padding: 7px 9px; border-radius: 7px; font-size: 12.5px; {{dbFootStyle}}">{{dbFoot}}</span></div>
+        <b style="font-family: 'Bricolage Grotesque', 'Geist', sans-serif; font-size: 26px; line-height: 1.08; font-weight: 650; letter-spacing: -0.015em">You don't have a database. You have environments.</b>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f5b">One query across local, staging and prod, compared with a baseline — and branches of your data you can seed, try and reset.</p>
+        <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid #e3e6ec; font-size: 14px"><span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #5c6270"><span class="blink" style="color: #b03c0a">●</span> shipped Oct 14</span><span style="color: #0b6aa2; font-weight: 600">Open overdb →</span></span>
+      </a>
+  </template>
 
-      <div class="story-modal-body">
-        <h2 class="story-modal-title" id="story-title">
-          <span>Owen wanted to explore.</span>
-          <span>The terminal just streamed past.</span>
-          <span class="em">So we built around it &mdash; for both of us.</span>
-        </h2>
-
-        <p>
-          <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> is my son — a teenager who genuinely loves engineering. He'd been building on his own for a while: games, tools, things that actually ran. He wasn't a beginner looking for training wheels; he wanted to go deeper. So we leaned into git and the coding-agent LLMs together, because that's where the most leveraged building happens right now.
-        </p>
-        <p>
-          He took to the agents immediately. What he didn't take to was the terminal — not because it was over his head, but because it's a bad place to <em>explore</em>. Output scrolls away. There's no "scroll back, the answer was a screen ago." Diffs flash past. Cursor keys behave oddly. There's nowhere to poke around, no way to follow a thread sideways. The interface that should have let him roam the code just streamed at him and moved on.
-        </p>
-        <p>
-          So we built <a href="overcli/">overcli</a> — a GUI for those CLIs that worked for <em>both</em> of us, not just him. Diffs you can read and re-read. Conversations you can scroll. Permission prompts that are buttons. Room to explore instead of a feed that disappears. The terminal is still there underneath; the dead-end UX isn't. <a href="overgit/">Overgit</a> followed once the work started spanning multiple repos and we hit the same kind of wall, this time around <code>git</code>. <a href="overdb/">Overdb</a> is next, for the same wall one layer down: the database.
-        </p>
-        <p>
-          Two things came out of it, and both are why this is worth doing. Owen got to build real software — bug reports from real users, cross-platform builds that fail in obscure ways, gatekeeper warnings, license headers — texture no tutorial fakes. And the code itself ended up better for it, because every weird abstraction is a question you'd have to answer to Owen. <em>Explainable, not clever</em> isn't a slogan up here; it's the only version of the code that survives the next conversation downstairs.
-        </p>
-
-        <p class="story-modal-sig">
-          — <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> &amp; <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr
-        </p>
-      </div>
-
-      <footer class="story-modal-foot">
-        <kbd>?</kbd> or <kbd>esc</kbd> to close &nbsp;·&nbsp; click outside the panel to dismiss
-      </footer>
-    </div>
-  </div>
-
+  <script src="family.js?v=6ed7c0fd"></script>
   <script>
-    // tmux-style clock
-    (function () {
-      const el = document.getElementById('sl-clock');
-      if (!el) return;
-      const tick = () => {
-        const d = new Date();
-        el.textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
-      };
-      tick();
-      setInterval(tick, 30000);
-    })();
+window.DC = window.DC || {};
+window.DC['home'] = class extends DCLogic {
+  constructor(props) { super(props); this.state = { step: 0 }; }
+  componentDidMount() { this.timer = setInterval(() => this.setState({ step: (this.state.step + 1) % 8 }), 1300); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const k = this.state.step;
+    const chip = (on, done, warn) => 'display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-radius: 8px; font-size: 13px; border: 1px solid ' + (on ? (warn ? '#fb8b3c; background: rgba(251,139,60,.12)' : '#96a2ff; background: rgba(150,162,255,.14)') : done ? '#23624a' : '#2a2a35; color: #8a8a99');
+    const L = [['write', 'codex'], ['review', 'opus · 1 finding'], ['fix', 'codex'], ['APPROVED', 'round 2 · no findings']];
+    const c4 = k % 5;
+    const cli = L.map((l, i) => ({ a: l[0], b: l[1], style: chip(i === c4, i < c4, i === 1) + (i === 3 && c4 >= 3 ? '; color: #6ee7b7' : '') }));
+    const repos = ['api-gateway', 'billing-svc', 'web-app'];
+    const git = repos.map((r, i) => ({ repo: r, state: k > i ? 'branched ✓' : k === i ? 'switching…' : 'on main', color: k > i ? '#6ee7b7' : k === i ? '#96a2ff' : '#6c6c77' }));
+    const gitFoot = k >= 4 ? 'Landing check · 3 of 3 land clean on main' : 'Sync → pull → branch, in every repo';
+    const envs = [['LOCAL', 'paid   1,204\nrefund    38'], ['STAGING', 'paid  18,330\nrefund   402'], ['PROD', 'paid 912,447\nrefund 9,861']];
+    const db = envs.map((e, i) => ({ env: e[0], rows: k > i ? e[1] : '…', tagColor: i === 2 ? '#f87171' : i === 1 ? '#fbbf24' : '#8a8a99', style: 'display: flex; flex-direction: column; gap: 6px; padding: 9px; border-radius: 8px; background: #1b1b22; min-height: 84px; border: 1px solid ' + (i === 2 ? 'rgba(248,113,113,.4)' : '#2a2a35') }));
+    const drift = k >= 4;
+    return { cli, git, gitFoot, gitFootColor: k >= 4 ? '#6ee7b7' : '#8a8a99', db,
+      dbFoot: drift ? 'Drift · staging is missing orders.refunded_at — breaking' : 'Running on 3 environments…',
+      dbFootStyle: drift ? 'background: rgba(251,139,60,.12); border: 1px solid rgba(251,139,60,.4); color: #fdba74' : 'background: #1b1b22; color: #8a8a99' };
+  }
+};
 
-    // Story modal — toggled with `?` (shift + /), closed with esc or
-    // clicking outside the panel. Ignored when focus is in an input.
-    (function () {
-      const overlay = document.getElementById('story-overlay');
-      const hint = document.getElementById('story-hint');
-      const close = document.getElementById('story-close');
-      if (!overlay) return;
-
-      let lastFocus = null;
-      const open = () => {
-        lastFocus = document.activeElement;
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        if (close) close.focus();
-      };
-      const dismiss = () => {
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-      };
-      const isOpen = () => overlay.getAttribute('aria-hidden') === 'false';
-
-      if (hint) hint.addEventListener('click', open);
-      if (close) close.addEventListener('click', dismiss);
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) dismiss();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        const tag = (e.target && e.target.tagName) || '';
-        const inField = tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable);
-        if (e.key === 'Escape' && isOpen()) {
-          e.preventDefault();
-          dismiss();
-          return;
-        }
-        if (e.key === '?' && !inField && !e.metaKey && !e.ctrlKey && !e.altKey) {
-          e.preventDefault();
-          isOpen() ? dismiss() : open();
-        }
-      });
-    })();
-
-    // Scroll reveal — cards and mock windows fade up as they arrive.
-    (function () {
-      const items = document.querySelectorAll('.cell, .lp-tenet, .lp-win');
-      if (!items.length || !('IntersectionObserver' in window)) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      items.forEach((el) => el.classList.add('reveal'));
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-          if (!entry.isIntersecting) return;
-          entry.target.style.transitionDelay = (i * 45) + 'ms';
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-      items.forEach((el) => io.observe(el));
-    })();
   </script>
-  <script src="palettes.js" defer></script>
-  <!-- Cloudflare Web Analytics — cookieless, no personal data -->
-  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ff1becd88dfa4ff4a8230ff3357b87cc"}'></script>
-  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -201,7 +201,7 @@
         <article class="feature">
           <span class="feature-num">23</span>
           <h3>Services, in a pane of their own</h3>
-          <p>Start, stop and watch every service a workspace runs — imported from the Tiltfiles, compose files, Procfiles and IDE run configurations you already have, or read from the build. Services start in dependency order, a port has one owner at a time, and the whole stack can move to the worktree a flow just finished on. <a href="./#services" class="feat-link">see it on the overview →</a></p>
+          <p>Start, stop and watch every service a workspace runs — imported from the Tiltfiles, compose files, Procfiles and IDE run configurations you already have, or read from the build. Services start in dependency order, a port has one owner at a time, and the whole stack can move to the worktree a flow just finished on. <a href="./#row-stack" class="feat-link">see it on the overview →</a></p>
           <p class="feature-note">Credentials live in your OS keychain, not in a config file, and known secrets are masked in every log line before it is written. A value typed identically into several services — a port, a database URL — can be pulled into one shared <em>machine value</em> they all refer to, with <em>Used by</em> on each value choosing which services get it. Mention <code>@service</code> in a chat to hand the agent a running service's latest log, and a service left running from your last session is taken back rather than killed.</p>
         </article>
 
@@ -228,8 +228,8 @@
 
         <article class="feature">
           <span class="feature-num">26</span>
-          <h3>Smart downgrades</h3>
-          <p>As you approach a rate limit or cost ceiling, Overcli can step you down automatically — <code>opus</code> → <code>sonnet</code>, cloud → <em>local ollama</em> — so the next turn still ships. Configurable per project. Off by default.</p>
+          <h3>Automatic model fallback</h3>
+          <p>When Codex reports that the model you picked isn't available, Overcli retries the turn on another Codex model instead of stopping, so the work still ships. On by default; switch it off in Settings.</p>
         </article>
 
         <article class="feature">
@@ -241,7 +241,7 @@
         <article class="feature">
           <span class="feature-num">28</span>
           <h3>Flows</h3>
-          <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>38 in the registry</em>; define your own in a few lines of YAML. <a href="./#flows-model" class="feat-link">see them on the overview →</a></p>
+          <p>Reusable, open-source workflow templates. Chain steps across backends — research on a cloud model, build on a local one — with typed inputs and outputs handed between them, and a human checkpoint anywhere you want one. <em>38 in the registry</em>; define your own in a few lines of YAML. <a href="./#row-flow" class="feat-link">see them on the overview →</a></p>
           <p class="feature-note">A Claude step can use <em>Claude Design (Artifact)</em> to produce a design, deck or document; the designer marks it <code>effect: external</code>, and it needs the experimental Claude Design setting on.</p>
           <p class="feature-note">The library groups by provenance — starred, yours, this project, installed — and its search reaches the registry as well as your disk. When nothing matches anywhere, the search text becomes the brief for an AI draft that opens in the editor rather than running unseen.</p>
         </article>
@@ -249,7 +249,7 @@
         <article class="feature">
           <span class="feature-num">29</span>
           <h3>Orchestrator</h3>
-          <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="./#orchestrator" class="feat-link">see it on the overview →</a></p>
+          <p>Point one <em>producer</em> turn at your backlog — it investigates over MCP (Jira, GitHub, Sentry, Zendesk…) and carves out small, self-contained asks. Map each to a flow and launch the whole batch in <em>parallel</em>, each in its own git worktree, a PR per finish. A paused checkpoint frees its slot so the rest keep moving. <a href="./#row-worker" class="feat-link">see it on the overview →</a></p>
           <p class="feature-note">It sits at the top of the Workers rail and has two shapes. Composing keeps the numbered panes; once nothing is being composed the ledger takes the full stage, and every count in its bar is a filter — a number you can't act on is a run row given up for decoration.</p>
         </article>
 
@@ -293,7 +293,7 @@
         <article class="feature">
           <span class="feature-num">35</span>
           <h3>Standing workers</h3>
-          <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Hire it through a conversation — say the job, attach a spec or a screenshot if you have one, answer what the drafter asks — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a filing cabinet and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="./#workers" class="feat-link">see it on the overview →</a></p>
+          <p>Hire a persona that wakes on its own clock, decides what is worth doing, and files what it produces. Hire it through a conversation — say the job, attach a spec or a screenshot if you have one, answer what the drafter asks — and whichever backend you're signed into drafts the contract and the flow it launches. Every worker keeps a <em>desk</em>, a filing cabinet and a journal, and starts on <em>probation</em>: nothing runs until you approve the batch. <a href="./#row-worker" class="feat-link">see it on the overview →</a></p>
           <p class="feature-note">A shift streams into the desk as it is worked, and any turn opens in a reader with a find box — a sweep across seventy tickets is a document, not a chat bubble. Leave it a <em>note</em> and the worker reads it before planning the next shift, because the record of what it did is not a thing you edit.</p>
           <p class="feature-note">The tab opens on <em>Today</em>, an inbox grouped <em>Needs you</em>, <em>Working</em>, <em>Today</em> — status is not a column you sort by, it is what a row is, and a single time-ordered table buries the two rows with a decision waiting on them under eight that need nothing from anyone. Clear what you've read; it stays findable under Cleared.</p>
           <p class="feature-note">Tick <em>Browse the web</em> and a worker's errands and shifts get a browser: Claude in Chrome on Claude, sandbox network access on Codex. It's off by default, per worker.</p>
@@ -316,7 +316,7 @@
         <article class="feature">
           <span class="feature-num">38</span>
           <h3>Teams</h3>
-          <p>Put workers together on one task. A coordinator plans the stages for you to approve, members contribute and challenge, files land in one shared folder, and the coordinator writes the pack. Code lands on its own <code>team/&lt;task&gt;</code> branch, merged when you say. <a href="./#teams" class="feat-link">see it on the overview →</a></p>
+          <p>Put workers together on one task. A coordinator plans the stages for you to approve, members contribute and challenge, files land in one shared folder, and the coordinator writes the pack. Code lands on its own <code>team/&lt;task&gt;</code> branch, merged when you say. <a href="./#row-team" class="feat-link">see it on the overview →</a></p>
           <p class="feature-note">After the pack, the team's conversation stays open: ask follow-ups, <code>@</code> a member, or hand work back. Each task has a budget, $1,000 by default, checked before every stage.</p>
         </article>
 
