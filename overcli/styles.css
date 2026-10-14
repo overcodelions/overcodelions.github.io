@@ -4267,3 +4267,287 @@ h3 .alpha-badge { margin-left: 8px; }
 /* The two definitions read as a pair: one line each. */
 #workers .display-title span { display: block; }
 @media (max-width: 560px) { .wt-card-team .wt-card-head { flex-direction: column; align-items: flex-start; } }
+
+
+/* ═══════════════════════ FOLDS, HIGHLIGHTS, TRUST ═══════════════════════
+   One value line in the hero, three pillars under it, the ladder as the
+   spine, each rung's extra mocks folded behind "see it working", nine
+   highlights instead of the full 41 (now features.html), a trust strip. */
+
+
+details.see-it { max-width: var(--col); margin: clamp(28px, 4vw, 48px) auto 0; }
+details.see-it > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: baseline; justify-content: center; gap: 12px; flex-wrap: wrap;
+  padding: 14px 20px; border: 1px solid var(--line-strong); border-radius: 12px; color: var(--ink); font-size: 15px;
+}
+details.see-it > summary::-webkit-details-marker { display: none; }
+details.see-it > summary span { font-weight: 600; }
+details.see-it > summary span::after { content: " ▸"; color: var(--accent); }
+details.see-it[open] > summary span::after { content: " ▾"; }
+details.see-it > summary em { font-style: normal; color: var(--ink-muted); font-size: 14px; }
+details.see-it > summary:hover { border-color: var(--accent); }
+details.see-it > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+details.see-it[open] > summary { margin-bottom: clamp(28px, 4vw, 48px); }
+
+.hl-grid { max-width: var(--col, 1180px); margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 960px) { .hl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .hl-grid { grid-template-columns: minmax(0, 1fr); } }
+.hl { padding: 20px 22px; background: var(--paper-2, #fff); border: 1px solid var(--line); border-radius: 14px; }
+.hl h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; color: var(--ink); }
+.hl p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-dim); }
+.hl-more { max-width: var(--col, 1180px); margin: 24px auto 0; text-align: center; }
+
+.trust {
+  max-width: var(--maxw, 1280px); margin: 0 auto clamp(40px, 5vw, 64px); padding: 28px clamp(20px, 3vw, 40px);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;
+  background: var(--paper-3, #edeff3); border-radius: 18px;
+}
+@media (max-width: 860px) { .trust { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.trust b { display: block; font-size: 16px; font-weight: 600; color: var(--ink); }
+.trust span { font-size: 14px; color: var(--ink-dim); }
+
+
+/* ═══════════════════════ HERO 2: AN AI-FIRST IDE ═══════════════════════
+   "Agents write. You read, run and ship." Dark, so it reads as the app's
+   own ground; three panels, one per verb, each a real surface. The live
+   window moves from beside the copy to a full-width band beneath it. */
+.hero.hero-v2 { background: var(--bg); color: var(--ink); padding-top: clamp(56px, 7vw, 96px); }
+.hero-v2 .h2-wrap, .hero-v2 .live-band { max-width: var(--col); margin-inline: auto; }
+.h2-title {
+  margin: 14px 0 0; font-family: var(--f-display); font-weight: 650;
+  font-size: clamp(44px, 6vw, 86px); line-height: .98; letter-spacing: -.03em; color: var(--ink);
+}
+.h2-title .em { color: var(--accent); }
+.h2-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-top: clamp(20px, 2.4vw, 30px); }
+.h2-lede { margin: 0; max-width: 640px; font-size: clamp(16px, 1.35vw, 19px); line-height: 1.55; color: var(--ink-dim); }
+.h2-lede code { font-size: .88em; }
+.h2-cta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.h2-panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: clamp(36px, 4.5vw, 60px); }
+@media (max-width: 960px) { .h2-panels { grid-template-columns: minmax(0, 1fr); } }
+.h2-panel { display: flex; flex-direction: column; gap: 12px; }
+.h2-verb { margin: 0; font-family: var(--f-display); font-size: clamp(26px, 2.2vw, 32px); font-weight: 600; color: var(--ink); }
+.h2-mock { display: flex; flex-direction: column; min-height: 206px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-lift); overflow: hidden; }
+.h2-mock-head { margin: 0; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 12.5px; color: var(--ink-dim); }
+.h2-mock-head code { font-size: 12px; }
+.h2-mock-foot { margin: auto 14px 14px; padding-top: 10px; font-size: 12.5px; color: var(--ink-muted); }
+.h2-code { display: flex; flex-direction: column; padding: 10px 0; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.8; }
+.h2-code span { padding: 0 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.h2-code .add, .h2-mock-head .add { color: #7dd3a0; }
+.h2-code .rem, .h2-mock-head .rem { color: #f87171; }
+.h2-code .add { background: rgba(125, 211, 160, .10); }
+.h2-code .rem { background: rgba(248, 113, 113, .10); }
+.h2-svc { list-style: none; margin: 0; padding: 10px; display: grid; gap: 2px; font-size: 13px; }
+.h2-svc li { display: flex; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 6px; }
+.h2-svc li.is-sel { background: var(--bg-card); }
+.h2-svc code { flex-grow: 1; font-size: 12.5px; color: var(--ink); background: none; padding: 0; }
+.h2-svc span { color: var(--ink-muted); font-size: 12.5px; }
+.h2-svc i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.h2-svc i.ok { background: #7dd3a0; }
+.h2-svc i.wait { background: #fbbf24; }
+.h2-svc .ok-t { color: #7dd3a0; }
+.h2-svc .warn-t { color: #fbbf24; }
+.h2-say { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-dim); }
+.h2-say a { white-space: nowrap; }
+.hero-v2 .live-band { margin-top: clamp(48px, 6vw, 88px); }
+.live-label { margin: 0 0 14px; font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); text-align: center; }
+
+/* ═══════════════════════ WHY NOT JUST AN AI EDITOR ═══════════════════════ */
+.why .section-head, .why-grid { max-width: var(--col); margin-inline: auto; }
+.why-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .why-grid { grid-template-columns: minmax(0, 1fr); } }
+.why-card { padding: clamp(22px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: 18px; background: var(--paper-2, #fff); }
+.why-card.is-us { border-color: var(--accent); }
+.why-kind { margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-muted); }
+.why-card.is-us .why-kind { color: var(--accent); }
+.why-card ul { margin: 0; padding-left: 18px; display: grid; gap: 10px; font-size: 16px; line-height: 1.5; color: var(--ink-dim); }
+.why-card.is-us ul { color: var(--ink); }
+.why { padding: clamp(64px, 8vw, 104px) var(--pad) 0; }
+/* On the dark hero the primary button keeps a light face with dark text. */
+.hero-v2 .btn-primary, .hero-v2 .btn-primary .btn-label, .hero-v2 .btn-primary .btn-bracket { color: #0d0f15; }
+.hero-v2 .btn-primary { background: #f0f0f5; border-color: #f0f0f5; }
+.hero-v2 .btn-primary:hover { background: #ffffff; }
+/* .hero is capped at --maxw for the paper heroes; this one is a dark slab,
+   so it runs edge to edge like the .colosseum.terminal sections below it,
+   with the same accent rule along its top. */
+.hero.hero-v2 { max-width: none; margin: 0; border-bottom: 1px solid #26262d; }
+.hero.hero-v2::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--claude) 45%, transparent 92%);
+}
+
+/* "One honest window." heads the trust strip it describes. */
+.trust-h { grid-column: 1 / -1; margin: 0 0 6px; font-family: var(--f-display); font-size: clamp(22px, 2.2vw, 30px); font-weight: 650; color: var(--ink); }
+.trust-h span { display: block; margin-top: 4px; font-family: var(--f-sans); font-size: 15px; font-weight: 400; color: var(--ink-dim); }
+
+/* Hero panels in motion: a diff arriving and being reviewed, a service
+   coming back up, a repo getting pushed. Driven by app.js; off under
+   prefers-reduced-motion, where the panels simply show their end state. */
+[data-h2-diff] span { transition: opacity .35s ease, transform .35s ease; }
+[data-h2-diff].is-typing span { opacity: 0; transform: translateX(-6px); }
+[data-h2-diff].is-typing span.is-in { opacity: 1; transform: none; }
+[data-h2-review], [data-h2-svc] span, [data-h2-ship] span { transition: color .3s ease; }
+[data-h2-svc] i { transition: background .3s ease; }
+
+/* ═══════════════════════ 04 · A FLOW, WORKING A TICKET ═══════════════════════
+   Drawn from the real run view (FlowRunPane.tsx): step chips with index,
+   participant monogram, id and state glyph; tier chips as tokens; the
+   amber "Paused before next step" banner. app.js plays the run. */
+#flows-model .fd, #flows-model .fd-points, #flows-model .fd-install { max-width: var(--col); margin-inline: auto; }
+.fd { margin-top: 0; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--bg-card); overflow: hidden; box-shadow: 0 40px 90px -40px rgba(0,0,0,.6); }
+.fd-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--bg-lift); }
+.fd-title { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; min-width: 0; }
+.fd-crumb { font-size: 12.5px; color: var(--ink-muted); }
+.fd-title b { font-size: 15px; font-weight: 600; color: var(--ink); }
+.fd-sub { font-size: 11.5px; color: var(--ink-muted); }
+.fd-pill { align-self: center; padding: 2px 8px; border-radius: 6px; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #7dd3fc; background: rgba(125,211,252,.12); border: 1px solid rgba(125,211,252,.35); }
+.fd-pill.is-paused { color: #fbbf24; background: rgba(251,191,36,.12); border-color: rgba(251,191,36,.4); }
+.fd-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; }
+.fd-tier b { font-weight: 600; }
+.fd-tier.t-thinking { color: #fbbf24; } .fd-tier.t-standard { color: #7dd3fc; } .fd-tier.t-fast { color: #7dd3a0; }
+.fd-diff { font-family: var(--f-mono); color: var(--ink-muted); }
+.fd-diff .add { color: #7dd3a0; } .fd-diff .rem { color: #f87171; }
+.fd-btn { padding: 4px 10px; border: 1px solid var(--line-strong); border-radius: 7px; color: var(--ink-dim); }
+.fd-btn-accent { color: #c3caff; border-color: rgba(150,162,255,.5); background: rgba(150,162,255,.12); }
+.fd-btn-bad { color: #fca5a5; border-color: rgba(248,113,113,.45); background: rgba(248,113,113,.10); }
+.fd-steps { list-style: none; margin: 0; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 6px 4px; align-items: center; border-bottom: 1px solid var(--line); }
+.fd-steps li { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border: 1px solid var(--line-strong); border-radius: 8px; font-size: 12.5px; color: var(--ink-dim); transition: all .25s ease; }
+.fd-steps { gap: 6px 22px; }
+.fd-steps li { position: relative; }
+.fd-steps li + li::before { content: "→"; position: absolute; left: -17px; top: 50%; transform: translateY(-50%); color: var(--ink-muted); font-weight: 400; }
+.fd-steps li.is-done + li::before { color: #7dd3a0; }
+.fd-steps li i { font-style: normal; font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-muted); }
+.fd-mono { width: 16px; height: 16px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #141419; background: var(--m); }
+.fd-g { font-style: normal; font-weight: 700; min-width: 10px; }
+.fd-steps li.is-run { color: var(--ink); border-color: var(--accent); background: rgba(150,162,255,.14); font-weight: 600; }
+.fd-steps li.is-run .fd-g::before { content: "⟳"; color: #7dd3fc; display: inline-block; animation: fd-spin 1s linear infinite; }
+.fd-steps li.is-done { border-color: rgba(125,211,160,.55); }
+.fd-steps li.is-done .fd-g::before { content: "✓"; color: #7dd3a0; }
+.fd-steps li.is-wait { border-color: rgba(251,191,36,.6); color: var(--ink); font-weight: 600; }
+.fd-steps li.is-wait .fd-g::before { content: "⏸"; color: #fbbf24; }
+@keyframes fd-spin { to { transform: rotate(360deg); } }
+.fd-pause { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 14px 16px; background: rgba(251,191,36,.08); border-bottom: 1px solid rgba(251,191,36,.3); font-size: 13px; color: var(--ink-dim); }
+.fd-pause p { margin: 0; }
+.fd-pause-h { color: #fbbf24 !important; font-weight: 600; font-size: 13.5px; margin-bottom: 4px !important; }
+.fd-next { margin-top: 4px !important; color: var(--ink-muted); }
+.fd-next b { color: var(--ink); font-family: var(--f-mono); }
+.fd-continue { flex: none; padding: 8px 14px; border-radius: 8px; background: #10b981; color: #052e1f; font-weight: 600; font-size: 13px; }
+.fd-body { padding: 14px 16px 16px; display: grid; gap: 12px; min-height: 236px; }
+.fd-produced { margin: 0; font-size: 11px; color: var(--ink-muted); }
+.fd-produced-k { text-transform: uppercase; letter-spacing: .08em; }
+.fd-pause[hidden], .fd [hidden] { display: none !important; }
+.fd-card { border: 1px solid rgba(150,162,255,.4); border-radius: 12px; padding: 12px 14px; background: var(--bg-lift); }
+.fd-who { margin: 0 0 6px; font-family: var(--f-mono); font-size: 11px; color: #96a2ff; }
+.fd-out { font-size: 14px; line-height: 1.55; color: var(--ink); white-space: pre-line; min-height: 66px; }
+.fd-out .ok { color: #7dd3a0; font-weight: 600; }
+.fd-composer { margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px; color: var(--ink-muted); }
+.fd-points { margin-top: clamp(24px, 3vw, 36px) !important; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 24px; }
+@media (max-width: 1100px) { .fd-points { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .fd-points { grid-template-columns: minmax(0, 1fr); } .fd-pause { flex-direction: column; align-items: flex-start; } }
+.fd-points div { border-top: 2px solid var(--line-strong); padding-top: 12px; }
+.fd-points dt { margin: 0 0 6px; font-size: 15px; font-weight: 600; color: var(--ink); }
+.fd-points dd { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-dim); }
+.fd-install { margin-top: 18px !important; font-size: 14.5px; color: var(--ink-muted); }
+
+/* Star on GitHub: a plain link, no live count — a count would make every
+   visitor's browser call the GitHub API. */
+.btn-star span { color: #fbbf24; margin-right: 2px; }
+.nav-repo span { color: #f59e0b; }
+
+/* Hero, plainly: what it is on the left, the real window on the right,
+   then the three "what's still yours" panels across the full width. */
+.h2-top { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr); gap: clamp(28px, 3.5vw, 56px); align-items: center; }
+@media (max-width: 1100px) { .h2-top { grid-template-columns: minmax(0, 1fr); } }
+.h2-copy { display: flex; flex-direction: column; gap: 18px; }
+.h2-copy .kicker { margin: 0; }
+.hero-v2 .h2-title { margin: 0; font-size: clamp(40px, 4.4vw, 64px); line-height: 1.02; }
+.h2-sub { margin: 0; font-family: var(--f-display); font-size: clamp(20px, 2vw, 27px); font-weight: 600; line-height: 1.25; color: var(--ink-dim); }
+.h2-sub span { color: var(--accent); }
+.hero-v2 .h2-lede { max-width: 560px; }
+.h2-platforms { margin: 0; font-size: 13.5px; color: var(--ink-muted); }
+.hero-v2 .hero-right .app-window { width: 100%; }
+.h2-panels-h { margin: clamp(48px, 6vw, 80px) 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-muted); }
+.hero-v2 .h2-panels { margin-top: 16px; }
+/* Two short phrases, one line each, in the hero copy column. */
+.hero-v2 .h2-title { font-size: clamp(36px, 3.7vw, 54px); }
+.hero-v2 .h2-title .em { white-space: nowrap; }
+
+
+/* ═══════════════════════ 03 · THE LADDER AS A PYRAMID ═══════════════════════
+   Six tiers narrowing to a team at the top, "you're needed" beside each,
+   then six mini-visuals underneath as the evidence. */
+.py { max-width: var(--col, 1180px); margin: clamp(28px, 4vw, 48px) auto 0; }
+.py-stack { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.py-row { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: center; }
+.py-tier { justify-self: center; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 20px; border-radius: 12px; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+.py-tier:hover, .py-row.is-hot .py-tier { transform: translateY(-2px); box-shadow: 0 12px 26px -16px rgba(68,52,214,.55); }
+.py-tier:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.py-name b { display: block; font-size: 18px; font-weight: 600; }
+.py-name span { font-size: 13.5px; }
+.py-tier .py-n { font-family: var(--f-mono); font-size: 12.5px; opacity: .75; }
+.py-t06 { width: 38%; background: var(--accent); color: #fff; }
+.py-t05 { width: 50%; background: color-mix(in srgb, var(--accent) 78%, #fff); color: #fff; }
+.py-t04 { width: 62%; background: color-mix(in srgb, var(--accent) 52%, #fff); color: #fff; }
+.py-t03 { width: 74%; background: color-mix(in srgb, var(--accent) 26%, #fff); color: var(--ink); }
+.py-t02 { width: 87%; background: color-mix(in srgb, var(--accent) 12%, #fff); color: var(--ink); }
+.py-t01 { width: 100%; background: var(--paper-2, #fff); color: var(--ink); border: 1px solid var(--line); }
+.py-t03 .py-name span, .py-t02 .py-name span, .py-t01 .py-name span { color: var(--ink-dim); }
+.py-need { font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
+.py-need::before { content: "you're needed: "; color: var(--ink-muted); opacity: .7; }
+.py-row:first-child .py-need, .py-row.is-hot .py-need { color: var(--accent); }
+@media (max-width: 860px) {
+  .py-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .py-tier { width: 100% !important; }
+  .py-need { padding-left: 4px; }
+}
+.py-cards { margin-top: clamp(32px, 4vw, 48px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 960px) { .py-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .py-cards { grid-template-columns: minmax(0, 1fr); } }
+.py-card { display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: 16px; background: var(--paper-2, #fff); border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: border-color .2s ease, transform .2s ease; }
+.py-card:hover, .py-card.is-hot { border-color: var(--accent); transform: translateY(-2px); }
+.py-card-foot { display: flex; align-items: baseline; gap: 10px; padding: 0 4px 2px; }
+.py-card-foot .py-n { font-family: var(--f-mono); font-size: 12px; color: var(--ink-muted); }
+.py-card-foot b { font-size: 17px; font-weight: 600; }
+.py-see { margin-left: auto; font-family: var(--f-mono); font-size: 12px; color: var(--accent); }
+/* mini-visuals: the app's dark ground, few words, large type */
+.mv { height: 150px; border-radius: 11px; background: #141419; color: #f0f0f5; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; font-size: 13.5px; overflow: hidden; }
+.mv i { font-style: normal; }
+.mv .go { align-self: flex-start; padding: 5px 11px; border-radius: 8px; background: #6c63ff; color: #fff; font-weight: 600; font-size: 12.5px; }
+.mv .face { width: 34px; height: 34px; border-radius: 50%; border: 3px solid #96a2ff; background: #272730; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; flex: none; }
+.mv .face.c { border-color: #fb8b3c; }
+.mv-chat { display: flex; flex-direction: column; gap: 9px; }
+.mv-ask { align-self: flex-end; padding: 7px 11px; border-radius: 10px; background: #2a2a5a; }
+.mv-ans { padding: 7px 11px; border-radius: 10px; border: 1px solid #45454f; }
+.mv-btns { display: flex; gap: 8px; }
+.mv-btns i { padding: 4px 10px; border-radius: 7px; border: 1px solid #45454f; color: #babac6; font-size: 12.5px; }
+.mv-btns i.go { background: #10b981; border-color: #10b981; color: #052e1f; }
+.mv-rows { display: flex; flex-direction: column; gap: 10px; }
+.mv-rows span { display: flex; gap: 10px; align-items: center; }
+.mv .tag { padding: 2px 8px; border-radius: 6px; font-family: var(--f-mono); font-size: 11.5px; }
+.mv .tag.op { background: #1f2a44; color: #96a2ff; }
+.mv .tag.cx { background: #12332b; color: #7dd3a0; }
+.mv .ok { font-style: normal; color: #7dd3a0; font-weight: 600; }
+.mv-pipe { flex-direction: row; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.mv-pipe i { padding: 6px 9px; border-radius: 8px; border: 1px solid #7dd3a0; font-size: 12.5px; }
+.mv-pipe i.wait { border-color: #fbbf24; color: #fbbf24; font-weight: 600; }
+.mv-pipe b { color: #7dd3a0; font-weight: 400; }
+.mv-batch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 10px; font-size: 12.5px; }
+.mv-batch .go { grid-column: 1 / -1; margin-top: 6px; }
+.mv-worker { display: flex; flex-direction: column; gap: 12px; }
+.mv-who { display: flex; gap: 10px; align-items: center; }
+.mv-who b { display: block; font-weight: 600; }
+.mv-who em { font-style: normal; color: #9a9aa8; font-size: 12.5px; }
+.mv-note { padding: 7px 11px; border-radius: 10px; border: 1px solid #fbbf24; }
+.mv-team { display: flex; flex-direction: column; gap: 10px; }
+.mv-faces { display: flex; }
+.mv-faces .face + .face { margin-left: -8px; }
+/* Tighter: one line per tier. */
+.py-stack { gap: 6px; }
+.py-tier { padding: 10px 18px; }
+.py-name { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.py-name b { display: inline; font-size: 17px; }
+.py-t04 { color: var(--ink); background: color-mix(in srgb, var(--accent) 40%, #fff); }
+.py-t04 .py-name span { color: var(--ink-dim); }
+.py-need { font-size: 12.5px; }
+.mv-batch .go { justify-self: start; }
+/* The window is the proof; give it the larger share of the hero row. */
+.h2-top { grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr); gap: clamp(28px, 3vw, 48px); }
