@@ -338,3 +338,6 @@
 /* The ribbon sits on the same column as everything else (theme.css gives it
  * the older, wider measure). */
 .fx .release-ribbon { padding-inline: max(var(--fx-gutter), (100% - var(--fx-col)) / 2); }
+
+@media (max-width: 900px) { .fx-edfacts { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 640px) { .fx-edfacts { grid-template-columns: 1fr !important; } }
