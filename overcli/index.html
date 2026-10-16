@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../theme.css" />
-  <link rel="stylesheet" href="../family.css?v=3a56e305" />
+  <link rel="stylesheet" href="../family.css?v=92db549b" />
 
   <link rel="canonical" href="https://overcodelions.com/overcli/" />
   <meta property="og:type" content="website" />
@@ -35,9 +35,9 @@
   <meta name="twitter:image" content="https://overcodelions.com/overcli/assets/og.png" />
 </head>
 <body class="fx fx-overcli">
-  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.21.1" target="_blank" rel="noopener">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overcli/releases/tag/v0.21.2" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.21 · Teams.</strong> Brief a crew, get back one finished pack — and in 0.21.1, a terminal drawer inside the window.</span>
+    <span class="rr-text"><strong>v0.21 · Teams.</strong> Brief a crew, get back one finished pack — and in 0.21.2, transcripts at Quiet, Summary or Detailed, and no approval card for read-only calls — risky commands always ask.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
   <header class="fx-nav">
@@ -45,7 +45,7 @@
       <a class="fx-brand" href="../" aria-label="codelions home"><span style="flex: none; width: 28px; height: 28px; border-radius: 7px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span><b>codelions</b></a>
       <span class="fx-sep" aria-hidden="true"></span>
       <nav class="fx-switch" aria-label="products"><a href="../overcli/" aria-current="page"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span>overcli</a><a href="../overgit/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span>overgit</a><a href="../overdb/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</a></nav>
-      <span class="fx-navlinks"><span class="fx-meta fx-ver">v0.21.1 · beta</span><a href="features.html">Features</a><a href="https://github.com/overcodelions/overcli/blob/master/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">GitHub</a><a class="fx-navcta" href="https://github.com/overcodelions/overcli/releases/latest" target="_blank" rel="noopener">Download</a></span>
+      <span class="fx-navlinks"><span class="fx-meta fx-ver">v0.21.2 · beta</span><a href="features.html">Features</a><a href="https://github.com/overcodelions/overcli/blob/master/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a><a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">GitHub</a><a class="fx-navcta" href="https://github.com/overcodelions/overcli/releases/latest" target="_blank" rel="noopener">Download</a></span>
     </div>
   </header>
   <section class="fx-hero">
@@ -61,7 +61,7 @@
   <section class="fx-sec">
     <div class="fx-wrap">
       <div class="fx-head"><div><p class="fx-eyebrow">[ <b>the basics</b> ] · everything you'd expect</p><h2 class="fx-h2">A better window for the agent CLIs you already use.</h2></div><p class="fx-lede">Before any loop, it has to be the place you'd chat with an agent anyway — so the everyday turn is clearer here than in a terminal.</p></div>
-      <div class="fx-checks"><div><h4>chat</h4><ul><li>Claude Code, Codex, Gemini, Copilot and Ollama in one window — streaming, markdown, highlighting</li><li>Every edit a real diff, every shell call a terminal block</li><li>Permission prompts and Codex approvals as cards, not interruptions</li><li>A changes bar with the turn's +/− and a Commit button</li><li>Past sessions read straight from ~/.claude, ~/.codex and ~/.gemini</li></ul></div><div><h4>code</h4><ul><li>A file editor with tabs, previews, and live .tsx rendering</li><li>Agent worktrees — create, rebase, merge and push from the conversation</li><li>Workspaces: several repos, one conversation, one review</li><li>A terminal drawer, ⌘P to find a file, ⌘K to switch</li><li>Compare models: one prompt to every backend, diffs side by side</li></ul></div><div><h4>control</h4><ul><li>No API keys — it uses the logins your CLIs already have</li><li>Usage by backend, model and project over 5h, 24h and 7d</li><li>Automatic fallback when a Codex model isn't available</li><li>Health badges: ready, unauthenticated, missing, error</li><li>One extensions pane for commands, skills and MCP servers across every CLI</li></ul></div></div>
+      <div class="fx-checks"><div><h4>chat</h4><ul><li>Claude Code, Codex, Gemini, Copilot and Ollama in one window — streaming, markdown, highlighting</li><li>Every edit a real diff, every shell call a terminal block</li><li>Transcripts at Quiet, Summary or Detailed — Summary is one line per message</li><li>Permission prompts and Codex approvals as cards, not interruptions</li><li>A changes bar with the turn's +/− and a Commit button</li><li>Past sessions read straight from ~/.claude, ~/.codex and ~/.gemini</li></ul></div><div><h4>code</h4><ul><li>A file editor with tabs, previews, and live .tsx rendering</li><li>Agent worktrees — create, rebase, merge and push from the conversation</li><li>Workspaces: several repos, one conversation, one review</li><li>A terminal drawer, ⌘P to find a file, ⌘K to switch</li><li>Compare models: one prompt to every backend, diffs side by side</li></ul></div><div><h4>control</h4><ul><li>No API keys — it uses the logins your CLIs already have</li><li>Usage by backend, model and project over 5h, 24h and 7d</li><li>Automatic fallback when a Codex model isn't available</li><li>Health badges: ready, unauthenticated, missing, error</li><li>One extensions pane for commands, skills and MCP servers across every CLI</li></ul></div></div>
     </div>
   </section>
   <section class="fx-sec fx-sec--tight">
@@ -164,8 +164,8 @@
   </section>
   <section class="fx-sec fx-sec--rule">
     <div class="fx-wrap fx-latest">
-      <div class="fx-stack"><p class="fx-eyebrow">[ <b>latest</b> ] · from the changelog</p><h2 class="fx-h2" style="font-size: clamp(32px, 3.4vw, 44px)">Latest release:<br>v0.21.1, Oct 13.</h2><a class="fx-meta" style="color: var(--fx-c)" href="https://github.com/overcodelions/overcli/blob/master/CHANGELOG.md" target="_blank" rel="noopener">full changelog →</a></div>
-      <div class="fx-releases"><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.1" target="_blank" rel="noopener"><span class="d">Oct 13</span><span class="v">0.21.1</span><span class="t">A terminal drawer under the main pane, shell edits shown as diffs, and shared-worktree batches.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.0" target="_blank" rel="noopener"><span class="d">Oct 11</span><span class="v">0.21.0</span><span class="t">Teams: a coordinator plans who contributes and who challenges; members work on one branch; you get one pack.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.20.1" target="_blank" rel="noopener"><span class="d">Oct 4</span><span class="v">0.20.1</span><span class="t">Machine values: find a value typed into several services and keep it in one place.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.20.0" target="_blank" rel="noopener"><span class="d">Oct 3</span><span class="v">0.20.0</span><span class="t">Hire workers through a conversation, a Today inbox, Away mode, and Claude Sonnet 5.5 in every picker.</span><span aria-hidden="true">→</span></a></div>
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>latest</b> ] · from the changelog</p><h2 class="fx-h2" style="font-size: clamp(32px, 3.4vw, 44px)">Latest release:<br>v0.21.2, Oct 15.</h2><a class="fx-meta" style="color: var(--fx-c)" href="https://github.com/overcodelions/overcli/blob/master/CHANGELOG.md" target="_blank" rel="noopener">full changelog →</a></div>
+      <div class="fx-releases"><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.2" target="_blank" rel="noopener"><span class="d">Oct 15</span><span class="v">0.21.2</span><span class="t">Transcripts at Quiet, Summary or Detailed; read-only calls go through without a card, and risky commands always ask.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.1" target="_blank" rel="noopener"><span class="d">Oct 13</span><span class="v">0.21.1</span><span class="t">A terminal drawer under the main pane, shell edits shown as diffs, and shared-worktree batches.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.21.0" target="_blank" rel="noopener"><span class="d">Oct 11</span><span class="v">0.21.0</span><span class="t">Teams: a coordinator plans who contributes and who challenges; members work on one branch; you get one pack.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overcli/releases/tag/v0.20.1" target="_blank" rel="noopener"><span class="d">Oct 4</span><span class="v">0.20.1</span><span class="t">Machine values: find a value typed into several services and keep it in one place.</span><span aria-hidden="true">→</span></a></div>
     </div>
   </section>
   <section class="fx-sec fx-sec--rule" id="download">
@@ -194,7 +194,7 @@
   <footer class="fx-foot">
     <div class="fx-wrap">
       <span><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span> <a href="../">codelions</a> · <a href="../overcli/">overcli</a> · <a href="../overgit/">overgit</a> · <a href="../overdb/">overdb</a></span>
-      <span>v0.21.1 · beta · <a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a> · Apache 2.0 · built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> &amp; <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr</span>
+      <span>v0.21.2 · beta · <a href="https://github.com/overcodelions/overcli" target="_blank" rel="noopener">github</a> · Apache 2.0 · built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> &amp; <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr</span>
     </div>
   </footer>
 
@@ -326,9 +326,10 @@
               <div style="display: flex; align-items: center; gap: 10px"><span style="font-size: 12.5px; color: #9a9aa5">Flows /</span><b style="font-weight: 600; font-size: 15px">ACME-412: Rate-limit /api/login</b><span style="{{flow.pillStyle}}">{{flow.pill}}</span><span style="margin-left: auto; display: flex; gap: 6px; font-size: 12px"><span style="padding: 4px 10px; border-radius: 6px; border: 1px solid #34343d">Files</span><span style="padding: 4px 10px; border-radius: 6px; border: 1px solid #4b4378; color: #c4b5fd">Review &amp; merge</span></span></div>
               <div style="display: flex; align-items: center; gap: 14px; font-size: 12px"><span style="color: #75757f">Solve a ticket end-to-end</span><span style="color: #fbbf24">{{flow.thinking}}</span><span style="color: #7dd3fc">{{flow.standard}}</span><span style="color: #34d399">{{flow.fast}}</span><span style="font-family: 'Geist Mono', monospace; color: #9a9aa5">{{flow.diff}}</span></div>
             </div>
+            <div style="display: flex; gap: 14px; align-items: center; padding: 9px 18px; background: #221f36; border-bottom: 1px solid #3a3456"><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #c4b5fd; white-space: nowrap">{{flow.phase}}</span><span style="font-size: 13px; color: #e4e4ea">{{flow.why}}</span></div>
             <div style="display: flex; flex-wrap: nowrap; overflow: hidden; gap: 4px; align-items: center; padding: 12px 18px 10px; white-space: nowrap">
               <sc-for list="{{flow.chips}}" as="c" hint-placeholder-count="7">
-                <span style="{{c.style}}"><i style="font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #75757f">{{c.n}}</i><span style="width: 16px; height: 16px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #141419; background: {{c.mono}}">{{c.who}}</span>{{c.id}}<b style="font-weight: 700; color: {{c.gc}}">{{c.g}}</b></span><span style="color: #4a4a55; margin: 0 4px">{{c.arrow}}</span>
+                <span style="{{c.style}}"><i style="font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #75757f">{{c.n}}</i><span style="width: 16px; height: 16px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #141419; background: {{c.mono}}">{{c.who}}</span>{{c.id}}<b style="font-weight: 700; color: {{c.gc}}">{{c.g}}</b><sc-if value="{{c.badge}}" hint-placeholder-val="{{ false }}"><i style="font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10.5px; padding: 0 5px; border-radius: 4px; {{c.badgeStyle}}">{{c.badge}}</i></sc-if></span><span style="margin: 0 4px; font-family: 'Geist Mono', monospace; font-size: 11px; {{c.arrowStyle}}">{{c.arrow}}</span>
               </sc-for>
             </div>
             <div style="display: flex; align-items: center; gap: 7px; padding: 0 18px 12px; border-bottom: 1px solid #2a2a32; white-space: nowrap; overflow: hidden; font-size: 12px"><span style="font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #75757f; margin-right: 4px">Artifacts</span><sc-for list="{{flow.trail}}" as="a" hint-placeholder-count="3"><span style="{{a.style}}">{{a.name}}</span><span style="color: #4a4a55">{{a.arrow}}</span></sc-for></div>
@@ -401,11 +402,11 @@ window.DC['overcli'] = class extends DCLogic {
   componentDidMount() {
     this.timer = setInterval(() => {
       const order = ['basics', 'chat', 'flow', 'worker', 'team', 'svc'];
-      const max = { basics: 9, chat: 9, flow: 10, worker: 13, team: 12, svc: 11 }[this.state.tab];
+      const max = { basics: 9, chat: 9, flow: 11, worker: 13, team: 12, svc: 11 }[this.state.tab];
       // The hire, the shift and the stack switch carry more to read, and a
       // click to see: they move at half speed.
       this.sub = (this.sub || 0) + 1;
-      if ((this.state.tab === 'worker' || this.state.tab === 'svc') && this.sub % 2) return;
+      if ((this.state.tab === 'worker' || this.state.tab === 'svc' || this.state.tab === 'flow') && this.sub % 2) return;
       if (this.state.step < max + 3) this.setState({ step: this.state.step + 1 });
       else if (this.state.auto) this.setState({ tab: order[(order.indexOf(this.state.tab) + 1) % order.length], step: 0 });
       else this.setState({ step: 0 });
@@ -425,7 +426,7 @@ window.DC['overcli'] = class extends DCLogic {
     ];
     const on = 'padding: 10px 18px; border-radius: 10px; border: 0; background: #23232e; color: #ededf2; font: 500 15px Geist, sans-serif; cursor: pointer; box-shadow: 0 0 0 1px #34344a inset';
     const off = 'padding: 10px 18px; border-radius: 10px; border: 0; background: transparent; color: #8a8a99; font: 500 15px Geist, sans-serif; cursor: pointer';
-    const tabs = defs.map((d) => ({ label: d.label, on: d.id === tab, num: String(defs.indexOf(d) + 1).padStart(2, '0'), sub: ({"basics": "Ask, approve, see the diff", "chat": "Opus writes, Codex reviews", "flow": "A ticket, step by step", "worker": "Hire one, watch a shift", "team": "A plan, then the argument", "svc": "Your stack on its branch"})[d.id] || '', pct: d.id === tab ? Math.min(100, Math.round(100 * this.state.step / ({ basics: 9, chat: 9, flow: 10, worker: 13, team: 12, svc: 11 }[d.id] + 3))) : 0, style: d.id === tab ? on : off, pick: () => this.setState({ tab: d.id, step: 0, auto: false }) }));
+    const tabs = defs.map((d) => ({ label: d.label, on: d.id === tab, num: String(defs.indexOf(d) + 1).padStart(2, '0'), sub: ({"basics": "Ask, approve, see the diff", "chat": "Opus writes, Codex reviews", "flow": "A ticket, step by step", "worker": "Hire one, watch a shift", "team": "A plan, then the argument", "svc": "Your stack on its branch"})[d.id] || '', pct: d.id === tab ? Math.min(100, Math.round(100 * this.state.step / ({ basics: 9, chat: 9, flow: 11, worker: 13, team: 12, svc: 11 }[d.id] + 3))) : 0, style: d.id === tab ? on : off, pick: () => this.setState({ tab: d.id, step: 0, auto: false }) }));
     const cur = defs.find((d) => d.id === tab);
     const cOn = 'font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #2e2e37; color: #f2f2f6';
     const cOff = 'font-size: 13px; padding: 4px 10px; color: #a3a3ae';
@@ -459,50 +460,58 @@ window.DC['overcli'] = class extends DCLogic {
     let chat = SC.slice(0, Math.min(k + 1, SC.length)).filter((m, i, arr) => !(m.typing && i < arr.length - 1)).filter((m, i, arr) => !(m.perm && m.ask && arr.some((x, j) => j > i && x.perm)));
     chat = chat.map((m) => Object.assign({ user: false, typing: false, opus: false, codex: false, edit: '', tool: false, perm: false, ask: false, done: false, lines: [], tag: '', title: '', plus: '' }, m));
 
-    // flow
+    // flow: the real solve-ticket shape — a critic loop inside build, and a
+    // rejecting review that goes forward to fix (never back to build)
     const ids = [['fetch','S','#7dd3a0'],['plan','L','#fbbf24'],['build','B','#7dd3fc'],['review','L','#fbbf24'],['fix','B','#7dd3fc'],['tests','B','#7dd3fc'],['ship','S','#7dd3a0']];
-    const runAt = [0,1,2,4,6,7,8];
-    const outs = [
-      ['Scout · sonnet 5', '· ticket.md', 'ticket.md — Rate-limit POST /api/login: at most 10 attempts a minute per IP and username, then 429 with Retry-After.'],
-      ['Lead · opus 5', '· plan.md', 'plan.md\n1 · a token-bucket middleware keyed by ip + username\n2 · wire it into POST /api/login\n3 · 429 with Retry-After\n4 · tests'],
-      ['Builder · gpt-5.6-terra', '· diff', 'Writing src/middleware/rateLimit.ts…'],
-      ['Builder · gpt-5.6-terra', '· diff', '↻ critic · opus 5 · round 1 — 1 finding: the 429 has no Retry-After header.'],
-      ['Lead · opus 5', '· review.md', 'APPROVED — keyed as planned, the 429 carries Retry-After, and no other route changes.'],
-      ['Builder · gpt-5.6-terra', '· diff', 'No changes required.'],
-      ['Builder · gpt-5.6-terra', '· diff', 'LoginLimiterTest — 4 cases: under the cap, at the cap, one user can\'t lock out another, and Retry-After.'],
-      ['Builder · gpt-5.6-terra', '· diff', 'LoginLimiterTest — 4 cases: under the cap, at the cap, one user can\'t lock out another, and Retry-After.']
-    ];
-    const oi = k <= 0 ? 0 : k === 1 ? 1 : k <= 3 ? (k === 2 ? 2 : 3) : k <= 5 ? 4 : k === 6 ? 5 : 6;
+    const runFrom = [0, 1, 2, 5, 7, 8, 9], doneAt = [1, 2, 5, 6, 8, 9, 99];
     const paused = k >= 9;
+    const ki = Math.min(k, 9);
+    const STEP = [
+      ['fetch', 'Scout · sonnet 5', '· ticket.md', 'ticket.md — Rate-limit POST /api/login: at most 10 attempts a minute per IP and username, then 429 with Retry-After.', 'ACME-412 · the ticket', 'ticket.md', 'Scout pulls the ticket into ticket.md — on a fast, cheap model.'],
+      ['plan', 'Lead · opus 5', '· plan.md', 'plan.md\n1 · a token-bucket middleware keyed by ip + username\n2 · wire it into POST /api/login\n3 · 429 with Retry-After\n4 · tests', 'ticket.md', 'plan.md', 'Lead writes the plan on a thinking model.'],
+      ['build · round 1', 'Builder · gpt-5.6-terra', '· diff', 'Round 1 — wrote src/middleware/rateLimit.ts and wired it into POST /api/login.', 'ticket.md · plan.md', 'src/middleware/rateLimit.ts · src/routes/auth.ts', 'Builder implements the plan on a standard model.'],
+      ['build ↻ critic', 'Critic · opus 5', '· round 1', '1 finding: the 429 has no Retry-After header, so clients retry at once. Back to the builder.', 'the diff', '1 finding → back to build', 'A critic checks the diff and sends it back — before review ever sees it.'],
+      ['build · round 2', 'Builder · gpt-5.6-terra', '· diff', 'Round 2 — Retry-After now comes from the bucket\'s refill time. The critic has no findings, so build is done.', 'the diff · the critic\'s finding', 'the diff, round 2', 'The builder answers the finding; the critic is quiet, so the loop ends.'],
+      ['review', 'Lead · opus 5', '· review.md', 'Reading plan.md and the diff…', 'plan.md · the diff', 'review.md', 'Lead reviews the diff against the plan.'],
+      ['review ✗ → fix', 'Lead · opus 5', '· review.md', 'CHANGES REQUESTED — 1 finding: the limiter keys on the raw username, so "Dana" and "dana" get separate buckets.', 'plan.md · the diff', 'review.md — changes requested', 'The review rejects it, so the flow goes forward to fix with the review attached — not back to the start.'],
+      ['fix', 'Builder · gpt-5.6-terra', '· diff', 'Fixed the one finding: usernames are lower-cased before they key the bucket. Nothing else touched.', 'review.md · the diff', 'src/middleware/rateLimit.ts', 'The builder fixes exactly what the review asked for, and nothing else.'],
+      ['tests', 'Builder · gpt-5.6-terra', '· diff', 'LoginLimiterTest — 5 cases: under the cap, at the cap, one user can\'t lock out another, case-insensitive usernames, and Retry-After.', 'the diff · review.md', 'test/rateLimit.test.ts', 'Tests for what changed — then the flow stops before it ships.'],
+      ['paused', 'Builder · gpt-5.6-terra', '· diff', 'LoginLimiterTest — 5 cases: under the cap, at the cap, one user can\'t lock out another, case-insensitive usernames, and Retry-After.', 'the diff · review.md', 'nothing yet — ship waits for you', 'It waits for you before ship: talk to any step, then Continue.']
+    ][ki];
     const chips = ids.map((d, i) => {
-      const done = i < 6 ? k > runAt[i] + (i === 2 ? 1 : 0) : false;
-      const running = !paused && !done && (i === 6 ? false : k >= runAt[i]);
+      const done = k >= doneAt[i];
+      const running = !paused && !done && k >= runFrom[i];
       const wait = i === 6 && paused;
+      const failed = i === 3 && k >= 6;
       const base = 'display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 8px; font-size: 12.5px; border: 1px solid ';
-      const style = base + (running ? '#8b93ff; background: rgba(139,147,255,.14); color: #f2f2f6; font-weight: 600' : done ? 'rgba(125,211,160,.55); color: #c9c9d2' : wait ? '#fbbf24; color: #f2f2f6; font-weight: 600' : '#34343d; color: #8a8a96');
-      return { n: String(i + 1), who: d[1], mono: d[2], id: d[0], g: running ? '⟳' : done ? '✓' : wait ? '⏸' : '', gc: running ? '#7dd3fc' : done ? '#7dd3a0' : '#fbbf24', style, arrow: i < 6 ? '→' : '' };
+      const style = base + (running ? '#8b93ff; background: rgba(139,147,255,.14); color: #f2f2f6; font-weight: 600'
+        : failed ? 'rgba(251,191,36,.6); background: rgba(251,191,36,.08); color: #f2f2f6'
+        : done ? 'rgba(125,211,160,.55); color: #c9c9d2' : wait ? '#fbbf24; color: #f2f2f6; font-weight: 600' : '#34343d; color: #8a8a96');
+      let badge = '', badgeStyle = 'background: rgba(139,147,255,.18); color: #c9c9ff';
+      if (i === 2 && k === 3) badge = '⇄ critic';
+      if (i === 2 && k === 4) badge = '↻ round 2';
+      if (i === 2 && k >= 5) badge = '↻ 2 rounds';
+      if (failed) { badge = '1 finding'; badgeStyle = 'background: rgba(251,191,36,.16); color: #fcd34d'; }
+      const goto = i === 3 && k >= 6;
+      return { n: String(i + 1), who: d[1], mono: d[2], id: d[0], style, badge, badgeStyle,
+        g: failed ? '!' : running ? '⟳' : done ? '✓' : wait ? '⏸' : '', gc: failed ? '#fbbf24' : running ? '#7dd3fc' : done ? '#7dd3a0' : '#fbbf24',
+        arrow: i < 6 ? (goto ? 'goto →' : '→') : '', arrowStyle: goto ? 'color: #fbbf24; font-weight: 600' : 'color: #4a4a55' };
     });
     const fmt = (n) => (n / 1000).toFixed(1) + 'k';
-    const th = [0, 0, 14620, 16670, 18680, 18680, 28510, 28510, 28510, 28510][Math.min(k, 9)];
-    const st = [0, 0, 0, 38110, 52290, 52290, 52290, 55710, 77370, 77370][Math.min(k, 9)];
-    const fa = [0, 3240, 3240, 3240, 3240, 3240, 3240, 3240, 3240, 3240][Math.min(k, 9)];
-    const o = outs[paused ? 7 : oi];
+    const th = [0, 0, 14620, 16670, 16670, 18680, 18680, 28510, 28510, 28510][ki];
+    const st = [0, 0, 21400, 21400, 38110, 38110, 38110, 52290, 77370, 77370][ki];
+    const fa = [0, 3240, 3240, 3240, 3240, 3240, 3240, 3240, 3240, 3240][ki];
+    const art = [[1, 'ticket.md'], [2, 'plan.md'], [3, 'diff'], [5, 'diff ↻'], [7, 'review.md ✗'], [8, 'diff ✎'], [9, 'LoginLimiterTest.ts']].filter((a) => k >= a[0]).map((a) => a[1]);
     const flow = {
-      chips, paused,
+      chips, paused, phase: STEP[0], why: STEP[6],
       pill: paused ? 'PAUSED' : 'RUNNING',
       pillStyle: 'padding: 2px 8px; border-radius: 6px; font-size: 10.5px; font-weight: 600; letter-spacing: .08em; ' + (paused ? 'color: #fbbf24; background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.4)' : 'color: #7dd3fc; background: rgba(125,211,252,.12); border: 1px solid rgba(125,211,252,.35)'),
       thinking: th ? fmt(th) + ' thinking' : '', standard: st ? fmt(st) + ' standard' : '', fast: fa ? fmt(fa) + ' fast' : '',
-      diff: k >= 3 ? (k >= 8 ? '+127 / −12 · 5 files' : '+86 / −12 · 4 files') : '',
-      who: o[0], produced: o[1], out: o[2],
-      reads: ['ACME-412 · the ticket', 'ticket.md', 'plan.md', 'the diff, from build', 'plan.md · the diff', 'review.md · the diff', 'the diff', 'the diff · review.md'][paused ? 7 : oi],
-      writes: ['ticket.md', 'plan.md', 'src/middleware/rateLimit.ts · src/routes/auth.ts', '1 finding → back to build', 'review.md', 'nothing to change', 'test/rateLimit.test.ts', 'nothing yet — ship waits for you'][paused ? 7 : oi],
-      trail: (() => {
-        const art = ['ticket.md', 'plan.md', 'diff', 'review.md', 'diff ✎', 'LoginLimiterTest.ts'];
-        const made = art.filter((a, i) => chips[i].g === '✓');
-        if (!made.length) return [{ name: 'waiting for the first step…', arrow: '', style: 'color: #75757f' }];
-        return made.map((a, i) => ({ name: a, arrow: i < made.length - 1 ? '→' : '', style: "font-family: 'Geist Mono', monospace; font-size: 11.5px; padding: 2px 8px; border-radius: 5px; " + (i === made.length - 1 ? 'background: rgba(52,211,153,.14); border: 1px solid rgba(52,211,153,.5); color: #6ee7b7' : 'background: #26262e; border: 1px solid #34343d; color: #a3a3ae') }));
-      })(),
-      composer: 'Ask ' + (o[0].indexOf('opus') > -1 ? 'Claude Opus 5' : o[0].indexOf('terra') > -1 ? 'GPT-5.6 Terra' : 'Claude Sonnet 5') + ' anything — your messages don\'t advance the flow.'
+      diff: k >= 9 ? '+127 / −12 · 5 files' : k >= 8 ? '+91 / −12 · 4 files' : k >= 3 ? '+86 / −12 · 4 files' : '',
+      who: STEP[1], produced: STEP[2], out: STEP[3], reads: STEP[4], writes: STEP[5],
+      trail: art.length ? art.map((a, i) => ({ name: a, arrow: i < art.length - 1 ? '→' : '', style: "font-family: 'Geist Mono', monospace; font-size: 11.5px; padding: 2px 8px; border-radius: 5px; " + (i === art.length - 1 ? 'background: rgba(52,211,153,.14); border: 1px solid rgba(52,211,153,.5); color: #6ee7b7' : 'background: #26262e; border: 1px solid #34343d; color: #a3a3ae') }))
+        : [{ name: 'waiting for the first step…', arrow: '', style: 'color: #75757f' }],
+      composer: 'Ask ' + (STEP[1].indexOf('opus') > -1 ? 'Claude Opus 5' : STEP[1].indexOf('terra') > -1 ? 'GPT-5.6 Terra' : 'Claude Sonnet 5') + ' anything — your messages don\'t advance the flow.'
     };
 
     // worker: hire, then a shift

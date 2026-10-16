@@ -13,7 +13,7 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  --fx-col: 1184px;
+  --fx-col: 1344px;
   --fx-gutter: clamp(16px, 4vw, 48px);
   --fx-c: var(--accent);
   --fx-line: #e3e6ec;
@@ -84,7 +84,7 @@
 .fx-navcta { padding: 9px 16px; border-radius: 9px; background: var(--fx-ink); color: #f6f7f9 !important; font-size: 15px; font-weight: 600; }
 
 /* ── hero ── */
-.fx-hero { padding-block: clamp(56px, 8vw, 104px) clamp(40px, 5vw, 64px); }
+.fx-hero { padding-block: clamp(32px, 4vw, 56px) clamp(36px, 4vw, 56px); }
 .fx-hero .fx-wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 22px clamp(32px, 5vw, 72px); align-items: start; }
 .fx-hero-top { grid-column: 1 / -1; }
 .fx-hero-l, .fx-hero-r { display: flex; flex-direction: column; gap: 22px; }
@@ -309,3 +309,32 @@
   .plan-shed, .plan-loop { animation: none; opacity: .55; }
   .plan-strain { animation: none; opacity: .16; }
 }
+
+/* ── home: one card per product — what it is, then what only it does ── */
+.fx-prod {
+  display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 18px;
+  background: #fff; border: 1px solid var(--fx-line); border-top: 4px solid var(--fx-c);
+  box-shadow: 0 30px 60px -44px rgba(13, 15, 21, .45); transition: transform .2s, box-shadow .2s;
+}
+.fx-prod:hover { transform: translateY(-2px); box-shadow: 0 36px 64px -40px rgba(13, 15, 21, .5); }
+.fx-prod-top { display: flex; align-items: center; gap: 12px; }
+.fx-prod-top b { font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 650; }
+.fx-prod-top .fx-meta { margin-left: auto; }
+.fx-vig {
+  height: 238px; box-sizing: border-box; border-radius: 12px; background: #141419; border: 1px solid #23232c;
+  padding: 14px; display: flex; flex-direction: column; gap: 7px; overflow: hidden; color: #ededf2;
+}
+.fx-vig-h { font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #8a8a99; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+.fx-vig-row { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; height: 30px; padding: 0 10px; border-radius: 8px; font-size: 13px; transition: background .3s, border-color .3s; }
+.fx-vig-row b { font-weight: 600; white-space: nowrap; }
+.fx-vig-row i { font-style: normal; font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #a9a9b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fx-prod-h { margin: 4px 0 0; min-height: 2.2em; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.1; font-weight: 650; letter-spacing: -0.015em; text-wrap: balance; }
+.fx-prod-p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--fx-dim); }
+.fx-prod-then { margin: 0; font-size: 14.5px; line-height: 1.5; font-weight: 500; color: var(--fx-c); }
+.fx-prod-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--fx-line); }
+.fx-prod-foot i { font-style: normal; color: var(--fx-sig); }
+.fx-prod-open { font-size: 14px; font-weight: 600; color: var(--fx-c); }
+
+/* The ribbon sits on the same column as everything else (theme.css gives it
+ * the older, wider measure). */
+.fx .release-ribbon { padding-inline: max(var(--fx-gutter), (100% - var(--fx-col)) / 2); }
