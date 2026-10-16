@@ -798,3 +798,167 @@
 
 
 })();
+
+
+// A link into a folded "see it working" block opens the fold first, so the
+// anchor lands on something visible (the orchestrator lives inside one).
+(function () {
+  function openFor(hash) {
+    if (!hash || hash.length < 2) return;
+    var el = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!el) return;
+    var d = el.closest('details');
+    var opened = false;
+    while (d) { if (!d.open) { d.open = true; opened = true; } d = d.parentElement && d.parentElement.closest('details'); }
+    if (opened) requestAnimationFrame(function () { el.scrollIntoView(); });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a) openFor(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange', function () { openFor(location.hash); });
+  openFor(location.hash);
+})();
+
+
+// Hero panels: a short loop that shows each surface doing its job — the
+// diff arrives and gets reviewed, the restarting service comes up, the
+// uncommitted repo gets pushed. The end states match the app's own labels;
+// "codex reviewing…" is a stand-in for a rebound in progress.
+// Skipped entirely under prefers-reduced-motion; the static end state stays.
+(function () {
+  var diff = document.querySelector('[data-h2-diff]');
+  var review = document.querySelector('[data-h2-review]');
+  var svc = document.querySelector('[data-h2-svc]');
+  var ship = document.querySelector('[data-h2-ship]');
+  if (!diff || !review || !svc || !ship) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var lines = Array.prototype.slice.call(diff.querySelectorAll('span'));
+  var svcDot = svc.querySelector('i'), svcText = svc.querySelector('span');
+  var shipText = ship.querySelector('span');
+  var timers = [];
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function cycle() {
+    timers.forEach(clearTimeout); timers = [];
+    // start state
+    diff.classList.add('is-typing');
+    lines.forEach(function (l) { l.classList.remove('is-in'); });
+    review.textContent = '↺ codex reviewing…';
+    review.style.color = '';
+    svcDot.className = 'wait'; svcText.textContent = 'restarting · code changed'; svcText.className = '';
+    shipText.textContent = '1 uncommitted'; shipText.className = 'warn-t';
+    // the diff arrives line by line
+    lines.forEach(function (l, i) { at(500 + i * 380, function () { l.classList.add('is-in'); }); });
+    // the review lands
+    at(500 + lines.length * 380 + 900, function () { review.textContent = '↺ codex reviewed it · no findings'; });
+    // the service comes back up on the new code
+    at(3400, function () { svcDot.className = 'ok'; svcText.textContent = 'ready'; });
+    // and the repo gets pushed
+    at(4600, function () { shipText.textContent = 'Pushed'; shipText.className = 'ok-t'; });
+    at(9000, cycle);
+  }
+  // Only run while the hero is on screen.
+  var running = false;
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    var vis = es.some(function (e) { return e.isIntersecting; });
+    if (vis && !running) { running = true; cycle(); }
+    if (!vis && running) { running = false; timers.forEach(clearTimeout); timers = []; diff.classList.remove('is-typing'); }
+  }) : null;
+  if (io) io.observe(diff.closest('.h2-panels') || diff); else cycle();
+})();
+
+
+// The flows section's run: "Solve a ticket end-to-end" working ACME-412
+// through fetch → plan → build → review → fix → tests, then pausing before
+// ship, as the registry flow does. Token figures are illustrative; the
+// tiers follow modelCatalog (sonnet = fast, opus = thinking, terra =
+// standard) and the format follows FlowRunPane's formatTokens. Under
+// prefers-reduced-motion it shows the paused end state and stops.
+(function () {
+  var root = document.querySelector('[data-flow-demo]');
+  if (!root) return;
+  var $ = function (sel) { return root.querySelector(sel); };
+  var steps = {};
+  Array.prototype.forEach.call(root.querySelectorAll('[data-step]'), function (li) { steps[li.dataset.step] = li; });
+  var statusEl = $('[data-fd-status]'), pauseEl = $('[data-fd-pause]'), whoEl = $('[data-fd-who]'),
+      outEl = $('[data-fd-out]'), prodEl = $('[data-fd-produced]'), compEl = $('[data-fd-composer]'), diffEl = $('[data-fd-diff]');
+  var tiers = { thinking: 0, standard: 0, fast: 0 };
+  function fmt(n) { return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n); }
+  function paintTiers() {
+    Object.keys(tiers).forEach(function (k) {
+      var el = $('[data-fd-tier="' + k + '"]');
+      el.hidden = tiers[k] === 0; el.querySelector('b').textContent = fmt(tiers[k]);
+    });
+  }
+  function setDiff(a, r, f) {
+    diffEl.hidden = false;
+    diffEl.innerHTML = '<span class="add">+' + a + '</span> / <span class="rem">−' + r + '</span> · ' + f + ' file' + (f === 1 ? '' : 's');
+  }
+  function state(id, st) { var li = steps[id]; li.classList.remove('is-run', 'is-done', 'is-wait'); if (st) li.classList.add('is-' + st); }
+  function say(who, produced, html, composer) {
+    whoEl.textContent = who; prodEl.textContent = produced; outEl.innerHTML = html;
+    if (composer) compEl.textContent = composer;
+  }
+  var SONNET = 'Ask Claude Sonnet 5 anything — your messages don\'t advance the flow.';
+  var OPUS = 'Ask Claude Opus 5 anything — your messages don\'t advance the flow.';
+  var TERRA = 'Ask GPT-5.6 Terra anything — your messages don\'t advance the flow.';
+  var script = [
+    [0, function () {
+      Object.keys(steps).forEach(function (k) { state(k, null); });
+      tiers = { thinking: 0, standard: 0, fast: 0 }; paintTiers(); diffEl.hidden = true;
+      statusEl.textContent = 'running'; statusEl.classList.remove('is-paused'); pauseEl.hidden = true;
+      state('fetch', 'run'); say('Scout · sonnet 5', '· ticket.md', 'Reading ACME-412 over MCP…', SONNET);
+    }],
+    [1700, function () { state('fetch', 'done'); tiers.fast += 3240; paintTiers();
+      say('Scout · sonnet 5', '· ticket.md', 'ticket.md — Rate-limit POST /api/login: at most 10 attempts a minute per IP and username, then 429 with a Retry-After header.'); }],
+    [2500, function () { state('plan', 'run'); say('Lead · opus 5', '· plan.md', 'Reading the routes and the middleware…', OPUS); }],
+    [4300, function () { state('plan', 'done'); tiers.thinking += 14620; paintTiers();
+      say('Lead · opus 5', '· plan.md', 'plan.md\n1 · a token-bucket middleware keyed by ip + username\n2 · wire it into POST /api/login\n3 · 429 with Retry-After\n4 · tests'); }],
+    [5100, function () { state('build', 'run'); say('Builder · gpt-5.6-terra', '· diff', 'Writing src/middleware/rateLimit.ts…', TERRA); }],
+    [6500, function () { tiers.standard += 38110; tiers.thinking += 2050; paintTiers(); setDiff(78, 12, 4);
+      say('Builder · gpt-5.6-terra', '· diff', '↺ critic · opus 5 · round 1 — 1 finding: the 429 has no Retry-After header.'); }],
+    [8100, function () { state('build', 'done'); tiers.standard += 14180; tiers.thinking += 2010; paintTiers(); setDiff(86, 12, 4);
+      say('Builder · gpt-5.6-terra', '· diff', '↺ critic · opus 5 · round 2 — no findings.\n4 files · +86 / −12'); }],
+    [8900, function () { state('review', 'run'); say('Lead · opus 5', '· review.md', 'Checking the diff against the plan…', OPUS); }],
+    [10700, function () { state('review', 'done'); tiers.thinking += 9830; paintTiers();
+      say('Lead · opus 5', '· review.md', '<span class="ok">APPROVED</span> — keyed as planned, the 429 carries Retry-After, and no other route changes.'); }],
+    [11500, function () { state('fix', 'run'); say('Builder · gpt-5.6-terra', '· diff', 'Reading review.md…', TERRA); }],
+    [12500, function () { state('fix', 'done'); tiers.standard += 3420; paintTiers(); say('Builder · gpt-5.6-terra', '· diff', 'No changes required.'); }],
+    [13300, function () { state('tests', 'run'); say('Builder · gpt-5.6-terra', '· diff', 'Writing LoginLimiterTest…'); }],
+    [15100, function () { state('tests', 'done'); tiers.standard += 21660; paintTiers(); setDiff(127, 12, 5);
+      say('Builder · gpt-5.6-terra', '· diff', 'LoginLimiterTest — 4 cases: under the cap, at the cap, one user can\'t lock out another, and the Retry-After header.\n5 files · +127 / −12'); }],
+    [15900, function () { state('ship', 'wait'); statusEl.textContent = 'paused'; statusEl.classList.add('is-paused'); pauseEl.hidden = false;
+      /* paused BEFORE ship: the panel still shows the tests step's output */ }]
+  ];
+  var END = 23000, timers = [];
+  function play() { timers.forEach(clearTimeout); timers = script.map(function (s) { return setTimeout(s[1], s[0]); }); timers.push(setTimeout(play, END)); }
+  function stop() { timers.forEach(clearTimeout); timers = []; }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    script.forEach(function (s) { s[1](); });
+    return;
+  }
+  if ('IntersectionObserver' in window) {
+    var on = false;
+    new IntersectionObserver(function (es) {
+      var vis = es.some(function (e) { return e.isIntersecting; });
+      if (vis && !on) { on = true; play(); } else if (!vis && on) { on = false; stop(); }
+    }, { threshold: 0.25 }).observe(root);
+  } else { play(); }
+})();
+
+
+
+// Pyramid ↔ cards: hovering or focusing a tier lights its card, and the
+// other way round, so the idea and its evidence read as one piece.
+(function () {
+  var root = document.querySelector('[data-pyramid]');
+  if (!root) return;
+  var all = root.querySelectorAll('[data-py]');
+  function hot(n) { Array.prototype.forEach.call(all, function (el) { el.classList.toggle('is-hot', el.dataset.py === n); }); }
+  Array.prototype.forEach.call(all, function (el) {
+    var n = el.dataset.py;
+    el.addEventListener('mouseenter', function () { hot(n); });
+    el.addEventListener('focusin', function () { hot(n); });
+  });
+  root.addEventListener('mouseleave', function () { hot(null); });
+})();

@@ -16,822 +16,342 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+
   <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="../family.css?v=92db549b" />
+
+  <link rel="canonical" href="https://overcodelions.com/overgit/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="codelions" />
+  <meta property="og:url" content="https://overcodelions.com/overgit/" />
+  <meta property="og:title" content="Overgit — a git client for one repo or forty" />
+  <meta property="og:description" content="A better git client for one repo or forty — and worksets for the tickets that span several." />
+  <meta property="og:image" content="https://overcodelions.com/overgit/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Overgit — a git client for one repo or forty" />
+  <meta name="twitter:description" content="A better git client for one repo or forty — and worksets for the tickets that span several." />
+  <meta name="twitter:image" content="https://overcodelions.com/overgit/assets/og.png" />
 </head>
-<body>
-  <a class="release-ribbon" href="https://github.com/overcodelions/overgit/releases/tag/v0.4.3" target="_blank" rel="noopener">
+<body class="fx fx-overgit">
+  <a class="release-ribbon" href="https://github.com/overcodelions/overgit/releases/tag/v0.4.4" target="_blank" rel="noopener">
     <span class="rr-badge">new</span>
-    <span class="rr-text"><strong>v0.4.3 is out</strong> — overgit now <strong>updates itself</strong>: new versions download in the background and install when you quit, with a Stable or Nightly channel in Settings. Also: <strong>faster starts and repo status</strong>, a first-run welcome that checks this machine for git and the optional CLIs, a Getting started checklist, and Help sheets with a native app menu.</span>
+    <span class="rr-text"><strong>v0.4.4 · overgit updates itself.</strong> New versions download in the background, with a Stable or Nightly channel — and new in 0.4.4, an interface size setting from 85% to 150%.</span>
     <span class="rr-cta">release notes&nbsp;↗</span>
   </a>
-
-  <nav class="site-nav" aria-label="primary">
-    <a href="#top" class="brand">
-      <img class="brand-mark" src="assets/icon.png" alt="" />
-      <span class="brand-name">overgit</span>
-      <span class="brand-ver">v0.4.3 · beta</span>
-    </a>
-    <ul class="nav-links">
-      <li><a class="nav-back" href="../">← codelions</a></li>
-      <li><a href="#client">git client</a></li>
-      <li><a href="#features">many repos</a></li>
-      <li><a href="#workset">worksets</a></li>
-      <li><a href="#landing">landing check</a></li>
-      <li><a href="#story">story</a></li>
-      <li><a href="#faq">faq</a></li>
-      <li class="nav-keep"><a class="btn btn-primary nav-cta" href="#download"><span class="bk">[</span>&nbsp;download&nbsp;<span class="bk">]</span></a></li>
-      <li><a class="nav-repo" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github&nbsp;↗</a></li>
-    </ul>
-  </nav>
-
-  <main id="top">
-
-    <!-- ─────────── HERO ─────────── -->
-    <header class="hero">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <p class="kicker">&#9484;&#9472; [&nbsp;01&nbsp;] &nbsp;·&nbsp; a desktop git client, for one repo or many</p>
-          <h1 class="headline">
-            <span class="headline-line" data-delay="0">A complete git client.</span>
-            <span class="headline-line em" data-delay="220">Built for many repos.</span>
-          </h1>
-          <p class="lede">
-            Staging, history, the branch graph, rebase and cherry-pick, worktrees, submodules, and a "Committing as" line that stops you pushing with the wrong email. Then the part other clients don't have: <strong>workspaces</strong> that act on a group of repos at once, and <strong>worksets</strong> that carry one ticket across several repos, from branch to ship to reset. All of it runs as plain <code>git</code> in the repos you already have, never inside <code>.git</code>.
-          </p>
-          <p class="lede-pun"><span class="pun-over">over</span><span class="pun-dot">·</span><span class="pun-cli">git</span> &nbsp;— a client that sits <em>over</em> your <em>git</em> repos, never inside <code>.git</code>. Stop using it anytime; your repos behave the same in any other tool.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#download">
-              <span class="btn-bracket">[</span>
-              <span class="btn-label">Download · macOS</span>
-              <span class="btn-bracket">]</span>
-            </a>
-            <a class="btn btn-ghost" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">
-              view source →
-            </a>
-            <a class="btn-chip" href="../overcli/" aria-label="See the sibling project, overcli">
-              <kbd>sibling</kbd>&nbsp;&nbsp;meet overcli
-            </a>
-          </div>
-          <ul class="hero-meta">
-            <li><span class="dot dot-ready"></span> macOS</li>
-            <li><span class="dot dot-ready"></span> windows</li>
-            <li><span class="dot dot-ready"></span> linux</li>
-            <li class="meta-sep">│</li>
-            <li>Electron · React · TypeScript</li>
-          </ul>
-        </div>
-
-        <div class="hero-right">
-          <figure class="app-window terminal" aria-label="Overgit application preview">
-            <header class="app-chrome">
-              <span class="chrome-dot red"></span>
-              <span class="chrome-dot yellow"></span>
-              <span class="chrome-dot green"></span>
-              <span class="app-winlabel">overgit</span>
-            </header>
-
-            <div class="app-body">
-              <aside class="app-sidebar">
-                <div class="sidebar-search">
-                  <span class="search-glyph">⌕</span>
-                  <span class="search-placeholder">⌘K palette</span>
-                </div>
-
-                <p class="sidebar-section">workspaces · <span class="agent-count">3</span></p>
-                <ul class="ws-list">
-                  <li class="ws-item is-open">
-                    <span class="ws-glyph">▾</span> payments-platform
-                    <span class="ws-tools"><span>✎</span><span>+</span></span>
-                  </li>
-                  <li class="ws-child is-active">– api-gateway <span class="conv-dot on"></span></li>
-                  <li class="ws-child">– billing-svc <span class="conv-dot on"></span></li>
-                  <li class="ws-child">– ledger-core</li>
-                  <li class="ws-item">
-                    <span class="ws-glyph">▸</span> design-system
-                    <span class="ws-tools"><span>✎</span><span>+</span></span>
-                  </li>
-                  <li class="ws-item">
-                    <span class="ws-glyph">▸</span> infra
-                    <span class="ws-tools"><span>✎</span><span>+</span></span>
-                  </li>
-                </ul>
-
-                <p class="sidebar-section">worksets · <span class="agent-count">2 active</span></p>
-                <ul class="agent-list">
-                  <li><span class="agent-dot running"></span>rate-limit rollout<span class="agent-note">⎇ feature/rate-limit · 3 repos</span></li>
-                  <li><span class="agent-dot running"></span>pg14 migration<span class="agent-note">⎇ chore/pg14 · 2 repos</span></li>
-                  <li><span class="agent-dot idle"></span>auth-refresh<span class="agent-note muted">archived</span></li>
-                </ul>
-
-                <p class="sidebar-section">PRs · current workset <span class="agent-count">3</span></p>
-                <ul class="agent-list">
-                  <li><span class="agent-dot running"></span>#412 rate-limit<span class="agent-note">api-gw</span></li>
-                  <li><span class="agent-dot running"></span>#88 token bucket<span class="agent-note">billing</span></li>
-                  <li><span class="agent-dot idle"></span>#39 pg14 mig<span class="agent-note">ledger</span></li>
-                </ul>
-
-                <div class="sidebar-footer">+ New workspace &nbsp;&nbsp; + New workset</div>
-              </aside>
-
-              <section class="app-main">
-                <header class="rv-header">
-                  <div class="rv-repo">
-                    <p class="rv-repo-name">api-gateway</p>
-                    <p class="rv-repo-path">~/payments/api-gateway</p>
-                  </div>
-                  <div class="rv-controls">
-                    <span class="rv-branch">⎇ feature/rate-limit ▾</span>
-                    <span class="rv-diffstat"><span class="add">+34</span> <span class="rem">−5</span> <span class="rv-files">3 files</span></span>
-                    <span class="rv-btn">Fetch</span>
-                    <span class="rv-btn">Pull</span>
-                    <span class="rv-btn rv-btn-accent">Push ⌘P</span>
-                    <span class="rv-btn rv-btn-danger">Abandon…</span>
-                  </div>
-                </header>
-
-                <nav class="rv-tabs">
-                  <span class="rv-tab is-active">Changes</span>
-                  <span class="rv-tab">History</span>
-                  <span class="rv-tab">Files</span>
-                  <span class="rv-tab">Stash</span>
-                  <span class="rv-tab">Branches</span>
-                </nav>
-
-                <div class="rv-body">
-                  <div class="rv-left">
-                    <div class="rv-aireview">✦ Review with AI</div>
-                    <p class="rv-changes-head">changes <span>3</span></p>
-                    <ul class="rv-files-list">
-                      <li class="rv-file is-active"><span class="rv-check">☑</span><span class="rv-file-glyph add">A</span><span class="rv-file-name">middleware/rateLimit.ts</span></li>
-                      <li class="rv-file"><span class="rv-check">☑</span><span class="rv-file-glyph mod">M</span><span class="rv-file-name">routes/login.ts</span></li>
-                      <li class="rv-file"><span class="rv-check">☑</span><span class="rv-file-glyph add">A</span><span class="rv-file-name">__tests__/rateLimit.spec.ts</span></li>
-                    </ul>
-                    <div class="rv-commit">
-                      <p class="rv-committing">committing as <strong>you</strong> &lt;you@example.com&gt; <span>· system git config</span></p>
-                      <div class="rv-msg">feat: add rate limiter to /api/login</div>
-                      <div class="rv-commit-row">
-                        <span class="rv-suggest">✦ Suggest with claude</span>
-                        <span class="rv-commit-btn">Commit 3 ⌘↵</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rv-diff">
-                    <div class="rv-diff-head"><span class="rv-file-glyph add">A</span> middleware/rateLimit.ts <span class="rv-diff-stat"><span class="add">+22</span> <span class="rem">−0</span></span></div>
-                    <pre class="rv-diff-body"><span class="rv-hunk">@@ new file @@</span><span class="add">+ import { bucket } from "./bucket";</span><span class="add">+</span><span class="add">+ export const loginLimiter = bucket({</span><span class="add">+   cap: 10,</span><span class="add">+   per: "60s",</span><span class="add">+   key: (req) =&gt; req.ip + ":" + req.body.username,</span><span class="add">+ });</span><span class="rv-ctx"> </span><span class="rv-hunk">@@ routes/login.ts @@</span><span class="add">+ import { loginLimiter } from "../middleware/rateLimit";</span><span class="rem">- router.post("/api/login", login);</span><span class="add">+ router.post("/api/login", loginLimiter, login);</span></pre>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </figure>
-          <p class="hero-caption">Two stacks of grouping. Workspaces above, worksets below.</p>
-        </div>
-      </div>
-
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span>n repos</span><span>·</span>
-          <span>01 workspace</span><span>·</span>
-          <span>02 worksets</span><span>·</span>
-          <span>00 metadata</span><span>·</span>
-          <span>plain git underneath</span><span>·</span>
-          <span>Apache 2.0</span><span>·</span>
-          <span>open source</span><span>·</span>
-          <span>n repos</span><span>·</span>
-          <span>01 workspace</span><span>·</span>
-          <span>02 worksets</span><span>·</span>
-          <span>00 metadata</span><span>·</span>
-          <span>plain git underneath</span><span>·</span>
-          <span>Apache 2.0</span><span>·</span>
-          <span>open source</span><span>·</span>
-        </div>
-      </div>
-    </header>
-
-
-    <!-- ─────────── THE GIT CLIENT ─────────── -->
-    <section class="features" id="client">
-      <div class="section-head">
-        <p class="kicker">[&nbsp;02&nbsp;] &nbsp;·&nbsp; the git client</p>
-        <h2 class="section-title">Everything you'd want from a git client, for a single repo.</h2>
-        <p class="section-lede">Before workspaces and worksets, overgit is a complete desktop git client. Each thing it does runs as the plain <code>git</code> command you'd have typed, and most buttons show that command before you press them.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-num">01</span>
-          <h3>Changes and staging</h3>
-          <p>A resizable file list with checkboxes and a bulk bar to stage, stash, or discard many files at once. The diff sits beside it, and a CodeMirror editor opens any file in the repo.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">02</span>
-          <h3>History and branch graph</h3>
-          <p>History, Files, Graph, and Stash tabs for every repo. The graph colors each lane and labels branches and tags where they point.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">03</span>
-          <h3>Branches without the typing</h3>
-          <p><kbd>⌘B</kbd> opens a searchable picker of local and remote branches. Create a branch inline, with an optional sync and pull first, or cherry-pick commits from any branch with a commit picker.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">04</span>
-          <h3>Rebase, merge, and cherry-pick</h3>
-          <p>Start them from the app, and continue or abort when git pauses. A repo stuck mid-rebase, merge, or cherry-pick is flagged, so it's never a surprise the next time you open it.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">05</span>
-          <h3>Worktrees</h3>
-          <p>See every worktree a repo has. If a branch is checked out in another worktree, overgit tells you where and offers to adopt it or remove that worktree. Missing ones are flagged for pruning.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">06</span>
-          <h3>Undo last commit</h3>
-          <p>Committed too early or to the wrong branch? Undo the last commit from the command palette and keep the changes.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">07</span>
-          <h3>Commit as the right person</h3>
-          <p>Above the commit box, "Committing as" shows the name and email the commit will use and where they come from. Set a per-repo identity once, and work, open-source, and personal repos stop borrowing each other's email.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">08</span>
-          <h3>Tags, remotes, submodules, LFS</h3>
-          <p>Each repo has a manage sheet for its tags, remotes, and identity, plus submodules and Git LFS status, so you don't need a terminal to find out what a repo is made of.</p>
-        </article>
-        <article class="feature">
-          <span class="feature-num">09</span>
-          <h3>Clone from your forge</h3>
-          <p>Browse the repos your <code>gh</code>, <code>glab</code>, or git credential helper can already reach on GitHub, GitLab, or Bitbucket. Pick one and the URL and folder fill in. Overgit never stores a token of its own.</p>
-        </article>
-      </div>
-    </section>
-
-
-    <!-- ─────────── FEATURES ─────────── -->
-    <section class="features" id="features">
-      <div class="section-head">
-        <p class="kicker">[&nbsp;03&nbsp;] &nbsp;·&nbsp; many repos at once</p>
-        <h2 class="section-title">Built for the day your work spans four repos.</h2>
-        <p class="section-lede">GitHub Desktop, Tower, and Fork are all one-repo-at-a-time. If your work spans services + shared libs + infra, you end up scripting your own "checkout <code>feature/x</code> everywhere" flow. Overgit fills that gap with two orthogonal ideas — <strong>workspaces</strong> for durable groupings, <strong>worksets</strong> for tickets — without ever writing inside <code>.git</code>.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-num">01</span>
-          <h3>Workspaces — durable groupings of repos</h3>
-          <p>A <em>workspace</em> is an identity-bearing bucket: "these repos are Platform," "these are Payments." It's the sidebar's collapsible section and the target for bulk actions across the whole group. Permanent. A repo can live in many workspaces — small shared libs are the common case.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">02</span>
-          <h3>Worksets — tickets you can resume across repos</h3>
-          <p>A <em>workset</em> is a transient unit of in-flight work: "ship the auth migration across <code>api-gateway</code>, <code>billing-svc</code>, and <code>ledger-core</code> this week." Bound to a feature branch. Sits above the workspace list in the sidebar, waiting for you to pick up where you left off. Archive when shipped. Reset when done.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">03</span>
-          <h3>Overlay, not metadata</h3>
-          <p>Overgit never writes inside <code>.git</code>. No manifest, no <code>.overgit</code> folder, no synthetic root, no special config. Workspaces and worksets live in overgit's settings file, not in your repos. Stop using overgit any time and your repos behave the same in any other tool.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">04</span>
-          <h3>Workspace-wide actions</h3>
-          <p>Fetch every repo in a workspace. Status every repo. <em>Reset every repo to its default branch</em> — fan-out fetch → switch → hard-reset to <code>origin/&lt;default&gt;</code> across the whole group. Workspace-wide PR list via <code>gh pr list --json</code> merged into one view.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">05</span>
-          <h3>Workset spin-up</h3>
-          <p>Pick the repos the ticket touches. Sync each to its default → pull → create the feature branch — all in one workflow. Per-repo outcomes if any of them fail. Stop scripting <code>for d in */; do git checkout …</code>.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">06</span>
-          <h3>Workset archive — done means done, not gone</h3>
-          <p>Shipped the ticket? <em>Archive</em> the workset. It vanishes from the active sidebar into a collapsed "Archived" section. The repos on disk are unchanged — overgit just stops surfacing the grouping. Reactivate any time. Three weeks later, when oncall asks "how did we ship that?", it's right there.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">07</span>
-          <h3>Workset reset — clean teardown</h3>
-          <p>One action fans out <em>fetch → switch back to <code>origin/&lt;default&gt;</code> → hard-reset → delete the workset's bound branch</em> across every member. Cleans up the whole feature in one shot. Same surface as workspace reset, scoped to just the repos the workset touched.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">08</span>
-          <h3>Smart reset safety</h3>
-          <p>Both reset flows detect repos with commits not on <code>origin/&lt;default&gt;</code> and <em>stop</em> before the hard-reset would erase them. You get a <code>[force reset (lose N)]</code> / <code>[skip]</code> choice per repo, with the commit count visible. Never a silent disaster.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">09</span>
-          <h3>Workset-wide commit &amp; push</h3>
-          <p>Type a message once, commit every dirty member, push every branch — per-repo outcomes if any of them fail. Same surface for fetch-all and "open PRs everywhere" via <code>gh</code>, scoped to the workset.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">10</span>
-          <h3>Command palette</h3>
-          <p><kbd>⌘K</kbd> opens a context-aware palette: switch / create branches, jump to repos, workspaces, and worksets, search files, run repo actions (stage all, fetch, pull, push, AI review).</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">11</span>
-          <h3>AI review &amp; suggest</h3>
-          <p>Detects <code>claude</code>, <code>codex</code>, and <code>gemini</code>. Pipes diffs into the chosen CLI in non-interactive mode. <em>Suggest</em> drafts a conventional-commit message from the staged diff and drops it into the commit input.</p>
-        </article>
-
-        <article class="feature">
-          <span class="feature-num">12</span>
-          <h3>Keyboard first · your CLI auth</h3>
-          <p><kbd>⌘K</kbd> palette · <kbd>⌘B</kbd> branches · <kbd>⌘N</kbd> new branch · <kbd>⌘1–4</kbd> tabs · <kbd>⌘R</kbd> refresh · <kbd>⌘\</kbd> sidebar · <kbd>⌘,</kbd> settings. Whatever auth your <code>claude</code>, <code>codex</code>, <code>gemini</code>, and <code>gh</code> already have is the auth Overgit uses. Nothing leaves your machine via Overgit.</p>
-        </article>
-      </div>
-    </section>
-
-
-    <!-- ─────────── WORKSPACE EXPLAINER ─────────── -->
-    <section class="colosseum terminal" id="workspace">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;04&nbsp;] &nbsp;·&nbsp; what a workspace looks like</p>
-        <h2 class="display-title">
-          <span>Group the repos once.</span>
-          <span class="em">Act on all of them.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          A <strong>workspace</strong> is a durable bucket of repos you treat as one. Aggregate health at a glance — who's dirty, who's ahead, who's behind — then <strong>fetch all</strong>, <strong>status all</strong>, or <strong>reset all</strong> in a single action. Click any row to drop straight into that repo.
-        </p>
-      </div>
-
-      <div class="wsp-board" aria-label="a workspace detail view — aggregate health across repos">
-        <header class="wsp-board-head">
-          <div class="wsp-board-title">
-            <h3>payments-platform <span class="wsp-tag">workspace</span></h3>
-            <p>4 repos in this workspace. Aggregate health below; click any row to open the repo.</p>
-          </div>
-          <div class="wsp-toolbar">
-            <span class="wsp-btn wsp-btn-primary">Reset all</span>
-            <span class="wsp-btn">Fetch all</span>
-            <span class="wsp-btn">Edit</span>
-            <span class="wsp-btn">Remove</span>
-          </div>
-        </header>
-
-        <p class="wsp-summary"><span class="warn">1 dirty</span> &nbsp;·&nbsp; <span>0 ahead</span> &nbsp;·&nbsp; <span>0 behind</span></p>
-
-        <table class="wsp-table">
-          <thead>
-            <tr>
-              <th>repo</th>
-              <th>branch</th>
-              <th class="num">dirty</th>
-              <th class="num">ahead</th>
-              <th class="num">behind</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="wsp-repo"><strong>api-gateway</strong><em>~/payments/api-gateway</em></td>
-              <td class="wsp-branch">main</td>
-              <td class="num warn">2</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-            </tr>
-            <tr>
-              <td class="wsp-repo"><strong>billing-svc</strong><em>~/payments/billing-svc</em></td>
-              <td class="wsp-branch">main</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-            </tr>
-            <tr>
-              <td class="wsp-repo"><strong>ledger-core</strong><em>~/payments/ledger-core</em></td>
-              <td class="wsp-branch">main</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-            </tr>
-            <tr>
-              <td class="wsp-repo"><strong>infra</strong><em>~/payments/infra</em></td>
-              <td class="wsp-branch">main</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-              <td class="num zero">·</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="colosseum-ribbon"><span>one bucket</span> · <span>every repo</span> · <span>one action</span></p>
-    </section>
-
-
-    <!-- ─────────── WORKSET LIFECYCLE EXPLAINER ─────────── -->
-    <section class="colosseum terminal" id="workset">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;05&nbsp;] &nbsp;·&nbsp; the workset lifecycle</p>
-        <h2 class="display-title">
-          <span>Spin up.</span>
-          <span class="em">Ship.</span>
-          <span>Reset&nbsp;everything.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          A <strong>workset</strong> is a ticket pinned to a feature branch and the repos that branch touches. Create it once — overgit branches across every member in one move. Commit and push together. Open every PR with <code>gh</code>. When the work ships, one action <strong>fetches, switches back to <code>origin/&lt;default&gt;</code>, hard-resets every member, and deletes the bound branch</strong> — with per-repo safety checks for unmerged commits. The repos never know they're related. Overgit knows.
-        </p>
-      </div>
-
-      <div class="ws-board" aria-label="a workset detail view — repos pinned to one branch, mid-flight">
-        <header class="ws-board-head">
-          <span class="ws-branch">⎇ feature/rate-limit</span>
-          <span class="ws-board-meta">4 repos · CLIs: gh</span>
-        </header>
-
-        <div class="ws-resume">
-          <div class="ws-resume-text">
-            <strong>⚠ Pick up where you left off</strong>
-            <span>2 of 4 repos drifted off this branch. Resume to checkout <code>feature/rate-limit</code> across them.</span>
-          </div>
-          <span class="ws-resume-btn">Resume</span>
-        </div>
-
-        <div class="ws-flow" aria-label="workset lifecycle">
-          <div class="ws-stage partial">
-            <span class="ws-stage-dot">◑</span>
-            <span class="ws-stage-text"><strong>Branch</strong><em>2 / 4 on feature/rate-limit</em></span>
-          </div>
-          <span class="ws-flow-bar"></span>
-          <div class="ws-stage pending">
-            <span class="ws-stage-dot"></span>
-            <span class="ws-stage-text"><strong>Commit</strong><em>branch first</em></span>
-          </div>
-          <span class="ws-flow-bar"></span>
-          <div class="ws-stage pending">
-            <span class="ws-stage-dot"></span>
-            <span class="ws-stage-text"><strong>Push</strong><em>commit first</em></span>
-          </div>
-          <span class="ws-flow-bar"></span>
-          <span class="ws-archive is-disabled">Archive</span>
-        </div>
-
-        <div class="ws-stats">
-          <div class="ws-stat">
-            <span class="ws-stat-label">repos</span>
-            <span class="ws-stat-num">4</span>
-            <span class="ws-stat-sub">all loaded</span>
-          </div>
-          <div class="ws-stat">
-            <span class="ws-stat-label">dirty</span>
-            <span class="ws-stat-num">0</span>
-            <span class="ws-stat-sub">all clean</span>
-          </div>
-          <div class="ws-stat">
-            <span class="ws-stat-label">ahead / behind</span>
-            <span class="ws-stat-num">0 / 0</span>
-            <span class="ws-stat-sub">vs upstream</span>
-          </div>
-          <div class="ws-stat ws-stat-wide">
-            <span class="ws-stat-label">branch spread</span>
-            <span class="ws-stat-num ws-stat-warn">2 branches</span>
-            <span class="ws-stat-sub">2 of 4 off feature/rate-limit</span>
-          </div>
-        </div>
-
-        <div class="ws-status">
-          <p class="ws-status-head">status &nbsp;·&nbsp; one branch is the goal — sync the stragglers</p>
-          <ul class="ws-status-list">
-            <li class="ws-status-row">
-              <span class="ws-status-repo">api-gateway</span>
-              <span class="ws-status-path">~/payments/api-gateway</span>
-              <span class="ws-status-branch on">feature/rate-limit</span>
-            </li>
-            <li class="ws-status-row">
-              <span class="ws-status-repo">billing-svc</span>
-              <span class="ws-status-path">~/payments/billing-svc</span>
-              <span class="ws-status-branch on">feature/rate-limit</span>
-            </li>
-            <li class="ws-status-row drifted">
-              <span class="ws-status-repo">ledger-core</span>
-              <span class="ws-status-path">~/payments/ledger-core</span>
-              <span class="ws-status-branch off">main</span>
-              <span class="ws-status-sync">Sync to feature/rate-limit</span>
-            </li>
-            <li class="ws-status-row drifted">
-              <span class="ws-status-repo">infra</span>
-              <span class="ws-status-path">~/payments/infra</span>
-              <span class="ws-status-branch off">main</span>
-              <span class="ws-status-sync">Sync to feature/rate-limit</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="colosseum-ribbon"><span>one branch is the goal</span> · <span>resume the stragglers</span> · <span>then ship together</span></p>
-
-      <div class="reset-panel">
-        <header class="reset-head">
-          <span class="reset-kicker">↺&nbsp; one click later · &nbsp;<strong>Reset workset to default</strong></span>
-          <span class="reset-meta">payments-platform · feature/rate-limit · 4 repos</span>
-        </header>
-        <ul class="reset-rows">
-          <li class="reset-row">
-            <span class="reset-repo">api-gateway</span>
-            <span class="reset-arrow">→</span>
-            <span class="reset-state ok">on main · clean</span>
-            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feature/rate-limit</code></span>
-          </li>
-          <li class="reset-row">
-            <span class="reset-repo">billing-svc</span>
-            <span class="reset-arrow">→</span>
-            <span class="reset-state ok">on main · clean</span>
-            <span class="reset-detail">fetched · switched · reset to <code>origin/main</code> · deleted <code>feature/rate-limit</code></span>
-          </li>
-          <li class="reset-row">
-            <span class="reset-repo">ledger-core</span>
-            <span class="reset-arrow">→</span>
-            <span class="reset-state ok">already on main</span>
-            <span class="reset-detail">nothing to reset · deleted <code>feature/rate-limit</code></span>
-          </li>
-          <li class="reset-row warn">
-            <span class="reset-repo">infra</span>
-            <span class="reset-arrow">⚠</span>
-            <span class="reset-state warn">2 unmerged commits</span>
-            <span class="reset-detail">hard-reset would erase 2 local commits not on <code>origin/main</code> · <em>[force reset (lose 2)]</em> · <em>[skip]</em></span>
-          </li>
-        </ul>
-        <p class="reset-foot">Smart safety: any repo with commits not on <code>origin/&lt;default&gt;</code> stops and asks. The other repos still complete. You get per-repo outcomes, never a silent disaster.</p>
-      </div>
-    </section>
-
-
-    <!-- ─────────── LANDING CHECK ─────────── -->
-    <!-- Shipped in v0.3.0. -->
-    <section class="colosseum terminal" id="landing">
-      <div class="colosseum-head">
-        <p class="kicker">[&nbsp;06&nbsp;] &nbsp;·&nbsp; landing check</p>
-        <h2 class="display-title">
-          <span>Know it will merge</span>
-          <span class="em">before you open the PR.</span>
-        </h2>
-        <p class="section-lede colosseum-lede">
-          Landing Check keeps asking one question for every workset: will each branch merge cleanly into its repo's default branch? It lists the files that would conflict, and warns when two of your active worksets would collide in the same repo. It simulates every merge with <code>git merge-tree</code>, so your working tree, index, and branches are never touched.
-        </p>
-      </div>
-
-      <div class="og-land" aria-label="a preview of Landing Check on a workset">
-        <div class="og-land-main">
-          <header class="og-land-head">
-            <div>
-              <h3>rate-limit rollout <span class="og-tag">⎇ feat/rate-limit</span></h3>
-              <p>2 lands clean · 1 conflicts · 1 already merged · as of 3 minutes ago</p>
-            </div>
-            <span class="og-btn" title="git fetch && git merge-tree --write-tree --name-only &lt;branch&gt; origin/&lt;default&gt;">Re-check</span>
-          </header>
-
-          <p class="og-land-caveat">Committed work only. 1 repo has uncommitted files not included in this check.</p>
-
-          <ul class="og-land-rows">
-            <li class="is-ok"><span class="og-dot ok"></span><b>api-gateway</b><span>lands clean on origin/main</span></li>
-            <li class="is-bad">
-              <span class="og-dot bad"></span><b>billing-svc</b><span>conflicts with origin/main:</span>
-              <span class="og-files"><code class="is-open">src/limits.ts</code> <code>src/routes/login.ts</code></span>
-              <span class="og-actions"><span class="og-btn og-btn-go">Rebase</span><span class="og-btn">Merge</span></span>
-            </li>
-            <li class="is-muted"><span class="og-dot off"></span><b>ledger-core</b><span>already contained in origin/main</span></li>
-            <li class="is-ok"><span class="og-dot ok"></span><b>infra</b><span>lands clean on origin/main</span></li>
-          </ul>
-
-          <div class="og-coll">
-            <p class="og-coll-h">Collisions with other worksets <span>1 conflicting branch · 3 with no overlap</span></p>
-            <div class="og-coll-card">
-              <b>billing-svc</b>
-              <p><code>feat/rate-limit</code> and <code>chore/pg14</code> from <em>pg14 migration</em> both change <code>src/db/pool.ts</code></p>
-            </div>
-            <p class="og-coll-quiet">api-gateway, ledger-core, infra: no overlap with other worksets</p>
-          </div>
-        </div>
-
-        <figure class="og-preview">
-          <header><span>src/limits.ts</span><em>simulated conflict · read-only</em></header>
-          <pre><span class="c-ctx">export const loginLimiter = bucket({</span>
-<span class="c-mark">&lt;&lt;&lt;&lt;&lt;&lt;&lt; feat/rate-limit</span>
-<span class="c-ours">  cap: 10,</span>
-<span class="c-ours">  per: "60s",</span>
-<span class="c-mark">=======</span>
-<span class="c-theirs">  cap: 20,</span>
-<span class="c-theirs">  per: "1m",</span>
-<span class="c-theirs">  burst: 5,</span>
-<span class="c-mark">&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</span>
-<span class="c-ctx">  key: (req) =&gt; req.ip,</span>
-<span class="c-ctx">});</span></pre>
-          <figcaption>Nothing was checked out to show this. Rebase or Merge runs for real only when you press it.</figcaption>
-        </figure>
-      </div>
-
-      <dl class="og-points">
-        <div>
-          <dt>Never touches your checkout</dt>
-          <dd><code>git merge-tree --write-tree</code> works without changing your working tree, index, or refs. The leftover objects are unreachable, and git's normal cleanup removes them.</dd>
-        </div>
-        <div>
-          <dt>Always current</dt>
-          <dd>It re-checks after background fetches, remembers results for branch pairs that haven't changed, and shows conflicts in the sidebar, the workset page, and the command palette.</dd>
-        </div>
-        <div>
-          <dt>Worksets that collide</dt>
-          <dd>Two tickets touching the same repo are simulated against each other as well, so you find out before the second PR, not after the first one merges.</dd>
-        </div>
-        <div>
-          <dt>A fix one click away</dt>
-          <dd>Each conflicting repo offers Rebase or Merge onto its default branch, with the exact command shown. It needs Git 2.38 or later and says so on older versions.</dd>
-        </div>
-      </dl>
-    </section>
-
-
-    <!-- ─────────── PHILOSOPHY ─────────── -->
-    <section class="story" id="story">
-      <div class="story-body">
-        <p class="kicker">[&nbsp;07&nbsp;] &nbsp;·&nbsp; why overgit exists</p>
-        <h2 class="display-title story-title">
-          <span>Move across repos,</span>
-          <span><em>own</em> none of them.</span>
-        </h2>
-        <p>
-          Overgit optimizes for the day your work spans four repos at once — when juggling them by hand is the thing slowing you down. Workspaces and worksets are UI groupings, not files on disk: every action is a plain <code>git</code> command run in the repo's own directory, so you keep moving without inventing a meta-format that something else has to understand. If you uninstall overgit tomorrow, your repos forget it ever existed.
-        </p>
-        <p>
-          It's built for the realistic case — your work spans services and shared libs and infra, your teammates use whatever client they like, and the only thing the repos agree on is <code>git</code>. Overgit sits over the top, coordinates, and stays out of the way.
-        </p>
-        <p class="story-sig">
-          Sibling project of <a href="../overcli/">overcli</a>. Written &amp; maintained by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel Farr</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen Farr</a>. Open-source — <a href="https://github.com/overcodelions/overgit/graphs/contributors" target="_blank" rel="noopener">contributors</a>, issues, and PRs welcome.
-        </p>
-      </div>
-    </section>
-
-
-    <!-- ─────────── DOWNLOAD ─────────── -->
-    <!-- ─────────── FAQ ─────────── -->
-    <section class="faq-section" id="faq">
-      <div class="faq-grid">
-        <div class="section-head">
-          <p class="kicker">&#9484;&#9472; [&nbsp;08&nbsp;] &nbsp;·&nbsp; before you point it at real repos</p>
-          <h2 class="section-title">Questions your team will ask.</h2>
-          <p class="section-lede">Overgit is an overlay on git, not a replacement for it. Most of these answers follow from that one fact.</p>
-        </div>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>What does it cost?</summary>
-            <p>Nothing. Overgit is <strong>free and open source</strong> under Apache 2.0 — no licence to buy, no per-seat pricing, no paid tier holding features back. There is no account to create and no server to pay for: it is a desktop app driving the git you already have.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Does it change anything inside our repos?</summary>
-            <p>It never writes inside <code>.git</code>. Workspaces and worksets live in overgit's own state; everything it does to a repo runs as the plain <code>git</code> commands you'd have typed yourself.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What happens if we stop using it?</summary>
-            <p>Uninstall it and your repos forget it ever existed — same branches, same remotes, same config. There is no migration to undo and nothing to export, because nothing was ever stored in the repo.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What's the difference between a workspace and a workset?</summary>
-            <p>A workspace is a durable grouping of repos — "these are Platform," "these are Payments" — the lens you fetch, status, and reset across. A workset is a ticket you can resume across those repos, pinned to a feature branch: spin up, ship, archive, reset.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Is a reset going to eat someone's work?</summary>
-            <p>Every destructive flow shows you exactly what it is about to discard, per repo, before it runs. That check is the reason the feature exists.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Does it work with our git host?</summary>
-            <p>If it speaks git, yes — overgit doesn't care who hosts it. On top of that, cloning can browse <strong>GitHub, GitLab and Bitbucket</strong> directly, and pull request aggregation goes through the <code>gh</code> CLI. All of it rides on credentials already on the machine — your <code>gh</code> or <code>glab</code> login, or your git credential helper. Overgit never asks for, stores, or transmits a token of its own.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Can we audit or build it ourselves?</summary>
-            <p>Yes — Apache 2.0, and the repo builds from source. There is no server component to review: it is a desktop app driving local git.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="download" id="download">
-      <div class="section-head">
-        <p class="kicker">[&nbsp;09&nbsp;] &nbsp;·&nbsp; grab a build</p>
-        <h2 class="section-title">Signed, notarized, and real.</h2>
-        <p class="section-lede">Overgit is in beta, and from v0.3.0 the macOS builds are <em>Developer-ID signed and notarized by Apple</em>, with the same Developer ID as overcli. They open on a double-click. Windows isn't code-signed yet, so SmartScreen may still flag it. From v0.4.2 it updates itself from GitHub Releases, so this is the last download you do by hand. Either way, the source is right there if you'd rather build it yourself.</p>
-      </div>
-
-      <div class="dl-wrap">
-        <table class="dl-table">
-          <tbody>
-            <tr>
-              <td class="dl-platform">
-                <span class="dl-glyph">⌘</span>
-                <span>
-                  <strong>macOS</strong>
-                  <em>arm64 + x64</em>
-                </span>
-              </td>
-              <td class="dl-format">.dmg &nbsp;· &nbsp;.zip</td>
-              <td class="dl-size">~ 115 MB</td>
-              <td class="dl-action">
-                <a class="dl-btn" href="https://github.com/overcodelions/overgit/releases" target="_blank" rel="noopener">
-                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td class="dl-platform">
-                <span class="dl-glyph">⊞</span>
-                <span>
-                  <strong>Windows</strong>
-                  <em>x64 + arm64</em>
-                </span>
-              </td>
-              <td class="dl-format">NSIS installer</td>
-              <td class="dl-size">~ 185 MB</td>
-              <td class="dl-action">
-                <a class="dl-btn" href="https://github.com/overcodelions/overgit/releases" target="_blank" rel="noopener">
-                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td class="dl-platform">
-                <span class="dl-glyph">🐧</span>
-                <span>
-                  <strong>Linux</strong>
-                  <em>x64 + arm64</em>
-                </span>
-              </td>
-              <td class="dl-format">.AppImage &nbsp;· &nbsp;.deb</td>
-              <td class="dl-size">~ 90–120 MB</td>
-              <td class="dl-action">
-                <a class="dl-btn" href="https://github.com/overcodelions/overgit/releases" target="_blank" rel="noopener">
-                  <span class="btn-bracket">[</span>download<span class="btn-bracket">]</span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <aside class="dl-note">
-          <p class="note-tag">&#9888; heads up</p>
-          <p>
-            macOS opens clean now: signed with a Developer ID and <em>notarized by Apple</em>, so there's no Gatekeeper prompt.
-            Windows isn't code-signed yet, so SmartScreen may say <em>"unrecognized app"</em> → <strong>More info</strong> → <strong>Run anyway</strong>.
-          </p>
-          <p class="note-snippet">
-            <span class="snippet-prompt">$</span>
-            <span>git clone https://github.com/overcodelions/overgit &amp;&amp; cd overgit &amp;&amp; npm install &amp;&amp; npm run dist:mac</span>
-          </p>
-          <p class="note-foot">— if you'd rather build it yourself.</p>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-
-  <!-- ─────────── FOOTER / TMUX STATUS LINE ─────────── -->
-  <footer class="site-footer" aria-label="footer">
-    <div class="status-line">
-      <span class="sl-cell sl-brand">
-        <img src="assets/icon.png" alt="" class="sl-mark" />
-        overgit
-      </span>
-      <span class="sl-cell">v0.4.3 · beta</span>
-      <span class="sl-cell"><a href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github</a></span>
-      <span class="sl-cell"><a href="https://github.com/overcodelions/overgit/issues" target="_blank" rel="noopener">issues</a></span>
-      <span class="sl-cell sl-spacer"></span>
-      <span class="sl-cell">sibling of</span>
-      <span class="sl-cell"><a href="../overcli/">overcli</a></span>
-      <span class="sl-cell">·</span>
-      <span class="sl-cell"><a href="../overdb/">overdb</a></span>
-      <span class="sl-cell">·</span>
-      <span class="sl-cell"><a href="../">codelions</a></span>
-      <span class="sl-cell sl-clock" id="sl-clock">00:00</span>
+  <header class="fx-nav">
+    <div class="fx-wrap">
+      <a class="fx-brand" href="../" aria-label="codelions home"><span style="flex: none; width: 28px; height: 28px; border-radius: 7px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span><b>codelions</b></a>
+      <span class="fx-sep" aria-hidden="true"></span>
+      <nav class="fx-switch" aria-label="products"><a href="../overcli/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span>overcli</a><a href="../overgit/" aria-current="page"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span>overgit</a><a href="../overdb/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</a></nav>
+      <span class="fx-navlinks"><span class="fx-meta fx-ver">v0.4.4 · beta</span><a href="https://github.com/overcodelions/overgit/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a><a href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">GitHub</a><a class="fx-navcta" href="https://github.com/overcodelions/overgit/releases/latest" target="_blank" rel="noopener">Download</a></span>
     </div>
-    <p class="footer-fine">
-      <span class="ff-credit"><strong>Open source</strong>, Apache 2.0. Built by a father and son, <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> and <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr.</span>
-      <span class="ff-legal">Not affiliated with GitHub. <span class="ff-sep">·</span> Pageviews counted with Cloudflare Web Analytics, no cookies. The app sends <a href="#faq">nothing</a>. <span class="ff-sep">·</span> Site built in <a href="../overcli/">overcli</a>.</span>
-    </p>
+  </header>
+  <section class="fx-hero">
+    <div class="fx-wrap">
+      <div class="fx-hero-top"><p class="fx-eyebrow">[ <b>overgit</b> ] · a git client</p></div>
+      <div class="fx-hero-l"><h1 class="fx-h1">A better git client.<br><em>For one repo or forty.</em></h1></div>
+      <div class="fx-hero-r"><p class="fx-lede">Stage, commit, read the graph and push — fast, with the keyboard. And when a ticket touches several repos, a workset branches, commits and pushes them together, and tells you before you push whether it all lands.</p><div class="fx-btns"><a class="fx-btn fx-btn--ink" href="https://github.com/overcodelions/overgit/releases/latest" target="_blank" rel="noopener">Download overgit</a><a class="fx-btn fx-btn--line" href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">Clone source</a></div><p class="fx-meta">plain git commands · keeps none of its own data in .git · macOS, Windows, Linux</p></div>
+    </div>
+  </section>
+  <section class="fx-slab" aria-label="what overgit does">
+    <div data-dc="overgit" data-template="tpl-overgit"></div>
+  </section>
+  <section class="fx-sec">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>the basics</b> ] · everything you'd expect</p><h2 class="fx-h2">Every git client feature you use daily. Then some.</h2></div><p class="fx-lede">Before worksets and Landing Check, it has to be a git client you would pick anyway — so the everyday work is fast, keyboard-first and plain git underneath.</p></div>
+      <div class="fx-checks"><div><h4>changes</h4><ul><li>Stage, unstage and discard — one file or a checked set</li><li>Commit, amend, and undo the last commit</li><li>Stash with a message</li><li>Diffs for every change, and a syntax-highlighted file editor</li></ul></div><div><h4>branches &amp; remotes</h4><ul><li>Fetch, pull and push, with ahead and behind always showing</li><li>Branch picker ⌘B — switch, create, sync and pull first</li><li>Cherry-pick from any branch</li><li>Clone from a URL, GitHub, GitLab or Bitbucket</li><li>Pull requests through gh</li></ul></div><div><h4>history &amp; help</h4><ul><li>History as a graph or a list — filter by subject, sha, author or ref</li><li>Conflicts: rebase, merge, or ✨ Resolve with claude</li><li>Review with AI and ✨ Suggest a commit message</li><li>Command palette ⌘K, and a shortcut for everything</li></ul></div></div>
+    </div>
+  </section>
+  <section class="fx-sec">
+    <div class="fx-wrap fx-row">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>worksets</b> ] · a ticket across repos</p><h2 class="fx-h2">Leave a ticket for a week. Pick it up in one click.</h2><p class="fx-body">A workset is the work in flight: the repos a ticket touches, pinned to one branch. Come back to it after other work and overgit sees which repos drifted — Resume puts every one back on the branch, and stops to ask about anything dirty.</p></div>
+      <div class="fx-vis" data-fit="520"><div><figure aria-label="a workset: three repos on one branch, landing on main" style="margin: 0; position: relative; width: 520px; max-width: 100%; height: 300px">
+      <svg width="520" height="300" viewBox="0 0 520 300" fill="none" stroke-linecap="round" aria-hidden="true">
+        <path d="M40 60 H480" stroke="#cdd2db" stroke-width="3"/><path d="M40 150 H480" stroke="#cdd2db" stroke-width="3"/><path d="M40 240 H480" stroke="#cdd2db" stroke-width="3"/>
+        <path d="M120 60 C170 60 170 30 220 30 H360 C410 30 410 60 450 60" stroke="#0f7b5f" stroke-width="3"/>
+        <path d="M120 150 C170 150 170 120 220 120 H360 C410 120 410 150 450 150" stroke="#0f7b5f" stroke-width="3"/>
+        <path d="M120 240 C170 240 170 210 220 210 H360 C410 210 410 240 450 240" stroke="#0f7b5f" stroke-width="3"/>
+        <g fill="#ffffff" stroke="#0f7b5f" stroke-width="3"><circle cx="260" cy="30" r="7"/><circle cx="320" cy="30" r="7"/><circle cx="260" cy="120" r="7"/><circle cx="260" cy="210" r="7"/><circle cx="320" cy="210" r="7"/></g>
+        <g fill="#0f7b5f"><circle cx="450" cy="60" r="8"/><circle cx="450" cy="150" r="8"/><circle cx="450" cy="240" r="8"/></g>
+      </svg>
+      <span style="position: absolute; left: 0; top: 70px; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #5c6270">api-gateway</span><span style="position: absolute; left: 0; top: 160px; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #5c6270">billing-svc</span><span style="position: absolute; left: 0; top: 250px; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #5c6270">web-app</span>
+      <span style="position: absolute; left: 220px; top: 0; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #0f7b5f">feat/rate-limit</span>
+      <span style="position: absolute; right: 0; top: 274px; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: #15803d">3 of 3 land clean</span>
+    </figure></div></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--tight fx-sec--rule" id="row-everyday">
+    <div class="fx-wrap fx-row">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>everyday</b> ]</p><h3 class="fx-h3">The keyboard does the walking.</h3><p class="fx-body">⌘K runs anything — switch a branch, jump to a repo or workset, push the whole workset. ⌘B is a branch picker that can sync, pull and branch in one go.</p></div>
+      <div class="fx-vis" data-fit="560"><div><div style="border-radius: 16px; background: #141419; border: 1px solid #23232c; padding: 24px; color: #ededf2; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 30px 60px -36px rgba(13,15,21,.55)"><span style="padding: 10px 12px; border-radius: 9px; border: 1px solid #34343d; color: #8a8a99; font-size: 14px">Switch branch · run command · jump to repo / workset</span><span style="display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; font-size: 14px; background: rgba(138,120,255,.18)"><span>Stage all &amp; suggest commit message</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #75757f">Repo</span></span><span style="display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; font-size: 14px; "><span>Check landing across workset</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #75757f">Worksets</span></span><span style="display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; font-size: 14px; "><span>Push all across workset</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #75757f">Worksets</span></span><span style="display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; font-size: 14px; "><span>Undo last commit</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #75757f">Repo</span></span><span style="display: flex; justify-content: space-between; padding: 7px 12px; border-radius: 7px; font-size: 14px; "><span>Reset all repos to default branch</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #75757f">App</span></span></div></div></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--tight fx-sec--rule" id="row-ai">
+    <div class="fx-wrap fx-row fx-row--flip">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>ai</b> ]</p><h3 class="fx-h3">A second reader for every diff.</h3><p class="fx-body">Review with AI pipes the diff to claude, codex or gemini on your own login. Suggest drafts the commit message from what you staged. overgit itself sends nothing anywhere — reviews run through your own claude, codex or gemini login.</p></div>
+      <div class="fx-vis" data-fit="560"><div><div style="border-radius: 16px; background: #141419; border: 1px solid #23232c; padding: 24px; color: #ededf2; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 30px 60px -36px rgba(13,15,21,.55)"><span style="font-size: 15px; font-weight: 600">Review with AI · api-gateway</span><span style="display: flex; gap: 8px; font-size: 13px"><span style="padding: 4px 10px; border-radius: 6px; background: #26262e">claude ▾</span><span style="padding: 4px 10px; border-radius: 6px; background: #26262e">Staged</span><span style="padding: 4px 10px; border-radius: 6px; color: #8a8a99">Working tree</span><span style="margin-left: auto; padding: 4px 10px; border-radius: 6px; background: #8a78ff; color: #fff">Run review</span></span><span style="padding: 10px 12px; border-radius: 9px; border-left: 2px solid #8a78ff; background: #1b1b22; font-size: 14px; line-height: 1.55">The limiter keys on the raw username, so <code style="font-family: 'Geist Mono', monospace">Dana</code> and <code style="font-family: 'Geist Mono', monospace">dana</code> get separate buckets. Lower-case it first.</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #8a8a99">✨ Suggest with claude · drafts the message from the staged diff</span></div></div></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--tight fx-sec--rule" id="row-safety">
+    <div class="fx-wrap fx-row">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>safety</b> ]</p><h3 class="fx-h3">Reset forty repos without losing one commit.</h3><p class="fx-body">Reset all fetches, switches and pulls every repo in a workspace. A repo with commits that would be lost stops and asks — force it, or skip it.</p></div>
+      <div class="fx-vis" data-fit="560"><div><div style="border-radius: 16px; background: #141419; border: 1px solid #23232c; padding: 24px; color: #ededf2; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 30px 60px -36px rgba(13,15,21,.55)"><span style="font-size: 15px; font-weight: 600">Reset Platform to default</span><span style="font-size: 13px; color: #8a8a99">Running fetch → switch → pull on each repo. Dirty repos are skipped.</span><span style="display: flex; justify-content: space-between; padding: 8px 11px; border-radius: 8px; background: #1b1b22; font-size: 13.5px"><span>api-gateway</span><span style="color: #34d399">on main</span></span><span style="display: flex; justify-content: space-between; padding: 8px 11px; border-radius: 8px; background: #1b1b22; font-size: 13.5px"><span>billing-svc</span><span style="color: #fbbf24">Dirty — 2 files</span></span><span style="display: flex; justify-content: space-between; padding: 8px 11px; border-radius: 8px; background: #1b1b22; font-size: 13.5px"><span>ledger-core</span><span style="color: #fbbf24">3 unpushed commits</span></span><span style="display: flex; gap: 8px; font-size: 13px"><span style="padding: 5px 11px; border-radius: 6px; border: 1px solid #34343d">Open repo</span><span style="padding: 5px 11px; border-radius: 6px; background: rgba(239,68,68,.8); color: #fff">Force reset (lose 3)</span><span style="padding: 5px 11px; border-radius: 6px; border: 1px solid #34343d">Skip</span></span></div></div></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--rule">
+    <div class="fx-wrap fx-latest">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>latest</b> ] · from the changelog</p><h2 class="fx-h2" style="font-size: clamp(32px, 3.4vw, 44px)">Latest release:<br>v0.4.4, Oct 14.</h2><a class="fx-meta" style="color: var(--fx-c)" href="https://github.com/overcodelions/overgit/blob/main/CHANGELOG.md" target="_blank" rel="noopener">full changelog →</a></div>
+      <div class="fx-releases"><a href="https://github.com/overcodelions/overgit/releases/tag/v0.4.4" target="_blank" rel="noopener"><span class="d">Oct 14</span><span class="v">0.4.4</span><span class="t">An interface size setting from 85% to 150%, and Stash &amp; retry that works on files hidden with skip-worktree or assume-unchanged.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overgit/releases/tag/v0.4.3" target="_blank" rel="noopener"><span class="d">Sep 27</span><span class="v">0.4.3</span><span class="t">Starts faster, opens maximized, and repo status loads in parallel.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overgit/releases/tag/v0.4.2" target="_blank" rel="noopener"><span class="d">Sep 23</span><span class="v">0.4.2</span><span class="t">Updates itself — Stable follows releases, Nightly follows the daily builds.</span><span aria-hidden="true">→</span></a><a href="https://github.com/overcodelions/overgit/releases/tag/v0.4.0" target="_blank" rel="noopener"><span class="d">Sep 23</span><span class="v">0.4.0</span><span class="t">A first-run welcome, a Getting started checklist, help sheets and a native menu.</span><span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--rule" id="download">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>download</b> ] · grab a build</p><h2 class="fx-h2">Signed, notarized, and real.</h2></div><p class="fx-lede">Overgit is in beta, and from v0.3.0 the macOS builds are <em>Developer-ID signed and notarized by Apple</em>, with the same Developer ID as overcli. They open on a double-click. Windows isn't code-signed yet, so SmartScreen may still flag it. From v0.4.2 it updates itself from GitHub Releases, so this is the last download you do by hand. Either way, the source is right there if you'd rather build it yourself.</p></div>
+      <div class="fx-dl"><a href="https://github.com/overcodelions/overgit/releases/latest" target="_blank" rel="noopener"><strong>macOS</strong><em>arm64 + x64</em><em>.dmg · .zip · ~ 115 MB</em><span>Download →</span></a><a href="https://github.com/overcodelions/overgit/releases/latest" target="_blank" rel="noopener"><strong>Windows</strong><em>x64 + arm64</em><em>NSIS installer · ~ 185 MB</em><span>Download →</span></a><a href="https://github.com/overcodelions/overgit/releases/latest" target="_blank" rel="noopener"><strong>Linux</strong><em>x64 + arm64</em><em>.AppImage · .deb · ~ 90–120 MB</em><span>Download →</span></a></div>
+      <p class="fx-note">Stable macOS builds open clean — signed with a Developer ID and notarized by Apple, so there's no Gatekeeper prompt. Windows isn't code-signed yet: SmartScreen may say “unrecognized app” → <strong>More info</strong> → <strong>Run anyway</strong>. Rather build it yourself?<br><code>git clone https://github.com/overcodelions/overgit &amp;&amp; cd overgit &amp;&amp; npm install &amp;&amp; npm run dist:mac</code></p>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--rule" id="faq">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>faq</b> ]</p><h2 class="fx-h2">Questions your team will ask.</h2></div><span></span></div>
+      <div class="fx-faq"><details><summary>What does it cost?</summary><p>Nothing. Overgit is <strong>free and open source</strong> under Apache 2.0 — no licence to buy, no per-seat pricing, no paid tier holding features back. There is no account to create and no server to pay for: it is a desktop app driving the git you already have.</p></details><details><summary>Does it change anything inside our repos?</summary><p>It keeps none of its own data inside <code>.git</code>. Workspaces and worksets live in overgit's own state; everything it does to a repo runs as the plain <code>git</code> commands you'd have typed yourself.</p></details><details><summary>What happens if we stop using it?</summary><p>Uninstall it and your repos forget it ever existed — same branches, same remotes, same config. There is no migration to undo and nothing to export, because nothing was ever stored in the repo.</p></details><details><summary>What's the difference between a workspace and a workset?</summary><p>A workspace is a durable grouping of repos — "these are Platform," "these are Payments" — the lens you fetch, status, and reset across. A workset is a ticket you can resume across those repos, pinned to a feature branch: spin up, ship, archive, reset.</p></details><details><summary>Is a reset going to eat someone's work?</summary><p>Every destructive flow shows you exactly what it is about to discard, per repo, before it runs. That check is the reason the feature exists.</p></details><details><summary>Does it work with our git host?</summary><p>If it speaks git, yes — overgit doesn't care who hosts it. On top of that, cloning can browse <strong>GitHub, GitLab and Bitbucket</strong> directly, and pull request aggregation goes through the <code>gh</code> CLI. All of it rides on credentials already on the machine — your <code>gh</code> or <code>glab</code> login, or your git credential helper. Overgit never asks for, stores, or transmits a token of its own.</p></details><details><summary>Can we audit or build it ourselves?</summary><p>Yes — Apache 2.0, and the repo builds from source. There is no server component to review: it is a desktop app driving local git.</p></details></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--rule">
+    <div class="fx-wrap">
+      <div class="fx-head" style="align-items: center"><div><p class="fx-eyebrow">[ <b>family</b> ] · three tools, one philosophy</p></div><a class="fx-meta" href="../" style="justify-self: end">codelions →</a></div>
+      <div class="fx-family"><a href="../overcli/" style="border-top: 3px solid #4434d6"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span><b>overcli <span style="color: #4434d6">→</span></b><p>One window over your agent CLIs — then put them in a loop.</p></a><div class="here"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span><span class="fx-meta">you're here</span><b>overgit</b><p>A better git client — and one ticket across many repos.</p></div><a href="../overdb/" style="border-top: 3px solid #0b6aa2"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span><b>overdb <span style="color: #0b6aa2">→</span></b><p>Every environment at once — and branches of your data.</p></a></div>
+    </div>
+  </section>
+  <footer class="fx-foot">
+    <div class="fx-wrap">
+      <span><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span> <a href="../">codelions</a> · <a href="../overcli/">overcli</a> · <a href="../overgit/">overgit</a> · <a href="../overdb/">overdb</a></span>
+      <span>v0.4.4 · beta · <a href="https://github.com/overcodelions/overgit" target="_blank" rel="noopener">github</a> · Apache 2.0 · built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> &amp; <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr</span>
+    </div>
   </footer>
 
+<template id="tpl-overgit">
+  <div class="fx-steps" role="tablist" aria-label="what overgit does"><sc-for list="{{tabs}}" as="t"><button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}"><span class="n">{{t.num}}</span><span class="l">{{t.label}}</span><span class="s">{{t.sub}}</span><i class="bar" style="width: {{t.pct}}%"></i></button></sc-for></div>
+  <div class="fx-window" data-fit="1184"><div><div style="border-radius: 14px; border: 1px solid #34343d; background: #1c1c21; overflow: hidden; color: #e4e4ea; font-size: 13px">
+      <div style="position: relative; display: flex; align-items: center; height: 36px; padding: 0 14px; background: #19191f; border-bottom: 1px solid #2a2a32">
+        <span style="display: flex; gap: 8px"><i style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57"></i><i style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e"></i><i style="width: 12px; height: 12px; border-radius: 50%; background: #28c840"></i></span>
+        <span style="margin-left: 14px; color: #8a8a96">▯</span>
+        <span style="position: absolute; left: 50%; transform: translateX(-50%); font-size: 12px; color: #8a8a96">overgit</span>
+        <span style="margin-left: auto; color: #8a8a96; letter-spacing: 8px">ⓘ ⚙</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 236px minmax(0, 1fr); height: 600px">
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 10px 8px; background: #25252b; border-right: 1px solid #2a2a32; color: #c9c9d2; font-size: 12.5px; overflow: hidden">
+          <span style="padding: 6px 9px; border-radius: 7px; background: #1c1c21; color: #75757f; font-size: 12px">Search · / to focus</span>
+          <span style="font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6c6c77; margin: 8px 6px 2px; display: flex; justify-content: space-between"><span>Workspaces · 2</span></span>
+          <span style="padding: 3px 8px; display: flex; justify-content: space-between"><span>▾ <b style="font-weight: 600">Platform</b></span><span style="color: #6c6c77; font-size: 11px">3</span></span>
+          <span style="height: 24px; padding: 0 8px 0 20px; border-radius: 5px; display: flex; align-items: center; gap: 7px; "><span style="color: #8a8a96; font-size: 11px">▣</span><span style="flex: 1">api-gateway</span><span style="font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #34d399">{{sb.api}}</span></span>
+          <span style="height: 24px; padding: 0 8px 0 20px; border-radius: 5px; display: flex; align-items: center; gap: 7px; "><span style="color: #8a8a96; font-size: 11px">▣</span><span style="flex: 1">billing-svc</span><i style="width: 6px; height: 6px; border-radius: 50%; background: #fbbf24"></i></span>
+          <span style="height: 24px; padding: 0 8px 0 20px; border-radius: 5px; display: flex; align-items: center; gap: 7px; "><span style="color: #8a8a96; font-size: 11px">▣</span><span style="flex: 1">ledger-core</span></span>
+          <span style="padding: 3px 8px; display: flex; justify-content: space-between"><span>▸ <b style="font-weight: 600">Payments</b></span><span style="color: #6c6c77; font-size: 11px">4</span></span>
+          <span style="font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6c6c77; margin: 8px 6px 2px; display: flex; justify-content: space-between"><span>Other repos</span><span style="letter-spacing: 0; text-transform: none">Reset all</span></span>
+          <span style="height: 24px; padding: 0 8px 0 8px; border-radius: 5px; display: flex; align-items: center; gap: 7px; "><span style="color: #8a8a96; font-size: 11px">▣</span><span style="flex: 1">web-app</span><span style="font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #38bdf8">↓2</span></span>
+          <span style="height: 24px; padding: 0 8px 0 8px; border-radius: 5px; display: flex; align-items: center; gap: 7px; "><span style="color: #8a8a96; font-size: 11px">▣</span><span style="flex: 1">docs-site</span></span>
+          <span style="font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6c6c77; margin: 8px 6px 2px; display: flex; justify-content: space-between"><span>Worksets</span></span>
+          <span style="padding: 5px 8px; border-radius: 5px; display: flex; gap: 7px; {{sb.wsBg}}"><span style="flex: 1; line-height: 1.3">rate-limit rollout<em style="display: block; font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10px; color: #8a8a96">feat/rate-limit</em></span><sc-if value="{{sb.conflict}}" hint-placeholder-val="{{ false }}"><i style="margin-top: 5px; width: 6px; height: 6px; border-radius: 50%; background: #f87171"></i></sc-if><span style="color: #6c6c77; font-size: 11px">3</span></span>
+          <span style="padding: 5px 8px; display: flex"><span style="flex: 1; line-height: 1.3">auth migration<em style="display: block; font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10px; color: #8a8a96">feat/auth-v2</em></span><span style="color: #6c6c77; font-size: 11px">2</span></span>
+          <span style="font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6c6c77; margin: 8px 6px 2px; display: flex; justify-content: space-between"><span>▸ Archived · 4</span></span>
+          <span style="margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3px 6px; padding-top: 8px; border-top: 1px solid #34343d; font-size: 11px; color: #a3a3ae"><span>+ Add repo</span><span>+ Clone repo</span><span>+ New workspace</span><span>+ New workset</span></span>
+        </div>
+        <div style="display: flex; flex-direction: column; min-width: 0; min-height: 0">
+          <sc-if value="{{show.repo}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid #2a2a32">
+              <span style="line-height: 1.25"><b style="font-size: 14px; font-weight: 600">api-gateway</b><em style="display: block; font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #75757f">~/code/api-gateway</em></span>
+              <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #34343d; font-family: 'Geist Mono', monospace; font-size: 12px">⑂ feat/rate-limit ▾</span>
+              <span style="padding: 3px 8px; border-radius: 999px; background: #25252b; font-size: 11.5px"><span style="color: #34d399">+47</span> <span style="color: #f87171">−12</span> · 3 files</span>
+              <span style="padding: 3px 8px; border-radius: 999px; font-size: 11.5px; {{hdr.trunkStyle}}">{{hdr.trunk}}</span>
+              <span style="margin-left: auto; display: flex; gap: 6px; font-size: 12px"><span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #34343d">Fetch ⌘F</span><span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #34343d">Pull</span><span style="padding: 4px 9px; border-radius: 6px; {{hdr.pushStyle}}">{{hdr.push}}</span><span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #34343d">⋯</span></span>
+            </div>
+            <div style="display: flex; gap: 2px; padding: 0 12px; border-bottom: 1px solid #2a2a32; font-size: 12.5px"><sc-for list="{{rtabs}}" as="r" hint-placeholder-count="5"><span style="{{r.style}}">{{r.label}}</span></sc-for></div>
+            <sc-if value="{{show.changes}}" hint-placeholder-val="{{ true }}">
+              <div style="flex: 1; display: grid; grid-template-columns: 330px minmax(0, 1fr); min-height: 0">
+                <div style="display: flex; flex-direction: column; border-right: 1px solid #2a2a32; min-height: 0">
+                  <div style="display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #2a2a32; font-size: 11.5px"><span style="padding: 3px 8px; border-radius: 5px; background: rgba(138,120,255,.2); color: #c9c0ff">Stage all ({{ch.unstagedN}})</span><span style="padding: 3px 8px; border-radius: 5px; border: 1px solid #34343d">Unstage all ({{ch.stagedN}})</span><span style="margin-left: auto; color: #a3a3ae">Review with AI</span></div>
+                  <sc-if value="{{ch.sel}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center; padding: 6px 10px; background: rgba(138,120,255,.1); font-size: 11.5px"><b style="font-weight: 600">{{ch.sel}}</b> selected<span style="margin-left: auto; padding: 2px 8px; border-radius: 5px; background: #8a78ff; color: #fff">Stage</span><span style="padding: 2px 8px; border-radius: 5px; border: 1px solid #34343d">Stash</span><span style="padding: 2px 8px; border-radius: 5px; border: 1px solid rgba(248,113,113,.5); color: #f87171">Discard</span><span style="color: #75757f">✕</span></div></sc-if>
+                  <div style="flex: 1; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px; overflow: hidden">
+                    <span style="font-size: 10px; letter-spacing: .1em; color: #6c6c77; margin: 4px 0">☐ STAGED ({{ch.stagedN}})</span>
+                    <sc-for list="{{ch.staged}}" as="f" hint-placeholder-count="1"><span style="display: flex; gap: 8px; align-items: center; padding: 3px 4px; font-family: 'Geist Mono', monospace; font-size: 12px; {{f.bg}}"><span style="color: #8a8a96">☑</span><b style="font-weight: 600; color: {{f.c}}">{{f.s}}</b>{{f.p}}</span></sc-for>
+                    <span style="font-size: 10px; letter-spacing: .1em; color: #6c6c77; margin: 8px 0 4px">☐ CHANGES ({{ch.unstagedN}})</span>
+                    <sc-for list="{{ch.unstaged}}" as="f" hint-placeholder-count="3"><span style="display: flex; gap: 8px; align-items: center; padding: 3px 4px; border-radius: 4px; font-family: 'Geist Mono', monospace; font-size: 12px; {{f.bg}}"><span style="color: #8a8a96">{{f.box}}</span><b style="font-weight: 600; color: {{f.c}}">{{f.s}}</b>{{f.p}}</span></sc-for>
+                  </div>
+                  <div style="padding: 10px; border-top: 1px solid #2a2a32; display: flex; flex-direction: column; gap: 7px">
+                    <span style="display: flex; justify-content: space-between; font-size: 11.5px; color: #a3a3ae">Commit message<span style="color: #c9c0ff">{{ch.suggest}}</span></span>
+                    <div style="min-height: 52px; padding: 7px 9px; border-radius: 6px; border: 1px solid #34343d; background: #17171c; font-size: 12.5px; line-height: 1.5; white-space: pre-line; color: {{ch.msgColor}}">{{ch.msg}}</div>
+                    <span style="font-size: 11px; color: #75757f">☐ Amend last commit</span>
+                    <span style="text-align: center; padding: 7px; border-radius: 7px; background: #8a78ff; color: #fff; font-weight: 600; font-size: 12.5px; {{ch.commitOp}}">{{ch.commit}}</span>
+                  </div>
+                </div>
+                <div style="padding: 10px 0; font-family: 'Geist Mono', monospace; font-size: 12px; line-height: 1.75; overflow: hidden">
+                  <span style="display: block; padding: 0 14px 6px; font-family: Geist, sans-serif; color: #a3a3ae">src/middleware/rateLimit.ts</span>
+                  <span style="display: block; padding: 0 14px; color: #75757f">@@ -0,0 +1,22 @@</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(52,211,153,.08); color: #6ee7b7">+export const loginLimiter = bucket({</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(52,211,153,.08); color: #6ee7b7">+  cap: 10, per: "60s",</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(52,211,153,.08); color: #6ee7b7">+  key: (req) =&gt; req.ip + ":" + req.body.username,</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(52,211,153,.08); color: #6ee7b7">+  onLimit: (res, wait) =&gt; res.set("Retry-After", wait).status(429),</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(52,211,153,.08); color: #6ee7b7">+});</span>
+                  <span style="display: block; padding: 6px 14px 0; color: #75757f">@@ -14,7 +14,8 @@ router</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(248,113,113,.08); color: #fca5a5">-router.post("/api/login", login);</span>
+                  <span style="display: block; padding: 0 14px; background: rgba(52,211,153,.08); color: #6ee7b7">+router.post("/api/login", loginLimiter, login);</span>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{show.history}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; gap: 8px; align-items: center; padding: 8px 14px; border-bottom: 1px solid #2a2a32; font-size: 12px"><span style="flex: 1; padding: 5px 9px; border-radius: 6px; background: #17171c; color: #75757f">Filter by subject, sha, author, ref…</span><span style="display: flex; padding: 2px; border-radius: 6px; border: 1px solid #34343d"><span style="padding: 2px 9px; border-radius: 4px; background: #34343e">Graph</span><span style="padding: 2px 9px; color: #8a8a96">List</span></span></div>
+              <div style="flex: 1; display: flex; flex-direction: column; overflow: hidden">
+                <sc-for list="{{hist}}" as="c" hint-placeholder-count="6"><div style="display: grid; grid-template-columns: 70px minmax(0, 1fr) 110px 44px; gap: 10px; align-items: center; height: 34px; padding: 0 14px; font-size: 12.5px; {{c.bg}}"><span style="position: relative; height: 34px" aria-hidden="true"><sc-for list="{{c.lanes}}" as="l" hint-placeholder-count="2"><i style="position: absolute; top: 0; bottom: 0; width: 2px; left: {{l.x}}; background: {{l.c}}"></i><sc-if value="{{l.node}}" hint-placeholder-val="{{ false }}"><i style="position: absolute; top: 12px; width: 10px; height: 10px; margin-left: -4px; border-radius: 50%; left: {{l.x}}; background: {{l.c}}"></i></sc-if></sc-for></span><span style="display: flex; gap: 6px; align-items: center; white-space: nowrap; overflow: hidden"><sc-for list="{{c.refs}}" as="r" hint-placeholder-count="1"><span style="{{r.style}}">{{r.label}}</span></sc-for><span style="overflow: hidden; text-overflow: ellipsis">{{c.subject}}</span></span><span style="color: {{c.ac}}; font-size: 12px">{{c.author}}</span><span style="color: {{c.ac}}; font-size: 11.5px; text-align: right">{{c.when}}</span></div></sc-for>
+              </div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{show.ws}}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 14px 20px 10px; border-bottom: 1px solid #2a2a32; display: flex; flex-direction: column; gap: 10px">
+              <span style="display: flex; align-items: center; gap: 12px"><b style="font-size: 19px; font-weight: 600">rate-limit rollout</b><span style="padding: 2px 8px; border-radius: 5px; background: rgba(138,120,255,.15); color: #c9c0ff; font-family: 'Geist Mono', monospace; font-size: 11.5px">⑂ feat/rate-limit</span><span style="font-size: 12px; color: #8a8a96">3 repos · CLIs: gh, claude</span></span>
+              <span style="display: flex; gap: 6px; font-size: 11.5px"><span style="padding: 3px 9px; border-radius: 5px; background: #8a78ff; color: #fff">+ New branch</span><span style="padding: 3px 9px; border-radius: 5px; border: 1px solid #34343d">Commit all</span><span style="padding: 3px 9px; border-radius: 5px; {{ws.pushStyle}}">Push all {{ws.ahead}}</span><span style="padding: 3px 9px; border-radius: 5px; border: 1px solid #34343d">Open PRs</span><span style="padding: 3px 9px; border-radius: 5px; border: 1px solid #34343d">Fetch all</span></span>
+              <span style="display: flex; gap: 10px; align-items: center; font-size: 12px"><sc-for list="{{ws.steps}}" as="s" hint-placeholder-count="3"><span style="display: flex; gap: 7px; align-items: center"><i style="font-style: normal; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; {{s.circle}}">{{s.g}}</i><b style="font-weight: 600">{{s.label}}</b><em style="font-style: normal; color: #8a8a96">{{s.hint}}</em><span style="color: #4a4a55; margin-left: 4px">{{s.arrow}}</span></span></sc-for><sc-if value="{{ws.conflictChip}}" hint-placeholder-val="{{ false }}"><span style="padding: 2px 8px; border-radius: 999px; background: rgba(251,191,36,.14); color: #fbbf24">{{ws.conflictChip}}</span></sc-if><span style="margin-left: auto; padding: 3px 10px; border-radius: 6px; {{ws.archiveStyle}}">Archive</span></span>
+            </div>
+            <sc-if value="{{ws.banner}}" hint-placeholder-val="{{ false }}"><div style="margin: 12px 20px 0; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(245,158,11,.3); background: rgba(245,158,11,.05); display: flex; gap: 12px; align-items: center"><span style="color: #fbbf24">△</span><span style="flex: 1; min-width: 0"><b style="display: block; font-size: 12.5px; font-weight: 500">Pick up where you left off</b><span style="font-size: 11.5px; color: #8a8a96">{{ws.banner}} Resume to checkout <span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">feat/rate-limit</span> across them.</span></span><span style="padding: 6px 12px; border-radius: 5px; background: rgba(245,158,11,.9); color: #fff; font-size: 12px">{{ws.resumeLabel}}</span></div></sc-if>
+            <div style="flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; padding: 14px 20px; overflow: hidden">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="font-size: 11px; letter-spacing: .08em; color: #8a8a96">{{ws.leftHead}}</span>
+                <sc-for list="{{ws.repos}}" as="r" hint-placeholder-count="3"><div style="padding: 9px 11px; border-radius: 8px; background: #25252b; display: flex; justify-content: space-between; align-items: center"><span style="line-height: 1.3">{{r.name}}<em style="display: block; font-style: normal; font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #8a8a96">{{r.branch}}</em></span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: {{r.color}}">{{r.state}}</span></div></sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .08em; color: #8a8a96">LANDING <span style="letter-spacing: 0; color: #c9c0ff">Re-check</span></span>
+                <span style="font-size: 12.5px; color: #c9c9d2">{{ws.landCap}}</span>
+                <sc-for list="{{ws.land}}" as="l" hint-placeholder-count="3"><div style="padding: 8px 11px; border-radius: 8px; background: #25252b; font-size: 12.5px; line-height: 1.5; border-left: 2px solid {{l.c}}"><b style="font-weight: 600">{{l.repo}}</b> · {{l.text}}<sc-if value="{{l.file}}" hint-placeholder-val="{{ false }}"><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #c9c0ff"> {{l.file}}</span><span style="display: block; font-size: 11.5px; color: #c9c0ff">Rebase · Merge · ✨ Resolve with claude</span></sc-if></div></sc-for>
+                <sc-if value="{{ws.collide}}" hint-placeholder-val="{{ false }}"><div style="padding: 8px 11px; border-radius: 8px; border: 1px dashed #4a4a55; font-size: 12px; color: #c9c9d2"><span style="font-size: 10.5px; letter-spacing: .08em; color: #8a8a96">COLLISIONS WITH OTHER WORKSETS</span><br><i style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fbbf24; margin-right: 6px"></i><span style="font-family: 'Geist Mono', monospace">feat/auth-v2</span> · auth migration <span style="padding: 0 6px; border-radius: 4px; background: rgba(251,191,36,.15); color: #fbbf24">2 files conflict</span></div></sc-if>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div></div></div>
+  <div class="fx-stagebar"><span class="fx-live"><i class="blink">●</i> live · drawn from the real app</span><span class="fx-hint">{{hint}}</span></div>
+</template>
+
+  <script src="../family.js?v=6ed7c0fd"></script>
   <script>
-    // tmux-style clock
-    (function () {
-      const el = document.getElementById('sl-clock');
-      if (!el) return;
-      const tick = () => {
-        const d = new Date();
-        el.textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
-      };
-      tick();
-      setInterval(tick, 30000);
-    })();
+window.DC = window.DC || {};
+window.DC['overgit'] = class extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'changes', step: 0, auto: true }; }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const order = ['changes', 'history', 'ws'];
+      const max = { changes: 11, history: 9, ws: 12 }[this.state.tab];
+      if (this.state.step < max + 2) this.setState({ step: this.state.step + 1 });
+      else if (this.state.auto) this.setState({ tab: order[(order.indexOf(this.state.tab) + 1) % order.length], step: 0 });
+      else this.setState({ step: 0 });
+    }, 1150);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const tab = this.state.tab, k = this.state.step, A = '#8a78ff';
+    const defs = [
+      { id: 'changes', label: 'The basics', cap: 'select → stage → ✨ suggest → commit → push' },
+      { id: 'history', label: 'History & graph', cap: 'every branch on its own lane' },
+      { id: 'ws', label: 'Back to a workset', cap: 'pick up where you left off — then check it lands' }
+    ];
+    const on = 'padding: 9px 16px; border-radius: 9px; border: 0; background: #23232e; color: #ededf2; font: 500 14.5px Geist, sans-serif; cursor: pointer; box-shadow: 0 0 0 1px #34344a inset';
+    const off = 'padding: 9px 16px; border-radius: 9px; border: 0; background: transparent; color: #8a8a99; font: 500 14.5px Geist, sans-serif; cursor: pointer';
+    const tabs = defs.map((d) => ({ label: d.label, on: d.id === tab, num: String(defs.indexOf(d) + 1).padStart(2, '0'), sub: ({"changes": "Stage, suggest, commit, push", "history": "Every branch on its lane", "ws": "Pick up where you left off"})[d.id] || '', pct: d.id === tab ? Math.min(100, Math.round(100 * this.state.step / ({ changes: 11, history: 9, ws: 12 }[d.id] + 2))) : 0, style: d.id === tab ? on : off, pick: () => this.setState({ tab: d.id, step: 0, auto: false }) }));
+    const cur = defs.find((d) => d.id === tab);
+    const rt = tab === 'history' ? 'History' : 'Changes';
+    const rtabs = ['Changes', 'History', 'Files', 'Stash', 'Branches'].map((l) => ({ label: l, style: 'padding: 8px 12px; ' + (l === rt ? 'color: #f2f2f6; box-shadow: inset 0 -2px 0 ' + A : 'color: #8a8a96') }));
+
+    // changes
+    const kc = tab === 'changes' ? k : 0;
+    const files = [['A', '#34d399', 'src/middleware/rateLimit.ts'], ['M', '#fbbf24', 'src/routes/auth.ts'], ['A', '#34d399', 'test/rateLimit.test.ts'], ['M', '#fbbf24', 'package-lock.json']];
+    const staged = kc >= 3 ? files.slice(0, 3) : [];
+    const unstaged = kc >= 3 ? files.slice(3) : files;
+    const selN = kc >= 1 && kc < 3 ? Math.min(3, kc * 2 - 1 + (kc === 2 ? 0 : 0)) : 0;
+    const sel = kc === 1 ? 2 : kc === 2 ? 3 : 0;
+    const ch = {
+      staged: staged.map((f) => ({ s: f[0], c: f[1], p: f[2], bg: '' })),
+      unstaged: unstaged.map((f, i) => ({ s: f[0], c: f[1], p: f[2], box: kc >= 3 ? '☐' : (i < sel ? '☑' : '☐'), bg: kc < 3 && i < sel ? 'background: rgba(138,120,255,.12)' : '' })),
+      stagedN: String(staged.length), unstagedN: String(unstaged.length), sel: sel ? String(sel) : '',
+      suggest: kc === 4 ? 'Drafting with claude…' : '✨ Suggest with claude',
+      msg: kc >= 5 ? 'feat(auth): rate-limit POST /api/login\n\nToken bucket keyed by ip + username; 429 with Retry-After.' : kc >= 3 ? 'Commit message (3 files staged)' : 'Stage files to commit',
+      msgColor: kc >= 5 ? '#ededf2' : '#75757f',
+      commit: kc >= 7 ? 'Committed · a41c9e2' : 'Commit 3', commitOp: kc >= 3 && kc < 7 ? '' : 'opacity: .45'
+    };
+    const ahead = tab === 'changes' && kc >= 7 && kc < 10;
+    const pushed = tab === 'changes' && kc >= 10;
+    const hdr = {
+      push: ahead ? 'Push ↑1 ⌘P' : 'Push ⌘P',
+      pushStyle: ahead ? 'background: ' + A + '; color: #fff; box-shadow: 0 0 0 3px rgba(138,120,255,.25)' : 'border: 1px solid #34343d',
+      trunk: pushed ? '✓ pushed · 1 ahead of main' : ahead ? '1 ahead of main · local' : '✓ Up to date with main',
+      trunkStyle: pushed || !ahead ? 'background: rgba(52,211,153,.12); color: #34d399' : 'background: rgba(251,191,36,.12); color: #fbbf24'
+    };
+
+    // history
+    const LC = ['#8a78ff', '#5eead4', '#fbbf24', '#f472b6'];
+    const X = ['11px', '29px', '47px'];
+    const lanes = (spec) => spec.map((sp) => ({ x: X[sp[0]], c: LC[sp[0]], node: sp[1] }));
+    const H = [
+      [['HEAD', 0], ['feat/rate-limit', 0]], 'feat(auth): rate-limit POST /api/login', 'Dana Ruiz', '2m', [[0, true], [1, false]],
+      [], 'test: login limiter edge cases', 'Dana Ruiz', '1h', [[0, true], [1, false]],
+      [['feat/auth-v2', 1]], 'auth: move sessions to v2 tokens', 'Lee Park', '3h', [[0, false], [1, true]],
+      [], "Merge branch 'fix/health'", 'Sam Okafor', '5h', [[0, true], [1, false], [2, false]],
+      [['fix/health', 2]], 'health: answer before the cache warms', 'Sam Okafor', '6h', [[0, false], [1, false], [2, true]],
+      [['main', 0], ['tag: v2.14.0', 0]], 'release 2.14.0', 'Lee Park', 'Oct 10', [[0, true], [1, false]],
+      [], 'deps: bump express to 5.1', 'Sam Okafor', 'Oct 9', [[0, true]]
+    ];
+    const rowsH = [];
+    for (let i = 0; i < H.length; i += 5) rowsH.push(H.slice(i, i + 5));
+    const hk = tab === 'history' ? k : 0;
+    const shown = tab === 'history' ? Math.min(rowsH.length, 1 + hk) : rowsH.length;
+    const selRow = tab === 'history' && hk >= 8 ? 2 : -1;
+    const badge = (r, lane) => r === 'HEAD'
+      ? { label: 'HEAD', style: 'font-size: 9px; padding: 0 5px; border-radius: 3px; background: #8a78ff; color: #fff' }
+      : { label: r, style: 'font-family: Geist Mono, monospace; font-size: 9.5px; padding: 0 5px; border-radius: 3px; background: ' + LC[lane] + '38; border: 1px solid ' + LC[lane] + '80; color: ' + LC[lane] };
+    const hist = rowsH.slice(0, shown).map((h, i) => ({
+      refs: h[0].map((r) => badge(r[0], r[1])), subject: h[1], author: h[2], when: h[3], lanes: lanes(h[4]),
+      bg: i === selRow ? 'background: #8a78ff; color: #fff' : '', ac: i === selRow ? '#fff' : '#8a8a96'
+    }));
+
+    // workset
+    const wk = tab === 'ws' ? k : 0;
+    // coming back: every member drifted off the bound branch while you were away
+    const W = [['api-gateway', 'main', 3], ['billing-svc', 'fix/invoice-rounding', 4], ['web-app', 'main', 5]];
+    const resumed = (i) => wk >= W[i][2] + (i === 1 ? 2 : 0);
+    const repos = W.map((w, i) => {
+      const done = resumed(i), dirtyStop = i === 1 && wk >= 4 && wk < 6;
+      let state = wk >= 2 && !done ? 'switching…' : 'drifted';
+      if (dirtyStop) state = 'dirty — Stash & retry';
+      if (done) state = wk >= 9 ? '↑ pushed' : i === 1 && wk < 8 ? 'stashed · on branch' : 'on feat/rate-limit';
+      return { name: w[0], branch: done ? 'feat/rate-limit' : w[1], state, color: done ? '#34d399' : dirtyStop ? '#fbbf24' : wk >= 2 ? '#c9c0ff' : '#fbbf24' };
+    });
+    const onN = W.filter((w, i) => resumed(i)).length;
+    const branched = onN === 3, committed = wk >= 8, pushedAll = wk >= 9;
+    const step = (label, done, hint, arrow) => ({ label, g: done ? '✓' : '', hint, arrow, circle: done ? 'background: #10b981; color: #052e1f' : 'border: 1.5px solid #4a4a55' });
+    const checked = wk >= 10;
+    const land = checked ? [
+      { repo: 'api-gateway', text: 'lands clean on origin/main', c: '#34d399', file: '' },
+      { repo: 'billing-svc', text: 'lands clean on origin/main', c: '#34d399', file: '' },
+      { repo: 'web-app', text: 'conflicts with origin/main:', c: '#f87171', file: 'src/login/form.tsx' }
+    ] : [];
+    const ws = {
+      repos, leftHead: wk < 7 ? 'LAST SWITCH' : 'STATUS',
+      banner: tab === 'ws' && !branched ? (onN === 0 ? 'All 3 repos are on a different branch.' : (3 - onN) + ' of 3 repos drifted off this branch.') : '',
+      resumeLabel: wk >= 2 ? 'Resuming…' : 'Resume',
+      steps: [step('Branch', branched, onN + '/3 on feat/rate-limit', '→'), step('Commit', committed, committed ? 'all clean' : branched ? '1 dirty' : '', '→'), step('Push', pushedAll, pushedAll ? 'all pushed' : committed ? '2 ahead' : '', '')],
+      ahead: committed && !pushedAll ? '↑2' : '', pushStyle: committed && !pushedAll ? 'background: ' + A + '; color: #fff' : 'border: 1px solid #34343d',
+      conflictChip: checked ? '1 repo will conflict on landing' : '',
+      archiveStyle: 'border: 1px solid #34343d; color: #8a8a96',
+      land, landCap: checked ? '2 lands clean · 1 conflicts · as of just now' : pushedAll ? 'Checking with git merge-tree…' : 'Re-checks after every background fetch — never touches your tree.',
+      collide: wk >= 11
+    };
+    const sb = { api: ahead ? '↑1' : '', wsBg: tab === 'ws' ? 'background: rgba(138,120,255,.18); box-shadow: inset 2px 0 0 #8a78ff' : '', conflict: tab === 'ws' && checked };
+    return { hint: this.state.auto === false ? 'paused here · click any step' : 'auto-plays · click any step to jump', headline: ({"changes": "Stage, suggest, commit, push.", "history": "Every branch on its own lane.", "ws": "Leave it for a week. Resume in one click."})[tab] || '', tabs, caption: cur.cap, rtabs, ch, hdr, hist, ws, sb,
+      show: { repo: tab !== 'ws', changes: tab === 'changes', history: tab === 'history', ws: tab === 'ws' } };
+  }
+};
+
   </script>
-  <script src="../palettes.js" defer></script>
-  <!-- Cloudflare Web Analytics — cookieless, no personal data -->
-  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ff1becd88dfa4ff4a8230ff3357b87cc"}'></script>
-  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
