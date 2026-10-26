@@ -26,6 +26,7 @@
 .fx-overcli { --fx-c: #4434d6; }
 .fx-overgit { --fx-c: #0f7b5f; }
 .fx-overdb  { --fx-c: #0b6aa2; }
+.fx-overgo  { --fx-c: #b4366e; }
 .fx-home    { --fx-c: #b03c0a; }
 
 .fx { background: #f6f7f9; color: var(--fx-ink); font-family: 'Geist', system-ui, sans-serif; }
@@ -198,6 +199,7 @@
 .fx-family > * { padding: 24px; border-radius: 16px; display: flex; flex-direction: column; gap: 12px; background: #fff; border: 1px solid var(--fx-line); }
 .fx-family b { font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 650; }
 .fx-family p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--fx-dim); }
+.fx-family--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .fx-family .here { background: var(--fx-ink); color: #f6f7f9; border-color: var(--fx-ink); }
 .fx-family .here p, .fx-family .here .fx-meta { color: #b7bac4; }
 .fx-family a:hover { border-color: var(--fx-line-strong); }
@@ -283,7 +285,7 @@
   .fx-sep, .fx-navlinks .fx-ver { display: none; }
   .fx-switch { order: 3; width: 100%; justify-content: space-between; }
   .fx-switch a { flex: 1; justify-content: center; }
-  .fx-checks, .fx-grid3, .fx-family, .fx-dl { grid-template-columns: 1fr; }
+  .fx-checks, .fx-grid3, .fx-family, .fx-dl { grid-template-columns: minmax(0, 1fr); }
   .fx-releases a, .fx-releases--family a { grid-template-columns: 1fr; gap: 4px; }
   .fx-releases a span:last-child { display: none; }
 
@@ -341,3 +343,15 @@
 
 @media (max-width: 900px) { .fx-edfacts { grid-template-columns: 1fr 1fr !important; } }
 @media (max-width: 640px) { .fx-edfacts { grid-template-columns: 1fr !important; } }
+
+/* four products: the switch wraps its labels down before it overflows */
+@media (max-width: 1100px) { .fx-family--4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .fx-switch a { padding: 5px 6px; gap: 5px; font-size: 13px; } .fx-family--4 { grid-template-columns: 1fr; } }
+
+/* home: overgo's band under the three app cards */
+.fx-goband { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+@media (max-width: 900px) { .fx-goband { grid-template-columns: minmax(0, 1fr); } }
+
+/* overgo: two featured columns that stack on narrow screens */
+.fx-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 900px) { .fx-grid2 { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
