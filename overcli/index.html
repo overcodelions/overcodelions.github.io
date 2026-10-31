@@ -614,7 +614,7 @@ window.DC['overcli'] = class extends DCLogic {
       { init: 'NV', name: 'Nova', st: needs ? 'wait' : shiftOn ? 'run' : 'idle', line: needs ? '1 to review' : shiftOn ? 'working a shift' : tab === 'worker' && k >= 10 ? 'Launched · in a worktree' : 'the innovator', show: hired },
       { init: 'SC', name: 'Scout', st: 'idle', line: 'triages new tickets', show: true },
       { init: 'MI', name: 'Mira', st: tab === 'team' && k >= 1 && k <= 9 ? 'run' : 'idle', line: tab === 'team' && k >= 1 && k <= 9 ? 'on your errand' : 'market research', show: true }
-    ].filter((c) => c.show).map((c) => ({ init: c.init, name: c.name, ring: ring(c.st), line: c.line, lc: c.st === 'wait' ? '#a78bfa' : '#75757f', bg: tab === 'worker' && c.init === 'IR' && k >= 5 && k < 6 ? 'background: #26262e' : '' }));
+    ].filter((c) => c.show).map((c) => ({ init: c.init, name: c.name, ring: ring(c.st), line: c.line, lc: c.st === 'wait' ? '#a78bfa' : '#75757f', bg: tab === 'worker' && c.init === 'NV' && k >= 5 && k < 6 ? 'background: #26262e' : '' }));
     const rail = { crew, need: needs ? '1' : '', needLine: needs ? '1 needs you' : '', todayBg: tab === 'worker' && k >= 6 ? 'background: #26262e' : '',
       teamBg: tab === 'team' ? 'background: #26262e' : '', teamLine: tab === 'team' ? (k >= 11 ? 'Pack ready' : 'working · stage ' + Math.min(5, 1 + Math.floor(k / 2.2))) : 'Ready for a task' };
     let attn = '', attnStyle = 'display: none';
