@@ -95,16 +95,14 @@
   </section>
   <section class="fx-sec fx-sec--rule" id="run">
     <div class="fx-wrap">
-      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>run it yourself</b> ] · one container</p><h2 class="fx-h2">Your server. Your keys. Your data.</h2></div><p class="fx-lede">Pull the signed image — Intel and ARM, Claude Code and Codex inside — or build your own from the same Dockerfile. Nothing about your org is in either; it all lives on your volume. Slack is optional: add its two tokens on Setup → Secrets when you want it. Java, Node, Python or Go install from Setup → Toolchains — no rebuild.</p></div>
-      <pre style="margin: 0; padding: 22px 24px; border-radius: 16px; background: #141419; border: 1px solid #23232c; color: #ededf2; font-family: 'Geist Mono', monospace; font-size: 13.5px; line-height: 1.75; overflow-x: auto"><span style="color: #8a8a99"># 1 · get the repo and say which model to use</span>
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>run it yourself</b> ] · one container</p><h2 class="fx-h2">Your server. Your keys. Your data.</h2></div><p class="fx-lede">Build the image from the Dockerfile in the repo — Claude Code inside, Codex if you ask for it. Nothing about your org is in it; it all lives on your volume. Rather start from our signed, prebuilt image? It’s on request for now: <a href="https://github.com/overcodelions/overcli/issues/new" target="_blank" rel="noopener" style="color: var(--fx-c)">ask us</a>. Slack is optional: add its two tokens on Setup → Secrets when you want it. Java, Node, Python or Go install from Setup → Toolchains — no rebuild.</p></div>
+      <pre style="margin: 0; padding: 22px 24px; border-radius: 16px; background: #141419; border: 1px solid #23232c; color: #ededf2; font-family: 'Geist Mono', monospace; font-size: 13.5px; line-height: 1.75; overflow-x: auto"><span style="color: #8a8a99"># 1 · get the code and say which model to use</span>
 git clone https://github.com/overcodelions/overcli &amp;&amp; cd overcli
 cp deploy/.env.example deploy/.env      <span style="color: #8a8a99"># ANTHROPIC_API_KEY=…, or Bedrock / Vertex</span>
+echo "OVERCLI_VERSION=local" &gt;&gt; deploy/.env
 
-<span style="color: #8a8a99"># 2 · the image: pull the published one …</span>
-docker compose -f deploy/docker-compose.yml pull
-<span style="color: #8a8a99">#     … or build your own (add --build-arg INSTALL_CODEX=1 for Codex)</span>
-docker build -f deploy/Dockerfile -t overcli-org .
-<span style="color: #8a8a99">#     then set  image: overcli-org  in deploy/docker-compose.yml</span>
+<span style="color: #8a8a99"># 2 · build the image (add --build-arg INSTALL_CODEX=1 for Codex)</span>
+docker build -f deploy/Dockerfile -t ghcr.io/overcodelions/overcli-server:local .
 
 <span style="color: #8a8a99"># 3 · start it, and say who the org is</span>
 docker compose -f deploy/docker-compose.yml up -d
@@ -113,7 +111,7 @@ docker compose -f deploy/docker-compose.yml exec overcli \
 
 <span style="color: #8a8a99"># 4 · sign in: the log prints a one-time first-admin link</span>
 docker compose -f deploy/docker-compose.yml logs overcli | grep "first admin"</pre>
-      <p class="fx-meta" style="margin-top: 12px; line-height: 1.6">The console listens on <code>127.0.0.1:7420</code> — on a laptop, open it there; on a server, reach it over an SSH tunnel or your VPN’s reverse proxy. Upgrading is <code>docker compose pull &amp;&amp; docker compose up -d</code> on the same volume.</p>
+      <p class="fx-meta" style="margin-top: 12px; line-height: 1.6">The console listens on <code>127.0.0.1:7420</code> — on a laptop, open it there; on a server, reach it over an SSH tunnel or your VPN’s reverse proxy. To upgrade, check out the new release, build again with the same tag, and <code>docker compose up -d</code> on the same volume.</p>
       <div class="fx-grid3" style="margin-top: 18px"><a class="fx-card" style="padding: 22px" href="https://github.com/overcodelions/overcli/blob/master/deploy/README.md" target="_blank" rel="noopener"><span class="fx-tag">anywhere</span><b>Docker</b><p>A laptop, a VM, any host with Docker. Slack connects outbound, so nothing needs a public address.</p><span style="margin-top: auto; font-weight: 600; color: var(--fx-c)">Read the guide →</span></a><a class="fx-card" style="padding: 22px" href="https://github.com/overcodelions/overcli/blob/master/deploy/aws.md" target="_blank" rel="noopener"><span class="fx-tag">aws</span><b>AWS</b><p>Bedrock with no API key on the box, /data on a durable disk with snapshots, HTTPS from inside your VPC.</p><span style="margin-top: auto; font-weight: 600; color: var(--fx-c)">Read the guide →</span></a><a class="fx-card" style="padding: 22px" href="https://github.com/overcodelions/overcli/blob/master/deploy/gcp.md" target="_blank" rel="noopener"><span class="fx-tag">google cloud</span><b>Google Cloud</b><p>Vertex through the server’s identity, a durable disk, and HTTPS in front from inside your network.</p><span style="margin-top: auto; font-weight: 600; color: var(--fx-c)">Read the guide →</span></a></div>
       <p class="fx-note"><strong>Alpha, and one known risk.</strong> Workers that run shell commands can read the server’s sealed tool tokens: on Linux and in Docker they run as the server’s own user, and there is no OS sandbox yet. Until workers run as a separate user, give shell-capable workers only the tools, repos and trust level they need, and treat every connected tool’s token as readable by them. The <a href="https://github.com/overcodelions/overcli/blob/master/deploy/docs/security.md" target="_blank" rel="noopener" style="color: var(--fx-c)">security page</a> covers the rest.</p>
     </div>
