@@ -27,6 +27,7 @@
 .fx-overgit { --fx-c: #0f7b5f; }
 .fx-overdb  { --fx-c: #0b6aa2; }
 .fx-overgo  { --fx-c: #b4366e; }
+.fx-overapi { --fx-c: #8b3fd9; }
 .fx-home    { --fx-c: #b03c0a; }
 
 .fx { background: #f6f7f9; color: var(--fx-ink); font-family: 'Geist', system-ui, sans-serif; }
@@ -355,3 +356,18 @@
 /* overgo: two featured columns that stack on narrow screens */
 .fx-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 @media (max-width: 900px) { .fx-grid2 { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
+
+/* five products: the family row under each product page */
+.fx-family--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.fx-family--5 > * { padding: 20px; }
+.fx-family--5 b { font-size: 23px; }
+@media (max-width: 1200px) { .fx-family--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .fx-family--5 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .fx-family--5 { grid-template-columns: minmax(0, 1fr); } .fx-switch a { padding: 5px 4px; gap: 4px; font-size: 12px; } }
+
+/* home: four app cards in a row, two by two on narrower screens */
+.fx-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.fx-grid4 .fx-prod { padding: 20px; }
+.fx-grid4 .fx-prod-h { font-size: 22px; }
+@media (max-width: 1240px) { .fx-grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .fx-grid4 { grid-template-columns: minmax(0, 1fr); } }
