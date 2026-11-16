@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overapi — a powerful API workbench, ready for agents</title>
+  <meta name="description" content="Overapi is an API client that runs on your machine, with no account and no cloud, where every request you save can become a tool. Paste a cURL, import a spec, record the traffic or hand it the docs; try it against local, staging and production; then publish it to Claude Code, Codex, overcli or your org's overgo — read-only until you say otherwise. From Codelions, open source." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="../family.css?v=e8701919" />
+
+  <link rel="canonical" href="https://overcodelions.com/overapi/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="codelions" />
+  <meta property="og:url" content="https://overcodelions.com/overapi/" />
+  <meta property="og:title" content="Overapi — a powerful API workbench, ready for agents" />
+  <meta property="og:description" content="A powerful API client for REST, SOAP and recorded web apps — made agent-ready in one reviewed pass and published to Claude Code or your team's overgo." />
+  <meta property="og:image" content="https://overcodelions.com/overapi/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Overapi — a powerful API workbench, ready for agents" />
+  <meta name="twitter:description" content="A powerful API client for REST, SOAP and recorded web apps — made agent-ready in one reviewed pass and published to Claude Code or your team's overgo." />
+  <meta name="twitter:image" content="https://overcodelions.com/overapi/assets/og.png" />
+  <style>
+    /* overapi's window, in the app's own dark palette (styles.css :root.dark) */
+    .oa-win { border-radius: 14px; border: 1px solid #34343d; background: #1c1c21; overflow: hidden; color: #e8e8ee; font-size: 13px; }
+    .oa-title { position: relative; display: flex; align-items: center; gap: 9px; height: 38px; padding: 0 10px 0 14px; border-bottom: 1px solid #28282e; font-size: 12px; }
+    .oa-lights { display: flex; gap: 8px; margin-right: 14px; }
+    .oa-lights i { width: 12px; height: 12px; border-radius: 50%; }
+    .oa-tabs { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; padding: 2px; border-radius: 8px; background: rgba(255,255,255,.05); }
+    .oa-tab { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 6px; color: #a0a0a8; font-weight: 500; white-space: nowrap; }
+    .oa-tab.on { background: #2a2a33; color: #e8e8ee; box-shadow: 0 1px 2px rgba(0,0,0,.45); }
+    .oa-div { width: 1px; height: 14px; margin: 0 4px; background: #383840; }
+    .oa-envs { margin-left: auto; display: flex; gap: 2px; padding: 2px; border-radius: 999px; background: rgba(255,255,255,.05); }
+    .oa-env { display: flex; align-items: center; gap: 6px; height: 22px; padding: 0 10px; border-radius: 999px; color: #a0a0a8; font-weight: 500; }
+    .oa-env.on { background: #2a2a33; color: #e8e8ee; box-shadow: 0 1px 2px rgba(0,0,0,.45); }
+    .oa-dot { flex: none; display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+    .oa-body { position: relative; display: grid; grid-template-columns: 232px minmax(0, 1fr); height: 600px; }
+    .oa-side { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid #28282e; }
+    .oa-cap { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #70707a; }
+    .oa-api { position: relative; display: flex; align-items: center; gap: 10px; margin: 0 8px 1px; padding: 6px 8px; border-radius: 6px; }
+    .oa-api.on { background: rgba(255,255,255,.05); }
+    .oa-api.on::before { content: ''; position: absolute; left: -8px; top: 6px; bottom: 6px; width: 3px; border-radius: 0 3px 3px 0; background: #7c8bff; }
+    .oa-mg { flex: none; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+    .oa-main { position: relative; min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+    .oa-btn { position: relative; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; border: 1px solid rgba(56,56,64,.9); background: rgba(42,42,51,.6); color: #e8e8ee; font-size: 12px; font-weight: 500; white-space: nowrap; }
+    .oa-pri { background: #7c8bff; border-color: #7c8bff; color: #fff; font-weight: 600; }
+    .oa-bad { background: #dc4a4a; border-color: #dc4a4a; color: #fff; font-weight: 600; }
+    .oa-mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .oa-label { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #70707a; }
+    .oa-sub { display: flex; gap: 16px; padding: 0 16px; border-bottom: 1px solid #28282e; font-size: 12px; color: #a0a0a8; white-space: nowrap; }
+    .oa-sub span { padding: 9px 0 8px; border-bottom: 2px solid transparent; }
+    .oa-sub span.on { color: #e8e8ee; border-color: #7c8bff; }
+    .oa-field { border: 1px solid #383840; border-radius: 6px; background: rgba(255,255,255,.025); padding: 6px 9px; }
+    .oa-badge { font-size: 9.5px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
+    .oa-b-write { background: rgba(251,191,36,.15); color: #fbbf24; }
+    .oa-b-destructive { background: rgba(248,113,113,.15); color: #f87171; }
+    .oa-b-read { background: rgba(74,222,128,.15); color: #4ade80; }
+    .oa-b-new { background: rgba(124,139,255,.18); color: #a9b3ff; }
+    .oa-json { padding: 10px 12px; border: 1px solid #28282e; border-radius: 8px; background: rgba(255,255,255,.025); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11.5px; line-height: 1.6; }
+    .oa-jl { display: block; white-space: pre; }
+    .oa-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; }
+    .oa-row.on { background: rgba(124,139,255,.15); }
+    .oa-meth { flex: none; width: 44px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; }
+    .oa-card { border: 1px solid #28282e; border-radius: 10px; background: rgba(255,255,255,.025); padding: 12px 14px; }
+    .oa-toast { position: absolute; left: 50%; bottom: 18px; z-index: 6; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; max-width: 560px; padding: 8px 14px; border-radius: 8px; border: 1px solid #383840; background: #2a2a33; font-size: 12px; box-shadow: 0 20px 40px -12px rgba(0,0,0,.7); white-space: nowrap; }
+    .oa-veil { position: absolute; inset: 0; z-index: 5; display: flex; justify-content: center; align-items: flex-start; padding-top: 64px; background: rgba(0,0,0,.5); backdrop-filter: blur(2px); }
+    .oa-sheet { width: 660px; padding: 18px 20px; border-radius: 12px; border: 1px solid #383840; background: #2a2a33; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8); display: flex; flex-direction: column; gap: 12px; }
+    .oa-rise { animation: oa-rise .35s ease-out both; }
+    @keyframes oa-rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+    .oa-toast.oa-rise { animation-name: oa-rise-x; }
+    @keyframes oa-rise-x { from { opacity: 0; transform: translate(-50%, 6px) } to { opacity: 1; transform: translate(-50%, 0) } }
+    .oa-toggle { position: relative; flex: none; width: 32px; height: 18px; border-radius: 9px; background: #383840; transition: background .25s; }
+    .oa-toggle i { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left .25s; }
+    .oa-toggle.on { background: #7c8bff; }
+    .oa-toggle.on i { left: 16px; }
+    .oa-term { position: absolute; right: 16px; bottom: 16px; z-index: 6; width: 470px; border-radius: 10px; border: 1px solid #34343d; background: #0f0f13; box-shadow: 0 30px 60px -16px rgba(0,0,0,.85); overflow: hidden; }
+    .oa-term-h { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-bottom: 1px solid #23232a; font-size: 11px; color: #8a8a96; }
+    .oa-term-b { display: flex; flex-direction: column; gap: 7px; padding: 12px 14px 14px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11.5px; line-height: 1.5; white-space: pre-wrap; }
+    .oa-chrome { position: absolute; right: 18px; bottom: 18px; z-index: 6; width: 480px; border-radius: 10px; overflow: hidden; background: #fff; color: #202124; font-size: 12px; box-shadow: 0 30px 70px -14px rgba(0,0,0,.85), 0 0 0 1px rgba(0,0,0,.45); }
+    .oa-ch-tabs { display: flex; align-items: flex-end; gap: 8px; height: 34px; padding: 0 10px; background: #dee1e6; }
+    .oa-ch-tabs .oa-lights { align-self: center; margin-right: 4px; }
+    .oa-ch-tab { display: flex; align-items: center; gap: 7px; height: 28px; padding: 0 12px; border-radius: 8px 8px 0 0; background: #fff; font-size: 11.5px; white-space: nowrap; }
+    .oa-ch-bar { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 10px; border-bottom: 1px solid #e3e3e3; color: #5f6368; }
+    .oa-ch-omni { flex: 1; display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 12px; border-radius: 12px; background: #f1f3f4; color: #202124; font-size: 11.5px; white-space: nowrap; }
+    .oa-ch-page { height: 256px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) { .oa-rise, .oa-toast.oa-rise { animation: none; } .oa-toggle, .oa-toggle i { transition: none; } }
+
+    /* static drawings further down the page */
+    .oa-slab { border-radius: 16px; background: #141419; border: 1px solid #23232c; padding: 24px; color: #ededf2; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 30px 60px -36px rgba(13,15,21,.55); }
+    .oa-k { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: .08em; color: #8a8a99; }
+    .oa-ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .oa-ways > div { display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fx-line); }
+    .oa-ways b { font-size: 17px; font-weight: 600; line-height: 1.25; }
+    .oa-ways p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fx-dim); }
+    .oa-ways code { display: block; margin-top: auto; padding: 8px 10px; border-radius: 8px; background: #141419; color: #c9c9d2; font-size: 11.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-all; }
+    .oa-ways .oa-glyph { width: 34px; height: 34px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; background: rgba(139,63,217,.1); color: var(--fx-c); font-family: 'Geist Mono', monospace; font-size: 14px; font-weight: 600; }
+    .oa-pub { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .oa-pub > div { display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 16px; background: #fff; border: 1px solid var(--fx-line); }
+    .oa-pub b { font-size: 19px; font-weight: 600; }
+    .oa-pub p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--fx-dim); }
+    .oa-pub pre { margin: 0; padding: 12px 14px; border-radius: 10px; background: #141419; color: #c9c9d2; font-family: 'Geist Mono', monospace; font-size: 11.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
+    .oa-pub ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.5; color: var(--fx-dim); }
+    .oa-pub ol b { font-size: 14.5px; color: var(--fx-ink); }
+    .oa-ways .oa-glyph { width: auto; min-width: 34px; padding: 0 8px; }
+    @media (max-width: 900px) { .oa-ways, .oa-pub { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .oa-ways, .oa-pub { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body class="fx fx-overapi">
+  <a class="release-ribbon" href="#get">
+    <span class="rr-badge">new</span>
+    <span class="rr-text"><strong>Meet overapi, the fourth app.</strong> A powerful API workbench — and every API you bring in can become tools your agents can safely use.</span>
+    <span class="rr-cta">get the preview&nbsp;↓</span>
+  </a>
+  <header class="fx-nav">
+    <div class="fx-wrap">
+      <a class="fx-brand" href="../" aria-label="codelions home"><span style="flex: none; width: 28px; height: 28px; border-radius: 7px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span><b>codelions</b></a>
+      <span class="fx-sep" aria-hidden="true"></span>
+      <nav class="fx-switch" aria-label="products"><a href="../overcli/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span>overcli</a><a href="../overgit/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span>overgit</a><a href="../overdb/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span>overdb</a><a href="../overapi/" aria-current="page"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.7 9.4 Q9.9 9.4 9.9 12.2 L9.9 14.5 Q9.9 16 8.2 16 Q9.9 16 9.9 17.8 L9.9 20.1 Q9.9 22.9 12.7 22.9"/><path d="M19.3 9.4 Q22.1 9.4 22.1 12.2 L22.1 14.5 Q22.1 16 23.8 16 Q22.1 16 22.1 17.8 L22.1 20.1 Q22.1 22.9 19.3 22.9"/><circle cx="13.3" cy="16" r="1.35" fill="#0d0f15" stroke="none"/><circle cx="16" cy="16" r="1.35" fill="#0d0f15" stroke="none"/><circle cx="18.7" cy="16" r="1.35" fill="#0d0f15" stroke="none"/></svg></span>overapi</a><a href="../overgo/"><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 9.5 H22"/><path d="M10 19 H21.5"/><path d="M17 14.5 L21.5 19 L17 23.5"/></svg></span>overgo</a></nav>
+      <span class="fx-navlinks"><span class="fx-meta fx-ver">v0.1.0 · preview</span><a href="https://github.com/overcodelions/overapi" target="_blank" rel="noopener">GitHub</a><a class="fx-navcta" href="#get">Get the preview</a></span>
+    </div>
+  </header>
+  <section class="fx-hero">
+    <div class="fx-wrap">
+      <div class="fx-hero-top"><p class="fx-eyebrow">[ <b>overapi</b> ] · a powerful API client, built for agents</p></div>
+      <div class="fx-hero-l"><h1 class="fx-h1" id="fx-hero-h1">A powerful API workbench.<br><em>Ready for&nbsp;agents.</em></h1><script>(function () { var v = ["A powerful API workbench.<br><em>Ready for&nbsp;agents.</em>", "Make any API<br><em>easy for&nbsp;agents.</em>", "Any API, even SOAP.<br><em>Safe for your&nbsp;agents.</em>"]; var i = Math.floor(Math.random() * v.length); var h = document.getElementById("fx-hero-h1"); if (h) h.innerHTML = v[i]; window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "hero_variant", hero_variant: i }); })();</script></div>
+      <div class="fx-hero-r"><p class="fx-lede">Bring in any API — a server on your Mac, a spec, SOAP, or a web app you record — and work with it like the best desktop clients. Then one reviewed pass makes it agent-ready, and it’s an MCP server in Claude Code or your team’s overgo. No account, no cloud; secrets stay in the keychain.</p><div class="fx-btns"><a class="fx-btn fx-btn--ink" href="#get">Get the preview</a><a class="fx-btn fx-btn--line" href="https://github.com/overcodelions/overapi" target="_blank" rel="noopener">Clone source</a></div><p class="fx-meta">a server on this Mac · OpenAPI · Swagger · GraphQL · WSDL · HAR · Postman · cURL · docs · source code · web apps</p></div>
+    </div>
+  </section>
+  <section class="fx-slab" aria-label="what overapi does">
+    <div data-dc="overapi" data-template="tpl-overapi"></div>
+  </section>
+
+  <section class="fx-sec">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>ways in</b> ] · bring it in however you can</p><h2 class="fx-h2">Almost no API comes with a clean spec. Start from whatever it has.</h2></div><p class="fx-lede">Swagger behind a login, SOAP, a wiki page, a Postman export — or nothing but the calls a web app makes. Every way in ends as requests you can send, and any token it finds goes to the keychain, never into the project.</p></div>
+      <div class="oa-ways">
+        <div><span class="oa-glyph">:4010</span><b>A server on this Mac</b><p>New API lists what’s listening locally and imports a served spec in one click. Spec behind a login? Paste a token and it fetches it anyway.</p><code>:4010  Acme Orders  node   ✓ spec · 7</code></div>
+        <div><span class="oa-glyph">✦</span><b>Read its code</b><p>No spec at all? Your own claude reads the service’s routes, request and response classes and sign-in — read-only — and drafts every endpoint.</p><code>✦ Read its code</code></div>
+        <div><span class="oa-glyph">{ }</span><b>Import</b><p>OpenAPI 3, Swagger 2, GraphQL, a HAR capture, a Postman v2 collection, or a WSDL. GraphQL queries become reads and mutations writes; SOAP operations get typed arguments.</p><code>acme-orders.openapi.yaml</code></div>
+        <div><span class="oa-glyph">$_</span><b>Paste a cURL</b><p>“Copy as cURL” from the network tab. Ids in the path become arguments, the values you sent become the example.</p><code>curl '…/orders/1002' -H 'Authorization: Bearer …'</code></div>
+        <div><span class="oa-glyph">¶</span><b>From documentation</b><p>PDFs, Markdown, a docs URL or pasted wiki text. claude finds the real spec files if the site links to them, and drafts one if it doesn’t.</p><code>Draft the API</code></div>
+        <div><span class="oa-glyph" style="color: #dc2626; background: rgba(220,38,38,.08)">●</span><b>Record a web app</b><p>Use the app in overapi’s browser — or your own Chrome, password manager and all — and its API calls become requests.</p><code>chrome · app.acme.example</code></div>
+      </div>
+      <p class="fx-trust">tip: copy a cURL, a spec URL or a docs page and press ⌘V anywhere in the app · ⌘K jumps to any request</p>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--rule">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>the workbench</b> ] · use it like any API client</p><h2 class="fx-h2">Fast enough to live in. Smart about ids.</h2></div><p class="fx-lede">What’s being sent sits on top, one line each; everything else the request takes waits below as chips. An id another request gives back is picked by name from what it answered — or taken from it fresh each time — and path values show by name right in the URL bar.</p></div>
+      <div class="fx-checks"><div><h4>params as a query</h4><ul><li>A control per kind of value: <span>any · true · false</span>, chips for lists, a stepper for numbers</li><li>The address bar spells out the query as you go; paste a URL to fill the params</li><li>Load a past call that worked</li><li>Responses as a table, a chart, or the full JSON; variables suggested as you type</li></ul></div><div><h4>ids and chains</h4><ul><li><span>Ids by name — “Wile E. Coyote”, not <code>1</code> — sent as picked, or taken from the list each run</span></li><li>Chains: which request gives the ids another needs, kept for the next call</li><li>A login request runs first when the API needs one</li><li>Copy as cURL, fetch, Python requests or HTTPie — secrets as •••</li></ul></div><div><h4>environments and sign-in</h4><ul><li>Local, staging and production, colour-coded; new ones start read-only</li><li>OAuth 2 (presets for Google, Microsoft, Okta and Auth0), a token from a command like gcloud or az, API keys, a login request, a browser session — or another API’s</li><li><span>When a sign-in runs out, <b>Sign in again</b> redoes it the right way and resends</span></li><li>Client certificates per environment; multipart uploads, GraphQL and SOAP bodies</li></ul></div></div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--rule" id="record">
+    <div class="fx-wrap fx-row">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>record</b> ] · no spec? use the app</p><h3 class="fx-h3">Build the API from what actually happened.</h3><p class="fx-body">Sign in and use a web app in overapi’s browser — or your own Chrome, on overapi’s own profile so your password manager stays — and every call it makes to its backend is kept. overapi spots the sign-in, follows ids from one response into the next, and turns routes into requests with real examples.</p><p class="fx-body">Or press <b>Explore for me</b> and it clicks around on its own, reading only: it never submits a form or presses anything like buy, delete, send or sign out, and any request that isn’t a read is stopped before it leaves the browser.</p></div>
+      <div class="fx-vis" data-fit="580"><div><div class="oa-slab" style="gap: 8px"><span style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span>Found <b>14</b> requests · <b>5</b> chains <span style="color: #4ade80">· 3 new in the last minute</span></span><span style="margin-left: auto; padding: 5px 12px; border-radius: 6px; background: #7c8bff; color: #fff; font-size: 12.5px; font-weight: 600">✦ Explore for me</span></span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #c9c9d2"><i class="blink" style="width: 7px; height: 7px; border-radius: 50%; background: #7c8bff"></i>Exploring page 12 of 40 · <b style="color: #ededf2">3 new</b> · 2 stopped (not reads)</span>
+        <span style="height: 4px; border-radius: 2px; background: #2a2a33"><i style="display: block; width: 30%; height: 100%; border-radius: 2px; background: #7c8bff"></i></span>
+        <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; color: #8a8a99">https://app.acme.example/orders/1003/shipments</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px"><span style="padding: 4px 10px; border-radius: 7px; border: 1px solid #2f5a48; font-size: 12px">orders list ✓ one ✓</span><span style="padding: 4px 10px; border-radius: 7px; border: 1px solid #2f5a48; font-size: 12px">customers list ✓ one ✓</span><span style="padding: 4px 10px; border-radius: 7px; border: 1px solid #34343d; font-size: 12px">shipments list ✓ one –</span></span>
+        <span style="margin-top: 8px; padding-top: 12px; border-top: 1px solid #23232c; font-size: 12px; color: #8a8a99">Same importer as a HAR capture: ids become path params, values you sent become arguments. Secrets go to the keychain. Everything starts read-only.</span>
+      </div></div></div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--rule" id="agent-ready">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>agent-ready</b> ] · one reviewed pass</p><h2 class="fx-h2">A hundred cryptic tools become the ones an agent can choose by.</h2></div><div class="fx-stack"><p class="fx-lede">Point an agent at an API raw and it gets ids it can’t find and a <code>DELETE</code> it shouldn’t see. <b>Make it agent-ready</b> tidies what a recording picked up, fixes values that never change and connects the chains — then your own claude or codex writes descriptions, argument help, clearer names, what to hide, a brief for the agent and example questions.</p><p class="fx-meta" style="line-height: 1.6">You see every change, before → after, and the readiness and security scores move as you pick.</p></div></div>
+      <div data-fit="1344"><div><div class="oa-slab" style="padding: 26px 28px; display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 10px"><span class="oa-k">READY FOR AGENTS</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 650; line-height: 1"><span style="color: #fbbf24">58</span> <span style="color: #8a8a99">→</span> <span style="color: #4ade80">94</span></b><span class="oa-k" style="margin-top: 10px">SECURITY</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 650; line-height: 1"><span style="color: #fbbf24">74</span> <span style="color: #8a8a99">→</span> <span style="color: #4ade80">91</span></b><span style="margin-top: auto; align-self: flex-start; padding: 6px 12px; border-radius: 6px; background: #7c8bff; color: #fff; font-size: 12.5px; font-weight: 600">Apply 11 changes</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+          <span class="oa-k">TIDY UP · 2</span><span style="display: grid; grid-template-columns: 240px 1fr; gap: 12px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px">POST /analytics/event</span><span>Removed</span></span>
+          <span class="oa-k" style="margin-top: 8px">CHAINS · 3</span><span style="display: grid; grid-template-columns: 240px 1fr; gap: 12px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px">get_order gets orderId</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #a9b3ff">list_orders → [].id → get_order.orderId</span></span>
+          <span class="oa-k" style="margin-top: 8px">DESCRIPTIONS · 4 ✦</span><span style="display: grid; grid-template-columns: 240px 1fr; gap: 12px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px">get_order</span><span><s style="display: block; color: #8a8a99">One order with its line items</s>One order — its line items, status and total. Find the id with list_orders first.</span></span>
+          <span class="oa-k" style="margin-top: 8px">HIDE FROM AGENTS · 1 ✦</span><span style="display: grid; grid-template-columns: 240px 1fr; gap: 12px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px">delete_order</span><span>Deletes for good — nobody should ask an agent for this.</span></span>
+          <span class="oa-k" style="margin-top: 8px">AGENT BRIEF ✦</span><span style="padding: 9px 12px; border-radius: 8px; background: #1b1b22; color: #c9c9d2">Order ids are numbers — find them with list_orders or search_orders before get_order. Totals are in US dollars.</span>
+        </div>
+      </div></div></div>
+      <div class="fx-edfacts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 32px"><div class="fx-stack" style="gap: 6px"><span class="fx-meta" style="color: var(--fx-sig)">rules first</span><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--fx-dim)">Tidying, fixed values and chains are worked out by rules, so they’re the same every time. AI only writes what needs words.</p></div><div class="fx-stack" style="gap: 6px"><span class="fx-meta" style="color: var(--fx-sig)">a tool budget</span><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--fx-dim)">Past about 40 tools, agents pick worse and pay for the list every turn. The Tools tab shows the budget and suggests what to turn off, and why.</p></div><div class="fx-stack" style="gap: 6px"><span class="fx-meta" style="color: var(--fx-sig)">security scan</span><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--fx-dim)">Leaked secrets, what agents can reach, prompt injection in descriptions, personal data in examples. Critical and high findings block team publishing until fixed or accepted with a reason.</p></div><div class="fx-stack" style="gap: 6px"><span class="fx-meta" style="color: var(--fx-sig)">try as an agent</span><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--fx-dim)">Ask a question in plain words. Your claude answers through this API’s own MCP server, read-only, and you watch every call — then save the run as a test.</p></div></div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--rule" id="tests">
+    <div class="fx-wrap fx-row">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>tests</b> ] · proof, not a promise</p><h3 class="fx-h3">Prove it works — and keep proving it.</h3><p class="fx-body">Every <b>Try as an agent</b> run can be saved as a test: the calls the agent made, in order. So can a recording of you using the app. overapi passes ids from one response into the next and checks every answer’s status and shape — so when the API changes underneath your agents, a test fails loudly before an agent fails quietly.</p><p class="fx-body">Run them in the app before you publish, or in CI with <code>overapi test --junit</code>. Writes are opt-in per step and never run on production. Load tests of reads are there too, behind a setting that’s off by default.</p></div>
+      <div class="fx-vis" data-fit="580"><div><div class="oa-slab" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; line-height: 1.7; gap: 2px; white-space: pre"><span style="color: #8a8a99">$ overapi test acme-orders/overapi.json --env staging --junit results.xml</span><span style="height: 8px"></span><span><span style="color: #4ade80">  ✓</span> GET    list_orders     200  88 ms</span><span><span style="color: #4ade80">  ✓</span> GET    get_order       200  39 ms</span><span><span style="color: #4ade80">  ✓</span> GET    get_customer    200  35 ms</span><span><span style="color: #f87171">  ✗</span> GET    list_shipments  200  47 ms</span><span style="color: #f87171">      $.items was an array, now an object</span><span><span style="color: #8a8a99">  ·</span> POST   cancel_order    <span style="color: #8a8a99">skipped — changes data</span></span><span style="height: 8px"></span><span style="color: #c9c9d2">  3 passed, 1 failed, 1 skipped in 0.4 s</span><span style="height: 8px"></span><span style="color: #8a8a99">$ overapi scan acme-orders/overapi.json --fail-on high</span></div></div></div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--tight fx-sec--rule" id="safety">
+    <div class="fx-wrap fx-row">
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>safety</b> ]</p><h3 class="fx-h3">Read-only until you mean it.</h3><p class="fx-body">Every tool is read, write or destructive — <code>POST …/search</code> counts as a read; <code>DELETE</code> and <code>POST …/delete</code> are destructive. Write tools stay hidden until an environment allows writes, and destructive ones also need <code>confirm: true</code> and carry <code>destructiveHint</code>, so clients ask you first.</p><p class="fx-body">Secrets live in the keychain and are scrubbed from everything shown or returned. A project someone else shared — a clone, a pull — can’t use your secrets until you’ve reviewed where it sends requests and how it signs in, and allowed it. Your browser sign-ins never publish.</p></div>
+      <div class="fx-vis" data-fit="580"><div><div class="oa-slab"><span style="display: flex; align-items: baseline; gap: 12px"><span class="oa-k">SECURITY SCORE</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 34px; font-weight: 650; color: #fbbf24; line-height: 1">74</b><span style="color: #8a8a99; font-size: 18px">C</span><span style="margin-left: auto; display: flex; gap: 6px; font-size: 11.5px"><span style="padding: 2px 8px; border-radius: 999px; background: rgba(248,113,113,.15); color: #f87171">1 high</span><span style="padding: 2px 8px; border-radius: 999px; background: rgba(251,191,36,.15); color: #fbbf24">2 medium</span></span></span>
+        <span style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 10px; background: #1b1b22; font-size: 13px"><span style="display: flex; gap: 8px; align-items: center; font-size: 11px"><span style="padding: 1px 7px; border-radius: 4px; background: rgba(248,113,113,.15); color: #f87171; font-weight: 600">HIGH</span><span class="oa-k">LEAKED SECRETS</span><span style="margin-left: auto; color: #8a8a99">−15</span></span><b style="font-weight: 600">get_customer's saved values holds an API token</b><span style="color: #a0a0a8">Fix: keep it in the keychain and refer to it by name.</span><span style="display: flex; gap: 6px; margin-top: 4px"><span style="padding: 3px 9px; border-radius: 6px; border: 1px solid #383840; font-size: 12px">🔒 Move to the keychain</span><span style="padding: 3px 9px; border-radius: 6px; border: 1px solid #383840; font-size: 12px">Accept…</span></span></span>
+        <span style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 10px; background: #1b1b22; font-size: 13px"><span style="display: flex; gap: 8px; align-items: center; font-size: 11px"><span style="padding: 1px 7px; border-radius: 4px; background: rgba(251,191,36,.15); color: #fbbf24; font-weight: 600">MEDIUM</span><span class="oa-k">PERSONAL DATA</span><span style="margin-left: auto; color: #8a8a99">−6</span></span><b style="font-weight: 600">get_customer returns personal data</b></span>
+        <span style="font-size: 12px; color: #8a8a99">Found by rules, so the same API always scores the same. Run it in CI with <span style="font-family: 'Geist Mono', monospace">overapi scan</span>.</span>
+      </div></div></div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--tight fx-sec--rule" id="workspaces">
+    <div class="fx-wrap fx-row fx-row--flip">
+      <div class="fx-vis" data-fit="580"><div><div class="oa-slab"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 26px; height: 26px; border-radius: 7px; background: rgba(124,139,255,.15); color: #7c8bff; display: inline-flex; align-items: center; justify-content: center">▤</span><b style="font-size: 16px; font-weight: 600">Acme Shop</b><span style="font-size: 12px; color: #8a8a99">3 APIs · signed in by <b style="color: #ededf2">Acme Auth</b></span></span>
+        <span class="oa-k" style="margin-top: 6px">WHERE EACH ONE RUNS</span>
+        <span style="display: grid; grid-template-columns: 120px repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 12px"><span></span><span style="color: #7dd3fc">● local</span><span style="color: #fcd34d">● staging</span><span style="color: #fca5a5">● production</span>
+          <span>Acme Auth</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">:3000</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">auth.stg…</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">auth.acme…</span>
+          <span>Acme Orders</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">:4010</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">orders.stg…</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">orders.acme…</span>
+          <span>Acme Inventory</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">:8089</span><span style="font-family: 'Geist Mono', monospace; color: #c9c9d2">inv.stg…</span><span style="padding: 0 6px; border: 1px dashed #383840; border-radius: 5px; color: #6b6b76">add production…</span></span>
+        <span class="oa-k" style="margin-top: 6px">ONE MCP SERVER · IDS ACROSS SERVICES</span>
+        <span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #a9b3ff">list_orders → items[].sku → get_stock.sku</span><span style="font-size: 12px; color: #8a8a99">Acme Orders → Acme Inventory</span>
+      </div></div></div>
+      <div class="fx-stack"><p class="fx-eyebrow">[ <b>workspaces</b> ] · the APIs of one product</p><h3 class="fx-h3">One sign-in. One map of where they run. One MCP server.</h3><p class="fx-body">Group the services that belong together. One of them signs the others in, one grid sets where each runs in every environment, and they’re served together as a single MCP server — with ids flowing from one service to the next.</p><p class="fx-body">Each stays its own API; the workspace only adds what they share.</p></div>
+    </div>
+  </section>
+
+
+  <section class="fx-sec fx-sec--rule" id="publish">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>publish</b> ] · one project, every agent</p><h2 class="fx-h2">One file. Claude Code, Codex, overcli — or your whole org.</h2></div><p class="fx-lede">Each install is its own MCP server for one environment: the same tools, that environment’s base URL, sign-in and writes setting. A running server notices edits within seconds and tells the client its tools changed — no restart. And the Publish sheet shows whether its tests pass before anything goes out.</p></div>
+      <div class="oa-pub">
+        <div><span class="fx-meta" style="color: var(--fx-sig)">this Mac</span><b>One click into Claude Code</b><p>Adds the environment to Claude Code — and so to overcli, which uses the same list. Codex and any MCP client get a config to paste. Nothing is uploaded.</p><pre>claude mcp add acme-orders-staging --scope user \
+  --env API_TOKEN=&lt;API_TOKEN&gt; -- \
+  overapi serve overapi.json --env staging</pre></div>
+        <div><span class="fx-meta" style="color: var(--fx-sig)">your org</span><b>Hand it to overgo</b><ol><li><b>1. You publish.</b> The project goes to overcli, then to overgo — with no secret in it.</li><li><b>2. An admin finishes it.</b> In overgo’s console (Setup → APIs): read-only or writes, and the secrets typed there.</li><li><b>3. Workers use it.</b> overgo runs it as a tool workers can be given, like any other.</li></ol><a class="fx-meta" style="margin-top: auto; color: var(--fx-c)" href="../overgo/">what overgo is →</a></div>
+        <div><span class="fx-meta" style="color: var(--fx-sig)">a file</span><b>Share it through git</b><p>A project is a folder — <code>overapi.json</code> and a <code>.gitignore</code> that keeps <code>.env</code> out. That’s the shared collection: no account, no cloud workspace. Teammates open it in overapi or serve it from the command line.</p><pre>overapi check overapi.json
+overapi call  overapi.json list_orders \
+  --env local --args '{"status":"open"}'
+overapi serve overapi.json --env local</pre></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--rule" id="get">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>get it</b> ] · preview</p><h2 class="fx-h2">Early, open, and on your machine.</h2></div><p class="fx-lede">overapi is pre-1.0 and built in the open: everything on this page is in it, and signed builds come next. Until then, build it from source — the same stack as the rest of the family: Electron, React, Vite and TypeScript. It comes with a fictional REST API and a SOAP service to try it on.</p></div>
+      <div class="oa-pub" style="grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr)">
+        <div><span class="fx-meta" style="color: var(--fx-sig)">build from source</span><pre>git clone https://github.com/overcodelions/overapi
+cd overapi && npm install
+npm run dev              # the app
+npm run example:server   # REST: Acme Orders on :4010, token dev-token
+npm run example:soap     # SOAP: Acme Inventory on :8089</pre><p>Node 22.12 or newer, on macOS. The AI steps — reading code or docs, Make it agent-ready, Try as an agent — use your own <code>claude</code> or <code>codex</code> CLI, signed in.</p></div>
+        <div><span class="fx-meta" style="color: var(--fx-sig)">what’s next</span><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 14.5px; line-height: 1.5; color: var(--fx-dim)"><li>Signed, notarized macOS builds that update themselves</li><li>Composite tools — one tool that runs several calls</li><li>Response shaping: pick the fields an agent needs</li><li>gRPC as a source</li><li>A shared registry of overapi projects</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fx-sec fx-sec--rule" id="faq">
+    <div class="fx-wrap">
+      <div class="fx-head"><div><p class="fx-eyebrow">[ <b>faq</b> ]</p><h2 class="fx-h2">Questions people ask.</h2></div><span></span></div>
+      <div class="fx-faq"><details><summary>Isn’t this just an OpenAPI-to-MCP generator?</summary><p>Generators are the easy part, and they need a spec. overapi starts from whatever you have — a server on your Mac, its source code, a WSDL, the docs, or a recorded web app — and spends its effort on what generators skip: one reviewed pass that names, connects and documents the tools, a budget so there aren’t too many, a security scan, writes kept from agents until you allow them, and tests from real traffic.</p></details><details><summary>Is there an account or a cloud?</summary><p>No. overapi is an API client that runs on your machine. Projects are JSON files on disk, secrets are in the keychain, and the MCP server it makes runs locally when Claude Code or Codex starts a session. The only copy that ever leaves is one you publish to your own org’s overgo — without secret values.</p></details><details><summary>Can an agent change data by accident?</summary><p>Environments start read-only, and tools that change data aren’t even listed until an environment allows writes. Allowing writes on production means typing its name. Destructive tools also need <code>confirm: true</code> on every call and carry the MCP <code>destructiveHint</code>, so clients that ask first will ask. A tool that isn’t on doesn’t exist, as far as the agent can tell.</p></details><details><summary>Does the AI see my API’s data?</summary><p>Only where you use it. Discovery from documentation sends your docs to the <code>claude</code> or <code>codex</code> CLI already on your machine, which reads them with file-reading tools only — no shell, no web, no MCP. It writes an OpenAPI draft that goes through the normal importer, and drafted requests are marked until you’ve sent them once. The agents you publish to see what the tools return, capped by each tool’s response limit.</p></details><details><summary>What does it cost?</summary><p>Nothing. Like the rest of the family it’s Apache 2.0, with no account and no paid tier. The AI features use a CLI you already have and are already signed in to.</p></details><details><summary>How does it fit with overcli and overgo?</summary><p>Anything you add to Claude Code from overapi shows up in overcli too, since it uses the same list. Publishing to your org goes through overcli, which signs in to your overgo; an admin approves it there and workers can be given it as a tool — the same way overdb hands over a database connection.</p></details></div>
+    </div>
+  </section>
+  <section class="fx-sec fx-sec--rule">
+    <div class="fx-wrap">
+      <div class="fx-head" style="align-items: center"><div><p class="fx-eyebrow">[ <b>family</b> ] · over your tools, not instead of them</p></div><a class="fx-meta" href="../" style="justify-self: end">codelions →</a></div>
+      <div class="fx-family fx-family--5"><a href="../overcli/" style="border-top: 3px solid #4434d6"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23" /><path d="M18 23 H24" /></svg></span><b>overcli <span style="color: #4434d6">→</span></b><p>One window over your agent CLIs — then put them in a loop.</p></a><a href="../overgit/" style="border-top: 3px solid #0f7b5f"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="9" r="2.6"/><circle cx="11" cy="23" r="2.6"/><circle cx="22" cy="16" r="2.6"/><path d="M11 11.6 V20.4"/><path d="M11 16 Q16 16 19.4 16"/></svg></span><b>overgit <span style="color: #0f7b5f">→</span></b><p>A better git client — and one ticket across many repos.</p></a><a href="../overdb/" style="border-top: 3px solid #0b6aa2"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 10 Q16 15 23 10"/><path d="M9 16 Q16 21 23 16"/><path d="M9 22 Q16 27 23 22"/></svg></span><b>overdb <span style="color: #0b6aa2">→</span></b><p>Every environment at once — and branches of your data.</p></a><div class="here"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.7 9.4 Q9.9 9.4 9.9 12.2 L9.9 14.5 Q9.9 16 8.2 16 Q9.9 16 9.9 17.8 L9.9 20.1 Q9.9 22.9 12.7 22.9"/><path d="M19.3 9.4 Q22.1 9.4 22.1 12.2 L22.1 14.5 Q22.1 16 23.8 16 Q22.1 16 22.1 17.8 L22.1 20.1 Q22.1 22.9 19.3 22.9"/><circle cx="13.3" cy="16" r="1.35" fill="#0d0f15" stroke="none"/><circle cx="16" cy="16" r="1.35" fill="#0d0f15" stroke="none"/><circle cx="18.7" cy="16" r="1.35" fill="#0d0f15" stroke="none"/></svg></span><span class="fx-meta">you're here</span><b>overapi</b><p>A powerful API workbench — ready for agents.</p></div><a href="../overgo/" style="border-top: 3px solid #b4366e"><span style="flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cdd2db; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#0d0f15" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 9.5 H22"/><path d="M10 19 H21.5"/><path d="M17 14.5 L21.5 19 L17 23.5"/></svg></span><b>overgo <span style="color: #b4366e">→</span></b><p>overcli for your whole team — on your own server.</p></a></div>
+    </div>
+  </section>
+  <footer class="fx-foot">
+    <div class="fx-wrap">
+      <span><span style="flex: none; width: 20px; height: 20px; border-radius: 5px; background: #0d0f15; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#f6f7f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9 L16 16 L9 23"/><circle cx="22.5" cy="22" r="2.2" fill="#b03c0a" stroke="none"/></svg></span> <a href="../">codelions</a> · <a href="../overcli/">overcli</a> · <a href="../overgit/">overgit</a> · <a href="../overdb/">overdb</a> · <a href="../overapi/">overapi</a> · <a href="../overgo/">overgo</a></span>
+      <span>v0.1.0 · preview · <a href="https://github.com/overcodelions/overapi" target="_blank" rel="noopener">github</a> · Apache 2.0 · built by <a href="https://github.com/lionelfarr" target="_blank" rel="noopener">Lionel</a> &amp; <a href="https://github.com/owenlfarr" target="_blank" rel="noopener">Owen</a> Farr</span>
+    </div>
+  </footer>
+
+<template id="tpl-overapi">
+  <div class="fx-steps" role="tablist" aria-label="what overapi does"><sc-for list="{{tabs}}" as="t"><button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}"><span class="n">{{t.num}}</span><span class="l">{{t.label}}</span><span class="s">{{t.sub}}</span><i class="bar" style="width: {{t.pct}}%"></i></button></sc-for></div>
+  <div class="fx-window" data-fit="1184"><div><div class="oa-win">
+    <div class="oa-title">
+      <span class="oa-lights"><i style="background: #ff5f57"></i><i style="background: #febc2e"></i><i style="background: #28c840"></i></span>
+      <svg viewBox="0 0 64 64" width="15" height="15" aria-hidden="true"><path d="M20 8 Q 10 8 10 18 L 10 26 Q 10 32 4 32 Q 10 32 10 38 L 10 46 Q 10 56 20 56" fill="none" stroke="#e8e8ee" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 8 Q 54 8 54 18 L 54 26 Q 54 32 60 32 Q 54 32 54 38 L 54 46 Q 54 56 44 56" fill="none" stroke="#e8e8ee" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="32" r="4.5" fill="#7c8bff"/><circle cx="32" cy="32" r="4.5" fill="#7c8bff"/><circle cx="42" cy="32" r="4.5" fill="#7c8bff"/></svg>
+      <b style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600">overapi</b><sc-if value="{{hasApi}}"><span style="color: #8c8c98">/</span><span style="color: #b2b2bc">Acme Orders</span></sc-if>
+      <sc-if value="{{hasApi}}"><span class="oa-tabs" style="background: none; padding: 0"><sc-for list="{{apptabs}}" as="a"><span class="{{a.cls}}">{{a.label}}<sc-if value="{{a.rec}}"><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: #f87171"><i class="oa-dot blink" style="width: 6px; height: 6px; background: #f87171"></i>{{a.rec}}</span></sc-if></span></sc-for><i class="oa-div" style="height: 16px; margin: 0 6px"></i><span class="{{mcpTab.cls}}"><span style="color: #7c8bff">⌬</span>MCP server<span class="oa-mono" style="padding: 0 6px; border-radius: 999px; font-size: 10px; font-weight: 600; {{mcpTab.score}}">{{mcpTab.n}}</span></span></span></sc-if>
+      <sc-if value="{{hasApi}}"><span class="oa-envs" style="align-items: center; border: 1px solid #42424c; padding-left: 10px"><span class="oa-cap" style="margin-right: 4px">Env</span><sc-for list="{{envs}}" as="e"><span class="oa-env" style="{{e.style}}"><i class="oa-dot" style="background: {{e.dot}}"></i>{{e.name}}</span></sc-for></span></sc-if>
+      <span style="margin-left: {{gearML}}; width: 26px; text-align: center; color: #b2b2bc; font-size: 14px">⚙</span>
+    </div>
+    <div class="oa-body">
+      <aside class="oa-side">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 12px 6px"><span class="oa-cap">APIs</span><span style="color: #b2b2bc; letter-spacing: 8px">▱+</span></div>
+        <div class="oa-api" style="gap: 8px"><span style="color: #8c8c98; font-size: 9px">▾</span><span class="oa-mg" style="width: 22px; height: 22px; background: rgba(124,139,255,.15); color: #7c8bff">▤</span><span><span style="display: block; font-size: 13px; font-weight: 500; color: #b2b2bc">Acme Shop</span><span style="display: block; font-size: 11px; color: #8c8c98">workspace · 2 APIs</span></span></div>
+        <sc-for list="{{wsApis}}" as="p"><div class="oa-api" style="padding-left: 22px"><i style="position: absolute; left: 9px; top: 0; bottom: 0; width: 1px; background: rgba(66,66,76,.6)"></i><span class="oa-mg" style="{{p.mg}}">{{p.mono}}</span><span><span style="display: block; font-size: 13px; color: #b2b2bc">{{p.title}}</span><span style="display: block; font-size: 11px; color: #8c8c98">{{p.sub}}</span></span></div></sc-for>
+        <span class="oa-cap" style="padding: 10px 16px 4px">Other APIs</span>
+        <sc-for list="{{apis}}" as="p"><div class="{{p.cls}}"><span class="oa-mg" style="{{p.mg}}">{{p.mono}}</span><span style="min-width: 0"><span style="display: block; font-size: 13px; white-space: nowrap; {{p.tstyle}}">{{p.title}}</span><span style="display: block; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; {{p.sstyle}}">{{p.sub}}</span></span></div></sc-for>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 6px; padding: 8px; border-top: 1px solid #28282e">
+          <span style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; font-size: 12px; {{side.recStyle}}"><i class="oa-dot" style="width: 8px; height: 8px; background: rgba(248,113,113,.8)"></i><span style="min-width: 0"><span style="display: block; font-weight: {{side.recWeight}}">{{side.rec}}</span><sc-if value="{{side.recSub}}"><span class="oa-mono" style="display: block; font-size: 10px; color: #8c8c98; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px">{{side.recSub}}</span></sc-if></span></span>
+          <span class="oa-btn" style="justify-content: center">+ New API</span>
+        </div>
+      </aside>
+      <main class="oa-main">
+
+        <sc-if value="{{show.req}}"><div style="flex: 1; min-height: 0; display: grid; grid-template-columns: 220px minmax(0, 1fr)">
+          <div style="display: flex; flex-direction: column; gap: 8px; min-height: 0; padding: 10px 8px; border-right: 1px solid #28282e; overflow: hidden">
+            <div style="display: flex; gap: 6px; padding: 0 2px"><span class="oa-field" style="flex: 1; padding: 4px 9px; color: #8c8c98; font-size: 12px">⌕ Filter</span><span class="oa-btn" style="padding: 0 9px">+</span><span class="oa-btn">cURL</span></div>
+            <div style="display: flex; align-items: center; gap: 5px; padding: 0 2px; font-size: 10.5px; color: #8c8c98; white-space: nowrap">Group by <span style="display: flex; gap: 1px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05)"><span style="padding: 2px 5px; border-radius: 4px; background: #2a2a33; color: #e8e8ee">Area</span><span style="padding: 2px 4px">Method</span><span style="padding: 2px 4px">Safety</span><span style="padding: 2px 4px">Tool</span></span></div>
+            <div style="padding: 0 4px; font-size: 11px; color: #b2b2bc">7 requests · <span style="color: #7c8bff">⌬</span> 7 tools</div>
+            <sc-for list="{{req.groups}}" as="g"><div style="display: flex; align-items: baseline; gap: 6px; padding: 6px 6px 2px"><span style="font-size: 9px; color: #8c8c98">▾</span><span style="font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #b2b2bc">{{g.name}}</span><span style="font-size: 11px; color: #8c8c98">{{g.n}}</span></div>
+              <sc-for list="{{g.rows}}" as="r"><div class="{{r.cls}}" style="padding: 5px 8px"><span class="oa-meth" style="width: 40px; color: {{r.mc}}">{{r.m}}</span><span style="flex: 1; min-width: 0"><span style="display: flex; align-items: center; gap: 6px; font-size: 12px; white-space: nowrap; {{r.nstyle}}">{{r.name}}<sc-if value="{{r.badge}}"><span class="oa-badge oa-b-{{r.badge}}">{{r.badge}}</span></sc-if></span><span class="oa-mono" style="display: block; font-size: 10px; color: #8c8c98">{{r.tool}}</span></span></div></sc-for>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; min-width: 0; min-height: 0">
+            <div style="display: flex; align-items: center; gap: 6px; height: 53px; flex: none; padding: 0 14px; border-bottom: 1px solid #28282e">
+              <span class="oa-field oa-mono" style="flex: none; padding: 5px 9px; font-weight: 700; font-size: 12px; color: #4ade80">GET ▾</span>
+              <span class="oa-field" style="flex: 1; min-width: 0; display: flex; align-items: center; padding: 0; overflow: hidden; font-size: 12px; white-space: nowrap"><span style="display: flex; align-items: center; gap: 6px; padding: 5px 9px; background: rgba(255,255,255,.05); font-weight: 600"><i class="oa-dot" style="background: #38bdf8"></i>local</span><span class="oa-mono" style="padding-left: 8px; max-width: 45%; overflow: hidden; text-overflow: ellipsis; color: #8c8c98">http://localhost:4010/api/v1</span><span class="oa-mono">/orders</span><sc-if value="{{req.q}}"><span class="oa-mono oa-rise"><span style="color: #7c8bff">?customer_id=</span>1</span></sc-if></span>
+              <span class="oa-btn oa-pri">{{req.send}} <span style="opacity: .7; font-weight: 500">⌘↵</span><sc-if value="{{req.sendCursor}}"><i class="fx-cursor"></i></sc-if></span>
+            </div>
+            <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 410px">
+              <div style="display: flex; flex-direction: column; min-width: 0; border-right: 1px solid #28282e">
+                <div class="oa-sub"><span class="on">Params {{req.pn}}</span><span>Headers</span><span>Auth</span><span>Flow</span><span>Tool</span></div>
+                <div style="position: relative; display: flex; flex-direction: column; gap: 10px; padding: 12px 14px">
+                  <span style="display: flex; align-items: baseline; gap: 8px"><span class="oa-label">Sending</span><span style="font-size: 11px; color: #8c8c98">the same an agent fills in</span><span class="oa-btn" style="margin-left: auto; height: 24px">🕘 Load a past call 3</span></span>
+                  <div style="display: flex; flex-direction: column; gap: 10px; padding: 10px 12px; border-radius: 9px; background: rgba(56,189,248,.06); border: 1px solid rgba(56,189,248,.3)">
+                    <span style="display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: .08em; color: #7dd3fc"><i class="oa-dot" style="width: 6px; height: 6px; background: #38bdf8"></i>FILTER BY <span style="color: #8c8c98">2</span></span>
+                    <div style="display: grid; grid-template-columns: 104px minmax(0, 1fr) 22px; gap: 8px; align-items: start"><span style="padding-top: 6px"><span class="oa-mono" style="font-size: 12px">customer_id</span> <span style="font-size: 10.5px; color: #8c8c98">id</span></span>
+                      <span style="display: flex; flex-direction: column; gap: 3px"><span class="oa-field" style="position: relative; display: flex; align-items: center; gap: 7px; height: 30px; box-sizing: border-box; padding: 0 8px; font-size: 12px; {{vp.field}}"><i class="oa-dot" style="width: 7px; height: 7px; background: {{vp.dot}}"></i><sc-if value="{{vp.picked}}"><span class="oa-rise" style="font-size: 12.5px">Wile E. Coyote</span><span class="oa-mono oa-rise" style="font-size: 11px; color: #8c8c98">1</span><span style="margin-left: auto; color: #8c8c98">×</span></sc-if><sc-if value="{{vp.empty}}"><span style="color: #fcd34d">Choose a customer</span><span style="margin-left: auto"></span></sc-if><span style="color: #8c8c98">▾</span><sc-if value="{{vp.cursor}}"><i class="fx-cursor"></i></sc-if></span><span style="font-size: 11px; color: #7c8bff">From One order</span></span>
+                      <span style="padding-top: 7px; color: #8c8c98; font-size: 11px">›</span></div>
+                    <div style="display: grid; grid-template-columns: 104px minmax(0, 1fr) 22px; gap: 8px; align-items: center"><span><span class="oa-mono" style="font-size: 12px">status</span> <span style="font-size: 10.5px; color: #8c8c98">choice</span></span><span class="oa-mono" style="display: flex; align-self: flex-start; gap: 1px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05); font-size: 10.5px"><span style="padding: 2px 6px; border-radius: 4px; background: #2a2a33">any</span><span style="padding: 2px 6px; color: #b2b2bc">open</span><span style="padding: 2px 6px; color: #b2b2bc">shipped</span><span style="padding: 2px 6px; color: #b2b2bc">cancelled</span></span><span style="color: #8c8c98; font-size: 11px">› ×</span></div>
+                  </div>
+                  <span style="display: flex; align-items: baseline; gap: 8px; margin-top: 2px"><span class="oa-label">Add</span><span style="font-size: 11px; color: #8c8c98">1 more it takes — click one to send it</span></span>
+                  <span style="display: flex; align-items: center; gap: 8px; font-size: 11.5px"><span style="color: #c4b5fd">● Paging</span><span class="oa-mono" style="padding: 2px 8px; border-radius: 999px; border: 1px dashed rgba(167,139,250,.5); color: #c4b5fd; font-size: 11px">+ limit</span></span>
+                  <sc-if value="{{vp.open}}"><div class="oa-rise" style="position: absolute; left: 138px; top: 118px; z-index: 4; width: 330px; padding: 8px; border-radius: 9px; border: 1px solid #42424c; background: #2a2a33; box-shadow: 0 20px 40px -10px rgba(0,0,0,.7); font-size: 12px; display: flex; flex-direction: column; gap: 6px">
+                    <span style="display: flex; align-items: center; gap: 8px"><span class="oa-field" style="flex: 1; padding: 4px 8px; color: #8c8c98">⌕ Find a customer, or paste an id</span><span class="oa-btn" style="height: 24px">Refresh</span></span>
+                    <span style="font-size: 11px; color: #8c8c98">2 customers seen on local</span>
+                    <sc-for list="{{vp.rows}}" as="v"><span style="position: relative; display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 6px; align-items: center; padding: 6px; border-radius: 6px; {{v.bg}}"><span style="color: #7c8bff">{{v.tick}}</span><span>{{v.name}}</span><span class="oa-mono" style="font-size: 11px; color: #8c8c98">{{v.id}}</span><sc-if value="{{v.cursor}}"><i class="fx-cursor" style="right: 120px"></i></sc-if></span></sc-for>
+                    <span style="display: flex; flex-direction: column; gap: 5px; padding-top: 7px; border-top: 1px solid #42424c"><span style="font-size: 11px; color: #b2b2bc">Each time this request runs</span><span style="display: flex; gap: 1px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05); font-size: 11px; align-self: flex-start"><span style="padding: 2px 8px; border-radius: 4px; background: #34343e">Send the one I picked</span><span style="padding: 2px 8px; color: #b2b2bc">Take it from the list</span></span><span style="font-size: 11px; color: #8c8c98">Pick one above, or take it from the list.</span></span>
+                  </div></sc-if>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; min-width: 0; min-height: 0">
+                <sc-if value="{{res.done}}"><div class="oa-rise" style="display: flex; align-items: center; gap: 7px; height: 40px; flex: none; padding: 0 12px; border-bottom: 1px solid #28282e; font-size: 11.5px; white-space: nowrap"><span class="oa-mono" style="padding: 2px 7px; border-radius: 5px; background: rgba(74,222,128,.15); color: #4ade80; font-weight: 600">200 OK</span><span>2 orders</span><span style="color: #8c8c98">84 ms · 1.1 KB</span><span class="oa-btn" style="margin-left: auto; height: 22px; padding: 0 7px">⧉ cURL <span style="color: #8c8c98">| ▾</span></span><span class="oa-btn" style="height: 22px; padding: 0 7px">✓ Add to test</span></div></sc-if>
+                <div class="oa-sub"><span class="on">Body</span><span>Headers {{res.h}}</span><span>Timeline</span><span>History {{res.hist}}</span></div>
+                <sc-if value="{{res.idle}}"><div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 30px; text-align: center"><span style="width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; color: #7c8bff">➤</span><b style="font-size: 13px; font-weight: 600">Send it to see what comes back</b><span style="font-size: 12px; line-height: 1.5; color: #8c8c98">The response shows here exactly as an agent will get it — then keep values from it, or make it a tool.</span><span class="oa-mono" style="font-size: 11px; color: #8c8c98">⌘ ↵ to send</span></div></sc-if>
+                <sc-if value="{{res.done}}"><div class="oa-rise" style="display: flex; flex-direction: column; gap: 10px; padding: 12px 14px">
+                  <span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #8c8c98; white-space: nowrap; overflow: hidden">▸ Sent <b class="oa-mono" style="padding: 0 4px; border-radius: 3px; background: rgba(74,222,128,.15); color: #4ade80; font-size: 10px">GET</b><span class="oa-mono" style="overflow: hidden; text-overflow: ellipsis">http://localhost:4010/api/v1/orders?customer_id=1</span></span>
+                  <span style="display: flex; align-items: center; gap: 10px; font-size: 11px; color: #8c8c98"><span style="display: flex; gap: 1px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05)"><span style="padding: 2px 8px; border-radius: 4px; background: #2a2a33; color: #e8e8ee">Table</span><span style="padding: 2px 8px">Chart</span><span style="padding: 2px 8px">JSON</span></span>Click a row for all of it</span>
+                  <div style="border: 1px solid #28282e; border-radius: 8px; overflow: hidden; font-size: 12px">
+                    <div class="oa-mono" style="display: grid; grid-template-columns: 46px 88px 62px 52px minmax(0, 1fr); gap: 8px; padding: 6px 10px; background: rgba(124,139,255,.1); color: #a9b3ff; font-size: 11px"><span>id</span><span>customer_id</span><span>status</span><span>total</span><span>created_at</span></div>
+                    <sc-for list="{{res.rows}}" as="r"><div class="oa-rise" style="display: grid; grid-template-columns: 46px 88px 62px 52px minmax(0, 1fr); gap: 8px; padding: 7px 10px; border-top: 1px solid #28282e; white-space: nowrap"><span class="oa-mono">{{r.id}}</span><span class="oa-mono" style="color: #b2b2bc">1</span><span>{{r.st}}</span><span class="oa-mono">{{r.t}}</span><span style="color: #8c8c98">{{r.at}}</span></div></sc-for>
+                  </div>
+                </div></sc-if>
+              </div>
+            </div>
+          </div>
+        </div></sc-if>
+
+        <sc-if value="{{show.traffic}}"><div style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+          <sc-if value="{{tr.idle}}"><div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid #28282e; font-size: 12px; white-space: nowrap"><span style="display: flex; gap: 1px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05)"><span style="padding: 2px 8px; color: #b2b2bc">Local address</span><span style="padding: 2px 8px; border-radius: 4px; background: #2a2a33">Browser</span></span><span style="color: #b2b2bc">Open</span><span class="oa-field oa-mono" style="padding: 3px 8px">https://app.acme.example</span><span class="oa-field" style="padding: 3px 8px">in Chrome (with extensions) ▾</span><span style="color: #b2b2bc">and record calls to</span><i class="oa-dot" style="background: #fbbf24"></i><span class="oa-mono" style="color: #b2b2bc">staging.orders.acme.example</span><span class="oa-btn oa-pri">Open and record<sc-if value="{{tr.startCursor}}"><i class="fx-cursor"></i></sc-if></span><span style="margin-left: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: #8c8c98">Opens Chrome on overapi’s own profile — add your password manager there once and it stays.</span></div></sc-if>
+          <sc-if value="{{tr.rec}}"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-bottom: 1px solid #28282e; background: rgba(248,113,113,.08); font-size: 12px"><i class="oa-dot blink" style="background: #f87171"></i><b>Recording</b><span class="oa-mono" style="color: #b2b2bc">chrome · app.acme.example · keeping calls to staging.orders.acme.example</span><span class="oa-btn" style="margin-left: auto; height: 24px">Show browser</span><span class="oa-btn oa-bad" style="height: 24px">Stop</span></div></sc-if>
+          <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: 290px minmax(0, 1fr) 340px">
+            <div style="display: flex; flex-direction: column; gap: 2px; padding: 8px; border-right: 1px solid #28282e; overflow: hidden">
+              <span style="display: flex; justify-content: space-between; gap: 8px; padding: 2px 6px 8px; font-size: 11px; color: #b2b2bc">{{tr.head}}<span style="color: #8c8c98">Clear</span></span>
+              <sc-if value="{{tr.waiting}}"><span style="padding: 6px; font-size: 12px; line-height: 1.5; color: #8c8c98">{{tr.waiting}}</span></sc-if>
+              <sc-for list="{{tr.calls}}" as="c"><div class="{{c.cls}}"><span class="oa-meth" style="color: {{c.mc}}">{{c.m}}</span><span class="oa-mono" style="flex: 1; min-width: 0; font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.path}}</span><sc-if value="{{c.known}}"><span style="color: #4ade80; font-size: 11px">✓</span></sc-if><sc-if value="{{c.isNew}}"><span class="oa-badge oa-b-new">new</span></sc-if><span class="oa-mono" style="font-size: 11px; color: #4ade80">{{c.status}}</span></div></sc-for>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; min-width: 0; border-right: 1px solid #28282e; overflow: hidden">
+              <sc-if value="{{tr.detail}}"><div class="oa-rise" style="display: flex; flex-direction: column; gap: 10px">
+                <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; white-space: nowrap"><b class="oa-mono" style="color: #4ade80; font-size: 11px">GET</b><span class="oa-mono" style="overflow: hidden; text-overflow: ellipsis">{{tr.detail.url}}</span><span class="oa-mono" style="flex: none; padding: 1px 7px; border-radius: 5px; background: rgba(74,222,128,.15); color: #4ade80; font-size: 11px">200 OK</span><span style="flex: none; color: #8c8c98">{{tr.detail.ms}}</span><span class="oa-btn" style="margin-left: auto; height: 24px">Replay</span><span class="oa-btn" style="height: 24px">Copy as ▾</span></span>
+                <span style="font-size: 12px; color: #b2b2bc">{{tr.detail.note}}<sc-if value="{{tr.detail.ok}}"> <span style="color: #4ade80">Its saved values match this call.</span></sc-if></span>
+                <span style="display: flex; gap: 1px; align-self: flex-start; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05); font-size: 11.5px"><span style="padding: 2px 8px; color: #b2b2bc">Request</span><span style="padding: 2px 8px; border-radius: 4px; background: #2a2a33">Response</span></span>
+                <div class="oa-json"><sc-for list="{{tr.detail.json}}" as="l"><span class="oa-jl">{{l.ind}}<sc-if value="{{l.k}}"><span style="color: #7dd3fc">"{{l.k}}"</span><span style="color: #8c8c98">: </span></sc-if><span style="color: {{l.vc}}">{{l.v}}</span><span style="color: #8c8c98">{{l.p}}</span></span></sc-for></div>
+              </div></sc-if>
+              <sc-if value="{{tr.noDetail}}"><span style="font-size: 12px; color: #8c8c98">Pick a call to see what went out and came back.</span></sc-if>
+            </div>
+            <div style="display: flex; flex-direction: column; min-width: 0; overflow: hidden">
+              <div class="oa-sub"><span class="on">Coverage</span><span>Graph {{tr.graph}}</span><span>Latency</span></div>
+              <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 14px">
+                <sc-if value="{{tr.cov}}"><span style="font-size: 12px; color: #b2b2bc">What this traffic means for <b style="color: #e8e8ee">Acme Orders</b>:</span></sc-if>
+                <sc-for list="{{tr.cards}}" as="c"><div class="oa-card oa-rise" style="display: flex; flex-direction: column; gap: 6px; padding: 10px 12px"><b style="font-size: 12.5px; font-weight: 600">{{c.title}}</b><sc-for list="{{c.lines}}" as="x"><span class="oa-mono" style="font-size: 11px; color: #b2b2bc">{{x}}</span></sc-for><sc-if value="{{c.text}}"><span style="font-size: 11.5px; line-height: 1.5; color: #b2b2bc">{{c.text}}</span></sc-if><span class="{{c.btnCls}}" style="align-self: flex-start; height: 24px">{{c.btn}}<sc-if value="{{c.cursor}}"><i class="fx-cursor"></i></sc-if></span></div></sc-for>
+              </div>
+            </div>
+          </div>
+        </div></sc-if>
+
+        <sc-if value="{{show.tests}}"><div style="flex: 1; min-height: 0; display: grid; grid-template-columns: 230px minmax(0, 1fr)">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 8px; border-right: 1px solid #28282e">
+            <span class="oa-cap" style="padding: 0 6px 4px">Scenarios</span>
+            <div class="oa-api on oa-rise" style="margin: 0; align-items: flex-start"><i class="oa-dot" style="margin-top: 5px; background: {{te.dot}}"></i><span style="min-width: 0"><span style="display: block; font-size: 12.5px; font-weight: 500">Which of Wile’s orders are still open?</span><span style="display: block; font-size: 11px; color: #8c8c98">{{te.railSub}}</span></span></div>
+            <div class="oa-api" style="margin: 0; align-items: flex-start"><i class="oa-dot" style="margin-top: 5px; background: #4ade80"></i><span><span style="display: block; font-size: 12.5px; color: #b2b2bc">Recorded Nov 9, 14:32</span><span style="display: block; font-size: 11px; color: #8c8c98">6 steps · 5/5 passing on staging · 2 h ago</span></span></div>
+            <span style="margin-top: auto; padding: 6px; font-size: 12px; color: #7c8bff">+ From the recording</span>
+          </div>
+          <div style="display: flex; flex-direction: column; min-width: 0; min-height: 0">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; font-size: 12px; white-space: nowrap">
+              <b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600">Which of Wile’s orders are still open?</b>
+              <span style="margin-left: auto; color: #b2b2bc">Run on</span><span class="oa-field" style="padding: 3px 8px"><i class="oa-dot" style="background: #fbbf24; margin-right: 6px"></i>staging — staging.orders.acme.example ▾</span>
+              <span style="display: flex; align-items: center; gap: 6px; color: #b2b2bc"><span class="oa-toggle"><i></i></span>Run writes</span>
+              <span class="oa-btn oa-pri">{{te.run}}<sc-if value="{{te.runCursor}}"><i class="fx-cursor"></i></sc-if></span>
+            </div>
+            <div class="oa-sub"><span class="on">Steps 3</span></div>
+            <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 16px">
+              <div class="oa-card" style="display: flex; flex-direction: column; gap: 8px"><span style="display: flex; align-items: baseline; gap: 10px"><b style="font-size: 14px; font-weight: 600; {{te.titleStyle}}">{{te.title}}</b><span style="font-size: 12px; color: #b2b2bc">{{te.sub}}</span><span style="margin-left: auto; font-size: 11.5px; color: #8c8c98">{{te.right}}</span></span><span style="display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #2a2a33"><i style="width: {{te.pct}}%; background: #4ade80; transition: width .4s"></i></span><span style="display: flex; gap: 14px; font-size: 11px; color: #8c8c98"><span><i class="oa-dot" style="width: 7px; height: 7px; background: #4ade80"></i> Passed</span><span><i class="oa-dot" style="width: 7px; height: 7px; background: #f87171"></i> Failed</span><span><i class="oa-dot" style="width: 7px; height: 7px; background: #b2b2bc"></i> Off</span><span><i class="oa-dot" style="width: 7px; height: 7px; background: #8c8c98"></i> Skipped / not run</span></span></div>
+              <sc-for list="{{te.steps}}" as="t"><div style="display: grid; grid-template-columns: 86px 22px 40px 120px minmax(0, 1fr) 130px 44px; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 7px; background: rgba(255,255,255,.025); border: 1px solid {{t.border}}; font-size: 12px"><span style="font-weight: 500; {{t.oStyle}}">{{t.outcome}}</span><span style="color: #8c8c98">{{t.n}}</span><span class="oa-mono" style="font-size: 10px; font-weight: 700; color: #4ade80">GET</span><span class="oa-mono" style="font-size: 11.5px">{{t.tool}}</span><span class="oa-mono" style="font-size: 11px; color: #b2b2bc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{t.args}}<span style="color: #7c8bff">{{t.out}}</span></span><span style="font-size: 11px; color: #8c8c98; text-align: right">{{t.time}}</span><span class="oa-mono" style="font-size: 11px; text-align: right; color: #4ade80">{{t.status}}</span></div></sc-for>
+              <sc-if value="{{te.ci}}"><span class="oa-rise" style="font-size: 11.5px; color: #8c8c98">The same test runs in CI: <span class="oa-mono" style="color: #b2b2bc">overapi test overapi.json --env staging --junit results.xml</span></span></sc-if>
+            </div>
+          </div>
+        </div></sc-if>
+
+        <sc-if value="{{show.mcp}}"><div style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+          <div style="display: flex; align-items: flex-end; gap: 10px; padding: 14px 18px 8px">
+            <span style="display: flex; flex-direction: column; gap: 2px"><span class="oa-cap">MCP server</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 600">Acme Orders</b></span>
+            <sc-if value="{{mc.inClaude}}"><span class="oa-rise" style="margin-bottom: 4px; font-size: 11.5px; color: #4ade80">✓ In Claude Code</span></sc-if>
+            <span style="margin-left: auto; display: flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid #42424c; font-size: 11.5px; color: #b2b2bc"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#42424c" stroke-width="2"/><circle cx="7" cy="7" r="5.5" fill="none" stroke="#7c8bff" stroke-width="2" stroke-dasharray="{{mc.ring}} 40" transform="rotate(-90 7 7)"/></svg>Agent-ready {{mc.journey}}/4</span>
+            <span class="oa-btn">✦ Make it agent-ready</span><span class="oa-btn oa-pri">Publish…</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 4px 18px 12px"><sc-for list="{{mc.tiles}}" as="t"><div class="oa-card" style="display: flex; flex-direction: column; gap: 3px; padding: 10px 12px"><span style="font-size: 11px; color: #b2b2bc">{{t.label}}</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 600; transition: color .4s; {{t.style}}">{{t.v}}</b><span style="font-size: 11px; color: #8c8c98; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{t.note}}</span></div></sc-for></div>
+          <div class="oa-sub" style="align-items: center"><span class="{{mc.toolsTab}}">Tools</span><span>Chains 3</span><span>Security</span><span style="padding: 3px 10px; border: 0; border-radius: 999px; {{mc.tryStyle}}">✦ Try as an agent</span></div>
+
+          <sc-if value="{{mc.tools}}"><div style="display: flex; flex-direction: column; gap: 6px; padding: 12px 18px">
+            <span style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #b2b2bc"><b style="color: #e8e8ee">7 on</b> · budget 40 · ≈2,100 tokens every agent turn<span class="oa-field" style="margin-left: auto; padding: 3px 9px; color: #8c8c98">⌕ Find a tool</span></span>
+            <span style="height: 3px; border-radius: 2px; background: #2a2a33"><i style="display: block; width: 18%; height: 100%; border-radius: 2px; background: #7c8bff"></i></span>
+            <sc-for list="{{mc.toolRows}}" as="t"><div style="display: grid; grid-template-columns: 34px 170px minmax(0, 1fr) 90px; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,.025); font-size: 12px"><span class="oa-toggle on" style="width: 26px; height: 15px"><i style="width: 11px; height: 11px; left: 13px"></i></span><span class="oa-mono" style="font-size: 11.5px">{{t.name}}</span><span style="color: #b2b2bc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{t.desc}}</span><span style="text-align: right">{{t.badge}}</span></div></sc-for>
+          </div></sc-if>
+
+          <sc-if value="{{mc.ask}}"><div style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 18px; border-bottom: 1px solid #28282e; font-size: 11.5px; color: #b2b2bc; white-space: nowrap"><span style="display: flex; gap: 1px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,.05)"><span style="padding: 2px 8px; border-radius: 4px; background: #2a2a33; color: #e8e8ee">Ask a question</span><span style="padding: 2px 8px">Call a tool</span></span>🤖 You’re the agent · connected to <b style="color: #e8e8ee">this API</b> on <span class="oa-field" style="padding: 1px 7px">staging · read-only ▾</span> over MCP</div>
+            <div style="position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; padding: 14px 18px; overflow: hidden">
+              <sc-if value="{{ask.empty}}"><div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center"><span style="width: 36px; height: 36px; border-radius: 10px; background: rgba(124,139,255,.15); color: #7c8bff; display: flex; align-items: center; justify-content: center">✦</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 600">Ask Acme Orders anything</b><span style="max-width: 520px; font-size: 12px; line-height: 1.55; color: #b2b2bc">Your claude answers with Acme Orders’ tools on <b style="color: #e8e8ee">staging</b> — exactly what Claude Code would get, read-only. You see every call it makes; if it picks the wrong tool or can’t find an id, that’s what to fix.</span><span style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center"><sc-for list="{{ask.chips}}" as="c"><span style="position: relative; padding: 5px 12px; border-radius: 999px; border: 1px solid #42424c; font-size: 12px; {{c.style}}">{{c.q}}<sc-if value="{{c.cursor}}"><i class="fx-cursor"></i></sc-if></span></sc-for></span></div></sc-if>
+              <sc-if value="{{ask.q}}"><span class="oa-rise" style="align-self: flex-end; padding: 7px 12px; border-radius: 12px; background: #5d72ff; color: #fff; font-size: 12.5px">{{ask.q}}</span></sc-if>
+              <sc-if value="{{ask.calls}}"><div class="oa-card oa-rise" style="margin-left: 40px; display: flex; flex-direction: column; gap: 4px; padding: 8px 12px"><span style="display: flex; justify-content: space-between; font-size: 11.5px; color: #b2b2bc"><span>🔌 {{ask.head}}</span><span style="color: #8c8c98">{{ask.tok}}</span></span><sc-for list="{{ask.calls}}" as="c"><span class="oa-rise" style="display: flex; align-items: center; gap: 8px; font-size: 11.5px"><i class="{{c.dotCls}}" style="background: {{c.dot}}"></i><span class="oa-mono" style="color: #a9b3ff">{{c.tool}}</span><span class="oa-mono" style="color: #8c8c98">{{c.args}}</span><span style="margin-left: auto; color: #8c8c98">{{c.tok}}</span></span></sc-for></div></sc-if>
+              <sc-if value="{{ask.thinking}}"><span style="margin-left: 40px; font-size: 11.5px; color: #8c8c98"><span class="blink">● ● ●</span> Thinking · {{ask.secs}}</span></sc-if>
+              <sc-if value="{{ask.answer}}"><div class="oa-rise" style="display: flex; gap: 10px; align-items: flex-start"><span style="flex: none; width: 28px; height: 28px; border-radius: 8px; background: rgba(124,139,255,.15); color: #7c8bff; display: flex; align-items: center; justify-content: center">✦</span><div style="display: flex; flex-direction: column; gap: 8px; flex: 1"><div style="padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(124,139,255,.4); background: #2a2a33; font-size: 12.5px; line-height: 1.6; box-shadow: 0 10px 24px -14px rgba(0,0,0,.8)">Wile E. Coyote has <b>one open order</b>: <b>#1002</b> — rocket skates and 4 bags of birdseed, <b>$424.50</b>, placed this morning. The other open order, #1003, belongs to Road Runner Logistics.</div><span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #b2b2bc"><span class="oa-field" style="padding: 1px 8px">3 tool calls</span><span class="oa-field" style="padding: 1px 8px">6.4s</span><span class="oa-field" style="padding: 1px 8px">1,840 tokens</span><span style="margin-left: auto">Copy</span><span>Ask again</span><span style="position: relative; color: #7c8bff">Save as a test<sc-if value="{{ask.saveCursor}}"><i class="fx-cursor"></i></sc-if></span></span></div></div></sc-if>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-top: 1px solid #28282e"><span class="oa-field" style="flex: 1; padding: 7px 10px; font-size: 12px; color: #8c8c98"><span style="color: #7c8bff">✦</span> {{ask.ph}}</span><span class="oa-btn oa-pri">Ask</span></div>
+            <span style="padding: 0 18px 8px; font-size: 10.5px; color: #8c8c98">Read-only · runs through your claude · uses your Claude usage</span>
+          </div></sc-if>
+        </div></sc-if>
+
+      </main>
+
+      <sc-if value="{{nw}}"><div class="oa-veil" style="padding-top: 34px"><div class="oa-sheet oa-rise" style="width: 760px; gap: 14px">
+        <b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600">New API</b>
+        <span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 2px; border-radius: 8px; background: rgba(255,255,255,.05); font-size: 12px; text-align: center"><span style="padding: 5px; border-radius: 6px; background: #34343e; font-weight: 500">From scratch</span><span style="padding: 5px; color: #b2b2bc">From a cURL</span><span style="padding: 5px; color: #b2b2bc">Import</span><span style="padding: 5px; color: #b2b2bc">From documentation <span style="padding: 0 4px; border-radius: 3px; background: rgba(6,182,212,.15); color: #67e8f9; font-size: 9px; font-weight: 600">AI</span></span></span>
+        <span style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px"><span style="display: flex; flex-direction: column; gap: 4px"><span class="oa-label">Name</span><span class="oa-field" style="font-size: 12px; {{nw.nameStyle}}">{{nw.name}}</span></span><span style="display: flex; flex-direction: column; gap: 4px"><span class="oa-label">Base URL</span><span class="oa-field oa-mono" style="font-size: 12px; {{nw.nameStyle}}">{{nw.base}}</span></span></span>
+        <div style="border: 1px solid #42424c; border-radius: 10px; overflow: hidden">
+          <span style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid #42424c; font-size: 12px"><span>💻</span><b style="font-weight: 600">Running on this Mac</b><span style="color: #8c8c98">5</span><span style="margin-left: auto; color: #b2b2bc">↻ rescan</span></span>
+          <sc-for list="{{nw.rows}}" as="r"><span style="position: relative; display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 7px 12px; font-size: 12px; {{r.bg}}"><b class="oa-mono" style="color: #b2b2bc">{{r.port}}</b><span>{{r.name}} <span style="color: #8c8c98">{{r.proc}}</span></span><span style="font-size: 11px; {{r.bstyle}}">{{r.badge}}</span><sc-if value="{{r.cursor}}"><i class="fx-cursor" style="right: 200px"></i></sc-if></span></sc-for>
+        </div>
+        <sc-if value="{{nw.spec}}"><div class="oa-rise" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.35); font-size: 12.5px"><span style="color: #4ade80">✓</span><span><b>Acme Orders</b> <span style="color: #b2b2bc">serves its spec — 7 requests, documented.</span></span><span class="oa-btn oa-pri" style="margin-left: auto">{{nw.importLabel}}<sc-if value="{{nw.importCursor}}"><i class="fx-cursor"></i></sc-if></span></div></sc-if>
+        <span style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid #42424c; font-size: 11.5px; color: #8c8c98">Starts as a “local” environment you can write to. Staging and production start read-only.<span class="oa-btn" style="margin-left: auto">Cancel</span><span class="oa-btn">Create and add a request</span></span>
+      </div></div></sc-if>
+
+      <sc-if value="{{ar}}"><div class="oa-veil" style="padding-top: 24px"><div class="oa-sheet oa-rise" style="width: 800px; gap: 12px">
+        <b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600">Make Acme Orders agent-ready</b>
+        <sc-if value="{{ar.intro}}"><div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 12.5px; color: #b2b2bc">One pass that does what makes an API good for agents. You see every change before anything is applied.</span>
+          <sc-for list="{{ar.cards}}" as="c"><span style="display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px; background: rgba(255,255,255,.03); border: 1px solid #42424c; font-size: 12.5px"><b style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: rgba(124,139,255,.2); color: #a9b3ff; font-size: 11px; display: flex; align-items: center; justify-content: center">{{c.n}}</b><span><b style="font-weight: 600">{{c.t}}</b> <span style="color: #b2b2bc">— {{c.d}}</span></span><span style="margin-left: auto; flex: none; font-size: 11.5px; color: #8c8c98">{{c.r}}</span></span></sc-for>
+          <span style="font-size: 11.5px; line-height: 1.5; color: #8c8c98">☑ Include a few example values so the descriptions can be concrete. Secrets are never sent — anything that looks like one is left out. It runs through your own claude.</span>
+          <span style="display: flex; gap: 8px; justify-content: flex-end"><span class="oa-btn">Steps 1–3 only</span><span class="oa-btn oa-pri">✦ Make it agent-ready<sc-if value="{{ar.goCursor}}"><i class="fx-cursor"></i></sc-if></span></span>
+        </div></sc-if>
+        <sc-if value="{{ar.running}}"><div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="display: flex; align-items: center; gap: 10px; font-size: 13px"><i class="oa-dot blink" style="background: #7c8bff"></i><span><b>claude is documenting 7 tools</b> <span style="color: #b2b2bc">— usually a minute or two</span></span><span class="oa-btn" style="margin-left: auto">Stop</span></span>
+          <span style="font-size: 12px; color: #b2b2bc">Steps 1–3 are ready: 5 changes. The documentation is written for the API as it will be after them.</span>
+          <div class="oa-json" style="min-height: 150px"><sc-for list="{{ar.log}}" as="l"><span class="oa-jl oa-rise" style="color: #b2b2bc">{{l}}</span></sc-for></div>
+        </div></sc-if>
+        <sc-if value="{{ar.review}}"><div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px"><span class="oa-card" style="display: flex; flex-direction: column; gap: 2px"><span class="oa-label">Ready for agents</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 600"><span style="color: #fbbf24">58</span> <span style="color: #8c8c98">→</span> <span style="color: #4ade80">94</span></b></span><span class="oa-card" style="display: flex; flex-direction: column; gap: 2px"><span class="oa-label">Security</span><b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 600"><span style="color: #fbbf24">74</span> <span style="color: #8c8c98">→</span> <span style="color: #4ade80">91</span></b></span></span>
+          <div style="display: flex; flex-direction: column; gap: 2px; max-height: 300px; overflow: hidden"><sc-for list="{{ar.groups}}" as="g"><span class="oa-rise" style="display: flex; align-items: center; gap: 8px; padding: 7px 2px 3px; font-size: 12px"><span style="color: #7c8bff">☑</span><b style="font-weight: 600">{{g.name}}</b><span style="color: #8c8c98">{{g.n}}</span><sc-if value="{{g.ai}}"><span style="color: #67e8f9">✦</span></sc-if></span><sc-for list="{{g.rows}}" as="r"><span class="oa-rise" style="display: grid; grid-template-columns: 18px 200px minmax(0, 1fr); gap: 8px; padding: 4px 2px 4px 14px; font-size: 11.5px; line-height: 1.45"><span style="color: #7c8bff">☑</span><span class="oa-mono" style="font-size: 11px">{{r.t}}</span><span><sc-if value="{{r.b}}"><span style="display: block; color: #8c8c98; text-decoration: line-through">{{r.b}}</span></sc-if><span style="color: #e8e8ee">{{r.a}}</span></span></span></sc-for></sc-for></div>
+          <span style="display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid #42424c; font-size: 12px; color: #b2b2bc">11 of 11 changes selected<span class="oa-btn" style="margin-left: auto">Cancel</span><span class="oa-btn oa-pri">Apply 11 changes<sc-if value="{{ar.applyCursor}}"><i class="fx-cursor"></i></sc-if></span></span>
+        </div></sc-if>
+      </div></div></sc-if>
+
+      <sc-if value="{{pub}}"><div class="oa-veil" style="padding-top: 30px"><div class="oa-sheet oa-rise" style="width: 900px; gap: 12px">
+        <b style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600">Publish Acme Orders</b>
+        <span style="font-size: 12.5px; line-height: 1.5; color: #b2b2bc">Publishing makes Acme Orders an <b style="color: #e8e8ee">MCP server</b>: its tools, for agents to call. Pick where it goes. Each environment is its own server — publish the one agents should talk to.</span>
+        <span style="display: flex; gap: 8px; font-size: 11.5px"><span style="padding: 2px 9px; border-radius: 999px; background: rgba(74,222,128,.15); color: #4ade80; font-weight: 600">Ready 94</span><span style="padding: 2px 9px; border-radius: 999px; border: 1px solid #42424c; color: #b2b2bc">Security 91</span><span style="padding: 2px 9px; border-radius: 999px; background: rgba(74,222,128,.12); color: #4ade80">Tests passing</span><span style="color: #8c8c98; padding: 2px 4px">7 of 9 requests are tools</span></span>
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 0.85fr); gap: 10px">
+          <div class="oa-card" style="display: flex; flex-direction: column; gap: 8px"><b style="font-size: 13px; font-weight: 600; line-height: 1.35">💻 This Mac — Claude Code and overcli</b><span style="font-size: 11.5px; {{pub.macStyle}}">{{pub.mac}}</span><span style="font-size: 11.5px; line-height: 1.5; color: #b2b2bc">You. Agents on this Mac call it; secrets come from your keychain.</span><span style="display: flex; gap: 4px; font-size: 11px"><span class="oa-field" style="padding: 1px 7px; color: #8c8c98">local</span><span class="oa-field" style="padding: 1px 7px; border-color: #fbbf24">● staging</span><span class="oa-field" style="padding: 1px 7px; color: #8c8c98">production</span></span><span class="oa-mono" style="font-size: 10.5px; color: #8c8c98">4 tools · staging.orders.acme.example</span><span class="oa-btn oa-pri" style="align-self: flex-start; margin-top: auto">{{pub.macBtn}}<sc-if value="{{pub.macCursor}}"><i class="fx-cursor"></i></sc-if></span></div>
+          <div class="oa-card" style="display: flex; flex-direction: column; gap: 8px; position: relative; border-color: rgba(124,139,255,.55); background: linear-gradient(180deg, rgba(124,139,255,.13), rgba(124,139,255,.04)); box-shadow: 0 0 0 1px rgba(124,139,255,.18), 0 10px 34px -12px rgba(124,139,255,.55)"><span style="position: absolute; top: -9px; right: 12px; padding: 1px 8px; border-radius: 999px; background: #7c8bff; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase">For your team</span><b style="font-size: 13.5px; font-weight: 600">🏢 Your whole team — overgo</b><span style="font-size: 11.5px; {{pub.teamStyle}}">{{pub.team}}</span><span style="font-size: 12px; line-height: 1.5; color: #e8e8ee">One curated server for everyone in your org — the same tools, signed in once, for every agent.</span><span style="display: flex; flex-direction: column; gap: 3px; font-size: 11.5px; color: #b2b2bc"><span><b style="color: #4ade80">✓</b> An admin approves it before anyone gets it</span><span><b style="color: #4ade80">✓</b> Secrets live on the server, never on laptops</span><span><b style="color: #4ade80">✓</b> overgo workers can be given it as a tool</span></span><sc-if value="{{pub.confirm}}"><span class="oa-rise" style="font-size: 11.5px; line-height: 1.5; color: #e8e8ee">Sends 4 tools on staging (staging.orders.acme.example) — no secret values.</span></sc-if><span style="display: flex; align-items: center; gap: 10px; margin-top: auto"><span class="oa-btn oa-pri">{{pub.teamBtn}}<sc-if value="{{pub.teamCursor}}"><i class="fx-cursor"></i></sc-if></span><a href="../overgo/" style="font-size: 11.5px; color: #9aa6ff; text-decoration: none">What’s overgo? →</a></span></div>
+          <div class="oa-card" style="display: flex; flex-direction: column; gap: 8px"><b style="font-size: 13px; font-weight: 600; line-height: 1.35">📄 A file</b><span style="font-size: 11.5px; line-height: 1.5; color: #b2b2bc">Anyone you hand it to. One JSON file with no secrets — commit it beside the API’s code; they open it in overapi or run overapi serve.</span><span style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: auto"><span class="oa-btn">Export a copy…</span><span class="oa-btn">Show in Finder</span></span></div>
+        </div>
+        <span style="font-size: 11.5px; color: #8c8c98">Each environment is a separate server; publishing one doesn’t touch the others. <span style="color: #7c8bff">All the details →</span></span>
+      </div></div></sc-if>
+
+      <sc-if value="{{br}}"><div class="oa-chrome oa-rise">
+        <div class="oa-ch-tabs"><span class="oa-lights"><i style="background: #ff5f57"></i><i style="background: #febc2e"></i><i style="background: #28c840"></i></span><span class="oa-ch-tab"><i style="width: 12px; height: 12px; border-radius: 3px; background: #c2410c"></i>{{br.title}}<span style="margin-left: 6px; color: #5f6368">×</span></span><span style="align-self: center; color: #5f6368">+</span></div>
+        <div class="oa-ch-bar"><span style="letter-spacing: 6px">←→↻</span><span class="oa-ch-omni"><svg width="10" height="11" viewBox="0 0 10 11" aria-hidden="true"><rect x="1" y="4.5" width="8" height="6" rx="1.2" fill="#5f6368"/><path d="M3 4.5V3a2 2 0 0 1 4 0v1.5" fill="none" stroke="#5f6368" stroke-width="1.3"/></svg>app.acme.example<span style="color: #5f6368">{{br.path}}</span></span><span style="width: 18px; height: 18px; border-radius: 50%; background: #c2410c; color: #fff; font-size: 9px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center">L</span></div>
+        <div class="oa-ch-page">
+          <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 8px; border-bottom: 1px solid #eceff1"><b style="font-size: 13px; font-weight: 700">Acme Admin</b><span style="color: #1a73e8; font-weight: 500">Orders</span><span style="color: #5f6368">Customers</span><span style="position: relative; margin-left: auto; width: 150px; padding: 4px 10px; border: 1px solid #dadce0; border-radius: 6px; {{br.qStyle}}">⌕ {{br.q}}<sc-if value="{{br.qCursor}}"><i class="fx-cursor" style="right: auto; left: 70px; bottom: -12px"></i></sc-if></span></div>
+          <sc-if value="{{br.list}}"><span style="font-size: 11px; color: #5f6368">{{br.listHead}}</span><sc-for list="{{br.rows}}" as="r"><div style="position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr) 64px 64px; gap: 8px; align-items: center; padding: 8px; border-radius: 6px; border-bottom: 1px solid #f1f3f4; {{r.bg}}"><b style="font-weight: 600">{{r.id}}</b><span>{{r.name}}</span><span><span style="{{r.pill}}">{{r.st}}</span></span><span style="text-align: right">{{r.total}}</span><sc-if value="{{r.cursor}}"><i class="fx-cursor" style="right: 70px; bottom: -12px"></i></sc-if></div></sc-for></sc-if>
+          <sc-if value="{{br.order}}"><div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="display: flex; align-items: center; gap: 8px"><b style="font-size: 15px; font-weight: 700">Order #1002</b><span style="padding: 1px 7px; border-radius: 999px; font-size: 10.5px; background: #e6f4ea; color: #137333">open</span><span style="margin-left: auto; color: #1a73e8">Wile E. Coyote →</span></span>
+            <span style="display: flex; gap: 18px; border-bottom: 1px solid #eceff1"><span style="{{br.tabItems}}">Items</span><span style="position: relative; {{br.tabShip}}">Shipments<sc-if value="{{br.shipCursor}}"><i class="fx-cursor"></i></sc-if></span></span>
+            <sc-for list="{{br.items}}" as="x"><span style="display: grid; grid-template-columns: minmax(0, 1fr) 50px 70px; gap: 8px; padding: 4px 2px"><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px">{{x.a}}</span><span style="color: #5f6368">{{x.b}}</span><span style="text-align: right">{{x.c}}</span></span></sc-for>
+            <sc-if value="{{br.ship}}"><span class="oa-rise" style="display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 4px 2px"><span style="font-family: 'Geist Mono', monospace; font-size: 11.5px">SHP-88</span><span>Roadrunner Express</span><span style="padding: 1px 7px; border-radius: 999px; font-size: 10.5px; background: #e8f0fe; color: #1967d2">in transit</span></span></sc-if>
+            <span style="font-size: 11.5px; color: #5f6368">Total <b style="color: #202124">$424.50</b> · placed this morning</span>
+          </div></sc-if>
+        </div>
+      </div></sc-if>
+      <sc-if value="{{toast}}"><div class="oa-toast oa-rise"><span style="color: #4ade80">✓</span>{{toast}}</div></sc-if>
+    </div>
+  </div></div></div>
+  <div class="fx-stagebar"><span class="fx-live"><i class="blink">●</i> live · drawn from the real app · {{caption}}</span><span class="fx-hint">{{hint}}</span></div>
+</template>
+
+  <script src="../family.js?v=6ed7c0fd"></script>
+  <script>
+window.DC = window.DC || {};
+window.DC['overapi'] = class extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'bring', step: 0, auto: true }; }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const order = ['bring', 'use', 'record', 'ready', 'try', 'publish'];
+      const max = this.MAX[this.state.tab];
+      if (this.state.step < max + 2) this.setState({ step: this.state.step + 1 });
+      else if (this.state.auto) this.setState({ tab: order[(order.indexOf(this.state.tab) + 1) % order.length], step: 0 });
+      else this.setState({ step: 0 });
+    }, 1150);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  get MAX() { return { bring: 8, use: 9, record: 12, ready: 11, try: 16, publish: 11 }; }
+  renderVals() {
+    const tab = this.state.tab, k = this.state.step, MAX = this.MAX;
+    const G = '#4ade80', A = '#7c8bff', W = '#fbbf24', B = '#f87171', F = '#8c8c98', M = '#b2b2bc';
+    const MC = { GET: G, POST: A, PUT: W, PATCH: W, DELETE: B };
+    const defs = [
+      { id: 'bring', label: 'Bring it in', sub: 'A server on this Mac, in one click', cap: 'New API lists what’s running on this Mac — and imports a served spec' },
+      { id: 'use', label: 'Use it', sub: 'Pick ids by name, not number', cap: 'pick an id by name — values from earlier responses' },
+      { id: 'record', label: 'Record a web app', sub: 'No spec? Use the app in Chrome', cap: 'click around the web app in Chrome — every call it makes is kept' },
+      { id: 'ready', label: 'Make it agent-ready', sub: 'One reviewed pass', cap: 'tidy, connect, document — every change shown before it’s applied' },
+      { id: 'try', label: 'Try it, then test it', sub: 'Ask it, then keep it as a test', cap: 'your claude answers through this API’s MCP server — then that run becomes a test' },
+      { id: 'publish', label: 'Publish', sub: 'Claude Code, or your team', cap: 'into Claude Code in one click — or to your whole team through overgo, signed in once' }
+    ];
+    const tabs = defs.map((d, i) => ({ label: d.label, sub: d.sub, on: d.id === tab, num: String(i + 1).padStart(2, '0'),
+      pct: d.id === tab ? Math.min(100, Math.round(100 * k / (MAX[d.id] + 2))) : 0,
+      pick: () => this.setState({ tab: d.id, step: 0, auto: false }) }));
+    const cur = defs.find((d) => d.id === tab);
+
+    // ── frame ──
+    const imported = tab !== 'bring' || k >= 6;
+    const hasApi = imported;
+    const envName = tab === 'bring' || tab === 'use' ? 'local' : 'staging';
+    const ENV = { local: ['#38bdf8', 'background: rgba(14,165,233,.2); color: #bae6fd; box-shadow: inset 0 0 0 1px rgba(56,189,248,.45)'],
+      staging: ['#fbbf24', 'background: rgba(245,158,11,.2); color: #fde68a; box-shadow: inset 0 0 0 1px rgba(251,191,36,.45)'],
+      production: ['#ef4444', 'background: rgba(239,68,68,.2); color: #fecaca; box-shadow: inset 0 0 0 1px rgba(239,68,68,.45)'] };
+    const envs = Object.keys(ENV).map((n) => ({ name: n, dot: ENV[n][0], style: n === envName ? ENV[n][1] + '; font-weight: 600' : '' }));
+    const testView = tab === 'try' && k >= 11;
+    const appTab = testView ? 'Tests' : { bring: 'Requests', use: 'Requests', record: 'Record' }[tab];
+    const CALLS = [['GET', '/orders?status=open', 'k'], ['GET', '/orders/1002', 'k'], ['GET', '/customers/1', 'k'], ['GET', '/orders/1002/shipments', 'n'],
+      ['GET', '/customers/1/orders', 'n'], ['POST', '/orders/search', 'k'], ['GET', '/orders/1003', 'k'], ['GET', '/orders/1003/shipments', 'n'], ['GET', '/customers/2', 'k']];
+    const recording = tab === 'record' && k >= 1;
+    const nCalls = tab === 'record' ? Math.min(CALLS.length, Math.max(0, Math.round((k - 1) * 1.5))) : 0;
+    const apptabs = ['Requests', 'Environments', 'Record', 'Tests'].map((l) => ({ label: l,
+      cls: 'oa-tab' + (l === appTab ? ' on' : ''), rec: l === 'Record' && recording ? String(nCalls) : '' }));
+    const ready = tab === 'try' || tab === 'publish' || (tab === 'ready' && k >= 10);
+    const score = ready ? 94 : 58;
+    const mcpOn = (tab === 'ready' || tab === 'try' || tab === 'publish') && !testView;
+    const mcpTab = { cls: 'oa-tab' + (mcpOn ? ' on' : ''), n: String(score),
+      score: score >= 90 ? 'background: rgba(74,222,128,.15); color: #4ade80' : 'background: rgba(248,113,113,.15); color: #f87171' };
+
+    // ── sidebar ──
+    const nReq = 7 + (tab === 'record' && k >= 12 || ['ready', 'try', 'publish'].includes(tab) ? 2 : 0);
+    const wsApis = [{ mono: 'AI', title: 'Acme Inventory', sub: '6 requests', mg: 'background: rgba(74,222,128,.13); color: #86efac' },
+      { mono: 'AA', title: 'Acme Auth', sub: '3 requests', mg: 'background: rgba(167,139,250,.14); color: #c4b5fd' }];
+    const apis = [];
+    if (imported) apis.push({ mono: 'AO', title: 'Acme Orders', on: true, sub: recording ? 'recording · ' + nCalls + ' calls' : nReq + ' requests', mg: 'background: rgba(124,139,255,.18); color: #a9b3ff' });
+    apis.push({ mono: 'LE', title: 'Legacy ERP', sub: '23 requests', mg: 'background: rgba(251,191,36,.13); color: #fcd34d' });
+    apis.forEach((p) => Object.assign(p, { cls: 'oa-api' + (p.on ? ' on oa-rise' : ''), tstyle: p.on ? 'font-weight: 500; color: #e8e8ee' : 'color: ' + M,
+      sstyle: p.on && recording ? 'color: ' + B : 'color: ' + F }));
+    const side = recording ? { rec: 'Recording · ' + nCalls + ' calls', recSub: 'chrome · app.acme.example', recStyle: 'background: rgba(248,113,113,.1); color: #e8e8ee', recWeight: '600' }
+      : { rec: 'Record traffic', recSub: '', recStyle: 'color: ' + M, recWeight: '400' };
+
+    // ── step 1: New API ──
+    const SV = [[':3000', 'acme-auth', 'node', '🔒 sign-in', 'color: ' + F], [':4010', 'Acme Orders', 'node', '✓ spec · 7', 'padding: 1px 8px; border-radius: 999px; background: rgba(74,222,128,.15); color: #4ade80'],
+      [':5173', 'storefront', 'vite', 'web page', 'color: ' + F], [':8089', 'Acme Inventory', 'node', 'HTTP', 'color: ' + F], [':9200', 'search', 'java', 'JSON', 'color: ' + F]];
+    const picked = tab === 'bring' && k >= 3;
+    const nw = tab === 'bring' && k >= 1 && k <= 5 ? {
+      name: picked ? 'Acme Orders' : 'Acme Orders', base: picked ? 'http://localhost:4010/api/v1' : 'http://localhost:4010/api/v1', nameStyle: picked ? '' : 'color: ' + F,
+      rows: SV.map((r) => ({ port: r[0], name: r[1], proc: r[2], badge: r[3], bstyle: r[4], cursor: k === 2 && r[0] === ':4010',
+        bg: picked && r[0] === ':4010' ? 'background: rgba(124,139,255,.12); box-shadow: inset 2px 0 0 #7c8bff' : '' })),
+      spec: picked, importLabel: k === 5 ? 'Importing…' : 'Import 7 requests', importCursor: k === 4 } : null;
+
+    // ── step 2: the workbench ──
+    const R = [['orders', 'GET', 'Orders', 'list_orders', ''], ['orders', 'POST', 'Search orders', 'search_orders', ''], ['orders', 'GET', 'One order', 'get_order', ''],
+      ['orders', 'POST', 'Create order', 'create_order', 'write'], ['orders', 'POST', 'Cancel order', 'cancel_order', 'write'], ['orders', 'DELETE', 'Delete order', 'delete_order', 'destructive'],
+      ['customers', 'GET', 'One customer', 'get_customer', '']];
+    const groups = ['orders', 'customers'].map((a) => { const rows = R.filter((r) => r[0] === a).map((r) => ({ m: r[1], mc: MC[r[1]], name: r[2], tool: r[3], badge: r[4],
+      cls: 'oa-row' + (r[3] === 'list_orders' ? ' on' : '') + (tab === 'bring' ? ' oa-rise' : ''), nstyle: r[3] === 'list_orders' ? 'font-weight: 500; color: #e8e8ee' : 'color: #c9c9d2' })); return { name: a, n: String(rows.length), rows }; });
+    const u = tab === 'use' ? k : 0;
+    const gotId = tab === 'use' && k >= 4;
+    const req = { groups, q: gotId, pn: gotId ? '1/3' : '0/3', send: u === 6 ? 'Sending…' : 'Send to local', sendCursor: u === 5 };
+    const vp = { picked: gotId, empty: !gotId, cursor: u === 1, open: u >= 2 && u <= 3,
+      dot: gotId ? '#4ade80' : '#fbbf24', field: gotId ? '' : 'border-style: dashed' + (u >= 1 && u <= 3 ? '; border-color: #7c8bff' : ''),
+      rows: [['Wile E. Coyote', '1'], ['Road Runner Logistics', '2']].map((v, i) => ({ name: v[0], id: v[1], tick: '', cursor: u === 3 && i === 0, bg: u === 3 && i === 0 ? 'background: rgba(124,139,255,.18)' : '' })) };
+    const sent = tab === 'use' && k >= 7;
+    const res = { done: sent, idle: !sent, h: sent ? '6' : '', hist: sent ? '1' : '0',
+      rows: sent ? [{ id: '1002', st: 'open', t: '424.5', at: '09:12' }, { id: '1001', st: 'shipped', t: '258', at: 'yesterday' }] : [] };
+
+    // ── step 3: Record ──
+    const shown = CALLS.slice(0, nCalls);
+    const nk = shown.filter((c) => c[2] === 'k').length, nn = shown.length - nk;
+    const pick = nCalls >= 4 ? 3 : nCalls - 1;
+    const calls = shown.map((c, i) => ({ m: c[0], mc: MC[c[0]], path: c[1], known: c[2] === 'k', isNew: c[2] === 'n', status: '200', cls: 'oa-row oa-rise' + (i === pick ? ' on' : '') }));
+    const pc = shown[pick];
+    const J = (ind, k2, v, vc, p) => ({ ind: '  '.repeat(ind), k: k2, v, vc, p: p || '' });
+    const ORDER = [J(0, '', '{', M), J(1, 'id', '1002', '#fcd34d', ','), J(1, 'customer_id', '1', '#fcd34d', ','), J(1, 'status', '"open"', '#6ee7b7', ','),
+      J(1, 'total', '424.5', '#fcd34d', ','), J(1, 'items', '[ 2 items ]', M, ','), J(1, 'created_at', '"2026-11-09T09:12:44Z"', '#6ee7b7'), J(0, '', '}', M)];
+    const two = pc && pc[1].endsWith('/2');
+    const CUST = [J(0, '', '{', M), J(1, 'id', two ? '2' : '1', '#fcd34d', ','), J(1, 'name', two ? '"Road Runner Logistics"' : '"Wile E. Coyote"', '#6ee7b7', ','), J(1, 'tier', two ? '"standard"' : '"gold"', '#6ee7b7'), J(0, '', '}', M)];
+    const SHIP = [J(0, '', '[', M), J(1, '', '{', M), J(2, 'id', '"SHP-88"', '#6ee7b7', ','), J(2, 'carrier', '"Roadrunner Express"', '#6ee7b7', ','), J(2, 'status', '"in_transit"', '#6ee7b7'), J(1, '', '}', M), J(0, '', ']', M)];
+    const CARDS = [
+      { at: 8, title: '2 new routes', lines: ['GET /customers/{customerId}/orders', 'GET /orders/{orderId}/shipments'], btn: 'Add to Acme Orders', pri: true, cur: 11 },
+      { at: 9, title: 'Real values for 4 requests', text: 'The latest successful call’s arguments become each one’s saved example — ready to send, and what an agent sees as an example.', btn: 'Update 4 examples' },
+      { at: 10, title: 'Save it as a test', text: 'These 9 calls, in order, as a scenario to run again — ids passed along from each response, every answer checked for status and shape. Also a load test.', btn: 'Save as a test' }];
+    const note = !pc ? '' : pc[2] === 'n' ? 'Not a request in Acme Orders yet — add it from Coverage.' : pc[1].startsWith('/customers') ? 'This is get_customer in Acme Orders.' : pc[1].includes('search') ? 'This is search_orders in Acme Orders.' : pc[1].includes('?') ? 'This is list_orders in Acme Orders.' : 'This is get_order in Acme Orders.';
+    const tr = { idle: tab === 'record' && k === 0, startCursor: k === 0, rec: recording,
+      head: nCalls + ' calls · ' + nk + ' already requests here · ' + nn + ' new · 0 to other hosts',
+      waiting: recording && !nCalls ? 'Waiting for the app to call https://staging.orders.acme.example/api/v1…' : (!recording ? 'Open the web app, sign in and use it — calls to https://staging.orders.acme.example/api/v1 show up here.' : ''),
+      calls, graph: String(Math.min(4, Math.floor(nCalls / 2))),
+      detail: pc ? { url: pc[1], ms: (38 + pick * 7) + ' ms', note, ok: pc[2] === 'k', json: pc[1].includes('shipments') ? SHIP : pc[1].startsWith('/customers/1/') ? ORDER : pc[1].startsWith('/customers') ? CUST : ORDER } : null,
+      noDetail: !pc, cov: tab === 'record' && k >= 8,
+      cards: CARDS.filter((c) => tab === 'record' && k >= c.at).map((c) => ({ title: c.title, lines: c.lines || [], text: c.text || '', btn: c.btn, btnCls: 'oa-btn' + (c.pri ? ' oa-pri' : ''), cursor: c.cur === k })) };
+    const bk = tab === 'record' && k >= 1 && k <= 7 ? k : 0;
+    const pillS = (st) => 'padding: 1px 7px; border-radius: 999px; font-size: 10.5px; ' + (st === 'open' ? 'background: #e6f4ea; color: #137333' : 'background: #f1f3f4; color: #5f6368');
+    const ROWS = [['#1002', 'Wile E. Coyote', 'open', '$424.50'], ['#1003', 'Road Runner Logistics', 'open', '$187.50'], ['#1001', 'Wile E. Coyote', 'shipped', '$258.00']];
+    const tabS = (on) => 'padding: 4px 0; ' + (on ? 'border-bottom: 2px solid #1a73e8; color: #1a73e8; font-weight: 500' : 'color: #5f6368');
+    const br = bk ? {
+      title: bk >= 7 ? 'Search — Acme Admin' : bk >= 3 ? 'Order #1002 — Acme Admin' : 'Orders — Acme Admin',
+      path: bk >= 7 ? '/search?q=birdseed' : bk >= 5 ? '/orders/1002/shipments' : bk >= 3 ? '/orders/1002' : '/orders',
+      list: bk <= 2 || bk >= 7, listHead: bk >= 7 ? '2 orders match “birdseed”' : 'Open and recent orders',
+      rows: (bk >= 7 ? ROWS.slice(0, 2) : ROWS).map((r) => { const hot = (bk === 2 && r[0] === '#1002') || (bk === 7 && r[0] === '#1003');
+        return { id: r[0], name: r[1], st: r[2], total: r[3], pill: pillS(r[2]), cursor: hot, bg: hot ? 'background: #e8f0fe' : '' }; }),
+      order: bk >= 3 && bk <= 6, tabItems: tabS(bk < 5), tabShip: tabS(bk >= 5), shipCursor: bk === 4, ship: bk >= 5,
+      items: bk >= 3 && bk < 5 ? [{ a: 'ROCKET-SKATES', b: '× 1', c: '$349.50' }, { a: 'BIRDSEED-5KG', b: '× 4', c: '$75.00' }] : [],
+      q: bk >= 6 ? 'birdseed' : 'Search orders', qStyle: bk >= 6 ? 'color: #202124' : 'color: #80868b', qCursor: bk === 6 } : null;
+
+    // ── MCP server page (steps 4-6) ──
+    const inClaude = tab === 'publish' && k >= 4;
+    const tone = (n) => n >= 90 ? 'color: ' + G : n >= 60 ? 'color: ' + W : 'color: ' + B;
+    const sec = ready ? 91 : 74;
+    const mc = { inClaude, journey: String(tab === 'publish' && k >= 4 ? 4 : ready ? 3 : 1), ring: String(Math.round(34.5 * (tab === 'publish' && k >= 4 ? 4 : ready ? 3 : 1) / 4)),
+      tiles: [{ label: 'Tools on staging', v: '4', style: '', note: '≈1,200 tokens every agent turn · read-only' },
+        { label: 'Ready for agents', v: String(score), style: tone(score), note: ready ? 'descriptions look fine' : '5 weak descriptions' },
+        { label: 'Security', v: String(sec), style: tone(sec), note: ready ? 'nothing found' : '2 findings, none blocking' },
+        { label: 'Tests', v: 'Passing', style: 'font-size: 18px; color: ' + G, note: 'Recorded Nov 9 · staging · 2 min ago' }],
+      tools: tab !== 'try', ask: tab === 'try', toolsTab: tab !== 'try' ? 'on' : '',
+      tryStyle: tab === 'try' ? 'background: rgba(124,139,255,.2); color: #e8e8ee' : 'background: rgba(124,139,255,.1); color: #a9b3ff',
+      toolRows: (ready ? [['list_orders', 'Orders, newest first — filter by status or customer. Start here to find an order’s id.'], ['search_orders', 'Orders whose notes or SKUs match some text.'],
+        ['get_order', 'One order — its line items, status and total. Find the id with list_orders first.'], ['get_customer', 'One customer — name, email and tier.'],
+        ['create_order', 'Places an order for a customer.', 'WRITE'], ['cancel_order', 'Cancels an open order.', 'WRITE']]
+        : [['list_orders', 'List orders, newest first'], ['search_orders', 'Search orders by free text across notes and SKUs'], ['get_order', 'One order with its line items'],
+        ['get_customer', 'One customer'], ['create_order', 'Place an order for a customer', 'WRITE'], ['cancel_order', 'Cancel an open order', 'WRITE'], ['delete_order', 'Delete an order permanently', 'DESTRUCTIVE']])
+        .map((t) => ({ name: t[0], desc: t[1], badge: t[2] || '' })) };
+
+    // ── step 4: Make it agent-ready ──
+    const ar = tab === 'ready' && k >= 1 && k <= 9 ? {
+      intro: k <= 2, goCursor: k === 2, running: k >= 3 && k <= 5, review: k >= 6, applyCursor: k === 9,
+      cards: [['1', 'Tidy up', 'what the recording picked up that isn’t the API', '2 found'], ['2', 'Fix what never changes', 'values every request sends the same', 'nothing to do'],
+        ['3', 'Connect the chains', 'which request gives the ids the others need', '3 found'], ['4', 'Document it', 'claude writes what each tool is for, what each argument means, clearer names, what to hide, and a brief for the agent', '✦']]
+        .map((c) => ({ n: c[0], t: c[1], d: c[2], r: c[3] })),
+      log: ['▸ Reading the API as it will be after steps 1–3', '  list_orders, search_orders, get_order, get_customer …', '▸ Writing descriptions for 7 tools', '▸ Argument help: customer_id, status, orderId …', '▸ The agent brief and example questions'].slice(0, (k - 2) * 2),
+      groups: [
+        { name: 'Tidy up', n: '2', rows: [{ t: 'POST /analytics/event', b: '', a: 'Removed' }] },
+        { name: 'Chains', n: '3', rows: [{ t: 'get_order gets orderId', b: '', a: 'list_orders → [].id → get_order.orderId' }, { t: 'get_customer gets customerId', b: '', a: 'get_order → customer_id → get_customer.customerId' }] },
+        { name: 'Descriptions', n: '4', ai: true, rows: [{ t: 'get_order', b: 'One order with its line items', a: 'One order — its line items, status and total. Find the id with list_orders first.' }] },
+        { name: 'Hide from agents', n: '1', ai: true, rows: [{ t: 'delete_order', b: '', a: 'Deletes for good — nobody should ask an agent for this.' }] }
+      ].slice(0, Math.max(1, k - 5)) } : null;
+
+    // ── step 5: Try as an agent ──
+    const Q = 'Which of Wile’s orders are still open?';
+    const a = tab === 'try' ? k : 0;
+    const C = [[3, 'list_orders', 'status: "open"', '420 tok'], [4, 'get_customer', 'customerId: 1', '90 tok'], [5, 'get_customer', 'customerId: 2', '92 tok']];
+    const callsA = C.filter((c) => a >= c[0]).map((c) => ({ tool: c[1], args: c[2], tok: c[3], dot: a > c[0] || a >= 6 ? G : A, dotCls: 'oa-dot' + (a === c[0] ? ' blink' : '') }));
+    const ask = { empty: a <= 1, chips: [Q, 'What orders are open right now?', 'Pick one and show me its shipments.'].map((q, i) => ({ q, cursor: a === 1 && i === 0, style: a === 1 && i === 0 ? 'border-color: #7c8bff; color: #e8e8ee' : 'color: ' + M })),
+      q: a >= 2 ? Q : '', calls: a >= 3 ? callsA : (a === 2 ? [] : null), head: a >= 6 ? 'Used 3 tools' : 'Choosing tools…', tok: a >= 6 ? '602 tok read' : '',
+      thinking: a >= 2 && a <= 6, secs: (a * 1.1).toFixed(0) + 's', answer: a >= 7, saveCursor: a === 9,
+      ph: a >= 7 ? 'Ask a follow-up — each question starts fresh' : 'Ask Acme Orders something…' };
+    if (a === 2) ask.calls = [{ tool: '…', args: '', tok: '', dot: A, dotCls: 'oa-dot blink' }];
+
+    // ── step 6: Publish ──
+    const p = tab === 'publish' ? k : 0;
+    const pub = tab === 'publish' && k >= 1 ? {
+      mac: p >= 4 ? '✓ In Claude Code as acme-orders-staging · just now' : 'Not installed', macStyle: p >= 4 ? 'color: ' + G : 'color: ' + F,
+      macBtn: p === 3 ? 'Adding…' : p >= 4 ? 'Update staging in Claude Code' : 'Add staging to Claude Code', macCursor: p === 2,
+      team: p >= 10 ? '✓ Published staging · just now' : 'Not published', teamStyle: p >= 10 ? 'color: ' + G : 'color: ' + F,
+      confirm: p >= 7 && p <= 9, teamBtn: p === 9 ? 'Publishing…' : p >= 7 && p < 9 ? 'Publish' : p >= 10 ? 'Publish staging again' : 'Publish staging to overgo…',
+      teamCursor: p === 6 || p === 8 } : null;
+
+    // ── step 5, then: the saved run as a test on staging
+    const tk = testView ? k - 11 : -1;
+    const TS = [['list_orders', 'status=open', ' → {{s1_customer_id}}', '420 ms → 380 ms'], ['get_customer', 'customerId={{s1_customer_id}}', '', '90 ms → 84 ms'], ['get_customer', 'customerId=2', '', '92 ms → 88 ms']];
+    const tDone = (i) => tk >= i + 2, tRun = (i) => tk === i + 1;
+    const allOk = tk >= 4;
+    const te = { run: tk >= 1 && tk <= 3 ? 'Running…' : 'Run', runCursor: tk === 0, dot: allOk ? G : F,
+      railSub: allOk ? '3 steps · 3/3 passing on staging · just now' : '3 steps · not run',
+      title: allOk ? 'All passed' : tk >= 1 ? 'Running…' : 'Not run yet', titleStyle: allOk ? 'color: ' + G : '',
+      sub: allOk ? '3 passed · 0 off · 0 skipped' : '', right: allOk ? 'staging · 0.6 s · just now' : '',
+      pct: String(Math.round(100 * TS.filter((x, i) => tDone(i)).length / 3)), ci: tk >= 5,
+      steps: TS.map((t, i) => ({ n: String(i + 1), tool: t[0], args: t[1], out: t[2], time: tDone(i) ? t[3] : 'recorded ' + t[3].split(' → ')[0],
+        status: tDone(i) ? '200' : '', outcome: tDone(i) ? '✓ Passed' : tRun(i) ? 'Running' : 'Not run', oStyle: tDone(i) ? 'color: ' + G : tRun(i) ? 'color: ' + A : 'color: ' + F,
+        border: tRun(i) ? 'rgba(124,139,255,.6)' : '#28282e' })) };
+
+    let toast = '';
+    if (tab === 'bring' && k >= 6) toast = 'Created. Agents only get read-only access until you allow writes.';
+    if (tab === 'record' && k >= 12) toast = 'Added 2 requests to Acme Orders — try them, then make them tools.';
+    if (tab === 'ready' && k >= 10) toast = 'Applied 11 changes. Ready 58 → 94.';
+    if (tab === 'try' && k === 10) toast = 'Saved 3 steps as the test “' + Q + '”.';
+    if (tab === 'publish' && k >= 4 && k <= 5) toast = 'Added “acme-orders-staging” to Claude Code — overcli picks it up too. Open a new session and ask it to use Acme Orders.';
+    if (tab === 'publish' && k >= 10) toast = 'Sent to overgo. An admin approves it under Setup → APIs — then every agent on the team can use Acme Orders.';
+
+    return { tabs, caption: cur.cap, hint: this.state.auto === false ? 'paused here · click any step' : 'auto-plays · click any step to jump',
+      hasApi, gearML: hasApi ? '0' : 'auto', apptabs, mcpTab, envs, wsApis, apis, side, nw, req, vp, res, tr, br, mc, ar, ask, pub, te, toast,
+      show: { req: (tab === 'bring' && imported) || tab === 'use', traffic: tab === 'record', mcp: mcpOn, tests: testView } };
+  }
+};
+  </script>
+</body>
+</html>
